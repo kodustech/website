@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodus — The Open Source Alternative to CodeRabbit</title>
+  <meta name="description" content="AI Code Review With Full Control Over Model Choice and Costs. Open source, model agnostic, zero markup.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- SVG sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <symbol id="bug-shape" viewBox="0 0 11 8">
+      <rect x="1" y="0" width="1" height="1" fill="currentColor"/>
+      <rect x="9" y="0" width="1" height="1" fill="currentColor"/>
+      <rect x="2" y="1" width="1" height="1" fill="currentColor"/>
+      <rect x="8" y="1" width="1" height="1" fill="currentColor"/>
+      <rect x="1" y="2" width="9" height="1" fill="currentColor"/>
+      <rect x="0" y="3" width="2" height="1" fill="currentColor"/>
+      <rect x="3" y="3" width="5" height="1" fill="currentColor"/>
+      <rect x="9" y="3" width="2" height="1" fill="currentColor"/>
+      <rect x="0" y="4" width="11" height="1" fill="currentColor"/>
+      <rect x="0" y="5" width="1" height="1" fill="currentColor"/>
+      <rect x="2" y="5" width="7" height="1" fill="currentColor"/>
+      <rect x="10" y="5" width="1" height="1" fill="currentColor"/>
+      <rect x="0" y="6" width="1" height="1" fill="currentColor"/>
+      <rect x="2" y="6" width="1" height="1" fill="currentColor"/>
+      <rect x="8" y="6" width="1" height="1" fill="currentColor"/>
+      <rect x="10" y="6" width="1" height="1" fill="currentColor"/>
+      <rect x="3" y="7" width="2" height="1" fill="currentColor"/>
+      <rect x="6" y="7" width="2" height="1" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#" class="nav__link">Docs</a></li>
+        <li><a href="#" class="nav__link">Community</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
+        </li>
+        <li><a href="#" class="nav__link">Blog</a></li>
+        <li><a href="#" class="nav__link">Pricing</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a href="#" class="btn btn--github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span>807</span>
+        </a>
+        <a href="#" class="btn btn--outline-light">Login</a>
+        <a href="#" class="btn btn--primary">Start Free Trial</a>
+      </div>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <!-- Scattered bugs -->
+      <div class="hero__bugs" aria-hidden="true">
+        <svg class="hero__bug" data-speed="0.3" style="top: 8%; left: 5%; width: 50px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape"/></svg>
+        <svg class="hero__bug" data-speed="0.5" style="top: 15%; right: 8%; width: 35px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape" transform="translate(11,0) scale(-1,1)"/></svg>
+        <svg class="hero__bug" data-speed="0.2" style="top: 40%; left: 3%; width: 42px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape"/></svg>
+        <svg class="hero__bug" data-speed="0.6" style="top: 55%; right: 4%; width: 55px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape" transform="translate(11,0) scale(-1,1)"/></svg>
+        <svg class="hero__bug" data-speed="0.4" style="top: 75%; left: 8%; width: 30px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape"/></svg>
+        <svg class="hero__bug" data-speed="0.35" style="top: 70%; right: 10%; width: 38px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape" transform="translate(11,0) scale(-1,1)"/></svg>
+        <svg class="hero__bug" data-speed="0.45" style="top: 25%; left: 12%; width: 28px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape"/></svg>
+        <svg class="hero__bug" data-speed="0.25" style="top: 88%; right: 15%; width: 32px;" viewBox="0 0 11 8" shape-rendering="crispEdges"><use href="#bug-shape" transform="translate(11,0) scale(-1,1)"/></svg>
+      </div>
+
+      <div class="container hero__container">
+        <h1 class="hero__title">
+          The <span class="highlight">Open Source</span> Alternative to CodeRabbit
+        </h1>
+        <p class="hero__subtitle">
+          AI Code Review With Full Control Over<br>Model Choice and Costs
+        </p>
+
+        <div class="hero__ctas">
+          <div class="hero__cta-tabs">
+            <button class="hero__tab hero__tab--active" data-tab="git">Start with Git</button>
+            <button class="hero__tab" data-tab="terminal">Start with Terminal</button>
+          </div>
+
+          <div class="hero__cta-content">
+            <!-- Git tab -->
+            <div class="hero__tab-panel hero__tab-panel--active" id="tab-git">
+              <div class="hero__git-providers">
+                <span class="hero__provider" aria-label="GitHub">
+                  <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                </span>
+                <span class="hero__provider" aria-label="GitLab">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 01-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 014.82 2a.43.43 0 01.58 0 .42.42 0 01.11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0118.6 2a.43.43 0 01.58 0 .42.42 0 01.11.18l2.44 7.51L23 13.45a.84.84 0 01-.35.94z"/></svg>
+                </span>
+                <span class="hero__provider" aria-label="Bitbucket">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M2.65 3A1 1 0 001.66 4.18l2.75 17.63a1.36 1.36 0 001.33 1.14h12.9a1 1 0 001-.85l2.75-17.92A1 1 0 0021.35 3zm11.59 12.83H9.84L8.9 9.57h6.28z"/></svg>
+                </span>
+                <span class="hero__provider" aria-label="Azure DevOps">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M0 8.877L2.247 5.91l8.405-3.416V.022l7.37 5.393L2.966 8.338v8.225L0 15.707zm24-4.45v14.651l-5.753 4.9-9.303-3.057v3.056l-5.978-7.416 15.057 1.98V2.244z"/></svg>
+                </span>
+              </div>
+              <a href="#" class="btn btn--primary hero__cta-btn">Start Free Trial</a>
+            </div>
+
+            <!-- Terminal tab -->
+            <div class="hero__tab-panel" id="tab-terminal">
+              <div class="hero__terminal-cmd">
+                <code class="hero__terminal-code">curl -fsSL https://review-skill.com/install | bash</code>
+                <button class="hero__terminal-copy" aria-label="Copy command" id="copyCmd">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="hero__disclaimer">No credit card required &bull; 14-day free trial</p>
+
+        <!-- Retro OS window — client logos -->
+        <div class="hero__clients">
+          <div class="retro-window">
+            <div class="retro-window__bar">
+              <span class="retro-window__bar-title">trusted_by.exe</span>
+              <div class="retro-window__bar-btns">
+                <span class="retro-window__bar-btn">&#9472;</span>
+                <span class="retro-window__bar-btn">&#9633;</span>
+                <span class="retro-window__bar-btn">&times;</span>
+              </div>
+            </div>
+            <div class="retro-window__body">
+              <div class="logo-carousel">
+                <div class="logo-carousel__track" id="logoTrack">
+                  <!-- Duplicate set for infinite scroll -->
+                  <span class="logo-carousel__item">Acme Corp</span>
+                  <span class="logo-carousel__item">TechFlow</span>
+                  <span class="logo-carousel__item">DevStack</span>
+                  <span class="logo-carousel__item">CloudBase</span>
+                  <span class="logo-carousel__item">NexGen</span>
+                  <span class="logo-carousel__item">CodeVault</span>
+                  <span class="logo-carousel__item">Acme Corp</span>
+                  <span class="logo-carousel__item">TechFlow</span>
+                  <span class="logo-carousel__item">DevStack</span>
+                  <span class="logo-carousel__item">CloudBase</span>
+                  <span class="logo-carousel__item">NexGen</span>
+                  <span class="logo-carousel__item">CodeVault</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WHY WE ARE DIFFERENT (Cartridges) ========== -->
+    <section class="cartridges" id="different">
+      <div class="container">
+        <h2 class="section-title">Why we are different</h2>
+
+        <div class="cartridges__grid">
+
+          <!-- Cartridge 1: Free Tier -->
+          <button class="cartridge" data-modal="modal-free-tier">
+            <div class="cartridge__shell">
+              <div class="cartridge__notch"></div>
+              <div class="cartridge__screen">
+                <div class="cartridge__screen-bar">
+                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
+                  <span class="cartridge__led cartridge__led--green"></span>
+                </div>
+                <div class="cartridge__screen-body">
+                  <svg class="cartridge__svg" viewBox="0 0 120 70">
+                    <!-- Coins falling and fading out -->
+                    <circle cx="35" cy="20" r="8" fill="none" stroke="#42BE65" stroke-width="1.5" opacity="0.3">
+                      <animate attributeName="cy" values="10;60" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;0" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="85" cy="15" r="6" fill="none" stroke="#42BE65" stroke-width="1.5" opacity="0.3">
+                      <animate attributeName="cy" values="5;55" dur="3s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.5;0" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <!-- $0 big -->
+                    <text x="60" y="42" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="22" fill="#42BE65">$0</text>
+                    <line x1="20" y1="58" x2="100" y2="58" stroke="#42BE65" stroke-width="0.5" opacity="0.3"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="cartridge__title-area">
+                <h3 class="cartridge__title">Generous<br>Free Tier</h3>
+              </div>
+              <div class="cartridge__insert">
+                <span class="cartridge__arrow">&#9650;</span>
+                <span class="cartridge__insert-text">Insert</span>
+              </div>
+            </div>
+            <span class="cartridge__cta">Learn more</span>
+          </button>
+
+          <!-- Cartridge 2: Model Agnostic -->
+          <button class="cartridge" data-modal="modal-agnostic">
+            <div class="cartridge__shell">
+              <div class="cartridge__notch"></div>
+              <div class="cartridge__screen">
+                <div class="cartridge__screen-bar">
+                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
+                  <span class="cartridge__led cartridge__led--blue"></span>
+                </div>
+                <div class="cartridge__screen-body">
+                  <svg class="cartridge__svg" viewBox="0 0 120 70">
+                    <!-- Rotating model labels -->
+                    <g text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">
+                      <text x="60" y="40" fill="#5190FF">
+                        <animate attributeName="opacity" values="1;1;0;0;0;0" dur="6s" repeatCount="indefinite"/>
+                        Claude
+                      </text>
+                      <text x="60" y="40" fill="#42BE65">
+                        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="6s" repeatCount="indefinite"/>
+                        GPT-4o
+                      </text>
+                      <text x="60" y="40" fill="#F8B76D">
+                        <animate attributeName="opacity" values="0;0;0;0;1;1" dur="6s" repeatCount="indefinite"/>
+                        Gemini
+                      </text>
+                    </g>
+                    <!-- Swap arrows -->
+                    <path d="M38 22 L46 17 L46 27Z" fill="#5190FF" opacity="0.4">
+                      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <path d="M82 22 L74 17 L74 27Z" fill="#5190FF" opacity="0.4">
+                      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite" begin="1s"/>
+                    </path>
+                    <line x1="20" y1="58" x2="100" y2="58" stroke="#5190FF" stroke-width="0.5" opacity="0.3"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="cartridge__title-area">
+                <h3 class="cartridge__title">Model<br>Agnostic</h3>
+              </div>
+              <div class="cartridge__insert">
+                <span class="cartridge__arrow">&#9650;</span>
+                <span class="cartridge__insert-text">Insert</span>
+              </div>
+            </div>
+            <span class="cartridge__cta">Learn more</span>
+          </button>
+
+          <!-- Cartridge 3: Zero Markup -->
+          <button class="cartridge" data-modal="modal-markup">
+            <div class="cartridge__shell">
+              <div class="cartridge__notch"></div>
+              <div class="cartridge__screen">
+                <div class="cartridge__screen-bar">
+                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
+                  <span class="cartridge__led cartridge__led--red"></span>
+                </div>
+                <div class="cartridge__screen-body">
+                  <svg class="cartridge__svg" viewBox="0 0 120 70">
+                    <!-- Two bars: "Others" growing vs "Kodus" staying flat -->
+                    <text x="22" y="12" font-family="'JetBrains Mono', monospace" font-size="6" fill="#FA5867" opacity="0.7">Others</text>
+                    <rect x="12" y="16" width="30" height="8" rx="1" fill="#FA5867" opacity="0.3"/>
+                    <rect x="12" y="16" rx="1" height="8" fill="#FA5867" opacity="0.7">
+                      <animate attributeName="width" values="10;30;30;10" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="22" y="38" font-family="'JetBrains Mono', monospace" font-size="6" fill="#42BE65" opacity="0.7">Kodus</text>
+                    <rect x="12" y="42" width="30" height="8" rx="1" fill="#42BE65" opacity="0.3"/>
+                    <rect x="12" y="42" width="10" height="8" rx="1" fill="#42BE65" opacity="0.7"/>
+                    <!-- Equals sign -->
+                    <text x="52" y="36" font-family="'JetBrains Mono', monospace" font-size="10" fill="#CDCDDF" opacity="0.5">=</text>
+                    <!-- API cost label -->
+                    <text x="85" y="30" font-family="'JetBrains Mono', monospace" font-size="6" fill="#CDCDDF" text-anchor="middle" opacity="0.6">API cost</text>
+                    <text x="85" y="42" font-family="'JetBrains Mono', monospace" font-size="7" fill="#42BE65" text-anchor="middle" font-weight="700">only</text>
+                    <line x1="20" y1="58" x2="100" y2="58" stroke="#FA5867" stroke-width="0.5" opacity="0.3"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="cartridge__title-area">
+                <h3 class="cartridge__title">Zero<br>Markup</h3>
+              </div>
+              <div class="cartridge__insert">
+                <span class="cartridge__arrow">&#9650;</span>
+                <span class="cartridge__insert-text">Insert</span>
+              </div>
+            </div>
+            <span class="cartridge__cta">Learn more</span>
+          </button>
+
+          <!-- Cartridge 4: Extensible Configs -->
+          <button class="cartridge" data-modal="modal-configs">
+            <div class="cartridge__shell">
+              <div class="cartridge__notch"></div>
+              <div class="cartridge__screen">
+                <div class="cartridge__screen-bar">
+                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
+                  <span class="cartridge__led cartridge__led--blue"></span>
+                </div>
+                <div class="cartridge__screen-body">
+                  <svg class="cartridge__svg" viewBox="0 0 120 70">
+                    <!-- Animated sliders -->
+                    <rect x="20" y="14" width="80" height="3" rx="1.5" fill="#30304B"/>
+                    <circle cx="20" cy="15.5" r="5" fill="#5190FF">
+                      <animate attributeName="cx" values="30;80;30" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <rect x="20" y="30" width="80" height="3" rx="1.5" fill="#30304B"/>
+                    <circle cx="20" cy="31.5" r="5" fill="#C9BBF2">
+                      <animate attributeName="cx" values="70;35;70" dur="3.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <rect x="20" y="46" width="80" height="3" rx="1.5" fill="#30304B"/>
+                    <circle cx="20" cy="47.5" r="5" fill="#F8B76D">
+                      <animate attributeName="cx" values="50;90;50" dur="5s" repeatCount="indefinite"/>
+                    </circle>
+                    <line x1="20" y1="58" x2="100" y2="58" stroke="#5190FF" stroke-width="0.5" opacity="0.3"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="cartridge__title-area">
+                <h3 class="cartridge__title">Extensible<br>Configs</h3>
+              </div>
+              <div class="cartridge__insert">
+                <span class="cartridge__arrow">&#9650;</span>
+                <span class="cartridge__insert-text">Insert</span>
+              </div>
+            </div>
+            <span class="cartridge__cta">Learn more</span>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CARTRIDGE MODALS ========== -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal" id="modalContent">
+        <button class="modal__close" id="modalClose">&times;</button>
+        <div class="modal__header">
+          <span class="cartridge__led cartridge__led--green" id="modalLed"></span>
+          <h3 class="modal__title" id="modalTitle"></h3>
+        </div>
+        <p class="modal__desc" id="modalDesc"></p>
+      </div>
+    </div>
+
+    <!-- ========== YOU'LL HATE US IF (VCR) ========== -->
+    <section class="vcr-section" id="hate-us">
+      <div class="container">
+        <h2 class="section-title">You'll hate us if...</h2>
+
+        <div class="vcr">
+          <!-- VCR top bar -->
+          <div class="vcr__top">
+            <div class="vcr__vents"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <span class="vcr__brand">Pixel-Vision</span>
+            <div class="vcr__vents"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+
+          <!-- CRT Screen -->
+          <div class="vcr__screen">
+            <div class="vcr__scanlines"></div>
+
+            <!-- Screen header -->
+            <div class="vcr__screen-header">
+              <span class="vcr__warn">&#9888;</span>
+              <span class="vcr__screen-title">You'll hate <strong class="highlight">Kodus</strong> if...</span>
+              <span class="vcr__file" id="vcrFile">FILE_01.DAT</span>
+            </div>
+
+            <!-- Slide content -->
+            <div class="vcr__content">
+              <div class="vcr__content-inner" id="vcrContent">
+                <div class="vcr__slide-top">
+                  <span class="vcr__icon" id="vcrIcon">&#9997;</span>
+                  <span class="vcr__type" id="vcrType">Type: Aesthetic</span>
+                </div>
+                <p class="vcr__text" id="vcrText">You want a poem in every pull request.</p>
+                <div class="vcr__slide-bottom">
+                  <span class="vcr__status" id="vcrStatus">Status: Unnecessary</span>
+                  <span class="vcr__author" id="vcrAuthor">Author: G. Malinosqui</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category bar -->
+            <div class="vcr__categories">
+              <button class="vcr__cat vcr__cat--active" data-slide="0">[1] Poetry</button>
+              <button class="vcr__cat" data-slide="1">[2] Billing</button>
+              <button class="vcr__cat" data-slide="2">[3] Vendor</button>
+              <button class="vcr__cat" data-slide="3">[4] Noise</button>
+            </div>
+          </div>
+
+          <!-- VCR Control panel -->
+          <div class="vcr__controls">
+            <div class="vcr__speaker"><span></span><span></span><span></span></div>
+            <div class="vcr__buttons">
+              <button class="vcr__btn" data-slide="0"><span class="vcr__btn-num">1</span><span class="vcr__btn-label">Poetry</span></button>
+              <button class="vcr__btn" data-slide="1"><span class="vcr__btn-num">2</span><span class="vcr__btn-label">Billing</span></button>
+              <button class="vcr__btn" data-slide="2"><span class="vcr__btn-num">3</span><span class="vcr__btn-label">Vendor</span></button>
+              <button class="vcr__btn" data-slide="3"><span class="vcr__btn-num">4</span><span class="vcr__btn-label">Noise</span></button>
+              <button class="vcr__btn vcr__btn--power"><span class="vcr__btn-num">I/O</span></button>
+            </div>
+            <div class="vcr__leds">
+              <span class="vcr__led-indicator vcr__led-indicator--blue"></span>
+              <span class="vcr__led-label">PWR</span>
+              <span class="vcr__led-indicator vcr__led-indicator--pink"></span>
+              <span class="vcr__led-label">HDD</span>
+            </div>
+            <div class="vcr__speaker"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== THE BASICS DONE RIGHT ========== -->
+    <section class="basics" id="basics">
+      <div class="container">
+        <h2 class="section-title">The basics done <span class="highlight">Right</span></h2>
+
+        <div class="basics__showcase">
+          <div class="basics__window">
+            <div class="window-bar">
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+              <span class="window-bar__url">kodus://features</span>
+            </div>
+            <div class="basics__body">
+              <!-- File tree sidebar -->
+              <div class="basics__sidebar">
+                <div class="basics__sidebar-header">
+                  <span class="basics__folder-icon">&#128193;</span> Explorer
+                </div>
+                <ul class="basics__tree">
+                  <li class="basics__tree-folder">
+                    <span class="basics__tree-toggle">&#9660;</span> features/
+                  </li>
+                  <li class="basics__tree-file basics__tree-file--active" data-feature="0">
+                    <span class="basics__file-icon">&#9881;</span> arch_guard.mod
+                  </li>
+                  <li class="basics__tree-file" data-feature="1">
+                    <span class="basics__file-icon">&#128270;</span> smart_review.mod
+                  </li>
+                  <li class="basics__tree-file" data-feature="2">
+                    <span class="basics__file-icon">&#128172;</span> pr_summary.mod
+                  </li>
+                  <li class="basics__tree-file" data-feature="3">
+                    <span class="basics__file-icon">&#128295;</span> auto_fix.mod
+                  </li>
+                  <li class="basics__tree-file" data-feature="4">
+                    <span class="basics__file-icon">&#128202;</span> code_quality.mod
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Detail panel -->
+              <div class="basics__content">
+                <div class="basics__content-header">
+                  <span class="basics__tab basics__tab--active" id="basicsTab">arch_guard.mod</span>
+                </div>
+                <div class="basics__content-body" id="basicsDetail">
+                  <h3 class="basics__feature-title" id="basicsTitle">Architectural Guard</h3>
+                  <div class="basics__feature-tags">
+                    <span class="basics__tag" id="basicsTag">FREE</span>
+                  </div>
+                  <div class="basics__video" id="basicsVideo">
+                    <div class="basics__video-placeholder">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="24" fill="#F8B76D" opacity="0.9"/>
+                        <polygon points="20,16 34,24 20,32" fill="#101019"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <p class="basics__feature-desc" id="basicsDesc">
+                    Enforces architectural patterns and prevents spaghetti code.
+                  </p>
+                  <p class="basics__feature-detail" id="basicsDetailText">
+                    Like a strict librarian for your codebase. This module scans every pull request to ensure
+                    it adheres to your defined architectural boundaries. It detects circular dependencies,
+                    illegal imports, and layer violations before they arise.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS (VHS Tapes) ========== -->
+    <section class="vhs-section" id="testimonials">
+      <div class="container">
+        <h2 class="section-title">What devs are saying</h2>
+
+        <!-- Shelf wrapper -->
+        <div class="vhs__shelf-wrapper">
+          <!-- Nav arrows -->
+          <button class="vhs__nav vhs__nav--prev" id="vhsPrev" aria-label="Previous">
+            <span class="vhs__nav-icon">&#9664;&#9664;</span>
+            <span class="vhs__nav-label">REW</span>
+          </button>
+
+          <div class="vhs__shelf-track" id="vhsTrack">
+            <div class="vhs__shelf" id="vhsShelf">
+
+              <!-- VHS 1 -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-primary);">
+                  <span class="vhs__spine-title">REVIEW_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-primary);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="vhs__genre">ENGINEERING</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <div class="vhs__avatar-placeholder" style="--vhs-accent: var(--color-primary);">JD</div>
+                    </div>
+                    <h4 class="vhs__name">Jane Doe</h4>
+                    <p class="vhs__role">Staff Engineer @ Acme Corp</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">"We switched from CodeRabbit and cut our AI review costs by 60%. The model-agnostic approach means we use Claude for security reviews and GPT for general code — best of both worlds."</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2025</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 2 -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-secondary);">
+                  <span class="vhs__spine-title">REVIEW_02</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-secondary);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="vhs__genre">DEVOPS</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <div class="vhs__avatar-placeholder" style="--vhs-accent: var(--color-secondary);">MR</div>
+                    </div>
+                    <h4 class="vhs__name">Marcus Rivera</h4>
+                    <p class="vhs__role">CTO @ DevStack</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">"The extensible configs are a game changer. We defined our own architectural rules and Kodus catches violations before they ever reach a human reviewer. Saved us hours every week."</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2025</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 3 -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-tertiary);">
+                  <span class="vhs__spine-title">REVIEW_03</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-tertiary);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    <span class="vhs__genre">STARTUP</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <div class="vhs__avatar-placeholder" style="--vhs-accent: var(--color-tertiary);">AL</div>
+                    </div>
+                    <h4 class="vhs__name">Aisha Liang</h4>
+                    <p class="vhs__role">Lead Developer @ NexGen</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">"As a small team we needed something that just works out of the box. The free tier was enough for months, and when we upgraded the zero markup pricing was refreshingly honest."</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2024</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 4 -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-success);">
+                  <span class="vhs__spine-title">REVIEW_04</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-success);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="vhs__genre">PLATFORM</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <div class="vhs__avatar-placeholder" style="--vhs-accent: var(--color-success);">TK</div>
+                    </div>
+                    <h4 class="vhs__name">Tomás Kowalski</h4>
+                    <p class="vhs__role">Platform Lead @ CloudBase</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">"We run 200+ repos and Kodus scales without surprise bills. The per-repo config files mean every team customizes their own rules — no central bottleneck."</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2025</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 5 -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-info);">
+                  <span class="vhs__spine-title">REVIEW_05</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-info);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="vhs__genre">SECURITY</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <div class="vhs__avatar-placeholder" style="--vhs-accent: var(--color-info);">SN</div>
+                    </div>
+                    <h4 class="vhs__name">Sofia Nakamura</h4>
+                    <p class="vhs__role">Security Engineer @ CodeVault</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">"The architectural guard caught three circular dependency issues in our first week. It's like having a senior reviewer who never sleeps and never forgets your conventions."</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2025</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 6 -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-warning);">
+                  <span class="vhs__spine-title">REVIEW_06</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-warning);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    <span class="vhs__genre">BACKEND</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <div class="vhs__avatar-placeholder" style="--vhs-accent: var(--color-warning);">RP</div>
+                    </div>
+                    <h4 class="vhs__name">Raj Patel</h4>
+                    <p class="vhs__role">Backend Lead @ TechFlow</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">"PR summaries alone saved our team 5+ hours a week in review time. Reviewers now know exactly what changed and why before reading a single line of diff."</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2024</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="vhs__nav vhs__nav--next" id="vhsNext" aria-label="Next">
+            <span class="vhs__nav-icon">&#9654;&#9654;</span>
+            <span class="vhs__nav-label">FF</span>
+          </button>
+        </div>
+
+        <!-- Tape counter -->
+        <div class="vhs__counter" id="vhsCounter">
+          <span class="vhs__counter-label">TAPE</span>
+          <span class="vhs__counter-current" id="vhsCounterCurrent">001</span>
+          <span class="vhs__counter-sep">/</span>
+          <span class="vhs__counter-total" id="vhsCounterTotal">006</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== FAQ (Terminal / Man Page) ========== -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+
+        <div class="faq__terminal">
+          <!-- Terminal bar -->
+          <div class="faq__bar">
+            <div class="faq__bar-dots">
+              <span class="faq__dot faq__dot--red"></span>
+              <span class="faq__dot faq__dot--yellow"></span>
+              <span class="faq__dot faq__dot--green"></span>
+            </div>
+            <span class="faq__bar-title">kodus-faq(1)</span>
+            <span class="faq__bar-status">bash</span>
+          </div>
+
+          <!-- Man page header -->
+          <div class="faq__body">
+            <div class="faq__man-header">
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+              <span class="faq__man-center">Kodus Manual</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+
+            <div class="faq__man-block">
+              <p class="faq__man-heading">NAME</p>
+              <p class="faq__man-indent">kodus-faq &mdash; frequently asked questions about Kodus</p>
+            </div>
+
+            <div class="faq__man-block">
+              <p class="faq__man-heading">SYNOPSIS</p>
+              <p class="faq__man-indent"><span class="faq__man-cmd">kodus</span> --help [topic]</p>
+            </div>
+
+            <!-- FAQ items -->
+            <div class="faq__list">
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Is Kodus really free?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Yes. Our free tier includes enough reviews to evaluate Kodus on real pull requests — no credit card, no time limit, no catch. When you need more volume, paid plans start low and scale with usage. You only pay for what you actually use.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Which AI models are supported?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus is model agnostic. You can use Claude, GPT-4, Gemini, Llama, or any OpenAI-compatible endpoint. Bring your own API keys, switch models per repository, and mix providers for different review tasks.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "How does Kodus compare to CodeRabbit?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Both offer AI code review, but Kodus is open source, model agnostic, and charges zero markup on LLM costs. CodeRabbit locks you into their model choices and bundles AI costs into opaque pricing. With Kodus you control the model, the cost, and the rules.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Is my code sent to third parties?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Your code is sent only to the LLM provider you choose — and only the diff, not your entire repo. If you self-host and use a local model, your code never leaves your infrastructure. We do not store, train on, or share your source code.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Can I self-host Kodus?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Absolutely. Kodus is open source and ships with Docker Compose and Helm chart support. Run it on your own servers with your own models for complete air-gapped privacy. Community and enterprise support options are available.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "What Git providers are supported?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>GitHub, GitLab, Bitbucket, and Azure DevOps. Kodus integrates at the pull request level — it reads diffs, posts inline comments, and respects your existing review workflows. Setup takes under 5 minutes.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "What does zero markup mean?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>We don't add any margin on top of LLM API calls. You pay the model provider directly at their listed price. No hidden multipliers, no per-seat AI surcharges. Our revenue comes from the platform subscription, not from reselling tokens.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Man page footer -->
+            <div class="faq__man-footer">
+              <span class="faq__man-section">Kodus v2.0</span>
+              <span class="faq__man-center">2025-01-01</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ASK YOUR LLM ========== -->
+    <section class="ask-llm" id="ask-llm">
+      <div class="container">
+        <h2 class="section-title">Still have questions?</h2>
+        <p class="ask-llm__subtitle">Don't trust us — ask your favorite LLM</p>
+
+        <div class="ask-llm__console">
+          <!-- CRT top bar -->
+          <div class="ask-llm__bar">
+            <div class="ask-llm__bar-dots">
+              <span class="ask-llm__dot ask-llm__dot--red"></span>
+              <span class="ask-llm__dot ask-llm__dot--yellow"></span>
+              <span class="ask-llm__dot ask-llm__dot--green"></span>
+            </div>
+            <span class="ask-llm__bar-title">query_builder.sh</span>
+            <span class="ask-llm__bar-status">&#9679; READY</span>
+          </div>
+
+          <!-- Prompt area -->
+          <div class="ask-llm__body">
+            <div class="ask-llm__prompt">
+              <span class="ask-llm__prompt-symbol">&gt;_</span>
+              <p class="ask-llm__prompt-text">What is Kodus? How does it compare to CodeRabbit for AI code review? Is it really open source, model agnostic, and with zero markup on LLM costs?</p>
+            </div>
+
+            <div class="ask-llm__actions">
+              <span class="ask-llm__hint">Pick your oracle:</span>
+              <div class="ask-llm__buttons">
+                <a href="https://chat.openai.com/#What%20is%20Kodus%3F%20How%20does%20it%20compare%20to%20CodeRabbit%20for%20AI%20code%20review%3F%20Is%20it%20really%20open%20source%2C%20model%20agnostic%2C%20and%20with%20zero%20markup%20on%20LLM%20costs%3F" target="_blank" rel="noopener" class="ask-llm__btn">
+                  <span class="ask-llm__btn-icon">&#9678;</span>
+                  <span class="ask-llm__btn-label">ChatGPT</span>
+                </a>
+                <a href="https://claude.ai/new#What%20is%20Kodus%3F%20How%20does%20it%20compare%20to%20CodeRabbit%20for%20AI%20code%20review%3F%20Is%20it%20really%20open%20source%2C%20model%20agnostic%2C%20and%20with%20zero%20markup%20on%20LLM%20costs%3F" target="_blank" rel="noopener" class="ask-llm__btn">
+                  <span class="ask-llm__btn-icon">&#10023;</span>
+                  <span class="ask-llm__btn-label">Claude</span>
+                </a>
+                <a href="https://gemini.google.com/app#What%20is%20Kodus%3F%20How%20does%20it%20compare%20to%20CodeRabbit%20for%20AI%20code%20review%3F%20Is%20it%20really%20open%20source%2C%20model%20agnostic%2C%20and%20with%20zero%20markup%20on%20LLM%20costs%3F" target="_blank" rel="noopener" class="ask-llm__btn">
+                  <span class="ask-llm__btn-icon">&#10070;</span>
+                  <span class="ask-llm__btn-label">Gemini</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scanlines overlay -->
+          <div class="ask-llm__scanlines"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo">
+          <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+        </a>
+        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Product</h4>
+          <ul class="footer__col-list">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Docs</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Community</h4>
+          <ul class="footer__col-list">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Company</h4>
+          <ul class="footer__col-list">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Kodus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
