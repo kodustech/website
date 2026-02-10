@@ -4,6 +4,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* --- GitHub stars (real-time) --- */
+  fetch('https://api.github.com/repos/kodustech/kodus-ai')
+    .then(res => res.json())
+    .then(data => {
+      const el = document.getElementById('ghStars');
+      if (el && typeof data.stargazers_count === 'number') {
+        el.textContent = data.stargazers_count.toLocaleString();
+      }
+    })
+    .catch(() => {});
+
   /* --- Mobile nav toggle --- */
   const hamburger = document.getElementById('navHamburger');
   const nav = document.querySelector('.nav');
