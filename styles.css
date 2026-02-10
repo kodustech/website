@@ -446,13 +446,17 @@ body::before {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   margin-bottom: 16px;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .hero__terminal-code {
   flex: 1;
+  min-width: 0;
   color: var(--color-text-muted);
   white-space: nowrap;
-  overflow-x: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
   user-select: all;
 }
 
