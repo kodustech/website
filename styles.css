@@ -66,6 +66,7 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative; /* Ensure absolute children position relative to full body height */
 }
 
 a {
@@ -282,33 +283,8 @@ button {
   transition: all 0.3s ease;
 }
 
-/* ========================================
-   HERO
-   ======================================== */
-.hero {
-  padding-top: calc(64px + var(--section-padding));
-  padding-bottom: var(--section-padding);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Scattered bugs */
-.hero__bugs {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero__bug {
-  position: absolute;
-  color: var(--color-card-lv3);
-  will-change: transform;
-}
-
-/* Subtle grid background */
-.hero::before {
+/* Subtle grid background for entire site */
+body::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -317,6 +293,37 @@ button {
     linear-gradient(90deg, rgba(248, 183, 109, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
+  z-index: -1;
+  height: 100%;
+}
+
+/* ========================================
+   HERO
+   ======================================== */
+.hero {
+  padding-top: calc(64px + var(--section-padding));
+  padding-bottom: var(--section-padding);
+  text-align: center;
+  position: relative;
+  /* overflow: hidden; Removed to let bugs flow */
+}
+
+/* Scattered bugs */
+.site-bugs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden; /* Changed back to hidden to prevent scrollbars if bugs go off-screen */
+}
+
+.site-bug {
+  position: absolute;
+  color: var(--color-card-lv3);
+  will-change: transform;
 }
 
 .hero__container {
@@ -483,7 +490,18 @@ button {
 /* Retro OS window */
 .hero__clients {
   max-width: 700px;
-  margin: 0 auto;
+  margin: 40px auto 0; /* Added top margin for the mascot */
+  position: relative;
+}
+
+.hero__kody-paws {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 110px;
+  margin-bottom: -8px;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .retro-window {
@@ -545,16 +563,25 @@ button {
   animation: carousel-scroll 20s linear infinite;
 }
 
-.logo-carousel__item {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-text-dim);
-  white-space: nowrap;
-  padding: 8px 16px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.logo-carousel__img {
+  height: 45px;
+  width: auto;
+  opacity: 0.8;
+  filter: grayscale(100%) brightness(1.2);
+  transition: all 0.3s ease;
   flex-shrink: 0;
+  object-fit: contain;
+}
+
+.logo-carousel__img:hover {
+  opacity: 1;
+  filter: grayscale(0%) brightness(1);
+}
+
+.logo-carousel__img--large {
+  height: 70px; /* Aumentado significativamente para compensar */
+  max-width: 180px; /* Evita que fiquem largas demais se o aspect ratio for extremo */
+  margin: 0 10px; /* Ajuste de espaçamento se necessário */
 }
 
 @keyframes carousel-scroll {
@@ -730,6 +757,10 @@ button {
   border: 1px dashed var(--color-card-lv3);
   padding: 24px 20px;
   transition: opacity 0.15s ease, transform 0.15s ease;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .vcr__slide-top {
@@ -756,12 +787,33 @@ button {
   background: var(--color-primary-dark);
 }
 
+.vcr__body {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  min-height: 120px;
+}
+
 .vcr__text {
   font-family: var(--font-pixel);
   font-size: clamp(1rem, 2.5vw, 1.35rem);
   color: var(--color-text);
   line-height: 1.6;
-  margin-bottom: 24px;
+  margin-bottom: 0; /* Removed margin-bottom */
+  min-height: 5em;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.vcr__image {
+  width: 140px;
+  height: auto;
+  display: none;
+  border-radius: 4px;
+  image-rendering: pixelated;
+  align-self: center; /* Ensures vertical alignment with text */
 }
 
 .vcr__slide-bottom {
@@ -923,6 +975,8 @@ button {
    ======================================== */
 .cartridges {
   padding: var(--section-padding) 0;
+  /* Gradient with transparency to let the grid show through */
+  background: linear-gradient(to bottom, transparent, rgba(24, 24, 37, 0.85) 20%, rgba(24, 24, 37, 0.85) 80%, transparent);
 }
 
 .cartridges__grid {
@@ -1147,6 +1201,8 @@ button {
    ======================================== */
 .basics {
   padding: var(--section-padding) 0;
+  /* Gradient with transparency to let the grid show through */
+  background: linear-gradient(to bottom, transparent, rgba(24, 24, 37, 0.85) 20%, rgba(24, 24, 37, 0.85) 80%, transparent);
 }
 
 .basics__showcase {
@@ -1155,10 +1211,11 @@ button {
 }
 
 .basics__window {
-  background: var(--color-card-lv1);
-  border: 1px solid var(--color-card-lv2);
+  background: var(--color-bg); /* Darker background to contrast with section gradient */
+  border: 1px solid var(--color-card-lv3);
   border-radius: var(--border-radius);
   overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); /* Stronger shadow for pop */
 }
 
 .basics__body {
@@ -1263,7 +1320,13 @@ button {
 
 .basics__content-body {
   padding: 32px;
-  flex: 1;
+  background: var(--color-card-lv2);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  height: 600px; /* Increased fixed height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .basics__feature-title {
@@ -1479,7 +1542,7 @@ button {
 .vhs__cover-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 8px 12px;
   background: linear-gradient(90deg, var(--vhs-accent), color-mix(in srgb, var(--vhs-accent) 60%, #101019));
   border-bottom: 2px solid color-mix(in srgb, var(--vhs-accent) 40%, #101019);
@@ -1513,6 +1576,14 @@ button {
   display: flex;
   justify-content: center;
   margin-bottom: 12px;
+}
+
+.vhs__avatar-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--vhs-accent);
 }
 
 .vhs__avatar-placeholder {
@@ -1591,6 +1662,8 @@ button {
    ======================================== */
 .faq {
   padding: var(--section-padding) 0;
+  /* Gradient with transparency to let the grid show through */
+  background: linear-gradient(to bottom, transparent, rgba(24, 24, 37, 0.85) 20%, rgba(24, 24, 37, 0.85) 80%, transparent);
 }
 
 .faq__terminal {

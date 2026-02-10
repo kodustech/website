@@ -50,36 +50,36 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'Aesthetic',
       text: 'You want a poem in every pull request.',
       status: 'Unnecessary',
-      author: 'G. Malinosqui',
       file: 'FILE_01.DAT',
       iconColor: '#C9BBF2',
+      image: 'assets/img/kody-poeta.png',
     },
     {
       icon: '&#36;',
       type: 'Financial',
       text: 'You prefer bundled pricing and don\'t care what drives your AI bill.',
       status: 'Opaque',
-      author: 'G. Malinosqui',
       file: 'FILE_02.DAT',
       iconColor: '#42BE65',
+      image: 'assets/img/kody-money.png',
     },
     {
       icon: '&#128274;',
       type: 'Vendor',
       text: 'You want to be locked into a single model provider forever.',
       status: 'Limiting',
-      author: 'G. Malinosqui',
       file: 'FILE_03.DAT',
       iconColor: '#FA5867',
+      image: 'assets/img/kody-good-vibes.png',
     },
     {
       icon: '&#128227;',
       type: 'Noise',
       text: 'You enjoy 50 auto-generated comments on every pull request.',
       status: 'Counterproductive',
-      author: 'G. Malinosqui',
       file: 'FILE_04.DAT',
       iconColor: '#FF8B40',
+      image: 'assets/img/kody-noise.png',
     },
   ];
 
@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const vcrType = document.getElementById('vcrType');
   const vcrIcon = document.getElementById('vcrIcon');
   const vcrStatus = document.getElementById('vcrStatus');
-  const vcrAuthor = document.getElementById('vcrAuthor');
   const vcrFile = document.getElementById('vcrFile');
   const vcrContent = document.getElementById('vcrContent');
+  const vcrImage = document.getElementById('vcrImage');
   const vcrCats = document.querySelectorAll('.vcr__cat');
   const vcrBtns = document.querySelectorAll('.vcr__btn[data-slide]');
 
@@ -104,13 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
     vcrContent.style.transform = 'translateX(4px)';
 
     setTimeout(() => {
-      vcrIcon.innerHTML = slide.icon;
-      vcrIcon.style.color = slide.iconColor;
-      vcrType.textContent = `Type: ${slide.type}`;
+      // Icon removed
       vcrText.textContent = slide.text;
-      vcrStatus.textContent = `Status: ${slide.status}`;
-      vcrAuthor.textContent = `Author: ${slide.author}`;
       vcrFile.textContent = slide.file;
+
+      if (slide.image) {
+        vcrImage.src = slide.image;
+        vcrImage.style.display = 'block';
+      } else {
+        vcrImage.style.display = 'none';
+        vcrImage.src = '';
+      }
 
       vcrContent.style.opacity = '1';
       vcrContent.style.transform = 'translateX(0)';
@@ -132,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 5000);
 
   /* --- Bug parallax on scroll --- */
-  const bugs = document.querySelectorAll('.hero__bug');
+  const bugs = document.querySelectorAll('.site-bug');
   const bugBaseTransforms = [];
   bugs.forEach(bug => {
     bugBaseTransforms.push(bug.style.transform || '');
@@ -230,40 +234,54 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --- Basics file tree --- */
   const basicsFeatures = [
     {
-      file: 'arch_guard.mod',
-      title: 'Architectural Guard',
-      tag: 'FREE',
-      desc: 'Enforces architectural patterns and prevents spaghetti code.',
-      detail: 'Like a strict librarian for your codebase. This module scans every pull request to ensure it adheres to your defined architectural boundaries. It detects circular dependencies, illegal imports, and layer violations before they arise.',
+      title: 'Codebase Context',
+      // tag: 'FREE', // Removed
+      file: 'codebase_context.mod',
+      desc: 'Deep understanding of your entire project structure and logic.',
+      detail: 'Kodus doesn\'t just look at the diff. It analyzes your entire repository to understand dependencies, architectural patterns, and business logic, providing reviews that truly understand the context of your changes.',
     },
     {
-      file: 'smart_review.mod',
-      title: 'Smart Review',
-      tag: 'CORE',
-      desc: 'Context-aware code review that understands your intent.',
-      detail: 'Goes beyond syntax checking. Smart Review reads the PR description, understands the intent behind the change, and provides feedback that actually matters — no generic "add a comment here" noise.',
+      title: 'You set the rules',
+      // tag: 'CONTROL', // Removed
+      file: 'set_rules.mod',
+      desc: 'Teams define their own review standards.',
+      detail: 'Create custom review guidelines in plain language or use rules from the built-in library. Reviews consistently follow the standards defined by your team.',
     },
     {
-      file: 'pr_summary.mod',
-      title: 'PR Summary',
-      tag: 'FREE',
-      desc: 'Auto-generated summaries that save reviewers time.',
-      detail: 'Every PR gets a concise, human-readable summary covering what changed, why, and what reviewers should focus on. It groups changes by concern and highlights risk areas so your team reviews faster.',
+      title: 'Rule Sync',
+      // tag: 'SYNC', // Removed
+      file: 'sync_rule.mod',
+      desc: 'Sync your rules straight from the IDE.',
+      detail: 'Kody automatically detects rule files from popular AI tools such as Cursor, Copilot, Claude, Windsurf, and others to keep the same review standards your team already follows.',
     },
     {
-      file: 'auto_fix.mod',
-      title: 'Auto Fix',
-      tag: 'PRO',
-      desc: 'One-click fixes for common code issues.',
-      detail: 'When Kodus flags an issue, it also suggests a concrete fix. Click to apply — no copy-paste, no context switching. Supports formatting, import ordering, naming conventions, and simple refactors.',
+      title: 'Bring your business context',
+      // tag: 'EXTENSIBLE', // Removed
+      file: 'plugins_mcps.mod',
+      desc: 'Extend functionality with Model Context Protocol servers.',
+      detail: 'Connect tools like Jira, Notion, or Linear so Kody can understand specs, tasks, and requirements while reviewing your code.',
     },
     {
-      file: 'code_quality.mod',
-      title: 'Code Quality',
-      tag: 'CORE',
-      desc: 'Tracks quality metrics across every pull request.',
-      detail: 'Monitors complexity, duplication, test coverage deltas, and coding standards per PR. Over time it builds a health dashboard so you can spot trends before they become tech debt.',
+      title: 'Track technical debt',
+      // tag: 'INSIGHTS', // Removed
+      file: 'technical_debt.mod',
+      desc: 'Monitor and manage technical debt over time.',
+      detail: 'Kodus automatically turns unimplemented suggestions into issues, helping your team visualize and reduce technical debt over time.',
     },
+    {
+      title: 'Accelerate your delivery',
+      // tag: 'OVERVIEW', // Removed
+      file: 'cockpit.mod',
+      desc: 'Centralized dashboard for all your repository insights.',
+      detail: 'Monitor deploy frequency, cycle time, bug ratio and PR sizes to keep your team shipping fast — and safely.',
+    },
+    {
+      title: 'Privacy & Security',
+      // tag: 'ENTERPRISE', // Removed
+      file: 'privacy_security.mod',
+      desc: 'Enterprise-grade security ensuring your code stays safe.',
+      detail: 'Source code is never stored and is never used to train models. All data is encrypted in transit and at rest. Kodus supports SOC 2 compliance and offers self-hosted runners, so your IP can remain entirely within your own infrastructure.',
+    }
   ];
 
   const basicsTitle = document.getElementById('basicsTitle');
@@ -280,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     basicsFiles.forEach((f, i) => f.classList.toggle('basics__tree-file--active', i === index));
     basicsTab.textContent = feature.file;
     basicsTitle.textContent = feature.title;
-    basicsTag.textContent = feature.tag;
+    // basicsTag.textContent = feature.tag; // Removed
     basicsDesc.textContent = feature.desc;
     basicsDetailText.textContent = feature.detail;
   }
