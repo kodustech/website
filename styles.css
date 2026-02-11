@@ -999,6 +999,23 @@ body::before {
   padding: 0;
   transition: transform 0.25s ease;
 }
+.cartridge:focus {
+  outline: none;
+}
+.cartridge:focus-visible .cartridge__shell {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(248, 183, 109, 0.4);
+}
+.cartridge:hover {
+  transform: translateY(-6px);
+}
+.cartridge:focus {
+  outline: none;
+}
+.cartridge:focus-visible .cartridge__shell {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(248, 183, 109, 0.4);
+}
 .cartridge:hover {
   transform: translateY(-6px);
 }
@@ -2031,6 +2048,98 @@ body::before {
     inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
+/* Rule Sync Animation Styles */
+.tool-icon {
+  width: 56px;
+  height: 56px;
+  background: #101019;
+  border: 2px solid var(--color-card-lv3); /* Thicker border */
+  border-radius: 4px; /* Almost square */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  /* Retro hard shadow */
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5); 
+  animation: float-tool 4s steps(4) infinite; /* Jerky retro float */
+  z-index: 5;
+}
+
+.flow-path {
+  fill: none;
+  stroke: var(--color-text-dim);
+  stroke-width: 2; /* Thicker "cable" */
+  stroke-dasharray: 4 4;
+  opacity: 0.3;
+}
+
+.data-packet {
+  fill: var(--color-primary);
+  shape-rendering: crispEdges; /* No anti-aliasing for pixels */
+}
+.tool-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block; /* Ensure no inline spacing issues */
+  min-width: 20px; /* Fallback size */
+  min-height: 20px;
+}
+.tool-left { animation-delay: 0s; }
+.tool-right { animation-delay: 2s; }
+
+.kody-box {
+  /* Removed animation to fix blur */
+  filter: drop-shadow(0 0 15px rgba(81, 144, 255, 0.2));
+}
+
+.conn-line {
+  stroke-dasharray: 10;
+  animation: flow-line 1s linear infinite;
+}
+
+@keyframes float-tool {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(81, 144, 255, 0.4)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 20px rgba(81, 144, 255, 0.7)); transform: scale(1.05); }
+}
+
+@keyframes flow-line {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Security Animation: Castle Guard */
+.kody-guard {
+  animation: guard-bounce 2s infinite ease-in-out;
+}
+
+.security-forcefield {
+  box-shadow: 0 0 20px rgba(66, 190, 101, 0.2), inset 0 10px 20px rgba(66, 190, 101, 0.1);
+  animation: shield-glow 3s infinite alternate;
+}
+
+@keyframes guard-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+
+@keyframes shield-glow {
+  from { border-color: rgba(66, 190, 101, 0.3); box-shadow: 0 0 15px rgba(66, 190, 101, 0.1); }
+  to { border-color: rgba(66, 190, 101, 0.6); box-shadow: 0 0 30px rgba(66, 190, 101, 0.3); }
+}
+
+@keyframes deflect {
+  0% { transform: translateY(-50px) scale(1); opacity: 0; }
+  50% { opacity: 1; }
+  90% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-10px) scale(2); opacity: 0; } /* "Explode" on impact */
+}
+
 .ask-llm__btn-icon {
   font-size: 1rem;
   line-height: 1;
@@ -2244,3 +2353,1515 @@ body::before {
     height: 44px;
   }
 }
+
+@keyframes fade-in-anim {
+  to { opacity: 1; }
+}
+
+@keyframes float-cloud {
+  0% { transform: translateX(-40px) scale(var(--s, 3)); }
+  50% { transform: translateX(40px) scale(var(--s, 3)); }
+  100% { transform: translateX(-40px) scale(var(--s, 3)); }
+}
+
+/* Pixel Cloud CSS */
+.pixel-cloud {
+  width: 4px;
+  height: 4px;
+  background: #4a4a5e; /* Lighter color for visibility */
+  color: #4a4a5e;
+  box-shadow: 
+    12px 0, 16px 0, 20px 0, 24px 0,
+    8px 4px, 28px 4px,
+    4px 8px, 32px 8px, 36px 8px,
+    0 12px, 40px 12px,
+    4px 16px, 36px 16px,
+    8px 20px, 12px 20px, 16px 20px, 20px 20px, 24px 20px, 28px 20px, 32px 20px;
+  opacity: 0.6; /* Increased opacity */
+  position: absolute;
+  /* transform: scale(3);  Removed default scale, handled by animation var */
+}
+
+
+/* Orbit Animation */
+.cartridge__screen-body--orbit {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.orbit-center {
+  width: 24px;
+  height: auto;
+  position: absolute;
+  z-index: 10;
+}
+
+.orbit-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: spin-ring 12s linear infinite;
+}
+
+.orbit-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  transform: rotate(calc(var(--i) * 45deg)) translate(32px);
+}
+
+/* Counter-rotate image to keep it upright */
+.orbit-item {
+  animation: counter-spin-item 12s linear infinite reverse;
+}
+/* Wait, css animation on same element overrides transform.
+   Solution: Apply transform on item, and counter-rotate on RING? No.
+   Let's use the technique where we rotate the ring and counter rotate the item.
+*/
+.orbit-ring {
+  animation: spin-ring 15s linear infinite;
+}
+.orbit-item {
+  transform: rotate(calc(var(--i) * 45deg)) translate(32px) rotate(calc(var(--i) * -45deg));
+  /* This static transform places them upright.
+     But as ring spins, they rotate with it.
+     We need an animation that counter-rotates the ITEM itself relative to its center?
+     No, because the ring rotates the coordinate system.
+     We need the item to rotate -360deg over the animation time.
+  */
+  animation: keep-upright 15s linear infinite;
+}
+
+@keyframes spin-ring {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes keep-upright {
+  from { transform: rotate(calc(var(--i) * 45deg)) translate(32px) rotate(calc(var(--i) * -45deg)); }
+  to { transform: rotate(calc(var(--i) * 45deg)) translate(32px) rotate(calc(var(--i) * -45deg - 360deg)); }
+}
+
+
+/* Space Float Animation */
+.cartridge__screen-body--orbit {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+  height: 100%;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-center {
+  width: 48px;
+  height: auto;
+  z-index: 10;
+  position: relative;
+  image-rendering: pixelated;
+  animation: float-center 4s ease-in-out infinite;
+}
+
+.orbit-item {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  opacity: 0.7;
+  z-index: 1; /* Behind Kody */
+  animation: float-space 6s ease-in-out infinite;
+  transform: none !important; 
+  margin: 0 !important;
+}
+
+.model-1 { top: 15%; left: 20%; animation-delay: 0s; }
+.model-2 { top: 10%; right: 25%; animation-delay: 1s; }
+.model-3 { top: 40%; left: 10%; animation-delay: 2s; }
+.model-4 { top: 35%; right: 10%; animation-delay: 3s; }
+.model-5 { bottom: 15%; left: 20%; animation-delay: 1.5s; }
+.model-6 { bottom: 20%; right: 20%; animation-delay: 2.5s; }
+.model-7 { top: 60%; left: 5%; animation-delay: 0.5s; }
+.model-8 { top: 60%; right: 5%; animation-delay: 3.5s; }
+
+@keyframes float-center {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes float-space {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+
+/* Force consistent screen height for all cartridges */
+.cartridge__screen-body {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px; /* Fixed height for consistency */
+  min-height: 110px;
+}
+
+/* Updated Space Float Animation (No Orbit) */
+.cartridge__screen-body--orbit {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+  /* height inherited */
+}
+
+.orbit-center {
+  width: 48px;
+  height: auto;
+  z-index: 10;
+  position: relative;
+  image-rendering: pixelated;
+  /* No animation on center */
+}
+
+.orbit-item {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  opacity: 0.8;
+  z-index: 1;
+  animation: float-space 6s ease-in-out infinite;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* Individual positions */
+.model-1 { top: 10%; left: 15%; animation-delay: 0s; }
+.model-2 { top: 5%; right: 20%; animation-delay: 1s; }
+.model-3 { top: 40%; left: 8%; animation-delay: 2s; }
+.model-4 { top: 35%; right: 8%; animation-delay: 3s; }
+.model-5 { bottom: 10%; left: 20%; animation-delay: 1.5s; }
+.model-6 { bottom: 15%; right: 15%; animation-delay: 2.5s; }
+.model-7 { top: 70%; left: 5%; animation-delay: 0.5s; }
+.model-8 { top: 70%; right: 5%; animation-delay: 3.5s; }
+
+@keyframes float-space {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+
+/* Kody Space anchored at bottom */
+.orbit-center {
+  width: 70px !important;
+  height: auto;
+  z-index: 10;
+  position: absolute;
+  bottom: -15px !important;
+  left: 50% !important;
+  top: auto !important;
+  transform: translateX(-50%) !important;
+  image-rendering: pixelated;
+  animation: none !important;
+}
+
+/* Retro Chip Style for Models */
+.orbit-item {
+  position: absolute;
+  background: #101019;
+  border: 1px solid var(--color-card-lv3);
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+  z-index: 1;
+  animation: float-space 6s ease-in-out infinite;
+  transform: none; 
+  margin: 0;
+}
+
+.orbit-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+/* Sizes */
+.size-s { width: 28px; height: 28px; }
+.size-m { width: 36px; height: 36px; }
+.size-l { width: 44px; height: 44px; }
+
+/* Positions */
+.model-1 { top: 10%; left: 10%; animation-delay: 0s; }
+.model-2 { top: 12%; right: 15%; animation-delay: 1.5s; }
+.model-3 { top: 40%; left: 8%; animation-delay: 2.5s; }
+.model-4 { top: 35%; right: 8%; animation-delay: 3.5s; }
+.model-5 { bottom: 20%; left: 18%; animation-delay: 0.5s; }
+.model-6 { bottom: 25%; right: 18%; animation-delay: 2s; }
+.model-7 { top: 5%; left: 45%; animation-delay: 4s; }
+.model-8 { bottom: 45%; right: 85%; animation-delay: 1s; } /* Moved left */
+
+
+/* Fix Space Animation and Layout */
+.cartridge__screen-body--orbit {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+  /* Height is fixed at 110px from previous rule */
+}
+
+.orbit-center {
+  width: 50px !important; /* Slightly smaller to fit better */
+  height: auto;
+  z-index: 10;
+  position: absolute;
+  bottom: 0 !important; /* Sit on the bottom edge */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 -4px 10px rgba(0,0,0,0.5));
+}
+
+.orbit-item {
+  position: absolute;
+  background: #101019;
+  border: 1px solid var(--color-card-lv3);
+  border-radius: 4px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+  z-index: 1;
+  animation: float-space 4s ease-in-out infinite;
+}
+
+/* Explicit Positions to avoid overlap */
+.model-1 { top: 10%; left: 10%; animation-delay: 0s; }
+.model-2 { top: 5%; left: 40%; animation-delay: 1.5s; } /* Top center */
+.model-3 { top: 10%; right: 10%; animation-delay: 0.5s; }
+.model-4 { top: 40%; left: 5%; animation-delay: 2s; }
+.model-5 { top: 40%; right: 5%; animation-delay: 2.5s; }
+.model-6 { bottom: 20%; left: 15%; animation-delay: 1s; }
+.model-7 { bottom: 20%; right: 15%; animation-delay: 3s; }
+/* Removed model-8 to reduce clutter if needed, or place carefully */
+.model-8 { top: 25%; left: 75%; animation-delay: 1.2s; }
+
+@keyframes float-space {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+
+/* Final fix for Model Agnostic layout */
+.orbit-center {
+  width: 70px !important;
+  bottom: -20px !important; /* Pull down slightly to show more body */
+}
+
+/* Explicit non-overlapping positions */
+.model-1 { top: 5px; left: 5px; }          /* Top-Left Corner */
+.model-2 { top: 5px; right: 5px; }         /* Top-Right Corner */
+.model-3 { top: 5px; left: 50%; margin-left: -20px; } /* Top Center */
+.model-4 { top: 40px; left: 5px; }         /* Mid-Left */
+.model-5 { top: 40px; right: 5px; }        /* Mid-Right */
+.model-6 { top: 25px; left: 25%; }         /* Upper-Mid Left */
+.model-7 { top: 25px; right: 25%; }        /* Upper-Mid Right */
+.model-8 { display: none; }                /* Remove 8th item to reduce clutter */
+
+/* Reduce size of chips slightly to fit */
+.orbit-item {
+  padding: 3px !important;
+  border-radius: 4px !important;
+}
+.size-l { width: 36px !important; height: 36px !important; }
+.size-m { width: 30px !important; height: 30px !important; }
+.size-s { width: 24px !important; height: 24px !important; }
+
+
+/* Kody Space Fix */
+.orbit-center {
+  width: 90px !important; /* Much bigger */
+  bottom: -5px !important; /* Show face properly */
+  z-index: 20 !important; /* Bring to front */
+}
+
+/* Reset and unify chip sizes for better fit */
+.orbit-item {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 4px !important;
+  display: flex !important; /* Restore 8th item */
+}
+
+/* Precise Arc Positioning */
+/* Center-Left */
+.model-1 { top: 40px; left: 10px; }
+/* Top-Left */
+.model-2 { top: 10px; left: 20px; }
+/* Top-Center Left */
+.model-3 { top: 5px; left: 45px; }
+/* Top-Center Right */
+.model-4 { top: 5px; right: 45px; }
+/* Top-Right */
+.model-5 { top: 10px; right: 20px; }
+/* Center-Right */
+.model-6 { top: 40px; right: 10px; }
+/* Low-Left (behind Kody shoulder) */
+.model-7 { bottom: 10px; left: 5px; z-index: 5; }
+/* Low-Right (behind Kody shoulder) */
+.model-8 { bottom: 10px; right: 5px; z-index: 5; }
+
+
+/* Fine-tune Kody Position */
+.orbit-center {
+  bottom: 0px !important; /* Move up slightly */
+}
+
+/* Variable sizes for variety */
+.size-s { width: 24px !important; height: 24px !important; }
+.size-m { width: 28px !important; height: 28px !important; }
+.size-l { width: 32px !important; height: 32px !important; }
+
+/* Spread out positions to absolutely prevent overlap */
+.model-1 { top: 5px; left: 5px; }           /* Top Left Corner */
+.model-2 { top: 5px; right: 5px; }          /* Top Right Corner */
+.model-3 { top: 35px; left: 25px; }         /* Mid Left Inner */
+.model-4 { top: 35px; right: 25px; }        /* Mid Right Inner */
+.model-5 { top: 5px; left: 50%; margin-left: -14px; } /* Top Center */
+.model-6 { bottom: 25px; left: 5px; }       /* Bottom Left */
+.model-7 { bottom: 25px; right: 5px; }      /* Bottom Right */
+.model-8 { top: 25px; left: 80%; }          /* Upper Right Mid */
+
+
+/* Radical Spread for Model Icons */
+.cartridge__screen-body--orbit .model-1 { top: 5px !important; left: 5px !important; right: auto !important; bottom: auto !important; }
+.cartridge__screen-body--orbit .model-2 { top: 5px !important; right: 5px !important; left: auto !important; bottom: auto !important; }
+.cartridge__screen-body--orbit .model-3 { bottom: 15px !important; left: 5px !important; top: auto !important; right: auto !important; }
+.cartridge__screen-body--orbit .model-4 { bottom: 15px !important; right: 5px !important; top: auto !important; left: auto !important; }
+.cartridge__screen-body--orbit .model-5 { top: 5px !important; left: 50% !important; margin-left: -15px !important; right: auto !important; bottom: auto !important; }
+.cartridge__screen-body--orbit .model-6 { top: 40px !important; left: 5px !important; right: auto !important; bottom: auto !important; }
+.cartridge__screen-body--orbit .model-7 { top: 40px !important; right: 5px !important; left: auto !important; bottom: auto !important; }
+.cartridge__screen-body--orbit .model-8 { top: 20px !important; left: 75% !important; right: auto !important; bottom: auto !important; }
+
+
+/* Rigid Grid Positioning - NO OVERLAP GUARANTEED */
+.cartridge__screen-body--orbit .model-1 { top: 5px !important; left: 5px !important; }
+.cartridge__screen-body--orbit .model-2 { top: 5px !important; left: 50% !important; margin-left: -15px !important; }
+.cartridge__screen-body--orbit .model-3 { top: 5px !important; right: 5px !important; left: auto !important; }
+
+.cartridge__screen-body--orbit .model-4 { top: 42px !important; left: 5px !important; }
+.cartridge__screen-body--orbit .model-5 { top: 42px !important; right: 5px !important; left: auto !important; }
+
+.cartridge__screen-body--orbit .model-6 { bottom: 5px !important; left: 5px !important; top: auto !important; }
+.cartridge__screen-body--orbit .model-7 { bottom: 5px !important; right: 5px !important; top: auto !important; left: auto !important; }
+
+.cartridge__screen-body--orbit .model-8 { display: none !important; }
+
+/* Gentle Float to stay in lane */
+@keyframes float-space {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); } /* Reduced movement */
+}
+
+
+/* Chaotic/Organic Positioning */
+.cartridge__screen-body--orbit .model-1 { top: 12px !important; left: 8px !important; }
+.cartridge__screen-body--orbit .model-2 { top: 6px !important; left: 65% !important; margin-left: 0 !important; }
+.cartridge__screen-body--orbit .model-3 { top: 15px !important; right: 8px !important; left: auto !important; }
+.cartridge__screen-body--orbit .model-4 { top: 55px !important; left: 2px !important; }
+.cartridge__screen-body--orbit .model-5 { top: 38px !important; right: 38px !important; left: auto !important; }
+.cartridge__screen-body--orbit .model-6 { bottom: 8px !important; right: 5px !important; top: auto !important; left: auto !important; }
+.cartridge__screen-body--orbit .model-7 { bottom: 18px !important; left: 12px !important; top: auto !important; right: auto !important; }
+.cartridge__screen-body--orbit .model-8 { display: flex !important; top: 8px !important; left: 38% !important; right: auto !important; }
+
+/* Varied Sizes */
+.model-1 { width: 34px !important; height: 34px !important; }
+.model-2 { width: 22px !important; height: 22px !important; }
+.model-3 { width: 30px !important; height: 30px !important; }
+.model-4 { width: 28px !important; height: 28px !important; }
+.model-5 { width: 20px !important; height: 20px !important; }
+.model-6 { width: 36px !important; height: 36px !important; }
+.model-7 { width: 24px !important; height: 24px !important; }
+.model-8 { width: 26px !important; height: 26px !important; }
+
+
+/* Fine-tuning specific models */
+.model-5 { /* GLM */
+  width: 26px !important; height: 26px !important; /* Increased from 20px */
+  right: 45px !important; /* Moved left (from right:38px) */
+  top: 42px !important;
+}
+
+.model-7 { /* OpenAI */
+  width: 38px !important; height: 38px !important; /* Increased from 24px */
+  left: 20px !important; /* Moved right (from left:12px) */
+  bottom: 25px !important;
+}
+
+
+/* Layering Fix: Kody Front, Models Back */
+.orbit-center {
+  z-index: 50 !important; /* Force to front */
+}
+.orbit-item {
+  z-index: 5 !important; /* Force behind Kody */
+}
+
+/* Retro Filter for Model Icons */
+.orbit-item {
+  filter: sepia(0.2) contrast(1.1) brightness(0.9); /* Retro tone */
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.1); /* Inner glow + hard shadow */
+}
+
+/* Fix OpenAI (model-7) overlap */
+.model-7 { 
+  left: 2px !important; /* Move way left */
+  bottom: 10px !important; /* Move down */
+}
+
+
+/* Layering Fix: Kody Front */
+.orbit-center { z-index: 50 !important; }
+.orbit-item { z-index: 1 !important; }
+
+/* Retro Style for Models */
+.orbit-item img {
+  filter: contrast(1.2) brightness(0.9) sepia(0.2); /* Retro tint */
+  image-rendering: pixelated;
+}
+.orbit-item {
+  background: #0d0d15 !important;
+  border: 1px solid #444 !important;
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.8) !important;
+}
+
+/* OpenAI (model-7) Move to Right-Center */
+.model-7 {
+  left: auto !important;
+  right: 35px !important; /* Close to Kody on right side */
+  bottom: 20px !important;
+  top: auto !important;
+}
+
+/* Ensure Gemini (model-4) stays Left */
+.model-4 {
+  left: 8px !important;
+  right: auto !important;
+}
+
+
+/* Shift Gemini (model-5) left */
+.model-5 {
+  right: 60px !important; /* Moved left (was 45px) */
+}
+
+/* Restore float animation */
+.orbit-item {
+  animation: float-space 5s ease-in-out infinite alternate !important;
+}
+
+/* Ensure Kody is static */
+.orbit-center {
+  animation: none !important;
+}
+
+
+@keyframes float-gentle {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-5px); }
+}
+
+.orbit-item {
+  animation: float-gentle 3s ease-in-out infinite alternate !important;
+}
+
+
+/* Fallback animation using margin since transform might be blocked */
+@keyframes float-margin {
+  0% { margin-top: 0px; }
+  100% { margin-top: -6px; }
+}
+
+.orbit-item {
+  animation: float-margin 3s ease-in-out infinite alternate !important;
+  /* Ensure no conflicting transform blocks it */
+  transform: none !important;
+}
+
+
+/* Animation Fix: Animate the IMAGE inside, not the container */
+.orbit-item {
+  animation: none !important;
+}
+
+.orbit-item img {
+  animation: float-img 3s ease-in-out infinite alternate !important;
+  transform: none !important; /* Clear any previous transforms */
+}
+
+@keyframes float-img {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+
+/* FINAL ANIMATION FIX */
+.orbit-item {
+  animation: none !important;
+}
+
+.orbit-item img {
+  display: block !important;
+  animation: final-float 3s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+@keyframes final-float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+
+/* Pulse Animation (No Transform) */
+@keyframes model-pulse {
+  0%, 100% { 
+    border-color: var(--color-card-lv3); 
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+    filter: brightness(0.9);
+  }
+  50% { 
+    border-color: var(--color-primary); 
+    box-shadow: 0 0 8px rgba(248, 183, 109, 0.3), 2px 2px 0 rgba(0,0,0,0.4);
+    filter: brightness(1.1);
+  }
+}
+
+.orbit-item {
+  animation: model-pulse 4s infinite ease-in-out !important;
+  transform: none !important; /* Ensure position stays locked */
+}
+
+/* Stagger animation for organic feel */
+.model-1 { animation-delay: 0s !important; }
+.model-2 { animation-delay: 1.5s !important; }
+.model-3 { animation-delay: 0.5s !important; }
+.model-4 { animation-delay: 2s !important; }
+.model-5 { animation-delay: 1s !important; }
+.model-6 { animation-delay: 2.5s !important; }
+.model-7 { animation-delay: 0.2s !important; }
+.model-8 { animation-delay: 1.8s !important; }
+
+
+/* NUCLEAR OPTION: Scale Animation on IMG */
+@keyframes pulse-scale-img {
+  0% { transform: scale(0.85); }
+  100% { transform: scale(1.1); }
+}
+
+div.cartridge__screen-body--orbit .orbit-item img {
+  animation: pulse-scale-img 2s ease-in-out infinite alternate !important;
+  transform-origin: center center !important;
+  display: block !important;
+}
+
+
+/* GENTLE SCALE ANIMATION FINAL */
+@keyframes scale-gentle {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1.05); }
+}
+
+div.cartridge__screen-body--orbit .orbit-item img {
+  animation: scale-gentle 3s ease-in-out infinite alternate !important;
+  transform: none !important;
+}
+
+
+/* INTENSIFIED RETRO ANIMATION */
+
+/* Chip Container Style */
+.orbit-item {
+  background: #101019 !important;
+  border: 2px solid var(--color-card-lv3) !important;
+  box-shadow: 2px 2px 0 #000 !important; /* Hard retro shadow */
+  border-radius: 4px !important;
+  /* Animate the CONTAINER for better effect */
+  animation: retro-pulse 2s ease-in-out infinite alternate !important;
+  transform-origin: center center !important;
+}
+
+/* Image inside */
+.orbit-item img {
+  animation: none !important; /* Stop inner animation to avoid double motion */
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@keyframes retro-pulse {
+  0% {
+    transform: scale(0.9);
+    border-color: var(--color-card-lv3);
+    box-shadow: 2px 2px 0 #000;
+  }
+  100% {
+    transform: scale(1.1);
+    border-color: var(--color-primary); /* Glow orange */
+    box-shadow: 0 0 8px rgba(248, 183, 109, 0.6), 2px 2px 0 #000;
+  }
+}
+
+
+/* REAL FINAL FIX: Thin border + Vertical Float + Glow */
+.orbit-item {
+  border-width: 1px !important;
+  transform: none !important; /* Reset transforms */
+  animation: float-glow 2s ease-in-out infinite alternate !important;
+}
+
+@keyframes float-glow {
+  0% {
+    margin-top: 0px;
+    border-color: var(--color-card-lv3);
+    box-shadow: 2px 2px 0 #000;
+  }
+  100% {
+    margin-top: -8px; /* Stronger visible movement */
+    border-color: var(--color-text); /* White/Bright glow */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4), 2px 2px 0 #000;
+  }
+}
+
+
+/* Animate Kody Space (Breathing effect) */
+@keyframes kody-breathe {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.03); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+.orbit-center {
+  animation: kody-breathe 4s ease-in-out infinite !important;
+}
+
+
+/* SUPER PULSE ANIMATION FIX */
+@keyframes super-pulse {
+  0% {
+    transform: scale(1);
+    border-color: #333;
+    box-shadow: 2px 2px 0 #000;
+  }
+  50% {
+    transform: scale(1.15); /* Visible Pop */
+    border-color: var(--color-primary); /* Orange flash */
+    box-shadow: 0 0 12px rgba(248, 183, 109, 0.6), 4px 4px 0 #000;
+  }
+  100% {
+    transform: scale(1);
+    border-color: #333;
+    box-shadow: 2px 2px 0 #000;
+  }
+}
+
+/* Override previous locks */
+div.cartridge__screen-body--orbit .orbit-item {
+  animation: super-pulse 2s infinite ease-in-out !important;
+  /* Remove transform locks by not setting transform here, let animation handle it */
+  transform-origin: center center !important;
+}
+
+/* Randomize delays for organic feel */
+.model-1 { animation-delay: 0s !important; }
+.model-2 { animation-delay: 1.2s !important; }
+.model-3 { animation-delay: 0.6s !important; }
+.model-4 { animation-delay: 1.8s !important; }
+.model-5 { animation-delay: 0.3s !important; }
+.model-6 { animation-delay: 1.5s !important; }
+.model-7 { animation-delay: 0.9s !important; }
+.model-8 { animation-delay: 2.1s !important; }
+
+
+/* Visual Polish for Model Icons */
+.orbit-item {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: #0d0d15 !important;
+  border-color: #444 !important;
+}
+
+.orbit-item img {
+  width: 70% !important; /* Breathing room inside chip */
+  height: 70% !important;
+  object-fit: contain;
+  filter: contrast(1.2) saturate(1.1) !important; /* Enhance visibility */
+}
+
+
+/* Horizontal Scrolling Models */
+.model-track {
+  display: flex;
+  gap: 40px; /* Space between icons */
+  width: max-content;
+  align-items: center;
+}
+
+.track-icon {
+  width: 36px !important; /* Clearly visible */
+  height: 36px !important;
+  object-fit: contain;
+  opacity: 0.8;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.move-right {
+  animation: scroll-right 15s linear infinite;
+}
+
+.move-left {
+  animation: scroll-left 18s linear infinite;
+}
+
+@keyframes scroll-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+
+/* FORCE CENTER KODY SPACE */
+.orbit-center {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  bottom: 0px !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  display: block !important;
+  z-index: 50 !important;
+}
+
+
+/* Queen Animation */
+.cartridge__screen-body--queen {
+  position: relative;
+  overflow: hidden;
+  background: #151525;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.queen-kody {
+  width: 80px;
+  height: auto;
+  image-rendering: pixelated;
+  z-index: 10;
+  position: relative;
+  bottom: -5px;
+  filter: drop-shadow(0 0 15px rgba(248, 183, 109, 0.3));
+}
+
+.royal-item {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: royal-float 3s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.royal-crown-1 { top: 10px; left: 15px; animation-delay: 0s; }
+.royal-crown-2 { top: 20px; right: 15px; animation-delay: 1.5s; }
+.royal-coin-1 { top: 50px; left: 25px; width: 16px; height: 16px; animation-delay: 0.5s; }
+.royal-coin-2 { top: 45px; right: 25px; width: 14px; height: 14px; animation-delay: 2s; }
+.royal-coin-3 { top: 5px; left: 50%; margin-left: -10px; width: 18px; height: 18px; animation-delay: 1s; }
+
+@keyframes royal-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+
+/* Fix Queen Animation Elements */
+.royal-item {
+  display: block !important;
+  opacity: 1 !important;
+  /* Ensure size is forced */
+  min-width: 16px;
+  min-height: 16px;
+}
+
+/* Fix Kody Queen */
+.queen-kody {
+  width: 90px !important; /* Zoom in */
+  bottom: 0px !important;
+  filter: none !important; /* Remove blur/shadow */
+  animation: none !important; /* No animation */
+}
+
+
+/* Pixel Coin CSS */
+.pixel-coin {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  color: #FFD700;
+  box-shadow: 
+    2px 0, 4px 0, 6px 0,
+    0 2px, 8px 2px,
+    0 4px, 8px 4px,
+    0 6px, 8px 6px,
+    2px 8px, 4px 8px, 6px 8px,
+    /* Shine */
+    4px 4px #FFF;
+  position: absolute;
+  transform: scale(2.5); /* Good size */
+  animation: coin-float 3s ease-in-out infinite alternate;
+}
+
+.coin-1 { top: 20px; left: 20px; animation-delay: 0s; }
+.coin-2 { top: 15px; right: 25px; animation-delay: 1.5s; }
+.coin-3 { top: 50px; left: 15px; animation-delay: 0.5s; }
+.coin-4 { top: 45px; right: 15px; animation-delay: 2s; }
+.coin-5 { top: 10px; left: 50%; margin-left: -5px; animation-delay: 1s; }
+
+@keyframes coin-float {
+  from { transform: scale(2.5) translateY(0); }
+  to { transform: scale(2.5) translateY(-6px); }
+}
+
+
+/* Adjust Coins: Smaller, Closer, Subtle */
+.pixel-coin {
+  transform: scale(1.5) !important; /* Smaller size (was 2.5) */
+  opacity: 0.7; /* Less prominent */
+  color: #C5A000; /* Darker gold base */
+  box-shadow: 
+    2px 0, 4px 0, 6px 0,
+    0 2px, 8px 2px,
+    0 4px, 8px 4px,
+    0 6px, 8px 6px,
+    2px 8px, 4px 8px, 6px 8px,
+    2px 2px rgba(255,255,255,0.6) !important; /* Muted shine */
+}
+
+/* Move closer to center */
+.coin-1 { top: 35px !important; left: 30px !important; }
+.coin-2 { top: 30px !important; right: 35px !important; }
+.coin-3 { top: 60px !important; left: 25px !important; }
+.coin-4 { top: 55px !important; right: 25px !important; }
+.coin-5 { top: 15px !important; } /* Center top stays */
+
+@keyframes coin-float {
+  from { transform: scale(1.5) translateY(0); }
+  to { transform: scale(1.5) translateY(-4px); }
+}
+
+
+/* Queen Zoom Update */
+.queen-kody {
+  width: 110px !important;
+}
+
+/* Coins: Tiny, Subtle, Close */
+.pixel-coin {
+  transform: scale(1.0) !important;
+  opacity: 0.5 !important;
+}
+
+/* Tighter Positions */
+.coin-1 { top: 25px !important; left: 30px !important; }
+.coin-2 { top: 20px !important; right: 35px !important; }
+.coin-3 { top: 65px !important; left: 20px !important; }
+.coin-4 { top: 60px !important; right: 20px !important; }
+.coin-5 { top: 5px !important; }
+
+@keyframes coin-float {
+  from { transform: scale(1.0) translateY(0); }
+  to { transform: scale(1.0) translateY(-3px); }
+}
+
+
+/* Final Polish for Queen */
+.queen-kody {
+  bottom: -8px !important; /* Sink slightly to anchor */
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)) !important; /* Real depth shadow */
+}
+
+
+/* Add 6th Coin */
+.coin-6 { top: 40px !important; left: 80% !important; animation-delay: 2.5s !important; }
+
+/* Ensure all coins animate */
+.pixel-coin {
+  animation: coin-float 3s ease-in-out infinite alternate !important;
+}
+
+
+/* NUCLEAR COIN ANIMATION FIX */
+@keyframes coin-bounce {
+  0% { margin-top: 0px; }
+  100% { margin-top: -6px; }
+}
+
+.pixel-coin {
+  transform: scale(1.0) !important; /* Lock scale */
+  animation: coin-bounce 2s ease-in-out infinite alternate !important;
+  display: block !important;
+  will-change: margin-top;
+}
+
+
+/* Dynamic Coin Animation Speeds */
+.pixel-coin {
+  animation-duration: 2s !important; /* Default fast base */
+}
+
+.coin-1 { animation-duration: 1.5s !important; animation-delay: 0s !important; }
+.coin-2 { animation-duration: 2.2s !important; animation-delay: 0.5s !important; }
+.coin-3 { animation-duration: 1.8s !important; animation-delay: 1s !important; }
+.coin-4 { animation-duration: 2.5s !important; animation-delay: 0.2s !important; }
+.coin-5 { animation-duration: 2.0s !important; animation-delay: 1.2s !important; }
+.coin-6 { animation-duration: 1.6s !important; animation-delay: 0.8s !important; }
+
+
+/* Faster Coin Animation */
+.coin-1 { animation-duration: 0.8s !important; }
+.coin-2 { animation-duration: 1.2s !important; }
+.coin-3 { animation-duration: 1.0s !important; }
+.coin-4 { animation-duration: 1.4s !important; }
+.coin-5 { animation-duration: 1.1s !important; }
+.coin-6 { animation-duration: 0.9s !important; }
+
+
+/* Tax/Zero Markup Animation */
+.cartridge__screen-body--tax {
+  position: relative;
+  overflow: hidden;
+  background: #101019;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.kody-taxa {
+  width: 90px;
+  height: auto;
+  image-rendering: pixelated;
+  z-index: 10;
+  position: relative;
+  bottom: 0px;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+.pixel-sign {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  opacity: 0.8;
+  animation: float-sign 3s ease-in-out infinite alternate;
+}
+
+/* Content: $ sign */
+.pixel-sign::before {
+  content: '$';
+  font-family: 'Press Start 2P', monospace;
+  color: var(--color-text-dim);
+  font-size: 10px;
+  position: absolute;
+  top: 2px; left: 4px;
+}
+
+/* Content: Red Slash (Prohibited) */
+.pixel-sign::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: var(--color-danger);
+  top: 7px; left: 0px;
+  transform: rotate(-45deg);
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.5); /* Retro shadow */
+}
+
+.sign-1 { top: 15px; left: 20px; animation-delay: 0s; --r: -15deg; }
+.sign-2 { top: 20px; right: 25px; animation-delay: 1.2s; --r: 10deg; }
+.sign-3 { top: 50px; left: 10px; animation-delay: 0.6s; --r: -5deg; }
+.sign-4 { top: 45px; right: 10px; animation-delay: 2.5s; --r: 5deg; }
+
+@keyframes float-sign {
+  from { transform: translateY(0) rotate(var(--r)); }
+  to { transform: translateY(-5px) rotate(var(--r)); }
+}
+
+
+/* Fix Kody Taxa Size/Pos */
+.kody-taxa {
+  width: 110px !important;
+  bottom: -10px !important;
+}
+
+/* Better Zero Markup Elements */
+.pixel-sign {
+  width: auto !important;
+  height: auto !important;
+  background: var(--color-danger);
+  padding: 2px 4px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Reset pseudo-elements from previous attempt */
+}
+.pixel-sign::before {
+  content: 'TAX';
+  position: static !important;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px !important;
+  color: #FFF !important;
+}
+.pixel-sign::after {
+  content: none !important; /* Remove slash */
+}
+
+/* Animation: Float Up and Fade Out (Removed) */
+@keyframes tax-float-away {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-15px) scale(0.9); opacity: 0; }
+}
+
+.pixel-sign {
+  animation: tax-float-away 3s ease-out infinite !important;
+}
+
+/* Position adjustments */
+.sign-1 { top: 60px !important; left: 15px !important; animation-delay: 0s !important; }
+.sign-2 { top: 50px !important; right: 20px !important; animation-delay: 1.5s !important; }
+.sign-3 { top: 30px !important; left: 25px !important; animation-delay: 0.8s !important; }
+.sign-4 { top: 20px !important; right: 30px !important; animation-delay: 2.2s !important; }
+
+
+/* Fix Queen Background */
+.cartridge__screen-body--queen {
+  background: #101019 !important;
+}
+
+/* Kody Taxa Depth */
+.kody-taxa {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6)) !important;
+}
+
+/* Change TAX to % */
+.pixel-sign::before {
+  content: '%' !important;
+  font-size: 12px !important;
+}
+
+
+/* Adjust Kody Taxa Position */
+.kody-taxa {
+  width: 130px !important; /* More Zoom */
+  bottom: -25px !important; /* Lower to crop table */
+}
+
+
+/* Fine-tune Kody Taxa */
+.kody-taxa {
+  bottom: -20px !important; /* Raised slightly to show full head */
+}
+
+
+/* Fix Kody Taxa Framing */
+.kody-taxa {
+  width: 90px !important;
+  bottom: -5px !important;
+}
+
+
+/* Medium Zoom for Kody Taxa */
+.kody-taxa {
+  width: 115px !important;
+  bottom: -15px !important;
+}
+
+
+/* Lower Kody Taxa slightly */
+.kody-taxa {
+  bottom: -22px !important;
+}
+
+
+/* Config Animation (Gears) */
+.cartridge__screen-body--config {
+  position: relative;
+  overflow: hidden;
+  background: #101019;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.kody-config {
+  width: 90px;
+  height: auto;
+  image-rendering: pixelated;
+  z-index: 10;
+  position: relative;
+  bottom: -5px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+.pixel-gear {
+  position: absolute;
+  image-rendering: pixelated;
+  opacity: 0.8;
+  animation: gear-spin 4s linear infinite;
+  z-index: 1;
+}
+
+.gear-1 { width: 32px; height: 32px; top: 10px; left: 10px; animation-duration: 8s; }
+.gear-2 { width: 26px; height: 26px; top: 15px; right: 15px; animation-direction: reverse; animation-duration: 5s; }
+.gear-3 { width: 20px; height: 20px; top: 40px; left: 25px; animation-duration: 4s; }
+
+@keyframes gear-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/* Fix Kody Config Position */
+.kody-config {
+  bottom: -20px !important;
+  width: 120px !important;
+}
+
+/* CSS Pixel Gear */
+.pixel-gear {
+  position: absolute;
+  background: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: gear-spin 4s linear infinite;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.pixel-gear::after {
+  content: '';
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+}
+
+/* Gear 1 (Blue) */
+.gear-1 { 
+  width: 36px; height: 36px; 
+  top: 10px; left: 15px; 
+  border: 4px dashed #5190FF; 
+  box-shadow: 0 0 0 2px #5190FF, inset 0 0 0 2px #5190FF;
+  animation-duration: 10s; 
+}
+.gear-1::after { background: #5190FF; }
+
+/* Gear 2 (Orange) */
+.gear-2 { 
+  width: 28px; height: 28px; 
+  top: 15px; right: 15px; 
+  border: 4px dashed #F8B76D; 
+  box-shadow: 0 0 0 2px #F8B76D, inset 0 0 0 2px #F8B76D;
+  animation-direction: reverse;
+  animation-duration: 6s; 
+}
+.gear-2::after { background: #F8B76D; }
+
+/* Gear 3 (Purple) */
+.gear-3 { 
+  width: 22px; height: 22px; 
+  top: 55px; left: 25px; 
+  border: 3px dashed #C9BBF2; 
+  box-shadow: 0 0 0 2px #C9BBF2, inset 0 0 0 1px #C9BBF2;
+  animation-duration: 4s; 
+}
+.gear-3::after { background: #C9BBF2; }
+
+
+/* Better CSS Pixel Gear using Conic Gradient */
+.pixel-gear {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: gear-spin 6s linear infinite;
+  opacity: 0.9;
+  z-index: 1;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.pixel-gear::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    var(--gear-color) 0deg 20deg,
+    transparent 20deg 40deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent 60%, black 60%);
+  mask: radial-gradient(farthest-side, transparent 60%, black 60%);
+}
+
+.pixel-gear::after {
+  content: '';
+  width: 50%;
+  height: 50%;
+  background: var(--gear-color);
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.gear-1 { 
+  width: 40px; height: 40px; 
+  top: 10px; left: 15px; 
+  --gear-color: #5190FF;
+  animation-duration: 12s;
+}
+
+.gear-2 { 
+  width: 30px; height: 30px; 
+  top: 15px; right: 20px; 
+  --gear-color: #F8B76D;
+  animation-direction: reverse;
+  animation-duration: 8s;
+}
+
+.gear-3 { 
+  width: 24px; height: 24px; 
+  top: 50px; left: 20px; 
+  --gear-color: #CDCDDF;
+  animation-duration: 6s;
+}
+
+
+/* Dark Gear Style */
+.gear-1, .gear-2, .gear-3 {
+  --gear-color: #30304B !important; /* Dark gear color */
+}
+
+/* Fix Positioning */
+.gear-3 {
+  top: 60px !important; /* Moved down */
+  left: 30px !important; /* Moved slightly right */
+}
+
+/* Adjust Gear Shape to be more like emoji (thicker) */
+.pixel-gear::before {
+  background: repeating-conic-gradient(
+    var(--gear-color) 0deg 45deg,
+    transparent 45deg 90deg
+  ) !important; /* Fewer, chunkier teeth */
+  -webkit-mask: radial-gradient(farthest-side, transparent 40%, black 40%) !important; /* Smaller hole */
+  mask: radial-gradient(farthest-side, transparent 40%, black 40%) !important;
+}
+
+.pixel-gear::after {
+  width: 40% !important;
+  height: 40% !important;
+}
+
+
+/* SVG Gear Styles */
+svg.pixel-gear {
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+svg.pixel-gear::before, svg.pixel-gear::after {
+  content: none !important;
+  display: none !important;
+}
+
+.gear-1 { width: 40px; height: 40px; top: 10px; left: 15px; animation-duration: 10s; }
+.gear-2 { width: 32px; height: 32px; top: 15px; right: 20px; animation-direction: reverse; animation-duration: 7s; }
+.gear-3 { width: 26px; height: 26px; top: 55px; left: 30px; animation-duration: 5s; }
+
+
+/* Increase Kody Config Size */
+.kody-config {
+  width: 130px !important; /* Bigger */
+  bottom: -25px !important; /* Lower to compensate */
+}
+
+
+/* Maximize Kody Config Size */
+.kody-config {
+  width: 145px !important;
+  bottom: -30px !important;
+}
+
+
+/* Final Size Fixes */
+.orbit-center {
+  width: 100px !important;
+  bottom: -5px !important;
+}
+
+.kody-config {
+  width: 105px !important;
+  bottom: -15px !important;
+}
+
+
+/* Lift Kody Space */
+.orbit-center {
+  bottom: 0px !important;
+}
+
+
+/* Kody Love Animation */
+.cartridge__screen-body--love {
+  position: relative;
+  overflow: hidden;
+  background: #101019;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.kody-love {
+  width: 105px;
+  height: auto;
+  image-rendering: pixelated;
+  z-index: 10;
+  position: relative;
+  bottom: -15px; /* Aligned */
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+/* Pixel Heart */
+.pixel-heart {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: #FA5867;
+  box-shadow: 
+    4px 0 #FA5867, 8px 0 #FA5867,
+    0 4px #FA5867, 12px 4px #FA5867,
+    0 8px #FA5867, 12px 8px #FA5867,
+    4px 12px #FA5867, 8px 12px #FA5867;
+  opacity: 0.9;
+  animation: heart-beat 1.2s ease-in-out infinite alternate;
+}
+
+.heart-1 { top: 15px; left: 20px; transform: scale(1.5); --s: 1.5; }
+.heart-2 { top: 20px; right: 25px; transform: scale(1.2); --s: 1.2; }
+.heart-3 { top: 50px; left: 10px; transform: scale(1.0); --s: 1.0; }
+.heart-4 { top: 45px; right: 15px; transform: scale(1.3); --s: 1.3; }
+.heart-5 { top: 10px; left: 50%; margin-left: -5px; transform: scale(1.0); --s: 1.0; }
+
+@keyframes heart-beat {
+  from { transform: scale(var(--s)) translateY(0); }
+  to { transform: scale(calc(var(--s) * 1.2)) translateY(-4px); }
+}
+
+
+/* Image Heart Styles */
+img.pixel-heart {
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0.9;
+  position: absolute;
+  animation: heart-beat 2s ease-in-out infinite alternate;
+}
+
+.heart-1 { width: 24px !important; height: auto !important; top: 20px !important; left: 20px !important; }
+.heart-2 { width: 18px !important; height: auto !important; top: 15px !important; right: 25px !important; }
+.heart-3 { width: 20px !important; height: auto !important; top: 55px !important; left: 15px !important; }
+.heart-4 { width: 22px !important; height: auto !important; top: 50px !important; right: 15px !important; }
+.heart-5 { width: 16px !important; height: auto !important; top: 10px !important; left: 50% !important; margin-left: -8px !important; }
+
+@keyframes heart-beat {
+  from { transform: scale(1) translateY(0); }
+  to { transform: scale(1.1) translateY(-5px); }
+}
+
+
+/* Real Heartbeat Pulse */
+@keyframes heart-pulse-real {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+img.pixel-heart {
+  animation: heart-pulse-real 1.2s ease-in-out infinite !important;
+  display: block !important;
+}
+
+
+/* Force Visibility for Hearts */
+img.pixel-heart {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 20 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+}
+
+
+/* Redistribute Hearts */
+.heart-1 { top: 10px !important; left: 10px !important; }
+.heart-2 { top: 10px !important; right: 10px !important; }
+.heart-3 { top: 65px !important; left: 10px !important; }
+.heart-4 { top: 60px !important; right: 10px !important; }
+.heart-5 { top: 30px !important; left: 25px !important; margin: 0 !important; }
+.heart-6 { top: 30px !important; right: 25px !important; position: absolute; width: 18px !important; animation: heart-pulse-real 1s ease-in-out infinite 0.5s !important; }
+
+
+/* Closer Hearts Layout */
+.heart-1 { top: 25px !important; left: 35px !important; }
+.heart-2 { top: 20px !important; right: 40px !important; }
+.heart-3 { top: 60px !important; left: 30px !important; }
+.heart-4 { top: 55px !important; right: 30px !important; }
+.heart-5 { top: 5px !important; left: 50% !important; margin-left: -8px !important; }
+

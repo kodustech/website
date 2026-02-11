@@ -6,6 +6,19 @@
   <title>Kodus — The Open Source Alternative to CodeRabbit</title>
   <meta name="description" content="AI Code Review With Full Control Over Model Choice and Costs. Open source, model agnostic, zero markup.">
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Preload critical images -->
+  <link rel="preload" as="image" href="assets/img/castle.png">
+  <link rel="preload" as="image" href="assets/img/kody-guard.png">
+  <link rel="preload" as="image" href="assets/img/kody-box.png">
+  <link rel="preload" as="image" href="assets/img/cockpit.png">
+  <link rel="preload" as="image" href="assets/img/kilo.png">
+  <link rel="preload" as="image" href="assets/img/copilot.png">
+  <link rel="preload" as="image" href="assets/img/cursor.png">
+  <link rel="preload" as="image" href="assets/img/claude.png">
+  <link rel="preload" as="image" href="assets/img/openai.png">
+  <link rel="preload" as="image" href="assets/img/cline.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -155,7 +168,7 @@
 
         <!-- Retro OS window — client logos -->
         <div class="hero__clients">
-          <img src="assets/img/kody-paws.png" alt="" class="hero__kody-paws">
+          <img src="assets/img/kody-paws.png" alt="" class="hero__kody-paws fade-in">
           <div class="retro-window">
             <div class="retro-window__bar">
               <span class="retro-window__bar-title">trusted_by.exe</span>
@@ -237,22 +250,16 @@
                   <span class="cartridge__screen-label">DEV_MODULE_V2</span>
                   <span class="cartridge__led cartridge__led--green"></span>
                 </div>
-                <div class="cartridge__screen-body">
-                  <svg class="cartridge__svg" viewBox="0 0 120 70">
-                    <!-- Coins falling and fading out -->
-                    <circle cx="35" cy="20" r="8" fill="none" stroke="#42BE65" stroke-width="1.5" opacity="0.3">
-                      <animate attributeName="cy" values="10;60" dur="2.5s" repeatCount="indefinite"/>
-                      <animate attributeName="opacity" values="0.6;0" dur="2.5s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="85" cy="15" r="6" fill="none" stroke="#42BE65" stroke-width="1.5" opacity="0.3">
-                      <animate attributeName="cy" values="5;55" dur="3s" repeatCount="indefinite"/>
-                      <animate attributeName="opacity" values="0.5;0" dur="3s" repeatCount="indefinite"/>
-                    </circle>
-                    <!-- $0 big -->
-                    <text x="60" y="42" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="22" fill="#42BE65">$0</text>
-                    <line x1="20" y1="58" x2="100" y2="58" stroke="#42BE65" stroke-width="0.5" opacity="0.3"/>
-                  </svg>
-                </div>
+              <div class="cartridge__screen-body cartridge__screen-body--love">
+                <!-- Kody Love -->
+                <img src="assets/img/kody-love.png" alt="Kody Love" class="kody-love">
+                
+                <!-- Image Hearts -->
+                <img src="assets/img/coracao.png" class="pixel-heart heart-1">
+                <img src="assets/img/coracao.png" class="pixel-heart heart-2">
+                <img src="assets/img/coracao.png" class="pixel-heart heart-3">
+                <img src="assets/img/coracao.png" class="pixel-heart heart-4">
+              </div>
               </div>
               <div class="cartridge__title-area">
                 <h3 class="cartridge__title">Generous<br>Free Tier</h3>
@@ -274,33 +281,39 @@
                   <span class="cartridge__screen-label">DEV_MODULE_V2</span>
                   <span class="cartridge__led cartridge__led--blue"></span>
                 </div>
-                <div class="cartridge__screen-body">
-                  <svg class="cartridge__svg" viewBox="0 0 120 70">
-                    <!-- Rotating model labels -->
-                    <g text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">
-                      <text x="60" y="40" fill="#5190FF">
-                        <animate attributeName="opacity" values="1;1;0;0;0;0" dur="6s" repeatCount="indefinite"/>
-                        Claude
-                      </text>
-                      <text x="60" y="40" fill="#42BE65">
-                        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="6s" repeatCount="indefinite"/>
-                        GPT-4o
-                      </text>
-                      <text x="60" y="40" fill="#F8B76D">
-                        <animate attributeName="opacity" values="0;0;0;0;1;1" dur="6s" repeatCount="indefinite"/>
-                        Gemini
-                      </text>
-                    </g>
-                    <!-- Swap arrows -->
-                    <path d="M38 22 L46 17 L46 27Z" fill="#5190FF" opacity="0.4">
-                      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite"/>
-                    </path>
-                    <path d="M82 22 L74 17 L74 27Z" fill="#5190FF" opacity="0.4">
-                      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite" begin="1s"/>
-                    </path>
-                    <line x1="20" y1="58" x2="100" y2="58" stroke="#5190FF" stroke-width="0.5" opacity="0.3"/>
-                  </svg>
+              <div class="cartridge__screen-body cartridge__screen-body--orbit" style="flex-direction: column; justify-content: flex-end;">
+                <!-- Center Kody (Fixed) -->
+                <img src="assets/img/kody-space.png" alt="Kody Space" class="orbit-center" style="z-index: 20; position: relative; bottom: -5px; width: 80px;">
+                
+                <!-- Horizontal Scrolling Tracks -->
+                <div class="model-track-wrapper" style="position: absolute; top: 10px; left: 0; width: 100%; height: 40px; overflow: hidden;">
+                  <div class="model-track move-right">
+                    <img src="assets/img/anthropic.png" class="track-icon">
+                    <img src="assets/img/claude-ai.png" class="track-icon">
+                    <img src="assets/img/deepsek.png" class="track-icon">
+                    <img src="assets/img/gemini.png" class="track-icon">
+                    <!-- Duplicate for loop -->
+                    <img src="assets/img/anthropic.png" class="track-icon">
+                    <img src="assets/img/claude-ai.png" class="track-icon">
+                    <img src="assets/img/deepsek.png" class="track-icon">
+                    <img src="assets/img/gemini.png" class="track-icon">
+                  </div>
                 </div>
+
+                <div class="model-track-wrapper" style="position: absolute; top: 55px; left: 0; width: 100%; height: 40px; overflow: hidden;">
+                  <div class="model-track move-left">
+                    <img src="assets/img/glm.png" class="track-icon">
+                    <img src="assets/img/meta.png" class="track-icon">
+                    <img src="assets/img/open-ai.png" class="track-icon">
+                    <img src="assets/img/grok.png" class="track-icon">
+                    <!-- Duplicate for loop -->
+                    <img src="assets/img/glm.png" class="track-icon">
+                    <img src="assets/img/meta.png" class="track-icon">
+                    <img src="assets/img/open-ai.png" class="track-icon">
+                    <img src="assets/img/grok.png" class="track-icon">
+                  </div>
+                </div>
+              </div>
               </div>
               <div class="cartridge__title-area">
                 <h3 class="cartridge__title">Model<br>Agnostic</h3>
@@ -322,25 +335,16 @@
                   <span class="cartridge__screen-label">DEV_MODULE_V2</span>
                   <span class="cartridge__led cartridge__led--red"></span>
                 </div>
-                <div class="cartridge__screen-body">
-                  <svg class="cartridge__svg" viewBox="0 0 120 70">
-                    <!-- Two bars: "Others" growing vs "Kodus" staying flat -->
-                    <text x="22" y="12" font-family="'JetBrains Mono', monospace" font-size="6" fill="#FA5867" opacity="0.7">Others</text>
-                    <rect x="12" y="16" width="30" height="8" rx="1" fill="#FA5867" opacity="0.3"/>
-                    <rect x="12" y="16" rx="1" height="8" fill="#FA5867" opacity="0.7">
-                      <animate attributeName="width" values="10;30;30;10" dur="3s" repeatCount="indefinite"/>
-                    </rect>
-                    <text x="22" y="38" font-family="'JetBrains Mono', monospace" font-size="6" fill="#42BE65" opacity="0.7">Kodus</text>
-                    <rect x="12" y="42" width="30" height="8" rx="1" fill="#42BE65" opacity="0.3"/>
-                    <rect x="12" y="42" width="10" height="8" rx="1" fill="#42BE65" opacity="0.7"/>
-                    <!-- Equals sign -->
-                    <text x="52" y="36" font-family="'JetBrains Mono', monospace" font-size="10" fill="#CDCDDF" opacity="0.5">=</text>
-                    <!-- API cost label -->
-                    <text x="85" y="30" font-family="'JetBrains Mono', monospace" font-size="6" fill="#CDCDDF" text-anchor="middle" opacity="0.6">API cost</text>
-                    <text x="85" y="42" font-family="'JetBrains Mono', monospace" font-size="7" fill="#42BE65" text-anchor="middle" font-weight="700">only</text>
-                    <line x1="20" y1="58" x2="100" y2="58" stroke="#FA5867" stroke-width="0.5" opacity="0.3"/>
-                  </svg>
-                </div>
+              <div class="cartridge__screen-body cartridge__screen-body--tax">
+                <!-- Kody Taxa -->
+                <img src="assets/img/kody-taxa.png" alt="Kody Zero Markup" class="kody-taxa">
+                
+                <!-- Floating Crossed Out Signs (CSS) -->
+                <div class="pixel-sign sign-1"></div>
+                <div class="pixel-sign sign-2"></div>
+                <div class="pixel-sign sign-3"></div>
+                <div class="pixel-sign sign-4"></div>
+              </div>
               </div>
               <div class="cartridge__title-area">
                 <h3 class="cartridge__title">Zero<br>Markup</h3>
@@ -362,24 +366,15 @@
                   <span class="cartridge__screen-label">DEV_MODULE_V2</span>
                   <span class="cartridge__led cartridge__led--blue"></span>
                 </div>
-                <div class="cartridge__screen-body">
-                  <svg class="cartridge__svg" viewBox="0 0 120 70">
-                    <!-- Animated sliders -->
-                    <rect x="20" y="14" width="80" height="3" rx="1.5" fill="#30304B"/>
-                    <circle cx="20" cy="15.5" r="5" fill="#5190FF">
-                      <animate attributeName="cx" values="30;80;30" dur="4s" repeatCount="indefinite"/>
-                    </circle>
-                    <rect x="20" y="30" width="80" height="3" rx="1.5" fill="#30304B"/>
-                    <circle cx="20" cy="31.5" r="5" fill="#C9BBF2">
-                      <animate attributeName="cx" values="70;35;70" dur="3.5s" repeatCount="indefinite"/>
-                    </circle>
-                    <rect x="20" y="46" width="80" height="3" rx="1.5" fill="#30304B"/>
-                    <circle cx="20" cy="47.5" r="5" fill="#F8B76D">
-                      <animate attributeName="cx" values="50;90;50" dur="5s" repeatCount="indefinite"/>
-                    </circle>
-                    <line x1="20" y1="58" x2="100" y2="58" stroke="#5190FF" stroke-width="0.5" opacity="0.3"/>
-                  </svg>
-                </div>
+              <div class="cartridge__screen-body cartridge__screen-body--config">
+                <!-- Kody Config -->
+                <img src="assets/img/kody-config.png" alt="Kody Configs" class="kody-config">
+                
+                <!-- SVG Gears -->
+                <svg class="pixel-gear gear-1" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                <svg class="pixel-gear gear-2" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                <svg class="pixel-gear gear-3" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              </div>
               </div>
               <div class="cartridge__title-area">
                 <h3 class="cartridge__title">Extensible<br>Configs</h3>
@@ -439,7 +434,7 @@
                   <!-- Icon removed -->
                 </div>
                 <div class="vcr__body">
-                  <img src="" alt="" class="vcr__image" id="vcrImage">
+                  <img src="assets/img/kody-poeta.png" alt="" class="vcr__image" id="vcrImage" style="display: block;">
                   <p class="vcr__text" id="vcrText">You want a poem in every pull request.</p>
                 </div>
                 <div class="vcr__slide-bottom">
@@ -510,7 +505,7 @@
                     <span class="basics__file-icon"></span> set_rules.mod
                   </li>
                   <li class="basics__tree-file" data-feature="2">
-                    <span class="basics__file-icon"></span> sync_rule.mod
+                    <span class="basics__file-icon"></span> rule_sync.mod
                   </li>
                   <li class="basics__tree-file" data-feature="3">
                     <span class="basics__file-icon"></span> plugins_mcps.mod
@@ -538,12 +533,7 @@
                     <!-- Tags removed -->
                   </div>
                   <div class="basics__video" id="basicsVideo">
-                    <div class="basics__video-placeholder">
-                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                        <circle cx="24" cy="24" r="24" fill="#F8B76D" opacity="0.9"/>
-                        <polygon points="20,16 34,24 20,32" fill="#101019"/>
-                      </svg>
-                    </div>
+                    <video src="assets/img/context.webm" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
                   </div>
                   <p class="basics__feature-desc" id="basicsDesc">
                     Deep understanding of your entire project structure and logic.

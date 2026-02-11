@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console')
+  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws')
     .forEach(el => {
       el.classList.add('fade-in');
       fadeObserver.observe(el);
@@ -245,11 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --- Basics file tree --- */
   const basicsFeatures = [
     {
-      title: 'Codebase Context',
+      title: 'Learns from your context',
       // tag: 'FREE', // Removed
       file: 'codebase_context.mod',
       desc: 'Deep understanding of your entire project structure and logic.',
-      detail: 'Kodus doesn\'t just look at the diff. It analyzes your entire repository to understand dependencies, architectural patterns, and business logic, providing reviews that truly understand the context of your changes.',
+      detail: 'Kody analyzes your team’s workflows, coding standards and Architecture to understand your unique needs and provide tailored reviews.',
+      video: 'assets/img/context.webm',
     },
     {
       title: 'You set the rules',
@@ -257,13 +258,83 @@ document.addEventListener('DOMContentLoaded', () => {
       file: 'set_rules.mod',
       desc: 'Teams define their own review standards.',
       detail: 'Create custom review guidelines in plain language or use rules from the built-in library. Reviews consistently follow the standards defined by your team.',
+      video: 'assets/img/rule-app.webm',
     },
     {
       title: 'Rule Sync',
       // tag: 'SYNC', // Removed
-      file: 'sync_rule.mod',
+      file: 'rule_sync.mod',
       desc: 'Sync your rules straight from the IDE.',
       detail: 'Kody automatically detects rule files from popular AI tools such as Cursor, Copilot, Claude, Windsurf, and others to keep the same review standards your team already follows.',
+      html: `
+        <div class="rule-sync-animation" style="position: relative; width: 100%; height: 320px; display: flex; justify-content: center; align-items: center; background: transparent; overflow: hidden; opacity: 0; animation: fade-in-anim 0.3s forwards;">
+          
+          <!-- Connecting lines (Retro Circuit Style) -->
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
+            
+            <!-- Static Circuit Lines (Background) -->
+            <g class="circuit-lines">
+              <!-- Left Top to Center -->
+              <path d="M28 20 H 38 V 45 H 44" class="flow-path" />
+              <!-- Left Mid to Center -->
+              <path d="M28 50 H 44" class="flow-path" />
+              <!-- Left Bot to Center -->
+              <path d="M28 80 H 38 V 55 H 44" class="flow-path" />
+              
+              <!-- Right Top to Center -->
+              <path d="M72 20 H 62 V 45 H 56" class="flow-path" />
+              <!-- Right Mid to Center -->
+              <path d="M72 50 H 56" class="flow-path" />
+              <!-- Right Bot to Center -->
+              <path d="M72 80 H 62 V 55 H 56" class="flow-path" />
+            </g>
+
+            <!-- Animated Data Packets (Squares) -->
+            <g class="data-packets">
+              <!-- Left Packets -->
+              <rect width="3" height="3" class="data-packet">
+                <animateMotion dur="2s" repeatCount="indefinite" path="M28 20 H 38 V 45 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
+              </rect>
+              <rect width="3" height="3" class="data-packet">
+                <animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M28 50 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
+              </rect>
+              <rect width="3" height="3" class="data-packet">
+                <animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M28 80 H 38 V 55 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
+              </rect>
+
+              <!-- Right Packets -->
+              <rect width="3" height="3" class="data-packet">
+                <animateMotion dur="2s" begin="0.2s" repeatCount="indefinite" path="M72 20 H 62 V 45 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
+              </rect>
+              <rect width="3" height="3" class="data-packet">
+                <animateMotion dur="2s" begin="0.7s" repeatCount="indefinite" path="M72 50 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
+              </rect>
+              <rect width="3" height="3" class="data-packet">
+                <animateMotion dur="2s" begin="1.2s" repeatCount="indefinite" path="M72 80 H 62 V 55 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
+              </rect>
+            </g>
+          </svg>
+
+          <!-- Center: Kody Box -->
+          <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1.1); z-index: 10;">
+            <img src="assets/img/kody-box.png" alt="Kody Box" class="kody-box" style="width: 140px; height: auto;">
+          </div>
+          
+          <!-- Left side tools column -->
+          <div style="position: absolute; left: 22%; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 30px 0; z-index: 5; width: 50px; align-items: center; transform: scale(1.1);">
+            <div class="tool-icon tool-left"><img src="assets/img/kilo.png" alt="Kiln"></div>
+            <div class="tool-icon tool-left"><img src="assets/img/copilot.png" alt="Copilot"></div>
+            <div class="tool-icon tool-left"><img src="assets/img/cursor.png" alt="Cursor"></div>
+          </div>
+
+          <!-- Right side tools column -->
+          <div style="position: absolute; right: 22%; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 30px 0; z-index: 5; width: 50px; align-items: center; transform: scale(1.1);">
+            <div class="tool-icon tool-right"><img src="assets/img/claude.png" alt="Claude"></div>
+            <div class="tool-icon tool-right"><img src="assets/img/openai.png" alt="OpenAI"></div>
+            <div class="tool-icon tool-right"><img src="assets/img/cline.png" alt="Cline"></div>
+          </div>
+        </div>
+      `
     },
     {
       title: 'Bring your business context',
@@ -271,6 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
       file: 'plugins_mcps.mod',
       desc: 'Extend functionality with Model Context Protocol servers.',
       detail: 'Connect tools like Jira, Notion, or Linear so Kody can understand specs, tasks, and requirements while reviewing your code.',
+      video: 'assets/img/plugins.webm',
     },
     {
       title: 'Track technical debt',
@@ -278,13 +350,15 @@ document.addEventListener('DOMContentLoaded', () => {
       file: 'technical_debt.mod',
       desc: 'Monitor and manage technical debt over time.',
       detail: 'Kodus automatically turns unimplemented suggestions into issues, helping your team visualize and reduce technical debt over time.',
+      video: 'assets/img/issues.webm',
     },
     {
       title: 'Accelerate your delivery',
-      // tag: 'OVERVIEW', // Removed
+      tag: 'OVERVIEW',
       file: 'cockpit.mod',
       desc: 'Centralized dashboard for all your repository insights.',
       detail: 'Monitor deploy frequency, cycle time, bug ratio and PR sizes to keep your team shipping fast — and safely.',
+      image: 'assets/img/cockpit.png',
     },
     {
       title: 'Privacy & Security',
@@ -292,6 +366,23 @@ document.addEventListener('DOMContentLoaded', () => {
       file: 'privacy_security.mod',
       desc: 'Enterprise-grade security ensuring your code stays safe.',
       detail: 'Source code is never stored and is never used to train models. All data is encrypted in transit and at rest. Kodus supports SOC 2 compliance and offers self-hosted runners, so your IP can remain entirely within your own infrastructure.',
+      html: `
+        <div class="security-anim" style="width: 100%; height: 320px; position: relative; overflow: hidden; background: transparent;">
+          
+          <!-- Pixel Clouds (CSS) -->
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+            <div class="pixel-cloud" style="top: 15%; left: 15%; --s: 1.5; animation: float-cloud 30s linear infinite;"></div>
+            <div class="pixel-cloud" style="top: 30%; left: 75%; --s: 1.2; opacity: 0.5; animation: float-cloud 45s linear infinite reverse;"></div>
+            <div class="pixel-cloud" style="top: 10%; left: 55%; --s: 1; opacity: 0.4; animation: float-cloud 60s linear infinite;"></div>
+          </div>
+
+          <!-- Castle (Layer 1 - Background) -->
+          <img src="assets/img/castle.png" alt="Castle" style="width: 280px; height: auto; image-rendering: pixelated; position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); z-index: 1; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));">
+          
+          <!-- Kody Guard (Layer 2 - Foreground) -->
+          <img src="assets/img/kody-guard.png" alt="Kody Guard" style="width: 130px; height: auto; image-rendering: pixelated; position: absolute; z-index: 2; bottom: 20px; left: 50%; transform: translateX(-50%); filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));">
+        </div>
+      `
     }
   ];
 
@@ -312,6 +403,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // basicsTag.textContent = feature.tag; // Removed
     basicsDesc.textContent = feature.desc;
     basicsDetailText.textContent = feature.detail;
+
+    // Update image/video
+    const videoContainer = document.getElementById('basicsVideo');
+    if (videoContainer) {
+      if (feature.html) {
+        videoContainer.innerHTML = feature.html;
+      } else if (feature.image) {
+        videoContainer.innerHTML = `<img src="${feature.image}" alt="${feature.title}" style="width: 100%; height: 100%; object-fit: contain;">`;
+      } else if (feature.video) {
+        videoContainer.innerHTML = `<video src="${feature.video}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>`;
+      } else {
+        // Clear content if no media is defined
+        videoContainer.innerHTML = '';
+      }
+    }
   }
 
   basicsFiles.forEach(file => {
