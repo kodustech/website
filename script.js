@@ -258,14 +258,14 @@ document.addEventListener('DOMContentLoaded', () => {
       file: 'set_rules.mod',
       desc: 'Teams define their own review standards.',
       detail: 'Create custom review guidelines in plain language or use rules from the built-in library. Reviews consistently follow the standards defined by your team.',
-      video: 'assets/img/rule-app.webm',
+      video: 'https://kodus.io/wp-content/uploads/2026/02/1111.mp4',
     },
     {
-      title: 'Rule Sync',
+      title: 'Sync Your Existing Rules',
       // tag: 'SYNC', // Removed
       file: 'rule_sync.mod',
-      desc: 'Sync your rules straight from the IDE.',
-      detail: 'Kody automatically detects rule files from popular AI tools such as Cursor, Copilot, Claude, Windsurf, and others to keep the same review standards your team already follows.',
+      desc: 'Keep the standards you already use. No rework.',
+      detail: 'Kody automatically detects rule files from tools like Cursor, Copilot, Claude, and Windsurf — so your reviews stay consistent.',
       html: `
         <div class="rule-sync-animation" style="position: relative; width: 100%; height: 320px; display: flex; justify-content: center; align-items: center; background: transparent; overflow: hidden; opacity: 0; animation: fade-in-anim 0.3s forwards;">
           
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Accelerate your delivery',
       tag: 'OVERVIEW',
       file: 'cockpit.mod',
-      desc: 'Centralized dashboard for all your repository insights.',
+      desc: 'A centralized dashboard for your engineering insights.',
       detail: 'Monitor deploy frequency, cycle time, bug ratio and PR sizes to keep your team shipping fast — and safely.',
       image: 'assets/img/cockpit.png',
     },
@@ -386,38 +386,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  const basicsTitle = document.getElementById('basicsTitle');
-  const basicsTag = document.getElementById('basicsTag');
-  const basicsDesc = document.getElementById('basicsDesc');
-  const basicsDetailText = document.getElementById('basicsDetailText');
   const basicsTab = document.getElementById('basicsTab');
   const basicsFiles = document.querySelectorAll('.basics__tree-file');
 
   function updateBasics(index) {
     const feature = basicsFeatures[index];
-    if (!feature || !basicsTitle) return;
+    if (!feature || !basicsTab) return;
 
     basicsFiles.forEach((f, i) => f.classList.toggle('basics__tree-file--active', i === index));
     basicsTab.textContent = feature.file;
-    basicsTitle.textContent = feature.title;
-    // basicsTag.textContent = feature.tag; // Removed
-    basicsDesc.textContent = feature.desc;
-    basicsDetailText.textContent = feature.detail;
 
-    // Update image/video
-    const videoContainer = document.getElementById('basicsVideo');
-    if (videoContainer) {
-      if (feature.html) {
-        videoContainer.innerHTML = feature.html;
-      } else if (feature.image) {
-        videoContainer.innerHTML = `<img src="${feature.image}" alt="${feature.title}" style="width: 100%; height: 100%; object-fit: contain;">`;
-      } else if (feature.video) {
-        videoContainer.innerHTML = `<video src="${feature.video}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>`;
+    // Toggle visibility of panels
+    document.querySelectorAll('.basics__panel').forEach((panel, i) => {
+      if (i === index) {
+        panel.style.display = 'block';
       } else {
-        // Clear content if no media is defined
-        videoContainer.innerHTML = '';
+        panel.style.display = 'none';
       }
-    }
+    });
   }
 
   basicsFiles.forEach(file => {
@@ -445,37 +431,40 @@ document.addEventListener('DOMContentLoaded', () => {
     'modal-free-tier': {
       title: 'Generous Free Tier',
       led: 'green',
-      desc: 'Start reviewing code for free — no credit card, no catch. Our free tier gives you enough reviews to evaluate Kodus on real pull requests before committing. We believe you should try before you buy.',
+      desc: 'Even on the free plan, we deliver complete and reliable reviews.\n\nYou use Kody with your own API key and get access to the full review experience.\n\nYou get:\n• The same deep analysis\n• The same understanding of context\n• The same quality standards\n• No PR limits\n• No user limits\n\nOn the free plan, Kody reviews your PRs at the highest level we know how to deliver.<div style="display: flex; gap: 12px; margin-top: 24px; justify-content: center;"><img src="assets/img/coracao.png" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="assets/img/coracao.png" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="assets/img/coracao.png" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="assets/img/coracao.png" style="width: 24px; height: 24px; image-rendering: pixelated;"></div>',
     },
     'modal-agnostic': {
-      title: 'Model Agnostic',
+      title: 'Model-Agnostic',
       led: 'blue',
-      desc: 'Use Claude, GPT-4, Gemini, Llama, or any model you want. Kodus doesn\'t lock you into a single provider — bring your own API keys, switch models per repo, and always stay in control of cost and quality.',
+      desc: 'Run Kody with your own API keys and choose the model that makes the most sense for your team (OpenAI, Gemini, Claude, etc.).\n\nYou can set a primary model and a fallback to avoid interruptions in your review workflow.\n\nWe believe model control should be yours. Every team is different, and AI should adapt to your process — not the other way around.<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; justify-items: center;"><img src="assets/img/anthropic.png" style="width: 50px; height: 50px; object-fit: contain;"><img src="assets/img/claude-ai.png" style="width: 50px; height: 50px; object-fit: contain;"><img src="assets/img/deepsek.png" style="width: 50px; height: 50px; object-fit: contain;"><img src="assets/img/gemini.png" style="width: 50px; height: 50px; object-fit: contain;"><img src="assets/img/glm.png" style="width: 50px; height: 50px; object-fit: contain;"><img src="assets/img/meta.png" style="width: 50px; height: 50px; object-fit: contain;"><img src="assets/img/open-ai.png" style="width: 50px; height: 50px; object-fit: contain;"><img src="assets/img/grok.png" style="width: 50px; height: 50px; object-fit: contain;"></div>',
     },
-    'modal-markup': {
+    'modal-zero-markup': {
       title: 'Zero Markup',
       led: 'red',
-      desc: 'We don\'t add markup on LLM calls. You pay the model provider directly at their listed price. No hidden fees, no per-seat multipliers on API costs. What you see is what you pay.',
+      desc: 'We don’t add any margin on LLM calls. You pay for tokens directly to your provider.\n\n• No hidden fees\n• No token limits\n• No billing surprises\n\nOn the Team plan, the $10 per user is strictly for platform infrastructure.\n\nWe don’t interfere with your AI spending.\n\nYou stay within your provider’s limits — what you use is what you pay.<div style="display: flex; justify-content: center; margin-top: -8px;"><img src="assets/img/plaquinha.png" style="width: 140px; height: auto; image-rendering: pixelated;"></div>',
     },
     'modal-configs': {
-      title: 'Extensible Configs',
+      title: 'Flexible Configuration',
       led: 'blue',
-      desc: 'Customize review rules, severity levels, ignore patterns, and architectural guards per repository. Configs live in your repo as code — version controlled, reviewable, and shareable across teams.',
+      desc: 'Kody adapts to how your team works.\n\nYou define the rules, severity levels, and where they apply — globally, per repository, or per directory.\n\nYou can also adjust the focus of reviews, the type of feedback Kody prioritizes, and how it communicates in pull requests.\n\nOn top of that, you can add more context to reviews using integrations and data from your own environment.\n\nThis way, critical projects, legacy services, and new initiatives can follow different policies, all within the same organization.<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; justify-items: center;"><img src="assets/img/tool1.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="assets/img/tool2.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="assets/img/tool3.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="assets/img/tool4.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="assets/img/tool5.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="assets/img/tool6.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="assets/img/tool7.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="assets/img/tool8.png" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"></div>',
     },
   };
 
   const overlay = document.getElementById('modalOverlay');
   const modalTitle = document.getElementById('modalTitle');
   const modalDesc = document.getElementById('modalDesc');
-  const modalLed = document.getElementById('modalLed');
+  // const modalLed = document.getElementById('modalLed'); // Removed
   const modalClose = document.getElementById('modalClose');
 
   function openModal(key) {
     const data = modalData[key];
     if (!data) return;
     modalTitle.textContent = data.title;
-    modalDesc.textContent = data.desc;
-    modalLed.className = `cartridge__led cartridge__led--${data.led}`;
+    // Use innerHTML to allow HTML tags like <br> and <ul>
+    modalDesc.innerHTML = data.desc.replace(/\n/g, '<br>');
+    // if (modalLed) {
+    //   modalLed.className = `cartridge__led cartridge__led--${data.led}`;
+    // }
     overlay.classList.add('is-open');
   }
 

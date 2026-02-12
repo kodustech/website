@@ -258,9 +258,99 @@ button {
   color: var(--color-text);
 }
 
+/* Header/Nav Dropdown */
+.nav__dropdown {
+  position: relative;
+}
+
+.nav__dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-card-lv2);
+  border: 1px solid var(--color-card-lv3);
+  border-radius: var(--border-radius-sm);
+  padding: 8px 0;
+  min-width: 320px; /* Increased width to accommodate longer descriptions */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.nav__dropdown:hover .nav__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__dropdown-menu li {
+  display: block;
+}
+
+.nav__dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  transition: all 0.15s;
+  text-decoration: none; /* Ensure no underline on container */
+}
+
+.nav__item-title {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.nav__item-desc {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-text-dim);
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.nav__dropdown-menu a:hover .nav__item-title {
+  color: var(--color-primary); /* Highlight title on hover */
+}
+
+.nav__dropdown-menu a:hover {
+  background: var(--color-card-lv3);
+  color: var(--color-text);
+}
+
 .nav__chevron {
   font-size: 0.65rem;
   margin-left: 2px;
+  transition: transform 0.2s;
+}
+
+.nav__dropdown:hover .nav__chevron {
+  transform: rotate(180deg);
+}
+
+/* Ensure mobile menu handles dropdown correctly */
+@media (max-width: 768px) {
+  .nav__dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-left: 16px;
+    display: none;
+  }
+  
+  .nav__dropdown.active .nav__dropdown-menu {
+    display: block;
+  }
 }
 
 .nav__actions {
@@ -582,10 +672,11 @@ body::before {
   filter: grayscale(0%) brightness(1);
 }
 
+/* Remover a classe extra se não for mais usada ou garantir que não conflite */
 .logo-carousel__img--large {
-  height: 70px; /* Aumentado significativamente para compensar */
-  max-width: 180px; /* Evita que fiquem largas demais se o aspect ratio for extremo */
-  margin: 0 10px; /* Ajuste de espaçamento se necessário */
+  height: 70px; 
+  max-width: 180px; 
+  margin: 0 10px; 
 }
 
 @keyframes carousel-scroll {
@@ -1003,18 +1094,8 @@ body::before {
   outline: none;
 }
 .cartridge:focus-visible .cartridge__shell {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(248, 183, 109, 0.4);
-}
-.cartridge:hover {
-  transform: translateY(-6px);
-}
-.cartridge:focus {
-  outline: none;
-}
-.cartridge:focus-visible .cartridge__shell {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(248, 183, 109, 0.4);
+  border-color: var(--color-card-lv3);
+  box-shadow: none;
 }
 .cartridge:hover {
   transform: translateY(-6px);
@@ -1175,7 +1256,7 @@ body::before {
   border-radius: var(--border-radius);
   max-width: 480px;
   width: 90%;
-  padding: 32px;
+  padding: 32px 32px 48px; /* Increased bottom padding significantly */
   position: relative;
   transform: translateY(20px) scale(0.97);
   transition: transform 0.25s ease;
@@ -1201,20 +1282,43 @@ body::before {
 
 .modal__header {
   display: flex;
+  flex-direction: row; /* Ensure row direction */
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
+  justify-content: flex-start; /* Align to start */
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.modal__header .cartridge__led {
+  display: inline-block; /* Force inline-block */
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%; /* Ensure it's round */
+  transform: none;
+  margin-top: 0;
+  position: relative; /* Ensure z-index works if needed */
+  top: 1px; /* Micro adjustment for optical centering */
 }
 
 .modal__title {
   font-family: var(--font-pixel);
   font-size: 1rem;
+  line-height: 1;
+  margin: 0;
+  padding-top: 0;
+  display: block; /* Ensure text behaves as block within flex item */
 }
 
 .modal__desc {
   font-size: 0.9rem;
   color: var(--color-text-muted);
   line-height: 1.7;
+}
+
+/* Fix for spacing in modal description with images */
+.modal__desc div:last-child {
+  margin-bottom: -16px; /* Pull the image container down slightly if needed, or reduce bottom padding of modal */
 }
 
 /* ========================================
@@ -1344,10 +1448,10 @@ body::before {
   background: var(--color-card-lv2);
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
-  height: 600px; /* Increased fixed height */
+  height: 650px; /* Fixed height to prevent layout shifts */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto; /* Allow scrolling within the card if content is too long */
 }
 
 .basics__feature-title {
@@ -1376,7 +1480,9 @@ body::before {
   margin-bottom: 24px;
   border-radius: var(--border-radius-sm);
   overflow: hidden;
-  border: 1px solid var(--color-card-lv2);
+  /* border: 1px solid var(--color-card-lv2); Removed border */
+  /* background: var(--color-card-lv1); Removed background */
+  background: transparent;
 }
 
 .basics__video-placeholder {
@@ -2173,6 +2279,20 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 48px;
+  position: relative; /* Context for alignment */
+}
+
+/* ... existing styles ... */
+
+.footer__bottom {
+  border-top: 1px solid var(--color-card-lv2);
+  padding-top: 24px;
+  /* margin-top removed, handled by container gap */
+  display: block; /* Change from flex to block to obey normal flow */
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
+  text-align: left; /* Ensure left alignment */
 }
 
 .footer__brand {
@@ -2188,8 +2308,25 @@ body::before {
 
 .footer__columns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr); /* Force 5 equal columns */
   gap: 32px;
+}
+
+.footer__col {
+  /* Reset flex properties */
+  min-width: 0;
+}
+
+/* Ensure footer bottom text aligns with first column */
+.footer__bottom {
+  border-top: 1px solid var(--color-card-lv2);
+  padding-top: 24px;
+  /* margin-top removed, handled by container gap */
+  display: block; /* Use block to follow standard flow */
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
+  text-align: left; /* Explicitly align text left */
 }
 
 .footer__col-title {
@@ -2216,11 +2353,35 @@ body::before {
   color: var(--color-primary);
 }
 
-.footer__bottom {
-  padding-top: 32px;
-  border-top: 1px solid var(--color-card-lv2);
-  font-size: 0.8rem;
-  color: var(--color-text-dim);
+
+.footer__social {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 12px;
+  max-width: 200px; /* Constrain width to force wrapping if needed, adjust as per icon size */
+}
+
+.footer__social-link {
+  /* color: var(--color-text-dim); removed color override */
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.footer__social-link:hover {
+  opacity: 0.8;
+  /* color: var(--color-text); removed color override */
+}
+
+.footer__social-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  background: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  flex-shrink: 0;
 }
 
 /* ========================================
@@ -2243,21 +2404,53 @@ body::before {
 .cartridge.fade-in:nth-child(3) { transition-delay: 0.2s; }
 .cartridge.fade-in:nth-child(4) { transition-delay: 0.3s; }
 
-/* Staggered delays for VHS tapes */
-.vhs.fade-in:nth-child(1) { transition-delay: 0s; }
-.vhs.fade-in:nth-child(2) { transition-delay: 0.12s; }
-.vhs.fade-in:nth-child(3) { transition-delay: 0.24s; }
+/* Remove orange border/outline on focus/active states for cartridges */
+.cartridge:focus,
+.cartridge:active {
+  outline: none;
+  border-color: var(--color-card-lv3); /* Maintain original border color */
+}
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-@media (max-width: 1024px) {
-  .cartridges__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.cartridge:active .cartridge__shell {
+  border-bottom-width: 4px; /* Ensure border width doesn't change color unintentionally */
+}
+
+/* Modal Content */
+.modal__title {
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row; /* Force row layout explicitly */
+  align-items: center;
+  gap: 12px;
+  line-height: 1; /* Reset line height to prevent vertical stretching */
+}
+
+/* Adjust LED specifically inside modal title for better visual center */
+.modal__title .cartridge__led {
+  width: 8px;
+  height: 8px;
+  transform: translateY(-2px); /* Reset to a moderate adjustment */
+  flex-shrink: 0;
+  display: inline-block; /* Ensure it behaves as an inline-block element */
+}
 
   .vhs {
     width: 260px;
+  }
+
+  /* Added responsive rule for 4-column footer on tablet */
+  .footer__columns {
+    /* Do not override columns on tablet unless necessary - keep 5 if possible or allow flex wrap */
+    /* If 5 is too tight, 2 is acceptable, but user wants 5 on desktop */
+    /* This media query (max-width: 1024px) was likely forcing 2 columns on screens slightly smaller than large desktop */
+    /* Let's relax this to allow auto-flow or keep grid if space permits */
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .footer__col {
+    flex: 1 1 200px; /* Allow wrapping */
   }
 }
 
