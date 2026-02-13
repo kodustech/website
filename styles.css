@@ -1254,10 +1254,11 @@ body::before {
   background: var(--color-card-lv1);
   border: 1px solid var(--color-card-lv3);
   border-radius: var(--border-radius);
-  max-width: 480px;
+  max-width: 560px;
   width: 90%;
-  padding: 32px 32px 48px; /* Increased bottom padding significantly */
+  padding: 36px 36px 48px;
   position: relative;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
   transform: translateY(20px) scale(0.97);
   transition: transform 0.25s ease;
 }
@@ -1295,10 +1296,10 @@ body::before {
   width: 8px;
   height: 8px;
   border-radius: 50%; /* Ensure it's round */
-  transform: none;
+  transform: translateY(-3px);
   margin-top: 0;
   position: relative; /* Ensure z-index works if needed */
-  top: 1px; /* Micro adjustment for optical centering */
+  top: 0;
 }
 
 .modal__title {
@@ -1307,13 +1308,23 @@ body::before {
   line-height: 1;
   margin: 0;
   padding-top: 0;
+  color: var(--color-text);
   display: block; /* Ensure text behaves as block within flex item */
 }
 
 .modal__desc {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  line-height: 1.7;
+  font-size: 1.08rem;
+  color: #ffffff;
+  line-height: 1.85;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-wrap: pretty;
+}
+
+.modal__desc br + br {
+  display: block;
+  content: "";
+  margin-top: 0.7rem;
 }
 
 /* Fix for spacing in modal description with images */
@@ -4804,4 +4815,3 @@ img.pixel-heart {
 .heart-3 { top: 60px !important; left: 30px !important; }
 .heart-4 { top: 55px !important; right: 30px !important; }
 .heart-5 { top: 5px !important; left: 50% !important; margin-left: -8px !important; }
-

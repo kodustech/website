@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const vcrImage = document.getElementById('vcrImage');
   const vcrCats = document.querySelectorAll('.vcr__cat');
   const vcrBtns = document.querySelectorAll('.vcr__btn[data-slide]');
+  let vcrAutoRotateId = null;
 
   function updateVcr(index) {
     if (!vcrText) return;
@@ -134,15 +135,28 @@ document.addEventListener('DOMContentLoaded', () => {
     vcrCats.forEach((cat, i) => cat.classList.toggle('vcr__cat--active', i === index));
   }
 
+  function stopVcrAutoRotate() {
+    if (vcrAutoRotateId !== null) {
+      clearInterval(vcrAutoRotateId);
+      vcrAutoRotateId = null;
+    }
+  }
+
   vcrCats.forEach(cat => {
-    cat.addEventListener('click', () => updateVcr(parseInt(cat.dataset.slide)));
+    cat.addEventListener('click', () => {
+      stopVcrAutoRotate();
+      updateVcr(parseInt(cat.dataset.slide, 10));
+    });
   });
   vcrBtns.forEach(btn => {
-    btn.addEventListener('click', () => updateVcr(parseInt(btn.dataset.slide)));
+    btn.addEventListener('click', () => {
+      stopVcrAutoRotate();
+      updateVcr(parseInt(btn.dataset.slide, 10));
+    });
   });
 
   // Auto-rotate every 5 seconds
-  setInterval(() => {
+  vcrAutoRotateId = setInterval(() => {
     updateVcr((currentSlide + 1) % vcrSlides.length);
   }, 5000);
 
@@ -453,7 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('modalOverlay');
   const modalTitle = document.getElementById('modalTitle');
   const modalDesc = document.getElementById('modalDesc');
-  // const modalLed = document.getElementById('modalLed'); // Removed
   const modalClose = document.getElementById('modalClose');
 
   function openModal(key) {
@@ -462,9 +475,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modalTitle.textContent = data.title;
     // Use innerHTML to allow HTML tags like <br> and <ul>
     modalDesc.innerHTML = data.desc.replace(/\n/g, '<br>');
-    // if (modalLed) {
-    //   modalLed.className = `cartridge__led cartridge__led--${data.led}`;
-    // }
     overlay.classList.add('is-open');
   }
 
