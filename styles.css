@@ -2488,27 +2488,60 @@ body::before {
 
 /* Card */
 .pricing__card {
-  border: 2px solid var(--color-card-lv3);
-  border-radius: var(--border-radius);
-  background: var(--color-card-lv1);
+  border: 2px solid #3a3a4f;
+  border-radius: 10px 10px 6px 6px;
+  background: linear-gradient(180deg, #3a3a4f 0%, #2a2a3c 52%, #222233 100%);
   overflow: hidden;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 6px 18px rgba(0, 0, 0, 0.42);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.pricing__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 42%;
+  height: 7px;
+  transform: translateX(-50%);
+  background: #2a2a3c;
+  border: 1px solid #3a3a4f;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pricing__card::after {
+  content: none;
 }
 
 .pricing__card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border-color: #50506a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* Recommended card */
 .pricing__card--recommended {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 30px rgba(248, 183, 109, 0.1);
+  border-color: #c89558;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(248, 183, 109, 0.12),
+    0 7px 18px rgba(0, 0, 0, 0.44);
 }
 
 .pricing__card--recommended:hover {
-  box-shadow: 0 12px 40px rgba(248, 183, 109, 0.15);
+  border-color: #d8a76b;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(248, 183, 109, 0.18),
+    0 10px 22px rgba(0, 0, 0, 0.5);
 }
 
 .pricing__recommended-tag {
@@ -2516,14 +2549,16 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
-  background: var(--color-primary-dark);
+  padding: 8px 14px;
+  background: linear-gradient(180deg, #4a3728 0%, #35271d 100%);
+  border-bottom: 1px solid #7a5a3f;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 700;
   color: var(--color-primary);
-  letter-spacing: 1.5px;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
+  text-shadow: 0 0 5px rgba(248, 183, 109, 0.25);
 }
 
 .pricing__recommended-led {
@@ -2531,7 +2566,7 @@ body::before {
   height: 8px;
   border-radius: 50%;
   background: var(--color-primary);
-  box-shadow: 0 0 6px var(--color-primary);
+  box-shadow: 0 0 6px rgba(248, 183, 109, 0.8);
   animation: pricing-led-pulse 2s ease-in-out infinite;
 }
 
@@ -2544,22 +2579,22 @@ body::before {
 .pricing__card-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: linear-gradient(180deg, var(--color-card-lv3) 0%, var(--color-card-lv2) 100%);
-  border-bottom: 2px solid var(--color-card-lv3);
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 10px;
+  margin: 12px 10px 0;
+  background: var(--color-card-lv1);
+  border: 1px solid var(--color-card-lv2);
+  border-radius: 4px 4px 0 0;
+  border-bottom: none;
 }
 
 .pricing__card-dots {
-  display: flex;
-  gap: 6px;
+  display: none;
 }
 
 .pricing__card-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--color-card-lv3);
+  display: none;
 }
 
 .pricing__card-dot:nth-child(1) { background: var(--color-danger); }
@@ -2568,30 +2603,37 @@ body::before {
 
 .pricing__card-bar-title {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.5px;
+  font-size: 0.56rem;
+  color: var(--color-text-dim);
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  text-align: left;
   flex: 1;
-  text-align: center;
 }
 
 .pricing__card-badge {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.52rem;
   font-weight: 700;
   color: var(--color-text-dim);
   background: var(--color-card-lv2);
   border: 1px solid var(--color-card-lv3);
-  padding: 2px 8px;
+  padding: 2px 6px;
   border-radius: 3px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
 }
 
 /* Card body */
 .pricing__card-body {
-  padding: 32px 24px;
+  margin: 0 10px 10px;
+  padding: 26px 20px 24px;
   position: relative;
+  background: var(--color-bg);
+  border: 1px solid var(--color-card-lv2);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 1;
 }
 
 .pricing__card-scanlines {
@@ -2610,7 +2652,7 @@ body::before {
 
 .pricing__plan-name {
   font-family: var(--font-pixel);
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
@@ -2649,6 +2691,18 @@ body::before {
   font-size: 2rem;
   color: var(--color-text);
   transition: opacity 0.3s ease;
+}
+
+.pricing__price-value--dynamic {
+  font-family: var(--font-pixel);
+  font-size: 2.35rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+  min-width: 2ch;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  -webkit-font-smoothing: none;
+  font-smooth: never;
 }
 
 .pricing__price-period {
@@ -2753,29 +2807,89 @@ body::before {
 }
 
 .token-info__card {
-  border: 2px solid var(--color-card-lv3);
-  border-radius: var(--border-radius);
-  background: var(--color-card-lv1);
-  padding: 32px 24px;
+  border: 2px solid #3a3a4f;
+  border-radius: 10px 10px 6px 6px;
+  background: linear-gradient(180deg, #37374c 0%, #2a2a3c 52%, #212132 100%);
+  padding: 56px 24px 28px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.token-info__card::before {
+  content: "SYS MODULE";
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  padding: 6px 10px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  background: var(--color-card-lv1);
+  border: 1px solid var(--color-card-lv2);
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.token-info__card:nth-child(1)::before {
+  content: "SYS MODULE // KEY_AUTH";
+}
+
+.token-info__card:nth-child(2)::before {
+  content: "SYS MODULE // LOAD_SCALE";
+}
+
+.token-info__card:nth-child(3)::before {
+  content: "SYS MODULE // COST_FACTORS";
+}
+
+.token-info__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .token-info__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px);
+  border-color: #50506a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 24px rgba(0, 0, 0, 0.5);
 }
 
 .token-info__icon-wrap {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-card-lv2);
-  border: 1px solid var(--color-card-lv3);
-  border-radius: var(--border-radius-sm);
+  background: linear-gradient(180deg, #2f2f4f 0%, #262641 100%);
+  border: 1px solid #3f3f68;
+  border-bottom: 3px solid #1c1c30;
+  border-radius: 8px;
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 2;
 }
 
 .token-info__icon {
@@ -2783,16 +2897,21 @@ body::before {
 }
 
 .token-info__title {
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-family: var(--font-pixel);
+  font-size: 0.78rem;
+  letter-spacing: 0.7px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
 }
 
 .token-info__desc {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
 }
 
 /* Staggered fade-in for token info cards */
@@ -3006,24 +3125,37 @@ body::before {
 .calculator__model-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 10px;
   font-size: 0.8rem;
 }
 
 .calculator__model-row-label {
   color: var(--color-text-dim);
   font-size: 0.75rem;
+  line-height: 1.25;
 }
 
 .calculator__model-row-value {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+  min-width: 84px;
+}
+
+.calculator__model-row-value strong {
+  display: block;
 }
 
 .calculator__per-dev {
+  display: block;
   font-size: 0.65rem;
   color: var(--color-text-dim);
+  margin-top: 2px;
 }
 
 .calculator__model-total {
