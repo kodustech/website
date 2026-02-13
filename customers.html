@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers — Kodus</title>
+  <meta name="description" content="Discover how engineering teams use Kody to keep quality high as they scale. Real stories from startups shipping products with zero production bugs.">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link">Docs</a></li>
+        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link">Community</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
+          <ul class="nav__dropdown-menu">
+            <li>
+              <a href="https://kodus.io/en/code-review-rules/">
+                <span class="nav__item-title">Kody Rules</span>
+                <span class="nav__item-desc">Library of production tested review rules for real world codebases.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/changelog-en/">
+                <span class="nav__item-title">Changelog</span>
+                <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
+              </a>
+            </li>
+            <li>
+              <a href="roi.html">
+                <span class="nav__item-title">ROI Calculator</span>
+                <span class="nav__item-desc">Model driven estimate of the impact of catching issues before they hit production.</span>
+              </a>
+            </li>
+            <li>
+              <a href="customers.html">
+                <span class="nav__item-title">Customers</span>
+                <span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.kodus.io/how_to_use/en/security/data_usage">
+                <span class="nav__item-title">Security</span>
+                <span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/benchmark-ai-code-review/">
+                <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
+                <span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://codereviewbench.com/">
+                <span class="nav__item-title">LLMs Performance Benchmark</span>
+                <span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://ai-skills.io/">
+                <span class="nav__item-title">Agent Skills Library</span>
+                <span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
+        <li><a href="pricing.html" class="nav__link">Pricing</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a href="#" class="btn btn--github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span id="ghStars">--</span>
+        </a>
+        <a href="https://app.kodus.io/sign-in" class="btn btn--outline-light">Login</a>
+        <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Start Free Trial</a>
+      </div>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ========== CUSTOMERS HERO ========== -->
+    <section class="cust-hero">
+      <div class="container">
+        <h1 class="cust-hero__title">
+          The startups shipping products<br><span class="highlight">with zero production bugs</span>
+        </h1>
+        <p class="cust-hero__subtitle">Discover how engineering teams use Kody to keep quality high as they scale.</p>
+        <div class="cust-hero__actions">
+          <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Try Cloud For Free &rarr;</a>
+          <a href="mailto:support@kodus.io" class="btn btn--outline-light">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Talk to a founder
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED QUOTE ========== -->
+    <section class="cust-featured">
+      <div class="container">
+        <div class="cust-featured__card">
+          <div class="cust-featured__card-bar">
+            <div class="pricing__card-dots">
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+            </div>
+            <span class="pricing__card-bar-title">origen_testimonial.dat</span>
+          </div>
+          <div class="cust-featured__body">
+            <div class="pricing__card-scanlines"></div>
+            <span class="cust-featured__company">origen.</span>
+            <blockquote class="cust-featured__quote">
+              &ldquo;Kodus has massively improved our PR workflow. It catches the kind of details that are easy to miss, and with custom rules we can align the automated review with our own standards. We keep quality high with a lot less manual work.&rdquo;
+            </blockquote>
+            <div class="cust-featured__author">
+              <img src="https://kodus.io/wp-content/uploads/2025/04/Jonathan-Georgeu-1-1.jpeg" alt="Jonathan Georgeu" class="cust-featured__avatar">
+              <div>
+                <span class="cust-featured__name">Jonathan Georgeu</span>
+                <span class="cust-featured__role">CTO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LOGO GRID ========== -->
+    <section class="cust-logos">
+      <div class="container">
+        <h2 class="cust-logos__title">Built for squads that move fast and care<br>about the quality of what they ship.</h2>
+
+        <div class="cust-logos__grid">
+          <div class="cust-logos__item"><img src="assets/img/logos_new/purple_metrics.png" alt="Purple Metrics"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/r10.png" alt="R10"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_9.png" alt="Sommus"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_7.png" alt="Logo"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/ikatec.png" alt="Ikatec"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/maino.png" alt="Maino"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_10.png" alt="Open Co"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_8.png" alt="rocket.chat"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/vixt.png" alt="Vixting"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_11.png" alt="Seeds"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_12.png" alt="Pilar"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_13.png" alt="Asksuite"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_16.png" alt="Mecanizou"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/doji.png" alt="Doji"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_14.png" alt="Lecom"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_17.png" alt="Precisao"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/frame_19.png" alt="Up Estate"></div>
+          <div class="cust-logos__item"><img src="assets/img/logos_new/cred.png" alt="Cred Aluga"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CASE STUDIES ========== -->
+    <section class="cust-cases">
+      <div class="container">
+
+        <!-- Brendi + Lerian side-by-side -->
+        <div class="cust-cases__duo">
+
+          <div class="cust-cases__card">
+            <div class="cust-cases__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">brendi.case</span>
+            </div>
+            <div class="cust-cases__body">
+              <div class="pricing__card-scanlines"></div>
+              <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi" class="cust-cases__logo">
+              <h3 class="cust-cases__title">How Brendi cut more than half of their review time</h3>
+              <p class="cust-cases__quote">&ldquo;Before Kodus, I woke up to 3/4 PRs waiting for review &mdash; and 2 hours of my day gone in manual checks.&rdquo;</p>
+              <div class="cust-cases__stats">
+                <div class="cust-cases__stat">
+                  <span class="cust-cases__stat-value">70%</span>
+                  <span class="cust-cases__stat-label">reduction in review time</span>
+                </div>
+                <div class="cust-cases__stat">
+                  <span class="cust-cases__stat-value">85h</span>
+                  <span class="cust-cases__stat-label">hours recovered per week</span>
+                </div>
+              </div>
+              <a href="https://kodus.io/en/customers/" class="btn btn--outline-light cust-cases__cta">See the full case &rarr;</a>
+            </div>
+          </div>
+
+          <div class="cust-cases__card">
+            <div class="cust-cases__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">lerian.case</span>
+            </div>
+            <div class="cust-cases__body">
+              <div class="pricing__card-scanlines"></div>
+              <img src="assets/img/logos_new/lerian_v2.png" alt="Lerian" class="cust-cases__logo">
+              <h3 class="cust-cases__title">From 100 to 40 hours: how Lerian sped up their reviews</h3>
+              <p class="cust-cases__quote">&ldquo;Kodus has become essential for us. We automated checks, reduced rework, and increased our delivery speed.&rdquo;</p>
+              <div class="cust-cases__stats">
+                <div class="cust-cases__stat">
+                  <span class="cust-cases__stat-value cust-cases__stat-value--secondary">60%</span>
+                  <span class="cust-cases__stat-label">reduction in review time</span>
+                </div>
+                <div class="cust-cases__stat">
+                  <span class="cust-cases__stat-value cust-cases__stat-value--secondary">40h</span>
+                  <span class="cust-cases__stat-label">hours recovered per week</span>
+                </div>
+              </div>
+              <a href="https://kodus.io/en/customers/" class="btn btn--outline-light cust-cases__cta">See the full case &rarr;</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Notificacoes Inteligentes full-width -->
+        <div class="cust-cases__full">
+          <div class="cust-cases__card-bar">
+            <div class="pricing__card-dots">
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+            </div>
+            <span class="pricing__card-bar-title">notificacoes_inteligentes.case</span>
+          </div>
+          <div class="cust-cases__body">
+            <div class="pricing__card-scanlines"></div>
+            <img src="assets/img/logos_new/notificacoes.png" alt="Notificacoes Inteligentes" class="cust-cases__logo">
+            <h3 class="cust-cases__title">How Notifica&ccedil;&otilde;es Inteligentes made code reviews consistent and reliable</h3>
+            <p class="cust-cases__quote cust-cases__quote--long">&ldquo;I trained the team to use AI in their day-to-day coding, and Kody became our senior reviewer who never forgets anything. It doesn't replace human review, but it's now a mandatory step: it keeps everything consistent, documents what matters, and applies our coding rules to prevent the same issues from coming back from the same root cause. In practice, we started shipping with more quality and confidence.&rdquo;</p>
+            <div class="cust-cases__author">
+              <img src="https://kodus.io/wp-content/uploads/2025/10/pedro-maia.jpeg" alt="Pedro Maia" class="cust-cases__avatar">
+              <div>
+                <span class="cust-cases__author-name">Pedro Maia</span>
+                <span class="cust-cases__author-role">Director</span>
+              </div>
+            </div>
+            <a href="https://kodus.io/en/customers/" class="btn btn--outline-light cust-cases__cta">See the full case &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== WORLD MAP ========== -->
+    <section class="cust-map">
+      <div class="container">
+        <h2 class="section-title">Companies around the world<br>already use Kody</h2>
+
+        <div class="cust-map__wrap">
+          <!-- Simplified SVG world map -->
+          <svg class="cust-map__svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- Continents (simplified shapes) -->
+            <g fill="#252540" stroke="none">
+              <!-- North America -->
+              <path d="M120,60 L180,55 L220,70 L260,65 L280,80 L290,120 L280,140 L260,160 L240,180 L230,200 L225,220 L240,240 L210,250 L190,230 L170,240 L150,230 L140,210 L130,195 L120,180 L100,170 L90,150 L95,130 L100,110 L110,90 Z"/>
+              <!-- South America -->
+              <path d="M220,280 L250,270 L280,280 L300,310 L310,340 L305,370 L290,400 L270,420 L250,440 L240,430 L235,410 L230,380 L225,350 L215,320 L210,300 Z"/>
+              <!-- Europe -->
+              <path d="M430,70 L460,65 L490,70 L510,80 L520,100 L510,120 L500,130 L480,140 L460,135 L440,130 L430,120 L425,100 L430,85 Z"/>
+              <!-- Africa -->
+              <path d="M440,170 L470,160 L510,170 L530,200 L540,240 L535,280 L520,320 L500,350 L480,370 L460,360 L445,330 L435,300 L430,260 L435,220 L440,190 Z"/>
+              <!-- Asia -->
+              <path d="M520,55 L580,50 L640,55 L700,60 L750,70 L790,90 L810,110 L800,140 L780,160 L750,170 L720,175 L690,170 L660,160 L630,155 L600,150 L570,140 L550,125 L530,110 L520,90 Z"/>
+              <!-- India / SE Asia -->
+              <path d="M620,170 L660,180 L680,200 L690,230 L680,260 L660,270 L640,260 L625,240 L620,210 L615,190 Z"/>
+              <!-- Australia -->
+              <path d="M750,320 L800,310 L840,320 L860,340 L850,370 L830,390 L800,395 L770,385 L755,360 L750,340 Z"/>
+              <!-- Indonesia -->
+              <path d="M700,270 L730,265 L760,270 L780,280 L770,290 L740,295 L710,290 L700,280 Z"/>
+            </g>
+
+            <!-- Glowing dots for customer locations -->
+            <g class="cust-map__dots">
+              <!-- Brazil (multiple) -->
+              <circle cx="280" cy="340" r="4" class="cust-map__dot"/>
+              <circle cx="300" cy="310" r="4" class="cust-map__dot"/>
+              <circle cx="265" cy="360" r="4" class="cust-map__dot"/>
+              <!-- USA -->
+              <circle cx="180" cy="150" r="4" class="cust-map__dot"/>
+              <!-- Europe -->
+              <circle cx="470" cy="100" r="4" class="cust-map__dot"/>
+              <circle cx="500" cy="110" r="4" class="cust-map__dot"/>
+              <!-- India -->
+              <circle cx="650" cy="220" r="4" class="cust-map__dot"/>
+              <!-- Southeast Asia -->
+              <circle cx="730" cy="275" r="4" class="cust-map__dot"/>
+              <!-- Australia -->
+              <circle cx="810" cy="360" r="4" class="cust-map__dot"/>
+              <!-- Middle East -->
+              <circle cx="550" cy="170" r="4" class="cust-map__dot"/>
+              <!-- South Africa -->
+              <circle cx="490" cy="360" r="4" class="cust-map__dot"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="roi-cta">
+      <div class="container">
+        <div class="roi-cta__wrap">
+          <img src="assets/img/kody-good-vibes.png" alt="Kody" class="roi-cta__kody">
+          <div class="roi-cta__window">
+            <div class="pricing__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">get_started.exe</span>
+            </div>
+            <div class="roi-cta__body">
+              <div class="pricing__card-scanlines"></div>
+              <h2 class="roi-cta__title">Ready to let Kody review your next PR?</h2>
+              <p class="roi-cta__desc">Spin it up in under 2 minutes &mdash; cloud or self-hosted, no credit card.</p>
+              <div class="roi-cta__actions">
+                <a href="https://github.com/kodustech/kodus-ai" class="btn btn--outline-light">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  Deploy
+                </a>
+                <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Try Cloud for Free &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo">
+          <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+        </a>
+        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Legal & Contact</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="https://kodus.io/en/terms-of-use/">Terms of Use</a></li>
+            <li><a href="mailto:support@kodus.io">support@kodus.io</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Meet Kody</h4>
+          <ul class="footer__col-list">
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="customers.html">Customers</a></li>
+            <li><a href="https://kodus.io/en/code-review-rules/">Kody Rules</a></li>
+            <li><a href="roi.html">ROI Calculator</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Resources</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/insights-en/">Blog</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/overview">Docs</a></li>
+            <li><a href="https://kodus.io/en/changelog-en/">Changelog</a></li>
+            <li><a href="https://discord.gg/TFZBRk9fT6">Support Discord</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Helpful Links</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/benchmark-ai-code-review/">AI Code Review Tools Benchmarks</a></li>
+            <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
+            <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
+            <li><a href="https://kodus.io/en/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Our Network</h4>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/kodustech/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="LinkedIn">
+              <img src="assets/img/linkedin.png" alt="LinkedIn" class="footer__social-icon">
+            </a>
+            <a href="https://twitter.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="X (Twitter)">
+              <img src="assets/img/x-1.png?v=2" alt="X (Twitter)" class="footer__social-icon">
+            </a>
+            <a href="https://www.reddit.com/r/Kodus/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Reddit">
+              <img src="assets/img/reddit.png" alt="Reddit" class="footer__social-icon">
+            </a>
+            <a href="https://github.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub">
+              <img src="assets/img/github.png" alt="GitHub" class="footer__social-icon">
+            </a>
+            <div style="flex-basis: 100%; height: 0;"></div>
+            <a href="https://discord.gg/TFZBRk9fT6" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Discord">
+              <img src="assets/img/discord.png" alt="Discord" class="footer__social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Kodus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

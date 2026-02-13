@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Calculator — Kodus</title>
+  <meta name="description" content="Calculate the return on investment of AI code reviews with Kodus. See how much time and money your team could save.">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link">Docs</a></li>
+        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link">Community</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
+          <ul class="nav__dropdown-menu">
+            <li>
+              <a href="https://kodus.io/en/code-review-rules/">
+                <span class="nav__item-title">Kody Rules</span>
+                <span class="nav__item-desc">Library of production tested review rules for real world codebases.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/changelog-en/">
+                <span class="nav__item-title">Changelog</span>
+                <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
+              </a>
+            </li>
+            <li>
+              <a href="roi.html">
+                <span class="nav__item-title">ROI Calculator</span>
+                <span class="nav__item-desc">Model driven estimate of the impact of catching issues before they hit production.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/customers/">
+                <span class="nav__item-title">Customers</span>
+                <span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.kodus.io/how_to_use/en/security/data_usage">
+                <span class="nav__item-title">Security</span>
+                <span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/benchmark-ai-code-review/">
+                <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
+                <span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://codereviewbench.com/">
+                <span class="nav__item-title">LLMs Performance Benchmark</span>
+                <span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://ai-skills.io/">
+                <span class="nav__item-title">Agent Skills Library</span>
+                <span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
+        <li><a href="pricing.html" class="nav__link">Pricing</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a href="#" class="btn btn--github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span id="ghStars">--</span>
+        </a>
+        <a href="https://app.kodus.io/sign-in" class="btn btn--outline-light">Login</a>
+        <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Start Free Trial</a>
+      </div>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ========== ROI HERO ========== -->
+    <section class="roi-hero">
+      <div class="container">
+        <div class="roi-hero__window">
+          <div class="pricing__card-bar">
+            <div class="pricing__card-dots">
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+            </div>
+            <span class="pricing__card-bar-title">roi_calculator.exe</span>
+          </div>
+          <div class="roi-hero__body">
+            <div class="pricing__card-scanlines"></div>
+            <h1 class="roi-hero__title">Calculate your ROI with Kodus</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ROI CALCULATOR ========== -->
+    <section class="roi">
+      <div class="container">
+        <h2 class="section-title">See what your team could be saving</h2>
+
+        <div class="roi__window">
+          <div class="pricing__card-bar">
+            <div class="pricing__card-dots">
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+            </div>
+            <span class="pricing__card-bar-title">savings_sim.exe</span>
+          </div>
+
+          <div class="roi__body">
+            <div class="pricing__card-scanlines"></div>
+
+            <div class="roi__layout">
+              <!-- Left: Sliders -->
+              <div class="roi__sliders">
+
+                <div class="roi__field">
+                  <div class="roi__field-header">
+                    <label class="roi__field-label">How many developers on your team?</label>
+                    <div class="roi__field-display">
+                      <span class="roi__field-value" id="roiDevsValue">10</span>
+                    </div>
+                  </div>
+                  <input type="range" class="roi__slider" id="roiDevs" min="1" max="500" value="10">
+                  <div class="roi__slider-range">
+                    <span>1</span>
+                    <span>500</span>
+                  </div>
+                </div>
+
+                <div class="roi__field">
+                  <div class="roi__field-header">
+                    <label class="roi__field-label">Average hourly rate per developer</label>
+                    <div class="roi__field-display">
+                      <span class="roi__field-value" id="roiRateValue">$50</span>
+                      <span class="roi__field-unit">/hour</span>
+                    </div>
+                  </div>
+                  <input type="range" class="roi__slider" id="roiRate" min="1" max="200" value="50">
+                  <div class="roi__slider-range">
+                    <span>$1/hour</span>
+                    <span>$200/hour</span>
+                  </div>
+                </div>
+
+                <div class="roi__field">
+                  <div class="roi__field-header">
+                    <label class="roi__field-label">Average time spent per PR</label>
+                    <div class="roi__field-display">
+                      <span class="roi__field-value" id="roiTimeValue">30</span>
+                      <span class="roi__field-unit">min</span>
+                    </div>
+                  </div>
+                  <input type="range" class="roi__slider" id="roiTime" min="1" max="60" value="30">
+                  <div class="roi__slider-range">
+                    <span>1 min</span>
+                    <span>60 min</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Right: Results -->
+              <div class="roi__results">
+
+                <div class="roi__result">
+                  <span class="roi__result-label">Monthly PRs</span>
+                  <span class="roi__result-value" id="roiPRs">100</span>
+                  <span class="roi__result-detail" id="roiPRsDetail">pull requests (based on 10 per dev)</span>
+                </div>
+
+                <div class="roi__result">
+                  <span class="roi__result-label">Time Spent on Reviews</span>
+                  <span class="roi__result-value" id="roiHours">50</span>
+                  <span class="roi__result-detail">hours per month</span>
+                </div>
+
+                <div class="roi__result">
+                  <span class="roi__result-label">Current Review Cost</span>
+                  <span class="roi__result-value" id="roiCost">$2,500</span>
+                  <span class="roi__result-detail">per month</span>
+                </div>
+
+                <div class="roi__result roi__result--highlight">
+                  <span class="roi__result-label">&#10024; Estimated ROI</span>
+                  <span class="roi__result-value roi__result-value--big" id="roiROI">20x</span>
+                  <span class="roi__result-detail">Return on investment with automated reviews</span>
+                </div>
+
+                <a href="https://app.kodus.io/sign-up" class="btn btn--primary roi__cta">Start Free Trial</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== LOGO CAROUSEL ========== -->
+    <section class="roi-logos">
+      <div class="container">
+        <h2 class="roi-logos__title">Built for squads that ship fast &mdash; and care how they do it.</h2>
+        <div class="roi-logos__carousel">
+          <div class="logo-carousel">
+            <div class="logo-carousel__track" id="roiLogoTrack">
+              <img src="assets/img/logos_new/purple_metrics.png" alt="Purple Metrics" class="logo-carousel__img">
+              <img src="assets/img/logos_new/r10.png" alt="R10" class="logo-carousel__img">
+              <img src="assets/img/logos_new/frame_16.png" alt="Mecanizou" class="logo-carousel__img">
+              <img src="assets/img/logos_new/cred.png" alt="Cred Aluga" class="logo-carousel__img">
+              <img src="assets/img/logos_new/ikatec.png" alt="Ikatec" class="logo-carousel__img">
+              <img src="assets/img/logos_new/maino.png" alt="Maino" class="logo-carousel__img">
+              <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi" class="logo-carousel__img">
+              <img src="assets/img/logos_new/lerian_v2.png" alt="Lerian" class="logo-carousel__img">
+              <img src="assets/img/logos_new/notificacoes.png" alt="Notificacoes Inteligentes" class="logo-carousel__img">
+              <img src="assets/img/logos_new/doji.png" alt="Doji" class="logo-carousel__img">
+              <!-- Duplicate for infinite scroll -->
+              <img src="assets/img/logos_new/purple_metrics.png" alt="Purple Metrics" class="logo-carousel__img">
+              <img src="assets/img/logos_new/r10.png" alt="R10" class="logo-carousel__img">
+              <img src="assets/img/logos_new/frame_16.png" alt="Mecanizou" class="logo-carousel__img">
+              <img src="assets/img/logos_new/cred.png" alt="Cred Aluga" class="logo-carousel__img">
+              <img src="assets/img/logos_new/ikatec.png" alt="Ikatec" class="logo-carousel__img">
+              <img src="assets/img/logos_new/maino.png" alt="Maino" class="logo-carousel__img">
+              <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi" class="logo-carousel__img">
+              <img src="assets/img/logos_new/lerian_v2.png" alt="Lerian" class="logo-carousel__img">
+              <img src="assets/img/logos_new/notificacoes.png" alt="Notificacoes Inteligentes" class="logo-carousel__img">
+              <img src="assets/img/logos_new/doji.png" alt="Doji" class="logo-carousel__img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CASE STUDIES ========== -->
+    <section class="cases">
+      <div class="container">
+        <h2 class="section-title">How engineering teams use Kodus</h2>
+        <p class="cases__subtitle">See how different teams reduced review time, improved code consistency, and freed up engineering hours by adopting Kodus in their PR workflows.</p>
+
+        <div class="cases__grid">
+
+          <a href="https://kodus.io/en/customers/" class="cases__card">
+            <div class="cases__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">brendi.case</span>
+            </div>
+            <div class="cases__card-body">
+              <div class="cases__logo-wrap">
+                <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi" class="cases__logo">
+              </div>
+              <h3 class="cases__card-title">How Brendi cut review time by 70% per month</h3>
+              <span class="cases__card-link">See the full story &rarr;</span>
+            </div>
+          </a>
+
+          <a href="https://kodus.io/en/customers/" class="cases__card">
+            <div class="cases__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">lerian.case</span>
+            </div>
+            <div class="cases__card-body">
+              <div class="cases__logo-wrap">
+                <img src="assets/img/logos_new/lerian_v2.png" alt="Lerian" class="cases__logo">
+              </div>
+              <h3 class="cases__card-title">From 100 to 40 hours: how Lerian made code reviews faster</h3>
+              <span class="cases__card-link">See the full story &rarr;</span>
+            </div>
+          </a>
+
+          <a href="https://kodus.io/en/customers/" class="cases__card">
+            <div class="cases__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">notificacoes.case</span>
+            </div>
+            <div class="cases__card-body">
+              <div class="cases__logo-wrap">
+                <img src="assets/img/logos_new/notificacoes.png" alt="Notificacoes Inteligentes" class="cases__logo">
+              </div>
+              <h3 class="cases__card-title">How Notifica&ccedil;&otilde;es Inteligentes made code reviews more consistent</h3>
+              <span class="cases__card-link">See the full story &rarr;</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS (mini) ========== -->
+    <section class="roi-testimonials">
+      <div class="container">
+        <h2 class="section-title">Loved by engineering teams</h2>
+
+        <div class="roi-testimonials__grid">
+
+          <div class="roi-testimonials__card">
+            <p class="roi-testimonials__quote">"These days, Kodus is part of our daily review routine. <span class="highlight">It helps a lot with error handling and brings up suggestions that would often go unnoticed</span>. This active listening and fast turnaround have made a real difference for our engineering team."</p>
+            <div class="roi-testimonials__author">
+              <div class="roi-testimonials__avatar">JK</div>
+              <div>
+                <span class="roi-testimonials__name">Jo&atilde;o H. Kersul</span>
+                <span class="roi-testimonials__role">Doji</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="roi-testimonials__card">
+            <p class="roi-testimonials__quote">"Since we started using Kody, the dev experience has improved a lot. <span class="highlight">Time spent on code reviews dropped by around 30%</span>, and the AI brings valuable insights on performance, security, and code optimization."</p>
+            <div class="roi-testimonials__author">
+              <div class="roi-testimonials__avatar">R</div>
+              <div>
+                <span class="roi-testimonials__name">Ricardo</span>
+                <span class="roi-testimonials__role">Ikatec</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="roi-testimonials__card">
+            <p class="roi-testimonials__quote">"Kodus has become an essential part of our process at Lerian. By standardizing steps and automating checks, we've gained <span class="highlight">more speed and consistency</span>, while reducing rework and improving delivery quality."</p>
+            <div class="roi-testimonials__author">
+              <div class="roi-testimonials__avatar">LB</div>
+              <div>
+                <span class="roi-testimonials__name">Luiz Barrile</span>
+                <span class="roi-testimonials__role">Lerian</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="roi-cta">
+      <div class="container">
+        <div class="roi-cta__wrap">
+          <img src="assets/img/kody-queen.png" alt="Kody" class="roi-cta__kody">
+          <div class="roi-cta__window">
+            <div class="pricing__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">get_started.exe</span>
+            </div>
+            <div class="roi-cta__body">
+              <div class="pricing__card-scanlines"></div>
+              <h2 class="roi-cta__title">Ready to let Kody review your next PR?</h2>
+              <p class="roi-cta__desc">Spin it up in under 2 minutes &mdash; cloud or self-hosted, no credit card.</p>
+              <div class="roi-cta__actions">
+                <a href="https://github.com/kodustech/kodus-ai" class="btn btn--outline-light">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  Deploy
+                </a>
+                <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Try Cloud for Free &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo">
+          <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+        </a>
+        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Legal & Contact</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="https://kodus.io/en/terms-of-use/">Terms of Use</a></li>
+            <li><a href="mailto:support@kodus.io">support@kodus.io</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Meet Kody</h4>
+          <ul class="footer__col-list">
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="https://kodus.io/en/customers/">Customers</a></li>
+            <li><a href="https://kodus.io/en/code-review-rules/">Kody Rules</a></li>
+            <li><a href="roi.html">ROI Calculator</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Resources</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/insights-en/">Blog</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/overview">Docs</a></li>
+            <li><a href="https://kodus.io/en/changelog-en/">Changelog</a></li>
+            <li><a href="https://discord.gg/TFZBRk9fT6">Support Discord</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Helpful Links</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/benchmark-ai-code-review/">AI Code Review Tools Benchmarks</a></li>
+            <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
+            <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
+            <li><a href="https://kodus.io/en/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Our Network</h4>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/kodustech/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="LinkedIn">
+              <img src="assets/img/linkedin.png" alt="LinkedIn" class="footer__social-icon">
+            </a>
+            <a href="https://twitter.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="X (Twitter)">
+              <img src="assets/img/x-1.png?v=2" alt="X (Twitter)" class="footer__social-icon">
+            </a>
+            <a href="https://www.reddit.com/r/Kodus/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Reddit">
+              <img src="assets/img/reddit.png" alt="Reddit" class="footer__social-icon">
+            </a>
+            <a href="https://github.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub">
+              <img src="assets/img/github.png" alt="GitHub" class="footer__social-icon">
+            </a>
+            <div style="flex-basis: 100%; height: 0;"></div>
+            <a href="https://discord.gg/TFZBRk9fT6" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Discord">
+              <img src="assets/img/discord.png" alt="Discord" class="footer__social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Kodus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws, .pricing__card, .token-info__card, .calculator__window')
+  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws, .pricing__card, .token-info__card, .calculator__window, .roi-hero__window, .roi__window, .cases__card, .roi-testimonials__card, .roi-cta__window, .cust-featured__card, .cust-cases__card, .cust-cases__full, .cust-map__wrap')
     .forEach(el => {
       el.classList.add('fade-in');
       fadeObserver.observe(el);
@@ -624,4 +624,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render
   updateCalculator();
+
+  /* --- ROI Calculator --- */
+  const roiDevs = document.getElementById('roiDevs');
+  const roiRate = document.getElementById('roiRate');
+  const roiTime = document.getElementById('roiTime');
+  const roiDevsValue = document.getElementById('roiDevsValue');
+  const roiRateValue = document.getElementById('roiRateValue');
+  const roiTimeValue = document.getElementById('roiTimeValue');
+  const roiPRs = document.getElementById('roiPRs');
+  const roiPRsDetail = document.getElementById('roiPRsDetail');
+  const roiHours = document.getElementById('roiHours');
+  const roiCost = document.getElementById('roiCost');
+  const roiROI = document.getElementById('roiROI');
+
+  function updateSliderFill(slider) {
+    const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${pct}%, var(--color-card-lv3) ${pct}%)`;
+  }
+
+  function updateROI() {
+    if (!roiDevs) return;
+
+    const devs = parseInt(roiDevs.value);
+    const rate = parseInt(roiRate.value);
+    const time = parseInt(roiTime.value);
+
+    // Display inputs
+    roiDevsValue.textContent = devs;
+    roiRateValue.textContent = `$${rate}`;
+    roiTimeValue.textContent = time;
+
+    // Calculations
+    const prsPerDev = 10;
+    const monthlyPRs = devs * prsPerDev;
+    const hoursPerMonth = (monthlyPRs * time) / 60;
+    const currentCost = hoursPerMonth * rate;
+    const kodusCost = devs * 12.5; // license + avg token cost
+    const roi = kodusCost > 0 ? Math.floor(currentCost / kodusCost) : 0;
+
+    // Display results
+    roiPRs.textContent = monthlyPRs.toLocaleString();
+    roiPRsDetail.textContent = `pull requests (based on ${prsPerDev} per dev)`;
+    roiHours.textContent = Math.round(hoursPerMonth).toLocaleString();
+    roiCost.textContent = `$${Math.round(currentCost).toLocaleString()}`;
+    roiROI.textContent = `${roi}x`;
+
+    // Update slider fills
+    updateSliderFill(roiDevs);
+    updateSliderFill(roiRate);
+    updateSliderFill(roiTime);
+  }
+
+  [roiDevs, roiRate, roiTime].forEach(slider => {
+    slider?.addEventListener('input', updateROI);
+  });
+
+  // Initial render
+  updateROI();
 });
