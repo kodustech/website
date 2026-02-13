@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws')
+  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws, .pricing__card, .token-info__card, .calculator__window')
     .forEach(el => {
       el.classList.add('fade-in');
       fadeObserver.observe(el);
@@ -483,4 +483,135 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
+
+  /* --- Pricing toggle (Monthly / Annual) --- */
+  const pricingSwitch = document.getElementById('pricingSwitch');
+  const pricingLabels = document.querySelectorAll('.pricing__toggle-label');
+  const dynamicPrices = document.querySelectorAll('.pricing__price-value--dynamic');
+
+  function setPricingPeriod(annual) {
+    if (!pricingSwitch) return;
+
+    pricingSwitch.classList.toggle('pricing__switch--annual', annual);
+
+    pricingLabels.forEach(label => {
+      const isAnnual = label.dataset.period === 'annual';
+      const isMonthly = label.dataset.period === 'monthly';
+      label.classList.toggle('pricing__toggle-label--active', annual ? isAnnual : isMonthly);
+    });
+
+    dynamicPrices.forEach(el => {
+      const target = annual ? el.dataset.annual : el.dataset.monthly;
+      el.style.opacity = '0';
+      setTimeout(() => {
+        el.textContent = target;
+        el.style.opacity = '1';
+      }, 200);
+    });
+  }
+
+  pricingSwitch?.addEventListener('click', () => {
+    const isAnnual = pricingSwitch.classList.contains('pricing__switch--annual');
+    setPricingPeriod(!isAnnual);
+  });
+
+  pricingLabels.forEach(label => {
+    label.addEventListener('click', () => {
+      setPricingPeriod(label.dataset.period === 'annual');
+    });
+  });
+
+  /* --- Pricing Calculator --- */
+  const calcSlider = document.getElementById('calcSlider');
+  const calcDevCount = document.getElementById('calcDevCount');
+  const calcModels = document.getElementById('calcModels');
+  const priorityBtns = document.querySelectorAll('.calculator__priority');
+  const sliderMarks = document.querySelectorAll('.calculator__slider-marks span');
+
+  // LLM cost per dev per month for each model
+  const modelCosts = {
+    'sonnet':       { llmPerDev: 9,   name: 'Sonnet 4.5' },
+    'gemini-pro':   { llmPerDev: 5,   name: 'Gemini Pro' },
+    'chatgpt':      { llmPerDev: 5,   name: 'ChatGPT 5.1' },
+    'haiku':        { llmPerDev: 2.5, name: 'Haiku 4.5' },
+    'gemini-flash': { llmPerDev: 1.5, name: 'Gemini Flash' },
+  };
+
+  const kodusPerDev = 10;
+
+  // Which models are recommended per priority
+  const recommended = {
+    quality: ['sonnet'],
+    balance: ['gemini-pro', 'chatgpt'],
+    cost:    ['haiku', 'gemini-flash'],
+  };
+
+  let currentPriority = 'balance';
+
+  function updateCalculator() {
+    if (!calcSlider || !calcModels) return;
+    const devs = parseInt(calcSlider.value);
+    if (calcDevCount) calcDevCount.textContent = devs;
+
+    // Update slider fill via CSS gradient
+    const pct = ((devs - 1) / (1000 - 1)) * 100;
+    calcSlider.style.background = `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${pct}%, var(--color-card-lv3) ${pct}%)`;
+
+    const cards = calcModels.querySelectorAll('.calculator__model');
+    const recs = recommended[currentPriority] || [];
+
+    cards.forEach(card => {
+      const key = card.dataset.model;
+      const cost = modelCosts[key];
+      if (!cost) return;
+
+      const llmTotal = cost.llmPerDev * devs;
+      const licenseTotal = kodusPerDev * devs;
+      const total = llmTotal + licenseTotal;
+
+      card.querySelector('.calculator__llm-total').textContent = `$${llmTotal.toLocaleString()}`;
+      card.querySelector('.calculator__per-dev').textContent = `($${cost.llmPerDev}/dev)`;
+
+      const licensePerDevEls = card.querySelectorAll('.calculator__per-dev');
+      if (licensePerDevEls[1]) licensePerDevEls[1].textContent = `($${kodusPerDev}/dev)`;
+      card.querySelector('.calculator__license-total').textContent = `$${licenseTotal.toLocaleString()}`;
+      card.querySelector('.calculator__model-total-value').textContent = `$${total.toLocaleString()}`;
+
+      // Recommended state
+      const isRec = recs.includes(key);
+      card.classList.toggle('calculator__model--recommended', isRec);
+
+      let recEl = card.querySelector('.calculator__model-recommended');
+      if (isRec && !recEl) {
+        recEl = document.createElement('span');
+        recEl.className = 'calculator__model-recommended';
+        recEl.innerHTML = '&#10003; Recommended for you';
+        card.appendChild(recEl);
+      } else if (!isRec && recEl) {
+        recEl.remove();
+      }
+    });
+  }
+
+  calcSlider?.addEventListener('input', updateCalculator);
+
+  sliderMarks.forEach(mark => {
+    mark.addEventListener('click', () => {
+      if (!calcSlider) return;
+      calcSlider.value = mark.dataset.val;
+      updateCalculator();
+    });
+  });
+
+  priorityBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      priorityBtns.forEach(b => b.classList.remove('calculator__priority--active'));
+      btn.classList.add('calculator__priority--active');
+      currentPriority = btn.dataset.priority;
+      updateCalculator();
+    });
+  });
+
+  // Initial render
+  updateCalculator();
 });

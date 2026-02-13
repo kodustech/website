@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — Kodus</title>
+  <meta name="description" content="Choose the right Kodus plan for your team. Free tier with unlimited PRs, Teams plan with advanced features, or Enterprise with custom setup.">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link">Docs</a></li>
+        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link">Community</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
+          <ul class="nav__dropdown-menu">
+            <li>
+              <a href="https://kodus.io/en/code-review-rules/">
+                <span class="nav__item-title">Kody Rules</span>
+                <span class="nav__item-desc">Library of production tested review rules for real world codebases.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/changelog-en/">
+                <span class="nav__item-title">Changelog</span>
+                <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/roi-with-kodus/">
+                <span class="nav__item-title">ROI Calculator</span>
+                <span class="nav__item-desc">Model driven estimate of the impact of catching issues before they hit production.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/customers/">
+                <span class="nav__item-title">Customers</span>
+                <span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.kodus.io/how_to_use/en/security/data_usage">
+                <span class="nav__item-title">Security</span>
+                <span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/benchmark-ai-code-review/">
+                <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
+                <span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://codereviewbench.com/">
+                <span class="nav__item-title">LLMs Performance Benchmark</span>
+                <span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://ai-skills.io/">
+                <span class="nav__item-title">Agent Skills Library</span>
+                <span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
+        <li><a href="pricing.html" class="nav__link">Pricing</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a href="#" class="btn btn--github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span id="ghStars">--</span>
+        </a>
+        <a href="https://app.kodus.io/sign-in" class="btn btn--outline-light">Login</a>
+        <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Start Free Trial</a>
+      </div>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ========== PRICING ========== -->
+    <section class="pricing">
+      <div class="container">
+        <h1 class="section-title">Choose your plan</h1>
+        <p class="pricing__subtitle">Open source, model agnostic, zero markup on AI costs.</p>
+
+        <!-- Toggle Monthly / Annual -->
+        <div class="pricing__toggle">
+          <span class="pricing__toggle-label pricing__toggle-label--active" data-period="monthly">Monthly</span>
+          <button class="pricing__switch" id="pricingSwitch" aria-label="Toggle billing period">
+            <span class="pricing__switch-knob"></span>
+          </button>
+          <span class="pricing__toggle-label" data-period="annual">Annual</span>
+          <span class="pricing__save-badge">SAVE 20%</span>
+        </div>
+
+        <!-- Pricing grid -->
+        <div class="pricing__grid">
+
+          <!-- Card 1: Community -->
+          <div class="pricing__card pricing__card--community">
+            <div class="pricing__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">community.exe</span>
+              <span class="pricing__card-badge">BYOK</span>
+            </div>
+            <div class="pricing__card-body">
+              <div class="pricing__card-scanlines"></div>
+
+              <h3 class="pricing__plan-name">Community</h3>
+              <p class="pricing__plan-desc">For indie devs, students and small teams getting started.</p>
+
+              <div class="pricing__price">
+                <span class="pricing__price-value">Free</span>
+              </div>
+
+              <a href="https://app.kodus.io/sign-up" class="btn btn--outline-light pricing__cta">Start Free</a>
+
+              <div class="pricing__divider"></div>
+
+              <ul class="pricing__features">
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Self Hosted or Hosted by Kodus</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited PRs (own API key)</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited users</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited issues on Quality Radar</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Up to 10 Kody Rules</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Up to 3 active plugins</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Kody Learnings and Memory</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Discord Community Support</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2: Teams (Recommended) -->
+          <div class="pricing__card pricing__card--teams pricing__card--recommended">
+            <div class="pricing__recommended-tag">
+              <span class="pricing__recommended-led"></span>
+              RECOMMENDED
+            </div>
+            <div class="pricing__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">teams.exe</span>
+              <span class="pricing__card-badge">BYOK</span>
+            </div>
+            <div class="pricing__card-body">
+              <div class="pricing__card-scanlines"></div>
+
+              <h3 class="pricing__plan-name">Teams</h3>
+              <p class="pricing__plan-desc">For growing teams that need advanced features and priority support.</p>
+
+              <div class="pricing__price">
+                <span class="pricing__price-currency">$</span>
+                <span class="pricing__price-value pricing__price-value--dynamic" data-monthly="10" data-annual="8">10</span>
+                <span class="pricing__price-period">/mo per dev</span>
+              </div>
+              <p class="pricing__price-note">+ Tokens per dev</p>
+              <p class="pricing__price-detail">Tokens included during the free trial. No API key required.</p>
+
+              <a href="https://app.kodus.io/sign-up" class="btn btn--primary pricing__cta">Start Free Trial</a>
+
+              <div class="pricing__divider"></div>
+
+              <ul class="pricing__features">
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Hosted by Kodus</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited PRs (own API key)</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited users</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check pricing__check--star">&#9733;</span> Unlimited Kody Rules</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check pricing__check--star">&#9733;</span> Unlimited active plugins</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check pricing__check--star">&#9733;</span> Priority queue for Kody Agents</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check pricing__check--star">&#9733;</span> Engineering Metrics / Cockpit</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Discord Community and Email Support</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3: Enterprise -->
+          <div class="pricing__card pricing__card--enterprise">
+            <div class="pricing__card-bar">
+              <div class="pricing__card-dots">
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+                <span class="pricing__card-dot"></span>
+              </div>
+              <span class="pricing__card-bar-title">enterprise.exe</span>
+              <span class="pricing__card-badge">Custom setup</span>
+            </div>
+            <div class="pricing__card-body">
+              <div class="pricing__card-scanlines"></div>
+
+              <h3 class="pricing__plan-name">Enterprise</h3>
+              <p class="pricing__plan-desc">For organizations that need SSO, compliance and dedicated support.</p>
+
+              <div class="pricing__price">
+                <span class="pricing__price-value">Custom</span>
+              </div>
+
+              <a href="mailto:support@kodus.io" class="btn btn--outline-light pricing__cta">Contact Sales</a>
+
+              <div class="pricing__divider"></div>
+
+              <ul class="pricing__features">
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Hosted by Kodus</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check pricing__check--star">&#9733;</span> SSO</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check pricing__check--star">&#9733;</span> Unlimited PRs (our AI Tokens API key)</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited users</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited Kody Rules</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited active plugins</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Priority queue for Kody Agents</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Engineering Metrics / Cockpit</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check pricing__check--star">&#9733;</span> RBAC + Audit logs and analytics</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HOW TOKEN COSTS WORK ========== -->
+    <section class="token-info">
+      <div class="container">
+        <h2 class="section-title">How token costs work</h2>
+        <p class="token-info__subtitle">Understand how token pricing works with your own API keys</p>
+
+        <div class="token-info__grid">
+
+          <div class="token-info__card">
+            <div class="token-info__icon-wrap">
+              <svg class="token-info__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            </div>
+            <h3 class="token-info__title">How it works</h3>
+            <p class="token-info__desc">You use your own API key and pay tokens directly to your AI provider.</p>
+          </div>
+
+          <div class="token-info__card">
+            <div class="token-info__icon-wrap">
+              <svg class="token-info__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="token-info__title">How token costs scale</h3>
+            <p class="token-info__desc">Token usage increases as your team reviews more PRs and larger code changes.</p>
+          </div>
+
+          <div class="token-info__card">
+            <div class="token-info__icon-wrap">
+              <svg class="token-info__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            </div>
+            <h3 class="token-info__title">What affects the cost</h3>
+            <p class="token-info__desc">Number of PRs, size of the diffs, and the model you choose.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PRICING CALCULATOR ========== -->
+    <section class="calculator">
+      <div class="container">
+        <h2 class="section-title">Pricing Calculator</h2>
+        <p class="calculator__subtitle">Compare estimated costs for each AI model option, based on how teams use Kodus. Costs may vary by usage.</p>
+
+        <div class="calculator__window">
+          <div class="calculator__window-bar">
+            <div class="pricing__card-dots">
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+              <span class="pricing__card-dot"></span>
+            </div>
+            <span class="pricing__card-bar-title">cost_calculator.exe</span>
+          </div>
+
+          <div class="calculator__body">
+            <div class="calculator__card-scanlines"></div>
+
+            <!-- Priority selector -->
+            <div class="calculator__section">
+              <h3 class="calculator__label">What do you want to prioritize?</h3>
+              <div class="calculator__priorities">
+                <button class="calculator__priority" data-priority="quality">Highest review quality</button>
+                <button class="calculator__priority calculator__priority--active" data-priority="balance">Best quality–cost balance</button>
+                <button class="calculator__priority" data-priority="cost">Lowest possible cost</button>
+              </div>
+            </div>
+
+            <!-- Developer slider -->
+            <div class="calculator__section">
+              <h3 class="calculator__label">Number of Developers: <span class="calculator__dev-count" id="calcDevCount">30</span></h3>
+              <div class="calculator__slider-wrap">
+                <input type="range" class="calculator__slider" id="calcSlider" min="1" max="1000" value="30">
+                <div class="calculator__slider-marks">
+                  <span data-val="1">1</span>
+                  <span data-val="10">10</span>
+                  <span data-val="50">50</span>
+                  <span data-val="100">100</span>
+                  <span data-val="300">300</span>
+                  <span data-val="600">600</span>
+                  <span data-val="1000">1000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Model cards -->
+            <div class="calculator__models" id="calcModels">
+
+              <div class="calculator__model" data-model="sonnet">
+                <h4 class="calculator__model-name">Sonnet 4.5</h4>
+                <p class="calculator__model-plan">TEAMS PLAN</p>
+                <div class="calculator__model-rows">
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">LLM cost</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__llm-total">$270</strong> <span class="calculator__per-dev">($9/dev)</span></span>
+                  </div>
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">Kodus license</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__license-total">$300</strong> <span class="calculator__per-dev">($10/dev)</span></span>
+                  </div>
+                </div>
+                <div class="calculator__model-total">
+                  <span class="calculator__model-total-value">$570</span>
+                  <span class="calculator__model-total-period">per month</span>
+                </div>
+              </div>
+
+              <div class="calculator__model" data-model="gemini-pro">
+                <h4 class="calculator__model-name">Gemini Pro</h4>
+                <p class="calculator__model-plan">TEAMS PLAN</p>
+                <div class="calculator__model-rows">
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">LLM cost</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__llm-total">$150</strong> <span class="calculator__per-dev">($5/dev)</span></span>
+                  </div>
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">Kodus license</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__license-total">$300</strong> <span class="calculator__per-dev">($10/dev)</span></span>
+                  </div>
+                </div>
+                <div class="calculator__model-total">
+                  <span class="calculator__model-total-value">$450</span>
+                  <span class="calculator__model-total-period">per month</span>
+                </div>
+                <span class="calculator__model-recommended">&#10003; Recommended for you</span>
+              </div>
+
+              <div class="calculator__model" data-model="chatgpt">
+                <h4 class="calculator__model-name">ChatGPT 5.1</h4>
+                <p class="calculator__model-plan">TEAMS PLAN</p>
+                <div class="calculator__model-rows">
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">LLM cost</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__llm-total">$150</strong> <span class="calculator__per-dev">($5/dev)</span></span>
+                  </div>
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">Kodus license</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__license-total">$300</strong> <span class="calculator__per-dev">($10/dev)</span></span>
+                  </div>
+                </div>
+                <div class="calculator__model-total">
+                  <span class="calculator__model-total-value">$450</span>
+                  <span class="calculator__model-total-period">per month</span>
+                </div>
+                <span class="calculator__model-recommended">&#10003; Recommended for you</span>
+              </div>
+
+              <div class="calculator__model" data-model="haiku">
+                <h4 class="calculator__model-name">Haiku 4.5</h4>
+                <p class="calculator__model-plan">TEAMS PLAN</p>
+                <div class="calculator__model-rows">
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">LLM cost</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__llm-total">$75</strong> <span class="calculator__per-dev">($2.5/dev)</span></span>
+                  </div>
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">Kodus license</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__license-total">$300</strong> <span class="calculator__per-dev">($10/dev)</span></span>
+                  </div>
+                </div>
+                <div class="calculator__model-total">
+                  <span class="calculator__model-total-value">$375</span>
+                  <span class="calculator__model-total-period">per month</span>
+                </div>
+              </div>
+
+              <div class="calculator__model" data-model="gemini-flash">
+                <h4 class="calculator__model-name">Gemini Flash</h4>
+                <p class="calculator__model-plan">TEAMS PLAN</p>
+                <div class="calculator__model-rows">
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">LLM cost</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__llm-total">$45</strong> <span class="calculator__per-dev">($1.5/dev)</span></span>
+                  </div>
+                  <div class="calculator__model-row">
+                    <span class="calculator__model-row-label">Kodus license</span>
+                    <span class="calculator__model-row-value"><strong class="calculator__license-total">$300</strong> <span class="calculator__per-dev">($10/dev)</span></span>
+                  </div>
+                </div>
+                <div class="calculator__model-total">
+                  <span class="calculator__model-total-value">$345</span>
+                  <span class="calculator__model-total-period">per month</span>
+                </div>
+              </div>
+
+            </div>
+
+            <p class="calculator__footnote">All prices shown are per month</p>
+          </div>
+        </div>
+
+        <!-- Benchmark callout -->
+        <div class="calculator__callout">
+          <p>Model choice directly impacts review quality, noise, and team trust.</p>
+          <p>Compare code review performance across different models in our <a href="https://kodus.io/en/benchmark-ai-code-review/" class="calculator__callout-link">benchmark</a>.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo">
+          <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+        </a>
+        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Legal & Contact</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="https://kodus.io/en/terms-of-use/">Terms of Use</a></li>
+            <li><a href="mailto:support@kodus.io">support@kodus.io</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Meet Kody</h4>
+          <ul class="footer__col-list">
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="https://kodus.io/en/customers/">Customers</a></li>
+            <li><a href="https://kodus.io/en/code-review-rules/">Kody Rules</a></li>
+            <li><a href="https://kodus.io/en/roi-with-kodus/">ROI Calculator</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Resources</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/insights-en/">Blog</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/overview">Docs</a></li>
+            <li><a href="https://kodus.io/en/changelog-en/">Changelog</a></li>
+            <li><a href="https://discord.gg/TFZBRk9fT6">Support Discord</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Helpful Links</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/benchmark-ai-code-review/">AI Code Review Tools Benchmarks</a></li>
+            <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
+            <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
+            <li><a href="https://kodus.io/en/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Our Network</h4>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/kodustech/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="LinkedIn">
+              <img src="assets/img/linkedin.png" alt="LinkedIn" class="footer__social-icon">
+            </a>
+            <a href="https://twitter.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="X (Twitter)">
+              <img src="assets/img/x-1.png?v=2" alt="X (Twitter)" class="footer__social-icon">
+            </a>
+            <a href="https://www.reddit.com/r/Kodus/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Reddit">
+              <img src="assets/img/reddit.png" alt="Reddit" class="footer__social-icon">
+            </a>
+            <a href="https://github.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub">
+              <img src="assets/img/github.png" alt="GitHub" class="footer__social-icon">
+            </a>
+            <div style="flex-basis: 100%; height: 0;"></div>
+            <a href="https://discord.gg/TFZBRk9fT6" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Discord">
+              <img src="assets/img/discord.png" alt="Discord" class="footer__social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Kodus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
