@@ -633,42 +633,53 @@ document.addEventListener('DOMContentLoaded', () => {
   const roiRateValue = document.getElementById('roiRateValue');
   const roiTimeValue = document.getElementById('roiTimeValue');
   const roiPRs = document.getElementById('roiPRs');
-  const roiPRsDetail = document.getElementById('roiPRsDetail');
   const roiHours = document.getElementById('roiHours');
   const roiCost = document.getElementById('roiCost');
   const roiROI = document.getElementById('roiROI');
+  const roiUnitsValue = document.querySelector('.roi__monitor-units'); // Class selector based on recent HTML
+  const roiStepButtons = document.querySelectorAll('.roi__step');
 
   function updateSliderFill(slider) {
+    if (!slider) return;
     const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
-    slider.style.background = `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${pct}%, var(--color-card-lv3) ${pct}%)`;
+    slider.style.background = `linear-gradient(to right, #1df3f5 0%, #1df3f5 ${pct}%, #101019 ${pct}%)`;
   }
 
   function updateROI() {
-    if (!roiDevs) return;
+    if (!roiDevs || !roiRate || !roiTime) return;
 
     const devs = parseInt(roiDevs.value);
     const rate = parseInt(roiRate.value);
     const time = parseInt(roiTime.value);
 
     // Display inputs
-    roiDevsValue.textContent = devs;
-    roiRateValue.textContent = `$${rate}`;
-    roiTimeValue.textContent = time;
+    if (roiDevsValue) roiDevsValue.textContent = devs;
+    if (roiRateValue) roiRateValue.textContent = `$${rate}`;
+    if (roiTimeValue) roiTimeValue.textContent = time;
+    if (roiUnitsValue) roiUnitsValue.textContent = `UNITS: ${devs}`;
 
-    // Calculations
+    // --- Calculations based on user logic ---
+    // Constants
     const prsPerDev = 10;
+    const kodusCostPerDev = 12;
+
+    // Formulas
     const monthlyPRs = devs * prsPerDev;
-    const hoursPerMonth = (monthlyPRs * time) / 60;
-    const currentCost = hoursPerMonth * rate;
-    const kodusCost = devs * 12.5; // license + avg token cost
-    const roi = kodusCost > 0 ? Math.floor(currentCost / kodusCost) : 0;
+    const hoursSpent = (monthlyPRs * time) / 60;
+    const currentReviewCost = hoursSpent * rate;
+    const kodusCost = devs * kodusCostPerDev;
+    
+    // Savings & ROI
+    const savings = currentReviewCost - kodusCost;
+    // ROI = Savings / Kodus Cost (rounded)
+    // Avoid division by zero
+    const roi = kodusCost > 0 ? Math.round(savings / kodusCost) : 0;
 
     // Display results
-    roiPRs.textContent = monthlyPRs.toLocaleString();
-    roiPRsDetail.textContent = `pull requests (based on ${prsPerDev} per dev)`;
-    roiHours.textContent = Math.round(hoursPerMonth).toLocaleString();
-    roiCost.textContent = `$${Math.round(currentCost).toLocaleString()}`;
-    roiROI.textContent = `${roi}x`;
+    if (roiPRs) roiPRs.textContent = `${monthlyPRs.toLocaleString()} PR`;
+    if (roiHours) roiHours.textContent = `${Math.round(hoursSpent).toLocaleString()}h`;
+    if (roiCost) roiCost.textContent = `$${Math.round(currentReviewCost).toLocaleString()}`;
+    if (roiROI) roiROI.textContent = `${roi}x`;
 
     // Update slider fills
     updateSliderFill(roiDevs);
@@ -678,6 +689,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   [roiDevs, roiRate, roiTime].forEach(slider => {
     slider?.addEventListener('input', updateROI);
+  });
+
+  roiStepButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const step = parseInt(btn.dataset.step || '1', 10);
+      const slider = targetId ? document.getElementById(targetId) : null;
+      if (!slider) return;
+
+      const min = parseInt(slider.min, 10);
+      const max = parseInt(slider.max, 10);
+      const current = parseInt(slider.value, 10);
+      const next = Math.min(max, Math.max(min, current + step));
+      slider.value = next;
+      updateROI(); // Recalculate
+    });
   });
 
   // Initial render
