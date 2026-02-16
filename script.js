@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws, .pricing__card, .token-info__card, .calculator__window, .roi-hero__window, .roi__window, .cases__card, .roi-testimonials__card, .roi-cta__window, .cust-featured__card, .cust-cases__card, .cust-cases__full, .cust-map__wrap')
+  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws, .pricing__card, .token-info__cartridge, .calculator__window, .roi-hero__window, .roi__window, .cases__card, .roi-testimonials__card, .roi-cta__window, .cust-featured__card, .cust-cases__card, .cust-cases__full, .cust-map__wrap')
     .forEach(el => {
       el.classList.add('fade-in');
       fadeObserver.observe(el);
