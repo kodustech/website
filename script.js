@@ -736,7 +736,8 @@ document.addEventListener('DOMContentLoaded', () => {
         diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_BACKLOG::MANUAL_CHECKS::SLOW_FEEDBACK::AUTO_PR_PRECHECKS',
         desc: 'At Brendi, reviews became a bottleneck. PRs stayed open. The queue grew early in the day. Senior engineers started their mornings clearing pending reviews instead of writing code. A big part of the time went into obvious fixes that showed up in almost every PR. Kody stepped into the flow to catch those issues early, running the team\'s rules automatically.',
         impact: 'About 70 percent less time spent on reviews per week. From 125 hours down to around 40. Less waiting. Less context switching. More time to focus on what actually moves the product.',
-        image: 'assets/img/logos_new/brendi_v2.png',
+        image: 'assets/img/logos_new/brendi1.png',
+        imageClass: '',
         link: 'https://kodus.io/en/how-brendi-cut-review-time-by-70/'
       },
       lerian: {
@@ -745,7 +746,8 @@ document.addEventListener('DOMContentLoaded', () => {
         diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_QUEUE::REPEATED_COMMENTS::MANUAL_CHECKS::AUTO_PR_FEEDBACK',
         desc: 'At Lerian, the problem was simple. Reviews were taking too much time because too much of the work was repetitive. The same adjustments showed up in PR after PR. Formatting. Team conventions. Basic rules. Kody stepped into the PR flow to catch those things early, applying the team\'s own rules and giving feedback right away.',
         impact: 'About 60 percent less time spent on reviews per week. From around 100 hours down to about 40. Less queue. Less rework. More time for work that actually matters.',
-        image: 'assets/img/logos_new/lerian_v2.png',
+        image: 'assets/img/logos_new/lerian1.png',
+        imageClass: '',
         link: 'https://kodus.io/en/lerian-cut-review-time/'
       },
       notificacoes: {
@@ -754,7 +756,8 @@ document.addEventListener('DOMContentLoaded', () => {
         diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_NOISE::REPEATED_COMMENTS::RULE_GAPS::CONSISTENCY_ENFORCEMENT',
         desc: 'At Notificações Inteligentes, reviews started to get too noisy. The same comments showed up in PR after PR. Formatting. Team standards. Basic rules. Each reviewer had a different approach and many things ended up being fixed more than once. The turning point was creating custom rules inside Kody, aligned with the team\'s workflow, and combining them with the ready to use Kody Rules library. This stopped the same issues from repeating across PRs and made the review process much more consistent day to day.',
         impact: 'Less rework, less back and forth in PRs, and more predictable feedback. The team kept moving fast without sacrificing quality.',
-        image: 'assets/img/logos_new/notificacoes.png',
+        image: 'assets/img/logos_new/notifica1.png',
+        imageClass: 'dossier__visual-img--notifica',
         link: 'https://kodus.io/en/notificacoes-inteligentes-code-reviews/'
       }
     };
@@ -783,7 +786,11 @@ document.addEventListener('DOMContentLoaded', () => {
           if (dossierDiagnosis) dossierDiagnosis.textContent = data.diagnosis;
           if (dossierDesc) dossierDesc.textContent = data.desc;
           if (dossierImpact) dossierImpact.textContent = data.impact;
-          if (dossierImage) dossierImage.src = data.image;
+          if (dossierImage) {
+            dossierImage.src = data.image;
+            dossierImage.classList.remove('dossier__visual-img--notifica');
+            if (data.imageClass) dossierImage.classList.add(data.imageClass);
+          }
           if (dossierRecLabel) dossierRecLabel.textContent = `REC // ${key}.case`;
           if (dossierBtn) {
             dossierBtn.href = data.link;
@@ -802,106 +809,64 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!pixelGroup) return;
 
     const svgNS = 'http://www.w3.org/2000/svg';
-    const cols = 96;
-    const rows = 50;
-    const cell = 12;
-    const continents = [
-      // North America
-      [[2, 17], [4, 14], [8, 13], [13, 12], [18, 10], [24, 9], [29, 11], [33, 14], [35, 18], [33, 22], [30, 25], [27, 28], [23, 31], [18, 33], [14, 32], [10, 29], [7, 25], [4, 22], [2, 20]],
-      // Greenland
-      [[34, 6], [37, 5], [41, 5], [45, 7], [44, 10], [41, 13], [37, 13], [34, 10]],
-      // South America
-      [[22, 33], [25, 34], [28, 36], [30, 39], [31, 42], [30, 45], [28, 48], [25, 49], [23, 47], [22, 44], [21, 40], [21, 36]],
-      // Europe
-      [[47, 13], [50, 12], [53, 12], [55, 14], [54, 17], [52, 18], [49, 18], [47, 16]],
-      // Africa
-      [[50, 20], [53, 20], [56, 22], [58, 26], [58, 31], [56, 35], [53, 40], [50, 40], [48, 36], [48, 31], [49, 26]],
-      // Eurasia
-      [[54, 14], [58, 11], [64, 10], [71, 10], [78, 11], [84, 13], [89, 16], [93, 19], [93, 23], [90, 26], [85, 28], [79, 29], [73, 29], [67, 28], [61, 26], [57, 24], [55, 20]],
-      // India / Southeast Asia block
-      [[64, 26], [67, 27], [70, 29], [71, 32], [69, 35], [66, 36], [64, 34], [63, 30]],
-      // Australia
-      [[80, 38], [84, 37], [88, 39], [90, 42], [89, 45], [85, 47], [81, 46], [79, 42]]
+    const svg = pixelGroup.ownerSVGElement;
+    if (!svg) return;
+
+    const cell = 8;
+    const width = 1000;
+    const height = 500;
+    const cols = Math.floor(width / cell);
+    const rows = Math.floor(height / cell);
+    const tones = ['#353D5D', '#3C4567', '#465074'];
+    const coastTone = '#505B83';
+
+    // Original world silhouettes converted to pixel grid.
+    const pathData = [
+      'M120,60 L180,55 L220,70 L260,65 L280,80 L290,120 L280,140 L260,160 L240,180 L230,200 L225,220 L240,240 L210,250 L190,230 L170,240 L150,230 L140,210 L130,195 L120,180 L100,170 L90,150 L95,130 L100,110 L110,90 Z',
+      'M220,280 L250,270 L280,280 L300,310 L310,340 L305,370 L290,400 L270,420 L250,440 L240,430 L235,410 L230,380 L225,350 L215,320 L210,300 Z',
+      'M430,70 L460,65 L490,70 L510,80 L520,100 L510,120 L500,130 L480,140 L460,135 L440,130 L430,120 L425,100 L430,85 Z',
+      'M440,170 L470,160 L510,170 L530,200 L540,240 L535,280 L520,320 L500,350 L480,370 L460,360 L445,330 L435,300 L430,260 L435,220 L440,190 Z',
+      'M520,55 L580,50 L640,55 L700,60 L750,70 L790,90 L810,110 L800,140 L780,160 L750,170 L720,175 L690,170 L660,160 L630,155 L600,150 L570,140 L550,125 L530,110 L520,90 Z',
+      'M620,170 L660,180 L680,200 L690,230 L680,260 L660,270 L640,260 L625,240 L620,210 L615,190 Z',
+      'M750,320 L800,310 L840,320 L860,340 L850,370 L830,390 L800,395 L770,385 L755,360 L750,340 Z',
+      'M700,270 L730,265 L760,270 L780,280 L770,290 L740,295 L710,290 L700,280 Z'
     ];
-    const islands = [
-      [45, 15], [46, 16], [58, 7], [59, 8], [60, 8], [63, 7], [66, 6],
-      [72, 6], [74, 6], [76, 7], [87, 24], [88, 25], [86, 26], [91, 45]
-    ];
-    const carveWater = [
-      [33, 22], [34, 22], [35, 22], [53, 21], [54, 21], [55, 22], [56, 23],
-      [60, 24], [61, 25], [62, 26], [63, 27], [73, 30], [74, 30], [75, 30]
-    ];
-    const tones = ['#333954', '#3A4160', '#41496D'];
-    const coastlineTone = '#4B5378';
 
     pixelGroup.textContent = '';
 
-    const grid = Array.from({ length: rows }, () => Array(cols).fill(false));
+    const paths = pathData.map(d => {
+      const p = document.createElementNS(svgNS, 'path');
+      p.setAttribute('d', d);
+      return p;
+    });
 
-    const insidePolygon = (x, y, poly) => {
-      let inside = false;
-      for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-        const xi = poly[i][0];
-        const yi = poly[i][1];
-        const xj = poly[j][0];
-        const yj = poly[j][1];
-        const intersect = ((yi > y) !== (yj > y))
-          && (x < ((xj - xi) * (y - yi)) / (yj - yi + 0.000001) + xi);
-        if (intersect) inside = !inside;
-      }
-      return inside;
-    };
+    const grid = Array.from({ length: rows }, () => Array(cols).fill(false));
+    const pt = svg.createSVGPoint();
 
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
-        const cx = x + 0.5;
-        const cy = y + 0.5;
-        if (continents.some(poly => insidePolygon(cx, cy, poly))) {
+        pt.x = (x * cell) + (cell / 2);
+        pt.y = (y * cell) + (cell / 2);
+        if (paths.some(path => path.isPointInFill(pt))) {
           grid[y][x] = true;
         }
       }
     }
 
-    islands.forEach(([x, y]) => {
-      if (grid[y] && typeof grid[y][x] !== 'undefined') grid[y][x] = true;
-    });
-
-    carveWater.forEach(([x, y]) => {
-      if (grid[y] && typeof grid[y][x] !== 'undefined') grid[y][x] = false;
-    });
-
-    const isLand = (x, y) => (
-      x >= 0
-      && x < cols
-      && y >= 0
-      && y < rows
-      && grid[y][x]
-    );
+    const isLand = (x, y) => (x >= 0 && x < cols && y >= 0 && y < rows && grid[y][x]);
 
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
         if (!grid[y][x]) continue;
-        const isEdge = !isLand(x - 1, y) || !isLand(x + 1, y) || !isLand(x, y - 1) || !isLand(x, y + 1);
-        const toneIdx = (x * 3 + y * 5) % tones.length;
+        const edge = !isLand(x - 1, y) || !isLand(x + 1, y) || !isLand(x, y - 1) || !isLand(x, y + 1);
+        const toneIdx = (x + y) % tones.length;
         const rect = document.createElementNS(svgNS, 'rect');
         rect.setAttribute('x', String(x * cell));
         rect.setAttribute('y', String(y * cell));
         rect.setAttribute('width', String(cell));
         rect.setAttribute('height', String(cell));
-        rect.setAttribute('fill', isEdge ? coastlineTone : tones[toneIdx]);
+        rect.setAttribute('fill', edge ? coastTone : tones[toneIdx]);
         pixelGroup.appendChild(rect);
       }
     }
-
-    // Add sparse offshore pixels for an intentionally retro map silhouette.
-    const specks = [[7, 15], [12, 13], [39, 15], [60, 6], [68, 7], [75, 8], [90, 20], [92, 22], [83, 47]];
-    specks.forEach(([x, y]) => {
-      const rect = document.createElementNS(svgNS, 'rect');
-      rect.setAttribute('x', String(x * cell));
-      rect.setAttribute('y', String(y * cell));
-      rect.setAttribute('width', String(cell));
-      rect.setAttribute('height', String(cell));
-      rect.setAttribute('fill', '#323850');
-      pixelGroup.appendChild(rect);
-    });
   });
