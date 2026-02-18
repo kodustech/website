@@ -654,7 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Display inputs
     if (roiDevsValue) roiDevsValue.textContent = devs;
-    if (roiRateValue) roiRateValue.textContent = `$${rate}`;
+    if (roiRateValue) roiRateValue.textContent = `${rate}`;
     if (roiTimeValue) roiTimeValue.textContent = time;
     if (roiUnitsValue) roiUnitsValue.textContent = `UNITS: ${devs}`;
 
@@ -675,10 +675,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Avoid division by zero
     const roi = kodusCost > 0 ? Math.round(savings / kodusCost) : 0;
 
+    const formatWithBreaks = (value) => value.toLocaleString().replace(/,/g, ',<wbr>');
+
     // Display results
-    if (roiPRs) roiPRs.textContent = `${monthlyPRs.toLocaleString()} PR`;
-    if (roiHours) roiHours.textContent = `${Math.round(hoursSpent).toLocaleString()}h`;
-    if (roiCost) roiCost.textContent = `$${Math.round(currentReviewCost).toLocaleString()}`;
+    if (roiPRs) roiPRs.innerHTML = `${formatWithBreaks(monthlyPRs)} PR`;
+    if (roiHours) roiHours.innerHTML = `${formatWithBreaks(Math.round(hoursSpent))} H`;
+    if (roiCost) roiCost.innerHTML = `$${formatWithBreaks(Math.round(currentReviewCost))}`;
     if (roiROI) roiROI.textContent = `${roi}x`;
 
     // Update slider fills
@@ -723,31 +725,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const dossierRecLabel = document.getElementById('dossierRecLabel');
     const dossierBtn = document.getElementById('dossierBtn');
 
+    if (dossierTitle) {
+      dossierTitle.classList.toggle('dossier__client-name--accented', /[\u00C0-\u017F]/.test(dossierTitle.textContent || ''));
+    }
+
     const dossierData = {
       brendi: {
         title: 'BRENDI',
         refId: 'BRN-01',
-        diagnosis: 'TECHNICAL_DIAGNOSIS: >> DEV_PIPELINE_REVIEW::HIGH_LATENCY::MANUAL_CHECK_OVERHEAD::PRE_PR_AUTOMATION',
-        desc: 'The project mission focused on reducing backlog and lengthy manual code review work by adding automated validation checks upstream in the pull request flow — enabling faster feedback and less repetitive overhead before human review.',
-        impact: '~70% reduction in weekly review time, dramatically shrinking feedback latency and freeing up engineering capacity previously spent on manual checks.',
+        diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_BACKLOG::MANUAL_CHECKS::SLOW_FEEDBACK::AUTO_PR_PRECHECKS',
+        desc: 'At Brendi, reviews became a bottleneck. PRs stayed open. The queue grew early in the day. Senior engineers started their mornings clearing pending reviews instead of writing code. A big part of the time went into obvious fixes that showed up in almost every PR. Kody stepped into the flow to catch those issues early, running the team\'s rules automatically.',
+        impact: 'About 70 percent less time spent on reviews per week. From 125 hours down to around 40. Less waiting. Less context switching. More time to focus on what actually moves the product.',
         image: 'assets/img/logos_new/brendi_v2.png',
         link: 'https://kodus.io/en/how-brendi-cut-review-time-by-70/'
       },
       lerian: {
         title: 'LERIAN',
         refId: 'LER-02',
-        diagnosis: 'TECHNICAL_DIAGNOSIS: >> DEV_PIPELINE_REVIEW::REVIEW_LATENCY::CONSISTENCY_CHECKS::AUTOMATED_PRE_PR_VALIDATION',
-        desc: 'The project mission focused on addressing lengthy manual reviews and inconsistent quality checks by introducing an automated analysis layer that proactively validates code as part of the review workflow, allowing engineers to focus on high-impact tasks rather than repetitive verification.',
-        impact: 'Achieved ~60% reduction in overall review time per week, significantly shortening feedback loops and recovering engineering capacity previously lost to repeatable manual checks.',
+        diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_QUEUE::REPEATED_COMMENTS::MANUAL_CHECKS::AUTO_PR_FEEDBACK',
+        desc: 'At Lerian, the problem was simple. Reviews were taking too much time because too much of the work was repetitive. The same adjustments showed up in PR after PR. Formatting. Team conventions. Basic rules. Kody stepped into the PR flow to catch those things early, applying the team\'s own rules and giving feedback right away.',
+        impact: 'About 60 percent less time spent on reviews per week. From around 100 hours down to about 40. Less queue. Less rework. More time for work that actually matters.',
         image: 'assets/img/logos_new/lerian_v2.png',
         link: 'https://kodus.io/en/lerian-cut-review-time/'
       },
       notificacoes: {
-        title: 'NOTIFICAÇÕES',
+        title: 'NOTIFICAÇÕES INTELIGENTES',
         refId: 'NTF-03',
-        diagnosis: 'TECHNICAL_DIAGNOSIS: >> DEV_PIPELINE_REVIEW::INCONSISTENCY_REDUCED::RULE_ENFORCEMENT::AUTOMATED_CONSISTENCY_CHECKS',
-        desc: 'The project mission centered on improving consistency and quality in code reviews by embedding an automated reviewer that enforces coding rules and captures repeat issues early in the pull request process. This helped standardize feedback and eliminate repetitive manual comments that were slowing the team’s velocity.',
-        impact: 'Reduced manual review workload and improved process consistency by catching common issues before human review, leading to faster feedback loops and higher confidence in delivery quality.',
+        diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_NOISE::REPEATED_COMMENTS::RULE_GAPS::CONSISTENCY_ENFORCEMENT',
+        desc: 'At Notificações Inteligentes, reviews started to get too noisy. The same comments showed up in PR after PR. Formatting. Team standards. Basic rules. Each reviewer had a different approach and many things ended up being fixed more than once. The turning point was creating custom rules inside Kody, aligned with the team\'s workflow, and combining them with the ready to use Kody Rules library. This stopped the same issues from repeating across PRs and made the review process much more consistent day to day.',
+        impact: 'Less rework, less back and forth in PRs, and more predictable feedback. The team kept moving fast without sacrificing quality.',
         image: 'assets/img/logos_new/notificacoes.png',
         link: 'https://kodus.io/en/notificacoes-inteligentes-code-reviews/'
       }
@@ -769,7 +775,10 @@ document.addEventListener('DOMContentLoaded', () => {
         contentElements.forEach(el => { if(el) el.style.opacity = '0'; });
 
         setTimeout(() => {
-          if (dossierTitle) dossierTitle.textContent = data.title;
+          if (dossierTitle) {
+            dossierTitle.textContent = data.title;
+            dossierTitle.classList.toggle('dossier__client-name--accented', /[\u00C0-\u017F]/.test(data.title));
+          }
           if (dossierRefId) dossierRefId.textContent = data.refId;
           if (dossierDiagnosis) dossierDiagnosis.textContent = data.diagnosis;
           if (dossierDesc) dossierDesc.textContent = data.desc;
@@ -786,4 +795,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
