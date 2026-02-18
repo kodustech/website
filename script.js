@@ -795,3 +795,113 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  /* --- Customers Page: Pixel World Map --- */
+  document.addEventListener('DOMContentLoaded', () => {
+    const pixelGroup = document.getElementById('custMapPixels');
+    if (!pixelGroup) return;
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const cols = 96;
+    const rows = 50;
+    const cell = 12;
+    const continents = [
+      // North America
+      [[2, 17], [4, 14], [8, 13], [13, 12], [18, 10], [24, 9], [29, 11], [33, 14], [35, 18], [33, 22], [30, 25], [27, 28], [23, 31], [18, 33], [14, 32], [10, 29], [7, 25], [4, 22], [2, 20]],
+      // Greenland
+      [[34, 6], [37, 5], [41, 5], [45, 7], [44, 10], [41, 13], [37, 13], [34, 10]],
+      // South America
+      [[22, 33], [25, 34], [28, 36], [30, 39], [31, 42], [30, 45], [28, 48], [25, 49], [23, 47], [22, 44], [21, 40], [21, 36]],
+      // Europe
+      [[47, 13], [50, 12], [53, 12], [55, 14], [54, 17], [52, 18], [49, 18], [47, 16]],
+      // Africa
+      [[50, 20], [53, 20], [56, 22], [58, 26], [58, 31], [56, 35], [53, 40], [50, 40], [48, 36], [48, 31], [49, 26]],
+      // Eurasia
+      [[54, 14], [58, 11], [64, 10], [71, 10], [78, 11], [84, 13], [89, 16], [93, 19], [93, 23], [90, 26], [85, 28], [79, 29], [73, 29], [67, 28], [61, 26], [57, 24], [55, 20]],
+      // India / Southeast Asia block
+      [[64, 26], [67, 27], [70, 29], [71, 32], [69, 35], [66, 36], [64, 34], [63, 30]],
+      // Australia
+      [[80, 38], [84, 37], [88, 39], [90, 42], [89, 45], [85, 47], [81, 46], [79, 42]]
+    ];
+    const islands = [
+      [45, 15], [46, 16], [58, 7], [59, 8], [60, 8], [63, 7], [66, 6],
+      [72, 6], [74, 6], [76, 7], [87, 24], [88, 25], [86, 26], [91, 45]
+    ];
+    const carveWater = [
+      [33, 22], [34, 22], [35, 22], [53, 21], [54, 21], [55, 22], [56, 23],
+      [60, 24], [61, 25], [62, 26], [63, 27], [73, 30], [74, 30], [75, 30]
+    ];
+    const tones = ['#333954', '#3A4160', '#41496D'];
+    const coastlineTone = '#4B5378';
+
+    pixelGroup.textContent = '';
+
+    const grid = Array.from({ length: rows }, () => Array(cols).fill(false));
+
+    const insidePolygon = (x, y, poly) => {
+      let inside = false;
+      for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+        const xi = poly[i][0];
+        const yi = poly[i][1];
+        const xj = poly[j][0];
+        const yj = poly[j][1];
+        const intersect = ((yi > y) !== (yj > y))
+          && (x < ((xj - xi) * (y - yi)) / (yj - yi + 0.000001) + xi);
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    };
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const cx = x + 0.5;
+        const cy = y + 0.5;
+        if (continents.some(poly => insidePolygon(cx, cy, poly))) {
+          grid[y][x] = true;
+        }
+      }
+    }
+
+    islands.forEach(([x, y]) => {
+      if (grid[y] && typeof grid[y][x] !== 'undefined') grid[y][x] = true;
+    });
+
+    carveWater.forEach(([x, y]) => {
+      if (grid[y] && typeof grid[y][x] !== 'undefined') grid[y][x] = false;
+    });
+
+    const isLand = (x, y) => (
+      x >= 0
+      && x < cols
+      && y >= 0
+      && y < rows
+      && grid[y][x]
+    );
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        if (!grid[y][x]) continue;
+        const isEdge = !isLand(x - 1, y) || !isLand(x + 1, y) || !isLand(x, y - 1) || !isLand(x, y + 1);
+        const toneIdx = (x * 3 + y * 5) % tones.length;
+        const rect = document.createElementNS(svgNS, 'rect');
+        rect.setAttribute('x', String(x * cell));
+        rect.setAttribute('y', String(y * cell));
+        rect.setAttribute('width', String(cell));
+        rect.setAttribute('height', String(cell));
+        rect.setAttribute('fill', isEdge ? coastlineTone : tones[toneIdx]);
+        pixelGroup.appendChild(rect);
+      }
+    }
+
+    // Add sparse offshore pixels for an intentionally retro map silhouette.
+    const specks = [[7, 15], [12, 13], [39, 15], [60, 6], [68, 7], [75, 8], [90, 20], [92, 22], [83, 47]];
+    specks.forEach(([x, y]) => {
+      const rect = document.createElementNS(svgNS, 'rect');
+      rect.setAttribute('x', String(x * cell));
+      rect.setAttribute('y', String(y * cell));
+      rect.setAttribute('width', String(cell));
+      rect.setAttribute('height', String(cell));
+      rect.setAttribute('fill', '#323850');
+      pixelGroup.appendChild(rect);
+    });
+  });

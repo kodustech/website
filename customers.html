@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="customers-page">
 
   <!-- ========== HEADER / NAV ========== -->
   <header class="header" id="header">
@@ -189,95 +189,145 @@
       </div>
     </section>
 
-    <!-- ========== CASE STUDIES ========== -->
-    <section class="cust-cases">
+    <!-- ========== DOSSIER STATION ========== -->
+    <section class="dossier-section">
       <div class="container">
-
-        <!-- Brendi + Lerian side-by-side -->
-        <div class="cust-cases__duo">
-
-          <div class="cust-cases__card">
-            <div class="cust-cases__card-bar">
-              <div class="pricing__card-dots">
-                <span class="pricing__card-dot"></span>
-                <span class="pricing__card-dot"></span>
-                <span class="pricing__card-dot"></span>
-              </div>
-              <span class="pricing__card-bar-title">brendi.case</span>
+        
+        <!-- Case Archive Header -->
+        <div class="dossier-header">
+          <div class="dossier-header__left">
+            <div class="dossier-header__title-row">
+              <div class="dossier-header__accent"></div>
+              <h2 class="dossier-header__title">CASE_ARCHIVE</h2>
             </div>
-            <div class="cust-cases__body">
-              <div class="pricing__card-scanlines"></div>
-              <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi" class="cust-cases__logo">
-              <h3 class="cust-cases__title">How Brendi cut more than half of their review time</h3>
-              <p class="cust-cases__quote">&ldquo;Before Kodus, I woke up to 3/4 PRs waiting for review &mdash; and 2 hours of my day gone in manual checks.&rdquo;</p>
-              <div class="cust-cases__stats">
-                <div class="cust-cases__stat">
-                  <span class="cust-cases__stat-value">70%</span>
-                  <span class="cust-cases__stat-label">reduction in review time</span>
-                </div>
-                <div class="cust-cases__stat">
-                  <span class="cust-cases__stat-value">85h</span>
-                  <span class="cust-cases__stat-label">hours recovered per week</span>
-                </div>
-              </div>
-              <a href="https://kodus.io/en/customers/" class="btn btn--outline-light cust-cases__cta">See the full case &rarr;</a>
+            <div class="dossier-header__subtitle">
+              // OPERATIONAL SUCCESS LOGS / ENGINEERING DOSSIERS
             </div>
           </div>
-
-          <div class="cust-cases__card">
-            <div class="cust-cases__card-bar">
-              <div class="pricing__card-dots">
-                <span class="pricing__card-dot"></span>
-                <span class="pricing__card-dot"></span>
-                <span class="pricing__card-dot"></span>
-              </div>
-              <span class="pricing__card-bar-title">lerian.case</span>
-            </div>
-            <div class="cust-cases__body">
-              <div class="pricing__card-scanlines"></div>
-              <img src="assets/img/logos_new/lerian_v2.png" alt="Lerian" class="cust-cases__logo">
-              <h3 class="cust-cases__title">From 100 to 40 hours: how Lerian sped up their reviews</h3>
-              <p class="cust-cases__quote">&ldquo;Kodus has become essential for us. We automated checks, reduced rework, and increased our delivery speed.&rdquo;</p>
-              <div class="cust-cases__stats">
-                <div class="cust-cases__stat">
-                  <span class="cust-cases__stat-value cust-cases__stat-value--secondary">60%</span>
-                  <span class="cust-cases__stat-label">reduction in review time</span>
-                </div>
-                <div class="cust-cases__stat">
-                  <span class="cust-cases__stat-value cust-cases__stat-value--secondary">40h</span>
-                  <span class="cust-cases__stat-label">hours recovered per week</span>
-                </div>
-              </div>
-              <a href="https://kodus.io/en/customers/" class="btn btn--outline-light cust-cases__cta">See the full case &rarr;</a>
-            </div>
+          <div class="dossier-header__right">
+            <span>STATUS: SYSTEM_READY</span>
+            <span>ST_CODE: 200_OK_DB</span>
           </div>
-
         </div>
 
-        <!-- Notificacoes Inteligentes full-width -->
-        <div class="cust-cases__full">
-          <div class="cust-cases__card-bar">
-            <div class="pricing__card-dots">
-              <span class="pricing__card-dot"></span>
-              <span class="pricing__card-dot"></span>
-              <span class="pricing__card-dot"></span>
+        <div class="dossier">
+          
+          <!-- LEFT SIDEBAR -->
+          <div class="dossier__sidebar">
+            <div class="dossier__drive-header">
+              DRIVE_SELECTOR [A:]
             </div>
-            <span class="pricing__card-bar-title">notificacoes_inteligentes.case</span>
-          </div>
-          <div class="cust-cases__body">
-            <div class="pricing__card-scanlines"></div>
-            <img src="assets/img/logos_new/notificacoes.png" alt="Notificacoes Inteligentes" class="cust-cases__logo">
-            <h3 class="cust-cases__title">How Notifica&ccedil;&otilde;es Inteligentes made code reviews consistent and reliable</h3>
-            <p class="cust-cases__quote cust-cases__quote--long">&ldquo;I trained the team to use AI in their day-to-day coding, and Kody became our senior reviewer who never forgets anything. It doesn't replace human review, but it's now a mandatory step: it keeps everything consistent, documents what matters, and applies our coding rules to prevent the same issues from coming back from the same root cause. In practice, we started shipping with more quality and confidence.&rdquo;</p>
-            <div class="cust-cases__author">
-              <img src="https://kodus.io/wp-content/uploads/2025/10/pedro-maia.jpeg" alt="Pedro Maia" class="cust-cases__avatar">
-              <div>
-                <span class="cust-cases__author-name">Pedro Maia</span>
-                <span class="cust-cases__author-role">Director</span>
+            <nav class="dossier__nav" id="dossierNav">
+              <!-- Tab 1 -->
+              <button class="dossier__tab dossier__tab--active" data-case="brendi">
+                <span class="dossier__tab-label">ARCHIVE_REF: 1</span>
+                <span class="dossier__tab-title">BRENDI.CASE</span>
+              </button>
+              <!-- Tab 2 -->
+              <button class="dossier__tab" data-case="lerian">
+                <span class="dossier__tab-label">ARCHIVE_REF: 2</span>
+                <span class="dossier__tab-title">LERIAN.CASE</span>
+              </button>
+              <!-- Tab 3 -->
+              <button class="dossier__tab" data-case="notificacoes">
+                <span class="dossier__tab-label">ARCHIVE_REF: 3</span>
+                <span class="dossier__tab-title">NOTIFICACOES.CASE</span>
+              </button>
+            </nav>
+
+            <div class="dossier__radar">
+              <div class="dossier__radar-circle">
+                <div class="dossier__radar-scan"></div>
+                <div class="dossier__radar-blip-track">
+                  <div class="dossier__radar-blip"></div>
+                </div>
+              </div>
+              <div class="dossier__radar-info">
+                <span>CORE_TEMP: 42°C</span>
+                <span>SIGNAL: EXCELLENT</span>
               </div>
             </div>
-            <a href="https://kodus.io/en/customers/" class="btn btn--outline-light cust-cases__cta">See the full case &rarr;</a>
           </div>
+
+          <!-- RIGHT MAIN CONTENT -->
+          <main class="dossier__main">
+            <!-- Top Status Bar -->
+            <div class="dossier__top-bar">
+              <div class="dossier__status-text">
+                DOSSIER_STATION_v2.0 <span style="margin: 0 8px; color: #333344;">//</span> UPLINK_ESTABLISHED
+              </div>
+              <div class="dossier__status-indicator">
+                <span>ARCHIVE_ACCESS: GRANTED</span>
+                <span class="dossier__status-dot"></span>
+              </div>
+            </div>
+
+            <div class="dossier__content-wrapper">
+              
+              <div class="dossier__grid">
+                <!-- Visual Capture -->
+                <div class="dossier__visual">
+                  <div class="dossier__visual-lines"></div>
+                  <div class="dossier__visual-overlay" id="dossierRecLabel">REC // brendi.case</div>
+                  <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi Visual" class="dossier__visual-img" id="dossierImage">
+                </div>
+
+                <!-- Telemetry -->
+                <div class="dossier__telemetry">
+                  <div class="dossier__telemetry-title">TELEMETRY</div>
+                  
+                  <div class="dossier__telemetry-row">
+                    <div class="dossier__telemetry-header">
+                      <span>CPU_LOAD</span>
+                      <span class="dossier__telemetry-val">MINIMAL</span>
+                    </div>
+                    <div class="dossier__bar"><div class="dossier__bar-fill" style="width: 15%;"></div></div>
+                  </div>
+
+                  <div class="dossier__telemetry-row">
+                    <div class="dossier__telemetry-header">
+                      <span>REF_ID</span>
+                      <span class="dossier__telemetry-val" id="dossierRefId">BRN-01</span>
+                    </div>
+                    <div class="dossier__bar"><div class="dossier__bar-fill" style="width: 45%;"></div></div>
+                  </div>
+
+                  <div class="dossier__telemetry-row">
+                    <div class="dossier__telemetry-header">
+                      <span>STATUS</span>
+                      <span class="dossier__telemetry-val">OPTIMIZED</span>
+                    </div>
+                    <div class="dossier__bar"><div class="dossier__bar-fill" style="width: 92%;"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Operational Log -->
+              <div class="dossier__log">
+                <span class="dossier__log-label">OPERATIONAL_DOSSIER_LOG</span>
+
+                <h2 class="dossier__client-name" id="dossierTitle">BRENDI</h2>
+
+                <div class="dossier__diagnosis" id="dossierDiagnosis">
+                  TECHNICAL_DIAGNOSIS: REVIEW_BACKLOG::MANUAL_CHECKS::SLOW_FEEDBACK::AUTO_PR_PRECHECKS
+                </div>
+
+                <p class="dossier__desc" id="dossierDesc">
+                  At Brendi, reviews became a bottleneck. PRs stayed open. The queue grew early in the day. Senior engineers started their mornings clearing pending reviews instead of writing code. A big part of the time went into obvious fixes that showed up in almost every PR. Kody stepped into the flow to catch those issues early, running the team’s rules automatically.
+                </p>
+
+                <div class="dossier__impact-section">
+                  <div class="dossier__impact">
+                    <span class="dossier__impact-label">BOTTOM_LINE_IMPACT:</span>
+                    <span id="dossierImpact">About 70 percent less time spent on reviews per week. From 125 hours down to around 40. Less waiting. Less context switching. More time to focus on what actually moves the product.</span>
+                  </div>
+                  <a href="https://kodus.io/en/how-brendi-cut-review-time-by-70/" class="dossier__export-btn" id="dossierBtn">VIEW_FULL_CASE_DATA</a>
+                </div>
+              </div>
+
+            </div>
+          </main>
+
         </div>
 
       </div>
@@ -289,79 +339,142 @@
         <h2 class="section-title">Companies around the world<br>already use Kody</h2>
 
         <div class="cust-map__wrap">
-          <!-- Simplified SVG world map -->
-          <svg class="cust-map__svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-            <!-- Continents (simplified shapes) -->
-            <g fill="#252540" stroke="none">
-              <!-- North America -->
-              <path d="M120,60 L180,55 L220,70 L260,65 L280,80 L290,120 L280,140 L260,160 L240,180 L230,200 L225,220 L240,240 L210,250 L190,230 L170,240 L150,230 L140,210 L130,195 L120,180 L100,170 L90,150 L95,130 L100,110 L110,90 Z"/>
-              <!-- South America -->
-              <path d="M220,280 L250,270 L280,280 L300,310 L310,340 L305,370 L290,400 L270,420 L250,440 L240,430 L235,410 L230,380 L225,350 L215,320 L210,300 Z"/>
-              <!-- Europe -->
-              <path d="M430,70 L460,65 L490,70 L510,80 L520,100 L510,120 L500,130 L480,140 L460,135 L440,130 L430,120 L425,100 L430,85 Z"/>
-              <!-- Africa -->
-              <path d="M440,170 L470,160 L510,170 L530,200 L540,240 L535,280 L520,320 L500,350 L480,370 L460,360 L445,330 L435,300 L430,260 L435,220 L440,190 Z"/>
-              <!-- Asia -->
-              <path d="M520,55 L580,50 L640,55 L700,60 L750,70 L790,90 L810,110 L800,140 L780,160 L750,170 L720,175 L690,170 L660,160 L630,155 L600,150 L570,140 L550,125 L530,110 L520,90 Z"/>
-              <!-- India / SE Asia -->
-              <path d="M620,170 L660,180 L680,200 L690,230 L680,260 L660,270 L640,260 L625,240 L620,210 L615,190 Z"/>
-              <!-- Australia -->
-              <path d="M750,320 L800,310 L840,320 L860,340 L850,370 L830,390 L800,395 L770,385 L755,360 L750,340 Z"/>
-              <!-- Indonesia -->
-              <path d="M700,270 L730,265 L760,270 L780,280 L770,290 L740,295 L710,290 L700,280 Z"/>
-            </g>
+          <div class="cust-map__frame">
+            <div class="cust-map__screen">
+              <svg class="cust-map__svg" viewBox="0 0 1152 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g id="custMapPixels" class="cust-map__pixel-land"></g>
+              </svg>
 
-            <!-- Glowing dots for customer locations -->
-            <g class="cust-map__dots">
-              <!-- Brazil (multiple) -->
-              <circle cx="280" cy="340" r="4" class="cust-map__dot"/>
-              <circle cx="300" cy="310" r="4" class="cust-map__dot"/>
-              <circle cx="265" cy="360" r="4" class="cust-map__dot"/>
-              <!-- USA -->
-              <circle cx="180" cy="150" r="4" class="cust-map__dot"/>
-              <!-- Europe -->
-              <circle cx="470" cy="100" r="4" class="cust-map__dot"/>
-              <circle cx="500" cy="110" r="4" class="cust-map__dot"/>
-              <!-- India -->
-              <circle cx="650" cy="220" r="4" class="cust-map__dot"/>
-              <!-- Southeast Asia -->
-              <circle cx="730" cy="275" r="4" class="cust-map__dot"/>
-              <!-- Australia -->
-              <circle cx="810" cy="360" r="4" class="cust-map__dot"/>
-              <!-- Middle East -->
-              <circle cx="550" cy="170" r="4" class="cust-map__dot"/>
-              <!-- South Africa -->
-              <circle cx="490" cy="360" r="4" class="cust-map__dot"/>
-            </g>
-          </svg>
+              <div class="cust-map__nodes">
+                <button class="cust-map__node cust-map__node--right" style="--x:22%; --y:49%;" aria-label="USA - 4260 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">USA</span>
+                    <span class="cust-map__tooltip-value">4,260 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:33%; --y:73%;" aria-label="Brazil - 5310 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">Brazil</span>
+                    <span class="cust-map__tooltip-value">5,310 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:27%; --y:86%;" aria-label="Argentina - 1950 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">Argentina</span>
+                    <span class="cust-map__tooltip-value">1,950 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:49%; --y:30%;" aria-label="United Kingdom - 2980 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">United Kingdom</span>
+                    <span class="cust-map__tooltip-value">2,980 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:54%; --y:33%;" aria-label="Germany - 3240 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">Germany</span>
+                    <span class="cust-map__tooltip-value">3,240 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:57%; --y:36%;" aria-label="Romania - 1760 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">Romania</span>
+                    <span class="cust-map__tooltip-value">1,760 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:75%; --y:35%;" aria-label="Russia - 8420 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">Russia</span>
+                    <span class="cust-map__tooltip-value">8,420 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:70%; --y:61%;" aria-label="India - 4670 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">India</span>
+                    <span class="cust-map__tooltip-value">4,670 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node cust-map__node--left" style="--x:81%; --y:50%;" aria-label="China - 7210 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">China</span>
+                    <span class="cust-map__tooltip-value">7,210 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node cust-map__node--left" style="--x:90%; --y:49%;" aria-label="Japan - 3560 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">Japan</span>
+                    <span class="cust-map__tooltip-value">3,560 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node cust-map__node--left" style="--x:88%; --y:84%;" aria-label="Australia - 2890 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">Australia</span>
+                    <span class="cust-map__tooltip-value">2,890 PRs</span>
+                  </span>
+                </button>
+
+                <button class="cust-map__node" style="--x:55%; --y:77%;" aria-label="South Africa - 1630 PRs">
+                  <span class="cust-map__node-core"></span>
+                  <span class="cust-map__tooltip">
+                    <span class="cust-map__tooltip-label">South Africa</span>
+                    <span class="cust-map__tooltip-value">1,630 PRs</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== CTA ========== -->
+    <!-- ========== CTA (Pixel Art Style) ========== -->
     <section class="roi-cta">
       <div class="container">
-        <div class="roi-cta__wrap">
-          <img src="assets/img/kody-good-vibes.png" alt="Kody" class="roi-cta__kody">
-          <div class="roi-cta__window">
-            <div class="pricing__card-bar">
-              <div class="pricing__card-dots">
-                <span class="pricing__card-dot"></span>
-                <span class="pricing__card-dot"></span>
-                <span class="pricing__card-dot"></span>
-              </div>
-              <span class="pricing__card-bar-title">get_started.exe</span>
+        <div class="pixel-cta">
+          
+          <div class="pixel-cta__window">
+            <div class="pixel-cta__bar">
+              <span class="pixel-cta__bar-text">GET_STARTED.EXE</span>
             </div>
-            <div class="roi-cta__body">
-              <div class="pricing__card-scanlines"></div>
-              <h2 class="roi-cta__title">Ready to let Kody review your next PR?</h2>
-              <p class="roi-cta__desc">Spin it up in under 2 minutes &mdash; cloud or self-hosted, no credit card.</p>
-              <div class="roi-cta__actions">
-                <a href="https://github.com/kodustech/kodus-ai" class="btn btn--outline-light">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                  Deploy
-                </a>
-                <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Try Cloud for Free &rarr;</a>
+            
+            <div class="pixel-cta__content">
+              <div class="pixel-cta__media">
+                <img src="assets/img/kody-review.png" alt="Kody Review" class="pixel-cta__kody">
+              </div>
+              <div class="pixel-cta__copy">
+                <h2 class="pixel-cta__title">Ready to let Kody review<br>your next PR?</h2>
+                <p class="pixel-cta__desc">Spin it up in under 2 minutes — cloud or self-hosted, no credit card.</p>
+                
+                <div class="pixel-cta__actions">
+                  <a href="https://github.com/kodustech/kodus-ai" class="btn btn--outline-light pixel-cta__btn">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    DEPLOY
+                  </a>
+                  <a href="https://app.kodus.io/sign-up" class="btn btn--primary pixel-cta__btn">
+                    START FREE TRIAL
+                  </a>
+                </div>
               </div>
             </div>
           </div>
