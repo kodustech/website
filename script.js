@@ -710,3 +710,80 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial render
   updateROI();
 });
+
+  /* --- Dossier Station (ROI Page) --- */
+  document.addEventListener('DOMContentLoaded', () => {
+    const dossierTabs = document.querySelectorAll('.dossier__tab');
+    const dossierTitle = document.getElementById('dossierTitle');
+    const dossierRefId = document.getElementById('dossierRefId');
+    const dossierDiagnosis = document.getElementById('dossierDiagnosis');
+    const dossierDesc = document.getElementById('dossierDesc');
+    const dossierImpact = document.getElementById('dossierImpact');
+    const dossierImage = document.getElementById('dossierImage');
+    const dossierRecLabel = document.getElementById('dossierRecLabel');
+    const dossierBtn = document.getElementById('dossierBtn');
+
+    const dossierData = {
+      brendi: {
+        title: 'BRENDI',
+        refId: 'BRN-01',
+        diagnosis: 'TECHNICAL_DIAGNOSIS: >> DEV_PIPELINE_REVIEW::HIGH_LATENCY::MANUAL_CHECK_OVERHEAD::PRE_PR_AUTOMATION',
+        desc: 'The project mission focused on reducing backlog and lengthy manual code review work by adding automated validation checks upstream in the pull request flow — enabling faster feedback and less repetitive overhead before human review.',
+        impact: '~70% reduction in weekly review time, dramatically shrinking feedback latency and freeing up engineering capacity previously spent on manual checks.',
+        image: 'assets/img/logos_new/brendi_v2.png',
+        link: 'https://kodus.io/en/how-brendi-cut-review-time-by-70/'
+      },
+      lerian: {
+        title: 'LERIAN',
+        refId: 'LER-02',
+        diagnosis: 'TECHNICAL_DIAGNOSIS: >> DEV_PIPELINE_REVIEW::REVIEW_LATENCY::CONSISTENCY_CHECKS::AUTOMATED_PRE_PR_VALIDATION',
+        desc: 'The project mission focused on addressing lengthy manual reviews and inconsistent quality checks by introducing an automated analysis layer that proactively validates code as part of the review workflow, allowing engineers to focus on high-impact tasks rather than repetitive verification.',
+        impact: 'Achieved ~60% reduction in overall review time per week, significantly shortening feedback loops and recovering engineering capacity previously lost to repeatable manual checks.',
+        image: 'assets/img/logos_new/lerian_v2.png',
+        link: 'https://kodus.io/en/lerian-cut-review-time/'
+      },
+      notificacoes: {
+        title: 'NOTIFICAÇÕES',
+        refId: 'NTF-03',
+        diagnosis: 'TECHNICAL_DIAGNOSIS: >> DEV_PIPELINE_REVIEW::INCONSISTENCY_REDUCED::RULE_ENFORCEMENT::AUTOMATED_CONSISTENCY_CHECKS',
+        desc: 'The project mission centered on improving consistency and quality in code reviews by embedding an automated reviewer that enforces coding rules and captures repeat issues early in the pull request process. This helped standardize feedback and eliminate repetitive manual comments that were slowing the team’s velocity.',
+        impact: 'Reduced manual review workload and improved process consistency by catching common issues before human review, leading to faster feedback loops and higher confidence in delivery quality.',
+        image: 'assets/img/logos_new/notificacoes.png',
+        link: 'https://kodus.io/en/notificacoes-inteligentes-code-reviews/'
+      }
+    };
+
+    dossierTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Active state
+        dossierTabs.forEach(t => t.classList.remove('dossier__tab--active'));
+        tab.classList.add('dossier__tab--active');
+
+        // Update content
+        const key = tab.dataset.case;
+        const data = dossierData[key];
+        if (!data) return;
+
+        // Simple fade effect
+        const contentElements = [dossierTitle, dossierRefId, dossierDiagnosis, dossierDesc, dossierImpact, dossierImage, dossierRecLabel, dossierBtn];
+        contentElements.forEach(el => { if(el) el.style.opacity = '0'; });
+
+        setTimeout(() => {
+          if (dossierTitle) dossierTitle.textContent = data.title;
+          if (dossierRefId) dossierRefId.textContent = data.refId;
+          if (dossierDiagnosis) dossierDiagnosis.textContent = data.diagnosis;
+          if (dossierDesc) dossierDesc.textContent = data.desc;
+          if (dossierImpact) dossierImpact.textContent = data.impact;
+          if (dossierImage) dossierImage.src = data.image;
+          if (dossierRecLabel) dossierRecLabel.textContent = `REC // ${key}.case`;
+          if (dossierBtn) {
+            dossierBtn.href = data.link;
+            dossierBtn.textContent = 'VIEW_FULL_CASE_DATA';
+          }
+          
+          contentElements.forEach(el => { if(el) el.style.opacity = '1'; });
+        }, 200);
+      });
+    });
+  });
+

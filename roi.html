@@ -314,72 +314,147 @@
       </div>
     </section>
 
-    <!-- ========== CASE STUDIES ========== -->
-    <section class="cases">
+    <!-- ========== DOSSIER STATION (Cases Redesign) ========== -->
+    <section class="dossier-section">
       <div class="container">
-        <h2 class="section-title">How engineering teams use Kodus</h2>
-        <p class="cases__subtitle">See how different teams reduced review time, improved code consistency, and freed up engineering hours by adopting Kodus in their PR workflows.</p>
+        
+        <!-- Case Archive Header -->
+        <div class="dossier-header">
+          <div class="dossier-header__left">
+            <div class="dossier-header__title-row">
+              <div class="dossier-header__accent"></div>
+              <h2 class="dossier-header__title">CASE_ARCHIVE</h2>
+            </div>
+            <div class="dossier-header__subtitle">
+              // OPERATIONAL SUCCESS LOGS / ENGINEERING DOSSIERS
+            </div>
+          </div>
+          <div class="dossier-header__right">
+            <span>STATUS: SYSTEM_READY</span>
+            <span>ST_CODE: 200_OK_DB</span>
+          </div>
+        </div>
 
-        <div class="cases__grid tech-card-grid">
+        <div class="dossier">
+          
+          <!-- LEFT SIDEBAR -->
+          <div class="dossier__sidebar">
+            <div class="dossier__drive-header">
+              DRIVE_SELECTOR [A:]
+            </div>
+            <nav class="dossier__nav" id="dossierNav">
+              <!-- Tab 1 -->
+              <button class="dossier__tab dossier__tab--active" data-case="brendi">
+                <span class="dossier__tab-label">ARCHIVE_REF: 1</span>
+                <span class="dossier__tab-title">BRENDI.CASE</span>
+              </button>
+              <!-- Tab 2 -->
+              <button class="dossier__tab" data-case="lerian">
+                <span class="dossier__tab-label">ARCHIVE_REF: 2</span>
+                <span class="dossier__tab-title">LERIAN.CASE</span>
+              </button>
+              <!-- Tab 3 -->
+              <button class="dossier__tab" data-case="notificacoes">
+                <span class="dossier__tab-label">ARCHIVE_REF: 3</span>
+                <span class="dossier__tab-title">NOTIFICACOES.CASE</span>
+              </button>
+            </nav>
 
-          <!-- Card 1: Brendi -->
-          <a href="https://kodus.io/en/customers/" class="tech-card">
-            <div class="tech-card__window-bar">
-              <div class="tech-card__dots">
-                <span class="tech-card__dot"></span>
-                <span class="tech-card__dot"></span>
-                <span class="tech-card__dot"></span>
+            <div class="dossier__radar">
+              <div class="dossier__radar-circle">
+                <div class="dossier__radar-scan"></div>
+                <div class="dossier__radar-blip-track">
+                  <div class="dossier__radar-blip"></div>
+                </div>
               </div>
-              <span class="tech-card__filename">brendi.case</span>
-            </div>
-            <div class="tech-card__body">
-              <div class="tech-card__logo-area">
-                <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi" class="tech-card__logo">
+              <div class="dossier__radar-info">
+                <span>CORE_TEMP: 42°C</span>
+                <span>SIGNAL: EXCELLENT</span>
               </div>
-              <h3 class="tech-card__title">How Brendi cut review time by 70% per month</h3>
-              <span class="tech-card__link">Read story &rarr;</span>
             </div>
-          </a>
+          </div>
 
-          <!-- Card 2: Lerian -->
-          <a href="https://kodus.io/en/customers/" class="tech-card">
-            <div class="tech-card__window-bar">
-              <div class="tech-card__dots">
-                <span class="tech-card__dot"></span>
-                <span class="tech-card__dot"></span>
-                <span class="tech-card__dot"></span>
+          <!-- RIGHT MAIN CONTENT -->
+          <main class="dossier__main">
+            <!-- Top Status Bar -->
+            <div class="dossier__top-bar">
+              <div class="dossier__status-text">
+                DOSSIER_STATION_v2.0 <span style="margin: 0 8px; color: #333344;">//</span> UPLINK_ESTABLISHED
               </div>
-              <span class="tech-card__filename">lerian.case</span>
-            </div>
-            <div class="tech-card__body">
-              <div class="tech-card__logo-area">
-                <img src="assets/img/logos_new/lerian_v2.png" alt="Lerian" class="tech-card__logo">
+              <div class="dossier__status-indicator">
+                <span>ARCHIVE_ACCESS: GRANTED</span>
+                <span class="dossier__status-dot"></span>
               </div>
-              <h3 class="tech-card__title">From 100 to 40 hours: how Lerian made code reviews faster</h3>
-              <span class="tech-card__link">Read story &rarr;</span>
             </div>
-          </a>
 
-          <!-- Card 3: Notificações -->
-          <a href="https://kodus.io/en/customers/" class="tech-card">
-            <div class="tech-card__window-bar">
-              <div class="tech-card__dots">
-                <span class="tech-card__dot"></span>
-                <span class="tech-card__dot"></span>
-                <span class="tech-card__dot"></span>
+            <div class="dossier__content-wrapper">
+              
+              <div class="dossier__grid">
+                <!-- Visual Capture -->
+                <div class="dossier__visual">
+                  <div class="dossier__visual-lines"></div>
+                  <div class="dossier__visual-overlay" id="dossierRecLabel">REC // brendi.case</div>
+                  <img src="assets/img/logos_new/brendi_v2.png" alt="Brendi Visual" class="dossier__visual-img" id="dossierImage">
+                </div>
+
+                <!-- Telemetry -->
+                <div class="dossier__telemetry">
+                  <div class="dossier__telemetry-title">TELEMETRY</div>
+                  
+                  <div class="dossier__telemetry-row">
+                    <div class="dossier__telemetry-header">
+                      <span>CPU_LOAD</span>
+                      <span class="dossier__telemetry-val">MINIMAL</span>
+                    </div>
+                    <div class="dossier__bar"><div class="dossier__bar-fill" style="width: 15%;"></div></div>
+                  </div>
+
+                  <div class="dossier__telemetry-row">
+                    <div class="dossier__telemetry-header">
+                      <span>REF_ID</span>
+                      <span class="dossier__telemetry-val" id="dossierRefId">BRN-01</span>
+                    </div>
+                    <div class="dossier__bar"><div class="dossier__bar-fill" style="width: 45%;"></div></div>
+                  </div>
+
+                  <div class="dossier__telemetry-row">
+                    <div class="dossier__telemetry-header">
+                      <span>STATUS</span>
+                      <span class="dossier__telemetry-val">OPTIMIZED</span>
+                    </div>
+                    <div class="dossier__bar"><div class="dossier__bar-fill" style="width: 92%;"></div></div>
+                  </div>
+                </div>
               </div>
-              <span class="tech-card__filename">notificacoes.case</span>
-            </div>
-            <div class="tech-card__body">
-              <div class="tech-card__logo-area">
-                <img src="assets/img/logos_new/notificacoes.png" alt="Notificações Inteligentes" class="tech-card__logo">
+
+              <!-- Operational Log -->
+              <div class="dossier__log">
+                <span class="dossier__log-label">OPERATIONAL_DOSSIER_LOG</span>
+
+                <h2 class="dossier__client-name" id="dossierTitle">BRENDI</h2>
+
+                <div class="dossier__diagnosis" id="dossierDiagnosis">
+                  TECHNICAL_DIAGNOSIS: >> DEV_PIPELINE_REVIEW::HIGH_LATENCY::MANUAL_REVIEW_BOTTLENECK::AUTOMATED_VALIDATION
+                </div>
+
+                <p class="dossier__desc" id="dossierDesc">
+                  The project mission focused on eliminating manual review bottlenecks and long feedback loops by introducing an automated analysis layer directly in the pull request workflow. This transformed a high-latency, manual review process into a streamlined review pipeline with faster insights.
+                </p>
+
+                <div class="dossier__impact-section">
+                  <div class="dossier__impact">
+                    <span class="dossier__impact-label">BOTTOM_LINE_IMPACT:</span>
+                    <span id="dossierImpact">~70% reduction in weekly review time, dramatically shrinking feedback latency and freeing up engineering capacity previously spent on manual checks.</span>
+                  </div>
+                  <a href="https://kodus.io/en/how-brendi-cut-review-time-by-70/" class="dossier__export-btn" id="dossierBtn">VIEW_FULL_CASE_DATA</a>
+                </div>
               </div>
-              <h3 class="tech-card__title">How Notifica&ccedil;&otilde;es Inteligentes made code reviews more consistent</h3>
-              <span class="tech-card__link">Read story &rarr;</span>
+
             </div>
-          </a>
+          </main>
 
         </div>
+
       </div>
     </section>
 
