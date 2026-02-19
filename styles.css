@@ -10906,6 +10906,7 @@ body.benchmark-page .roi-cta > .container {
   font-weight: 700;
   color: var(--color-text);
   letter-spacing: 1px;
+  margin: 0;
 }
 
 .chat__header-status {
