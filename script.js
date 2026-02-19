@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   hamburger?.addEventListener('click', () => {
     nav.classList.toggle('nav--open');
+    // Position actions below links
+    if (nav.classList.contains('nav--open')) {
+      requestAnimationFrame(() => {
+        const links = nav.querySelector('.nav__links');
+        const actions = nav.querySelector('.nav__actions');
+        if (links && actions) {
+          actions.style.top = (links.offsetTop + links.offsetHeight) + 'px';
+        }
+      });
+    }
   });
 
   /* --- Hero tabs (Git / Terminal) --- */
@@ -459,6 +469,22 @@ document.addEventListener('DOMContentLoaded', () => {
     basicsFiles.forEach((f, i) => f.classList.toggle('basics__tree-file--active', i === index));
     basicsTab.textContent = feature.file;
 
+    // Sync mobile tabs
+    const mobileTabsInView = document.querySelectorAll('.basics__mobile-tab');
+    mobileTabsInView.forEach((t, i) => {
+      t.classList.toggle('basics__mobile-tab--active', i === index);
+    });
+
+    // Keep active tab visible when nav is horizontally scrollable on mobile.
+    const activeMobileTab = mobileTabsInView[index];
+    if (activeMobileTab && window.matchMedia('(max-width: 1024px)').matches) {
+      activeMobileTab.scrollIntoView({
+        block: 'nearest',
+        inline: 'center',
+        behavior: 'smooth',
+      });
+    }
+
     // Toggle visibility of panels
     document.querySelectorAll('.basics__panel').forEach((panel, i) => {
       if (i === index) {
@@ -472,6 +498,16 @@ document.addEventListener('DOMContentLoaded', () => {
   basicsFiles.forEach(file => {
     file.addEventListener('click', () => {
       updateBasics(parseInt(file.dataset.feature));
+    });
+  });
+
+  // Mobile feature tabs
+  const mobileTabs = document.querySelectorAll('.basics__mobile-tab');
+  mobileTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      mobileTabs.forEach(t => t.classList.remove('basics__mobile-tab--active'));
+      tab.classList.add('basics__mobile-tab--active');
+      updateBasics(parseInt(tab.dataset.feature));
     });
   });
 
@@ -514,9 +550,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const overlay = document.getElementById('modalOverlay');
+  const modalContent = document.getElementById('modalContent');
   const modalTitle = document.getElementById('modalTitle');
   const modalDesc = document.getElementById('modalDesc');
   const modalClose = document.getElementById('modalClose');
+  let modalScrollY = 0;
+
+  function lockModalScroll() {
+    if (document.body.classList.contains('modal-open')) return;
+    modalScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.top = `-${modalScrollY}px`;
+    document.body.classList.add('modal-open');
+  }
+
+  function unlockModalScroll() {
+    if (!document.body.classList.contains('modal-open')) return;
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, modalScrollY);
+  }
 
   function openModal(key) {
     const data = modalData[key];
@@ -525,10 +577,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use innerHTML to allow HTML tags like <br> and <ul>
     modalDesc.innerHTML = data.desc.replace(/\n/g, '<br>');
     overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    lockModalScroll();
+    if (modalContent) modalContent.scrollTop = 0;
   }
 
   function closeModal() {
     overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    unlockModalScroll();
   }
 
   document.querySelectorAll('.cartridge[data-modal]').forEach(btn => {

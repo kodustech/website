@@ -423,9 +423,9 @@
     </section>
 
     <!-- ========== CARTRIDGE MODALS ========== -->
-    <div class="modal-overlay" id="modalOverlay">
-      <div class="modal" id="modalContent">
-        <button class="modal__close" id="modalClose">&times;</button>
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+      <div class="modal" id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal__close" id="modalClose" aria-label="Close modal">&times;</button>
         <div class="modal__header">
           <h3 class="modal__title" id="modalTitle"></h3>
         </div>
@@ -518,6 +518,17 @@
               <span class="window-dot"></span>
               <span class="window-bar__url">kodus://features</span>
             </div>
+            <!-- Mobile feature selector (hidden on desktop) -->
+            <div class="basics__mobile-nav">
+              <button class="basics__mobile-tab basics__mobile-tab--active" data-feature="0">Context</button>
+              <button class="basics__mobile-tab" data-feature="1">Rules</button>
+              <button class="basics__mobile-tab" data-feature="2">Sync</button>
+              <button class="basics__mobile-tab" data-feature="3">Plugins</button>
+              <button class="basics__mobile-tab" data-feature="4">Tech Debt</button>
+              <button class="basics__mobile-tab" data-feature="5">Cockpit</button>
+              <button class="basics__mobile-tab" data-feature="6">Security</button>
+            </div>
+
             <div class="basics__body">
               <!-- File tree sidebar -->
               <div class="basics__sidebar">
