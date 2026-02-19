@@ -106,10 +106,15 @@
         <p class="cust-hero__subtitle">Discover how engineering teams use Kody to keep quality high as they scale.</p>
         <div class="cust-hero__actions">
           <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Try Cloud For Free &rarr;</a>
-          <a href="mailto:support@kodus.io" class="btn btn--outline-light">
+          <button
+            type="button"
+            class="btn btn--outline-light"
+            data-cal-link="gabrielmalinosqui/30min"
+            data-cal-config='{"layout":"month_view"}'
+          >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             Talk to a founder
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -830,6 +835,39 @@
     </div>
   </footer>
 
+  <script>
+    (function (C, A, L) {
+      var p = function (a, ar) { a.q.push(ar); };
+      var d = C.document;
+      C.Cal = C.Cal || function () {
+        var cal = C.Cal;
+        var ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          var api = function () { p(api, arguments); };
+          var namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else {
+            p(cal, ar);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", { origin: "https://cal.com" });
+    Cal("ui", { layout: "month_view" });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

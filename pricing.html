@@ -224,7 +224,12 @@
                 <span class="pricing__price-value">Custom</span>
               </div>
 
-              <a href="mailto:support@kodus.io" class="btn btn--outline-light pricing__cta">Contact Sales</a>
+              <button
+                type="button"
+                class="btn btn--outline-light pricing__cta"
+                data-cal-link="gabrielmalinosqui/30min"
+                data-cal-config='{"layout":"month_view"}'
+              >Contact Sales</button>
 
               <div class="pricing__divider"></div>
 
@@ -533,7 +538,7 @@
                 We offer <strong>30–100% discounts</strong> for startups, open-source projects, and teams in countries with weaker currencies
                 — so you can focus on shipping great software.
               </p>
-              <a href="mailto:support@kodus.io?subject=Global%20Builders%20Program" class="btn btn--primary builders-cta__btn">Apply now</a>
+              <a href="https://tally.so/r/npjK2P" class="btn btn--primary builders-cta__btn">Apply now</a>
             </div>
           </div>
         </div>
@@ -798,6 +803,39 @@
     </div>
   </footer>
 
+  <script>
+    (function (C, A, L) {
+      var p = function (a, ar) { a.q.push(ar); };
+      var d = C.document;
+      C.Cal = C.Cal || function () {
+        var cal = C.Cal;
+        var ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          var api = function () { p(api, arguments); };
+          var namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else {
+            p(cal, ar);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", { origin: "https://cal.com" });
+    Cal("ui", { layout: "month_view" });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
