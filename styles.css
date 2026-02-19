@@ -2901,6 +2901,22 @@ body.modal-open {
   z-index: 2;
 }
 
+.pricing__card--teams .pricing__cta {
+  margin-bottom: 10px;
+}
+
+.pricing__trial-note {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.4px;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+
 /* Divider */
 .pricing__divider {
   border-top: 2px dashed var(--color-card-lv3);
@@ -11512,6 +11528,11 @@ body.benchmark-page .roi-cta > .container {
     justify-content: center;
   }
 
+  .pricing__trial-note {
+    font-size: 0.64rem;
+    letter-spacing: 0.35px;
+  }
+
   .pricing__feature {
     font-size: 0.82rem;
     line-height: 1.5;
@@ -11633,6 +11654,12 @@ body.benchmark-page .roi-cta > .container {
   .pricing__price-period {
     font-size: 0.68rem;
     line-height: 1.2;
+  }
+
+  .pricing__trial-note {
+    font-size: 0.62rem;
+    letter-spacing: 0.3px;
+    margin-bottom: 16px;
   }
 
   .calculator__label {
