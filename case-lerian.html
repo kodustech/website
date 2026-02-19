@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study: Lerian — Kodus</title>
+  <meta name="description" content="From 100 hours to 40: how Lerian cut code review time by 60% with Kodus, freeing the equivalent of 2 full-time engineers.">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body class="benchmark-page">
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link nav__link--external" target="_blank" rel="noopener">Docs</a></li>
+        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link nav__link--external" target="_blank" rel="noopener">Community</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
+          <ul class="nav__dropdown-menu">
+            <li><a href="https://kodus.io/en/code-review-rules/"><span class="nav__item-title">Kody Rules</span><span class="nav__item-desc">Library of production tested review rules for real world codebases.</span></a></li>
+            <li><a href="https://kodus.io/en/changelog-en/"><span class="nav__item-title">Changelog</span><span class="nav__item-desc">Detailed release notes for every Kodus update.</span></a></li>
+            <li><a href="roi.html"><span class="nav__item-title">ROI Calculator</span><span class="nav__item-desc">Model driven estimate of the impact of catching issues before they hit production.</span></a></li>
+            <li><a href="customers.html"><span class="nav__item-title">Customers</span><span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span></a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage"><span class="nav__item-title">Security</span><span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span></a></li>
+            <li><a href="benchmark.html"><span class="nav__item-title">AI Code Review Tools Benchmarks</span><span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span></a></li>
+            <li><a href="https://codereviewbench.com/"><span class="nav__item-title">LLMs Performance Benchmark</span><span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span></a></li>
+            <li><a href="https://ai-skills.io/"><span class="nav__item-title">Agent Skills Library</span><span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span></a></li>
+          </ul>
+        </li>
+        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
+        <li><a href="pricing.html" class="nav__link">Pricing</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a href="#" class="btn btn--github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span id="ghStars">--</span>
+        </a>
+        <a href="https://app.kodus.io/sign-in" class="btn btn--outline-light">Login</a>
+        <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Start Free Trial</a>
+      </div>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="chat">
+
+    <!-- Chat Header -->
+    <div class="chat__header">
+      <img src="assets/img/logos_new/lerian1.png" alt="Lerian" class="chat__header-avatar">
+      <div class="chat__header-info">
+        <div class="chat__header-name">Lerian &times; Kodus</div>
+        <div class="chat__header-status">
+          <span class="chat__header-dot"></span> Case verified
+        </div>
+      </div>
+      <span class="chat__header-ref">REF: LER-02</span>
+    </div>
+
+    <!-- Chat Thread -->
+    <div class="chat__thread">
+
+      <div class="chat__system chat__system--divider">Case opened</div>
+
+      <!-- Client: Who they are -->
+      <div class="chat__msg chat__msg--client">
+        <img src="assets/img/logos_new/lerian1.png" alt="Lerian" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__bubble-name">Lerian</span>
+          We're an open source core banking platform. We power financial products for institutions across the market with a team of <strong>14 people</strong>.
+        </div>
+      </div>
+
+      <div class="chat__msg chat__msg--client">
+        <img src="assets/img/logos_new/lerian1.png" alt="Lerian" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__bubble-name">Lerian</span>
+          We ship fast, but reviews have been dragging us down. We're spending over <strong>100 hours per week</strong> on code reviews.
+        </div>
+      </div>
+
+      <div class="chat__system chat__system--divider">Diagnostic running...</div>
+
+      <div class="chat__msg chat__msg--client">
+        <img src="assets/img/logos_new/lerian1.png" alt="Lerian" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__bubble-name">Lerian</span>
+          Most of it is repetitive. The same corrections come up PR after PR &mdash; formatting, team conventions, basic rules. Our seniors are stuck in the queue instead of writing code.
+        </div>
+      </div>
+
+      <div class="chat__msg chat__msg--client">
+        <img src="assets/img/logos_new/lerian1.png" alt="Lerian" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__bubble-name">Lerian</span>
+          PRs sit idle for days waiting on feedback that's mostly mechanical. It's slowing everything down.
+        </div>
+      </div>
+
+      <!-- System: Warnings -->
+      <div class="chat__system chat__system--err">[ERR] 100+ hrs/week on code reviews</div>
+      <div class="chat__system chat__system--warn">[WARN] Repetitive corrections dominating reviews</div>
+      <div class="chat__system chat__system--warn">[WARN] Senior engineers blocked by queue</div>
+      <div class="chat__system chat__system--warn">[WARN] PRs idle for days</div>
+
+      <div class="chat__system chat__system--divider">Kody entering the chat...</div>
+
+      <!-- Kody: Solution -->
+      <div class="chat__msg chat__msg--kody">
+        <img src="assets/img/kody_profile.png" alt="Kody" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__bubble-name">Kody</span>
+          I'll automate the repetitive layer so your seniors can focus on architecture and logic. Deploying now:
+          <ul class="chat__checklist">
+            <li><span class="chat__check">&#10003;</span> Standardized review automation</li>
+            <li><span class="chat__check">&#10003;</span> Team conventions auto-enforced</li>
+            <li><span class="chat__check">&#10003;</span> Recurring issue detection enabled</li>
+            <li><span class="chat__check">&#10003;</span> Instant PR feedback deployed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chat__msg chat__msg--kody">
+        <img src="assets/img/kody_profile.png" alt="Kody" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__bubble-name">Kody</span>
+          Same comments won't surface again and again. I'll enforce your team's conventions automatically and give instant feedback on every PR.
+        </div>
+      </div>
+
+      <div class="chat__system chat__system--ok">&#10003; Integration complete</div>
+
+      <div class="chat__system chat__system--divider">Results &mdash; 3 months, 5 days later</div>
+
+      <!-- Metrics -->
+      <div class="chat__metrics">
+        <div class="chat__metric">
+          <div class="chat__metric-value" data-countup="60">0%</div>
+          <div class="chat__metric-label">reduction in review time</div>
+        </div>
+        <div class="chat__metric">
+          <div class="chat__metric-value" data-countup="40">0 hrs</div>
+          <div class="chat__metric-label">reclaimed per week</div>
+        </div>
+      </div>
+
+      <!-- Client: Impact -->
+      <div class="chat__msg chat__msg--client">
+        <img src="assets/img/logos_new/lerian1.png" alt="Lerian" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__bubble-name">Lerian</span>
+          Review time dropped from around 100 to about <strong>40 hours per week</strong>. The freed capacity is equivalent to <strong>+2 full-time engineers</strong>. Less queue, less rework, more time for work that actually matters.
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="chat__msg chat__msg--client chat__msg--quote">
+        <img src="assets/img/logos_new/lerian1.png" alt="Lerian" class="chat__avatar">
+        <div class="chat__bubble">
+          <span class="chat__quote-text">"Kodus has become an essential part of our process at Lerian. It catches the things that used to slow us down &mdash; automatically."</span>
+          <span class="chat__quote-author">&mdash; Luis Barrile, SRE Specialist</span>
+        </div>
+      </div>
+
+      <div class="chat__system chat__system--divider">Case verified &mdash; LER-02</div>
+
+    </div>
+
+  </main>
+
+  <!-- CTA -->
+  <div class="chat__cta">
+    <div class="pixel-cta">
+      <div class="pixel-cta__window">
+        <div class="pixel-cta__bar">
+          <span class="pixel-cta__bar-text">NEXT_STEP.EXE</span>
+        </div>
+        <div class="pixel-cta__content">
+          <div class="pixel-cta__media">
+            <img src="assets/img/kody-review.png" alt="Kody Review" class="pixel-cta__kody">
+          </div>
+          <div class="pixel-cta__copy">
+            <h2 class="pixel-cta__title">Ready to let Kody review<br>your next PR?</h2>
+            <p class="pixel-cta__desc">Spin it up in under 2 minutes &mdash; cloud or self-hosted, no credit card.</p>
+            <div class="pixel-cta__actions">
+              <a href="https://github.com/kodustech/kodus-ai" class="btn btn--outline-light pixel-cta__btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                DEPLOY
+              </a>
+              <a href="https://app.kodus.io/sign-up" class="btn btn--primary pixel-cta__btn">
+                START FREE TRIAL
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo">
+          <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+        </a>
+        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Legal & Contact</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="https://kodus.io/en/terms-of-use/">Terms of Use</a></li>
+            <li><a href="mailto:support@kodus.io">support@kodus.io</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Meet Kody</h4>
+          <ul class="footer__col-list">
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="customers.html">Customers</a></li>
+            <li><a href="https://kodus.io/en/code-review-rules/">Kody Rules</a></li>
+            <li><a href="roi.html">ROI Calculator</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Resources</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/insights-en/">Blog</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/overview">Docs</a></li>
+            <li><a href="https://kodus.io/en/changelog-en/">Changelog</a></li>
+            <li><a href="https://discord.gg/TFZBRk9fT6">Support Discord</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Helpful Links</h4>
+          <ul class="footer__col-list">
+            <li><a href="benchmark.html">AI Code Review Tools Benchmarks</a></li>
+            <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
+            <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
+            <li><a href="https://kodus.io/en/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Our Network</h4>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/kodustech/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt="LinkedIn" class="footer__social-icon"></a>
+            <a href="https://twitter.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="X (Twitter)"><img src="assets/img/x-1.png?v=2" alt="X (Twitter)" class="footer__social-icon"></a>
+            <a href="https://www.reddit.com/r/Kodus/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Reddit"><img src="assets/img/reddit.png" alt="Reddit" class="footer__social-icon"></a>
+            <a href="https://github.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub"><img src="assets/img/github.png" alt="GitHub" class="footer__social-icon"></a>
+            <div style="flex-basis: 100%; height: 0;"></div>
+            <a href="https://discord.gg/TFZBRk9fT6" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Discord"><img src="assets/img/discord.png" alt="Discord" class="footer__social-icon"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Kodus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

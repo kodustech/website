@@ -21,8 +21,8 @@
       </a>
 
       <ul class="nav__links" id="navLinks">
-        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link">Docs</a></li>
-        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link">Community</a></li>
+        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link nav__link--external" target="_blank" rel="noopener">Docs</a></li>
+        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link nav__link--external" target="_blank" rel="noopener">Community</a></li>
         <li class="nav__dropdown">
           <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
           <ul class="nav__dropdown-menu">
@@ -331,7 +331,7 @@
                 <h2 class="dossier__client-name" id="dossierTitle">BRENDI</h2>
 
                 <div class="dossier__diagnosis" id="dossierDiagnosis">
-                  TECHNICAL_DIAGNOSIS: REVIEW_BACKLOG::MANUAL_CHECKS::SLOW_FEEDBACK::AUTO_PR_PRECHECKS
+                  <span class="dossier__tag">Review Backlog</span><span class="dossier__tag">Manual Checks</span><span class="dossier__tag">Slow Feedback</span><span class="dossier__tag">Auto PR Prechecks</span>
                 </div>
 
                 <p class="dossier__desc" id="dossierDesc">
@@ -343,7 +343,7 @@
                     <span class="dossier__impact-label">BOTTOM_LINE_IMPACT:</span>
                     <span id="dossierImpact">About 70 percent less time spent on reviews per week. From 125 hours down to around 40. Less waiting. Less context switching. More time to focus on what actually moves the product.</span>
                   </div>
-                  <a href="https://kodus.io/en/how-brendi-cut-review-time-by-70/" class="dossier__export-btn" id="dossierBtn">VIEW_FULL_CASE_DATA</a>
+                  <a href="case-brendi.html" class="dossier__export-btn" id="dossierBtn">VIEW_FULL_CASE_DATA</a>
                 </div>
               </div>
 
@@ -356,115 +356,22 @@
     </section>
 
     <!-- ========== WORLD MAP ========== -->
-    <section class="cust-map">
+    <section class="cust-stats">
       <div class="container">
-        <h2 class="section-title">Companies around the world<br>already use Kody</h2>
+        <h2 class="section-title">Kody in numbers</h2>
 
-        <div class="cust-map__wrap">
-          <div class="cust-map__frame">
-            <div class="cust-map__screen">
-              <svg class="cust-map__svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <g id="custMapPixels" class="cust-map__pixel-land"></g>
-              </svg>
-
-              <div class="cust-map__nodes">
-                <button class="cust-map__node cust-map__node--right" style="--x:18%; --y:30%;" aria-label="USA - 4260 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">USA</span>
-                    <span class="cust-map__tooltip-value">4,260 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:28%; --y:68%;" aria-label="Brazil - 5310 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">Brazil</span>
-                    <span class="cust-map__tooltip-value">5,310 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:26.5%; --y:74%;" aria-label="Argentina - 1950 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">Argentina</span>
-                    <span class="cust-map__tooltip-value">1,950 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:47%; --y:20%;" aria-label="United Kingdom - 2980 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">United Kingdom</span>
-                    <span class="cust-map__tooltip-value">2,980 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:50%; --y:22%;" aria-label="Germany - 3240 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">Germany</span>
-                    <span class="cust-map__tooltip-value">3,240 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:52%; --y:25%;" aria-label="Romania - 1760 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">Romania</span>
-                    <span class="cust-map__tooltip-value">1,760 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:65%; --y:24%;" aria-label="Russia - 8420 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">Russia</span>
-                    <span class="cust-map__tooltip-value">8,420 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:65%; --y:44%;" aria-label="India - 4670 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">India</span>
-                    <span class="cust-map__tooltip-value">4,670 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node cust-map__node--left" style="--x:73%; --y:40%;" aria-label="China - 7210 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">China</span>
-                    <span class="cust-map__tooltip-value">7,210 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node cust-map__node--left" style="--x:81%; --y:34%;" aria-label="Japan - 3560 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">Japan</span>
-                    <span class="cust-map__tooltip-value">3,560 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node cust-map__node--left" style="--x:81%; --y:72%;" aria-label="Australia - 2890 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">Australia</span>
-                    <span class="cust-map__tooltip-value">2,890 PRs</span>
-                  </span>
-                </button>
-
-                <button class="cust-map__node" style="--x:49%; --y:72%;" aria-label="South Africa - 1630 PRs">
-                  <span class="cust-map__node-core"></span>
-                  <span class="cust-map__tooltip">
-                    <span class="cust-map__tooltip-label">South Africa</span>
-                    <span class="cust-map__tooltip-value">1,630 PRs</span>
-                  </span>
-                </button>
-              </div>
-            </div>
+        <div class="cust-stats__grid">
+          <div class="cust-stats__card">
+            <span class="cust-stats__value">+10M</span>
+            <span class="cust-stats__label">Lines of code reviewed</span>
+          </div>
+          <div class="cust-stats__card">
+            <span class="cust-stats__value">+1,000</span>
+            <span class="cust-stats__label">Teams using Kody</span>
+          </div>
+          <div class="cust-stats__card">
+            <span class="cust-stats__value">+12</span>
+            <span class="cust-stats__label">Countries</span>
           </div>
         </div>
       </div>

@@ -203,11 +203,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws, .pricing__card, .token-info__cartridge, .calculator__window, .roi-hero__window, .roi__window, .cases__card, .roi-testimonials__card, .roi-cta__window, .cust-featured__card, .cust-cases__card, .cust-cases__full, .cust-map__wrap')
+  document.querySelectorAll('.vcr, .cartridge, .basics__window, .retro-window, .vhs, .faq__terminal, .ask-llm__console, .hero__kody-paws, .pricing__card, .token-info__cartridge, .calculator__window, .roi-hero__window, .roi__window, .cases__card, .roi-testimonials__card, .roi-cta__window, .cust-featured__card, .cust-cases__card, .cust-cases__full, .cust-map__wrap, .pixel-cta')
     .forEach(el => {
       el.classList.add('fade-in');
       fadeObserver.observe(el);
     });
+
+  /* --- Chat Case Study: Scroll-triggered message reveal --- */
+  const chatThread = document.querySelector('.chat__thread');
+  if (chatThread) {
+    const chatObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          chatObserver.unobserve(entry.target);
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -40px 0px', threshold: 0.1 });
+
+    chatThread.querySelectorAll('.chat__msg, .chat__system, .chat__metrics').forEach(el => {
+      chatObserver.observe(el);
+    });
+
+    /* --- Count-up animation on metric values --- */
+    const metricObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('[data-countup]').forEach(valueEl => {
+          if (valueEl.dataset.counted) return;
+          valueEl.dataset.counted = '1';
+
+          const target = parseInt(valueEl.dataset.countup, 10);
+          if (target === 0) return;
+          const raw = valueEl.textContent.trim();
+          const suffix = raw.replace(/^\d+/, '');
+          const duration = 1200;
+          const start = performance.now();
+          valueEl.textContent = '0' + suffix;
+
+          function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(target * eased);
+            valueEl.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+        metricObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.5 });
+
+    chatThread.querySelectorAll('.chat__metrics').forEach(el => metricObserver.observe(el));
+  }
 
   /* --- VHS shelf carousel --- */
   const vhsShelf = document.getElementById('vhsShelf');
@@ -642,7 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSliderFill(slider) {
     if (!slider) return;
     const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
-    slider.style.background = `linear-gradient(to right, #1df3f5 0%, #1df3f5 ${pct}%, #101019 ${pct}%)`;
+    slider.style.background = `linear-gradient(to right, #555566 0%, #555566 ${pct}%, #1A1A2E ${pct}%)`;
   }
 
   function updateROI() {
@@ -678,8 +727,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const formatWithBreaks = (value) => value.toLocaleString().replace(/,/g, ',<wbr>');
 
     // Display results
-    if (roiPRs) roiPRs.innerHTML = `${formatWithBreaks(monthlyPRs)} PR`;
-    if (roiHours) roiHours.innerHTML = `${formatWithBreaks(Math.round(hoursSpent))} H`;
+    if (roiPRs) roiPRs.innerHTML = `${formatWithBreaks(monthlyPRs)}`;
+    if (roiHours) roiHours.innerHTML = `${formatWithBreaks(Math.round(hoursSpent))}h`;
     if (roiCost) roiCost.innerHTML = `$${formatWithBreaks(Math.round(currentReviewCost))}`;
     if (roiROI) roiROI.textContent = `${roi}x`;
 
@@ -733,32 +782,32 @@ document.addEventListener('DOMContentLoaded', () => {
       brendi: {
         title: 'BRENDI',
         refId: 'BRN-01',
-        diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_BACKLOG::MANUAL_CHECKS::SLOW_FEEDBACK::AUTO_PR_PRECHECKS',
+        diagnosis: ['Review Backlog', 'Manual Checks', 'Slow Feedback', 'Auto PR Prechecks'],
         desc: 'At Brendi, reviews became a bottleneck. PRs stayed open. The queue grew early in the day. Senior engineers started their mornings clearing pending reviews instead of writing code. A big part of the time went into obvious fixes that showed up in almost every PR. Kody stepped into the flow to catch those issues early, running the team\'s rules automatically.',
         impact: 'About 70 percent less time spent on reviews per week. From 125 hours down to around 40. Less waiting. Less context switching. More time to focus on what actually moves the product.',
         image: 'assets/img/logos_new/brendi1.png',
         imageClass: '',
-        link: 'https://kodus.io/en/how-brendi-cut-review-time-by-70/'
+        link: 'case-brendi.html'
       },
       lerian: {
         title: 'LERIAN',
         refId: 'LER-02',
-        diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_QUEUE::REPEATED_COMMENTS::MANUAL_CHECKS::AUTO_PR_FEEDBACK',
+        diagnosis: ['Review Queue', 'Repeated Comments', 'Manual Checks', 'Auto PR Feedback'],
         desc: 'At Lerian, the problem was simple. Reviews were taking too much time because too much of the work was repetitive. The same adjustments showed up in PR after PR. Formatting. Team conventions. Basic rules. Kody stepped into the PR flow to catch those things early, applying the team\'s own rules and giving feedback right away.',
         impact: 'About 60 percent less time spent on reviews per week. From around 100 hours down to about 40. Less queue. Less rework. More time for work that actually matters.',
         image: 'assets/img/logos_new/lerian1.png',
         imageClass: '',
-        link: 'https://kodus.io/en/lerian-cut-review-time/'
+        link: 'case-lerian.html'
       },
       notificacoes: {
         title: 'NOTIFICAÇÕES INTELIGENTES',
         refId: 'NTF-03',
-        diagnosis: 'TECHNICAL_DIAGNOSIS: REVIEW_NOISE::REPEATED_COMMENTS::RULE_GAPS::CONSISTENCY_ENFORCEMENT',
+        diagnosis: ['Review Noise', 'Repeated Comments', 'Rule Gaps', 'Consistency Enforcement'],
         desc: 'At Notificações Inteligentes, reviews started to get too noisy. The same comments showed up in PR after PR. Formatting. Team standards. Basic rules. Each reviewer had a different approach and many things ended up being fixed more than once. The turning point was creating custom rules inside Kody, aligned with the team\'s workflow, and combining them with the ready to use Kody Rules library. This stopped the same issues from repeating across PRs and made the review process much more consistent day to day.',
         impact: 'Less rework, less back and forth in PRs, and more predictable feedback. The team kept moving fast without sacrificing quality.',
         image: 'assets/img/logos_new/notifica1.png',
         imageClass: 'dossier__visual-img--notifica',
-        link: 'https://kodus.io/en/notificacoes-inteligentes-code-reviews/'
+        link: 'case-notificacoes.html'
       }
     };
 
@@ -783,7 +832,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dossierTitle.classList.toggle('dossier__client-name--accented', /[\u00C0-\u017F]/.test(data.title));
           }
           if (dossierRefId) dossierRefId.textContent = data.refId;
-          if (dossierDiagnosis) dossierDiagnosis.textContent = data.diagnosis;
+          if (dossierDiagnosis) {
+            dossierDiagnosis.innerHTML = data.diagnosis.map(tag => '<span class="dossier__tag">' + tag + '</span>').join('');
+          }
           if (dossierDesc) dossierDesc.textContent = data.desc;
           if (dossierImpact) dossierImpact.textContent = data.impact;
           if (dossierImage) {
@@ -834,9 +885,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pixelGroup.textContent = '';
 
+    // Paths must be in the DOM for isPointInFill() to work across browsers
+    const hitGroup = document.createElementNS(svgNS, 'g');
+    hitGroup.style.display = 'none';
+    svg.appendChild(hitGroup);
+
     const paths = pathData.map(d => {
       const p = document.createElementNS(svgNS, 'path');
       p.setAttribute('d', d);
+      hitGroup.appendChild(p);
       return p;
     });
 
@@ -852,6 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
+
+    svg.removeChild(hitGroup);
 
     const isLand = (x, y) => (x >= 0 && x < cols && y >= 0 && y < rows && grid[y][x]);
 
