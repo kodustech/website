@@ -347,6 +347,10 @@ button {
   transform: rotate(180deg);
 }
 
+.nav__dropdown.active .nav__chevron {
+  transform: rotate(180deg);
+}
+
 /* Ensure mobile menu handles dropdown correctly */
 @media (max-width: 768px) {
   .nav__dropdown-menu {
@@ -364,6 +368,20 @@ button {
   
   .nav__dropdown.active .nav__dropdown-menu {
     display: block;
+  }
+
+  .nav__dropdown-menu a {
+    padding: 12px 10px;
+  }
+
+  .nav__dropdown-menu .nav__item-title {
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+  }
+
+  .nav__dropdown-menu .nav__item-desc {
+    font-size: 0.76rem;
+    line-height: 1.5;
   }
 }
 
@@ -385,6 +403,30 @@ button {
   background: var(--color-text);
   border-radius: 2px;
   transition: all 0.3s ease;
+}
+
+.nav__hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav.nav--open .nav__hamburger span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav.nav--open .nav__hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav.nav--open .nav__hamburger span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Subtle grid background for entire site */
@@ -5870,15 +5912,29 @@ body.modal-open {
     --section-padding: 80px;
   }
 
+  .header {
+    z-index: 1200;
+    backdrop-filter: none;
+    background: var(--color-bg);
+  }
+
+  body.nav-mobile-open {
+    overflow: hidden;
+  }
+
   .nav__links {
     display: none;
   }
 
-  /* Stars button stays visible in the bar, near hamburger */
+  /* Keep only GitHub button visible in mobile top bar */
   .nav__actions {
+    display: flex;
+    align-items: center;
     gap: 8px;
     margin-left: auto;
-    margin-right: 16px;
+    margin-right: 10px;
+    position: relative;
+    z-index: 1202;
   }
 
   .nav__actions .btn--outline-light,
@@ -5887,58 +5943,60 @@ body.modal-open {
   }
 
   .nav__actions .btn--github {
+    display: inline-flex;
     font-size: 0.75rem;
-    padding: 6px 10px;
+    padding: 7px 10px;
   }
 
   .nav__hamburger {
     display: flex;
+    margin-left: 8px;
+    position: relative;
+    z-index: 1202;
   }
 
   /* Mobile menu open */
   .nav--open .nav__links {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: fixed;
     top: 64px;
     left: 0;
     right: 0;
+    bottom: auto;
+    width: 100%;
+    height: calc(100dvh - 64px);
+    min-height: calc(100svh - 64px);
+    max-height: calc(100svh - 64px);
     background: var(--color-bg);
-    border-bottom: 1px solid var(--color-card-lv2);
-    padding: 20px 24px;
-    gap: 4px;
-    z-index: 99;
+    border-bottom: none;
+    padding: 20px 24px calc(24px + env(safe-area-inset-bottom));
+    gap: 8px;
+    z-index: 1201;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav--open .nav__links > li {
+    width: 100%;
   }
 
   .nav--open .nav__links li a {
     display: block;
+    width: 100%;
     padding: 12px 0;
     font-size: 0.9rem;
   }
 
-  .nav--open .nav__actions {
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-card-lv2);
-    padding: 12px 24px 20px;
-    gap: 10px;
-    z-index: 99;
-  }
-
   .nav--open .nav__actions .btn--outline-light,
   .nav--open .nav__actions .btn--primary {
-    display: flex;
-    flex: 1;
-    text-align: center;
-    justify-content: center;
-    padding: 10px 12px;
-    font-size: 0.8rem;
+    display: none;
   }
 
   .nav--open .nav__actions .btn--github {
-    display: none;
+    display: inline-flex;
   }
 
   .hero__title {
