@@ -24,6 +24,7 @@ function kodus_get_retro_templates() {
         'page-case-brendi.php',
         'page-case-lerian.php',
         'page-case-notificacoes.php',
+        'page-kodus-wrapper.php',
     ];
 }
 
@@ -131,6 +132,7 @@ function kodus_register_page_templates($templates) {
     $templates['page-case-brendi.php']       = 'Kodus Case Brendi';
     $templates['page-case-lerian.php']       = 'Kodus Case Lerian';
     $templates['page-case-notificacoes.php'] = 'Kodus Case Notificações';
+    $templates['page-kodus-wrapper.php']     = 'Kodus Wrapper';
     return $templates;
 }
 
