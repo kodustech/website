@@ -237,31 +237,25 @@ function kodus_github_stars_cache() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 11. WRAPPER PAGES — strip Elementor header/footer from content
+// 11. WRAPPER PAGES — strip Elementor header/footer CSS via output buffer
 // ═══════════════════════════════════════════════════════════════
-// Páginas usando template Kodus Wrapper: o the_content() vem do Elementor
-// e inclui widgets de header/footer embutidos. Removemos via filtro.
-add_filter('the_content', 'kodus_strip_elementor_hf_widgets', 1);
-function kodus_strip_elementor_hf_widgets($content) {
-    if (!is_page()) return $content;
-    $tpl = get_post_meta(get_the_ID(), '_wp_page_template', true);
-    if ($tpl !== 'page-kodus-wrapper.php') return $content;
+add_action('template_redirect', 'kodus_wrapper_strip_buffer');
+function kodus_wrapper_strip_buffer() {
+    if (!is_page()) return;
+    $post_id = get_queried_object_id();
+    if (!$post_id) return;
+    $tpl = get_post_meta($post_id, '_wp_page_template', true);
+    if ($tpl !== 'page-kodus-wrapper.php') return;
 
-    // Remove container do header Elementor (data-id="fb7ffe4") e tudo dentro
-    $content = preg_replace(
-        '/<div[^>]*data-id="fb7ffe4"[^>]*>.*?<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/s',
-        '',
-        $content
-    );
-    // Remove container do footer Elementor (data-id="0f62b0c") e tudo dentro
-    $content = preg_replace(
-        '/<div[^>]*data-id="0f62b0c"[^>]*>.*?<\/div>\s*<\/div>\s*<\/div>/s',
-        '',
-        $content
-    );
-    // Remove <style> blocks dos templates de header/footer do Elementor
-    $content = preg_replace('/<style id="elementor-post-25308">.*?<\/style>/s', '', $content);
-    $content = preg_replace('/<style id="elementor-post-25462">.*?<\/style>/s', '', $content);
-
-    return $content;
+    ob_start(function($html) {
+        // Remove ALL Elementor inline <style> blocks (post CSS, global, frontend)
+        $html = preg_replace('/<style[^>]*id=["\']elementor[^"\']*["\'][^>]*>.*?<\/style>/s', '', $html);
+        // Remove Elementor <link> stylesheets that survived dequeue
+        $html = preg_replace('/<link[^>]*elementor[^>]*stylesheet[^>]*>/i', '', $html);
+        $html = preg_replace('/<link[^>]*stylesheet[^>]*elementor[^>]*>/i', '', $html);
+        // Remove Elementor header/footer widget containers
+        $html = preg_replace('/<div[^>]*data-id="fb7ffe4"[^>]*>.*?<\/section>/s', '', $html);
+        $html = preg_replace('/<div[^>]*data-id="0f62b0c"[^>]*>.*?<\/section>/s', '', $html);
+        return $html;
+    });
 }
