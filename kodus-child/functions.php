@@ -248,15 +248,30 @@ function kodus_wrapper_strip_buffer() {
     if ($tpl !== 'page-kodus-wrapper.php') return;
 
     ob_start(function($html) {
-        // Remove ALL Elementor inline <style> blocks (post CSS, global, frontend)
-        $html = preg_replace('/<style[^>]*id=["\']elementor[^"\']*["\'][^>]*>.*?<\/style>/s', '', $html);
-        // Remove Elementor <link> stylesheets that survived dequeue
-        $html = preg_replace('/<link[^>]*elementor[^>]*stylesheet[^>]*>/i', '', $html);
-        $html = preg_replace('/<link[^>]*stylesheet[^>]*elementor[^>]*>/i', '', $html);
-        // Remove Elementor header/footer widget containers
-        $html = preg_replace('/<div[^>]*data-id="fb7ffe4"[^>]*>.*?<\/section>/s', '', $html);
-        $html = preg_replace('/<div[^>]*data-id="0f62b0c"[^>]*>.*?<\/section>/s', '', $html);
-        return $html;
+        if (empty($html)) return $html;
+
+        // Use DOMDocument to reliably remove Elementor elements (nested HTML)
+        $dom = new DOMDocument();
+        @$dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $xpath = new DOMXPath($dom);
+
+        // Remove Elementor theme builder header/footer containers (any page)
+        foreach ($xpath->query('//*[@data-elementor-type="header"] | //*[@data-elementor-type="footer"]') as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        // Remove all Elementor <style> blocks
+        foreach ($xpath->query('//style[contains(@id, "elementor")]') as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        // Remove Elementor <link> stylesheets
+        foreach ($xpath->query('//link[contains(@href, "elementor")]') as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        $result = $dom->saveHTML();
+        return str_replace('<?xml encoding="UTF-8">', '', $result);
     });
 }
 

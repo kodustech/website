@@ -18,5 +18,5 @@
 .wrapper-content__inner img{max-width:100%;height:auto;border-radius:4px}
 @media(max-width:768px){.wrapper-content__inner{padding:0 16px;font-size:15px}.wrapper-content__inner h1{font-size:1.5rem}}
 
-/* ── Hide Elementor header/footer widgets on wrapper pages ── */
-[data-id="fb7ffe4"],[data-id="0f62b0c"]{display:none!important}
+/* ── Hide Elementor header/footer on wrapper pages (fallback) ── */
+[data-elementor-type="header"],[data-elementor-type="footer"]{display:none!important}
