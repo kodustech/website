@@ -231,6 +231,28 @@ function kodus_remove_plugin_assets() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 9b. DISABLE WP ROCKET OPTIMIZATION ON RETRO PAGES
+//     Prevents CSS concat/minify/delay that breaks retro assets
+// ═══════════════════════════════════════════════════════════════
+add_action('wp', 'kodus_disable_rocket_on_retro');
+function kodus_disable_rocket_on_retro() {
+    if (!kodus_is_retro_page()) return;
+
+    // Disable CSS minify/concat/async
+    add_filter('pre_get_rocket_option_minify_css', '__return_zero');
+    add_filter('pre_get_rocket_option_minify_concatenate_css', '__return_zero');
+    add_filter('pre_get_rocket_option_async_css', '__return_zero');
+    add_filter('pre_get_rocket_option_optimize_css_delivery', '__return_zero');
+    add_filter('pre_get_rocket_option_remove_unused_css', '__return_zero');
+
+    // Disable JS minify/concat/defer/delay
+    add_filter('pre_get_rocket_option_minify_js', '__return_zero');
+    add_filter('pre_get_rocket_option_minify_concatenate_js', '__return_zero');
+    add_filter('pre_get_rocket_option_defer_all_js', '__return_zero');
+    add_filter('pre_get_rocket_option_delay_js', '__return_zero');
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 10. CACHE GITHUB STARS (evita rate limit)
 // ═══════════════════════════════════════════════════════════════
 add_action('wp_enqueue_scripts', 'kodus_github_stars_cache', 1001);
