@@ -287,17 +287,22 @@ function kodus_github_stars_cache() {
 // ═══════════════════════════════════════════════════════════════
 add_action('template_redirect', 'kodus_wrapper_disable_elementor', 0);
 function kodus_wrapper_disable_elementor() {
-    // Run on ALL retro template pages, blog posts, archives, blog index, and search
-    $is_retro_page = false;
+    // Run on pages that previously had Elementor content (wrapper + blog),
+    // plus blog posts, archives, blog index, and search.
+    // NOT on other retro pages (home, pricing, etc.) — they never had Elementor.
+    $needs_elementor_cleanup = false;
     if (is_page()) {
         $post_id = get_queried_object_id();
         if ($post_id) {
             $tpl = get_post_meta($post_id, '_wp_page_template', true);
-            $is_retro_page = in_array($tpl, kodus_get_retro_templates(), true);
+            $needs_elementor_cleanup = in_array($tpl, [
+                'page-kodus-wrapper.php',
+                'page-blog.php',
+            ], true);
         }
     }
     $is_blog = is_singular('post') || is_archive() || is_home() || is_search();
-    if (!$is_retro_page && !$is_blog) return;
+    if (!$needs_elementor_cleanup && !$is_blog) return;
 
     // Remove ALL Elementor callbacks from WP hooks
     global $wp_filter;
