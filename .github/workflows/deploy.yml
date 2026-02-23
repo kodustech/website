@@ -1,0 +1,35 @@
+name: Deploy Child Theme
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'kodus-child/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          REMOTE_HOST: 134.209.210.171
+          REMOTE_USER: ezdevs
+          SOURCE: kodus-child/
+          TARGET: /home/ezdevs/kodus-files/wp-content/themes/kodus-child/
+          ARGS: "-avz --delete --exclude='.git'"
+
+      - name: Fix permissions and clear cache
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 134.209.210.171
+          username: ezdevs
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            sudo chown -R www-data:www-data /home/ezdevs/kodus-files/wp-content/themes/kodus-child/
+            sudo chmod -R 755 /home/ezdevs/kodus-files/wp-content/themes/kodus-child/
+            cd /home/ezdevs/kodus-files && wp cache flush
+            sudo rm -rf /home/ezdevs/kodus-files/wp-content/cache/wp-rocket/* 2>/dev/null
