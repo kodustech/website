@@ -237,18 +237,41 @@ function kodus_github_stars_cache() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 11. WRAPPER PAGES — strip Elementor header/footer CSS via output buffer
+// 11. WRAPPER PAGES — remove ALL Elementor hooks + clean output
 // ═══════════════════════════════════════════════════════════════
-add_action('template_redirect', 'kodus_wrapper_strip_buffer');
-function kodus_wrapper_strip_buffer() {
+add_action('template_redirect', 'kodus_wrapper_disable_elementor', 0);
+function kodus_wrapper_disable_elementor() {
     if (!is_page()) return;
     $post_id = get_queried_object_id();
     if (!$post_id) return;
     $tpl = get_post_meta($post_id, '_wp_page_template', true);
     if ($tpl !== 'page-kodus-wrapper.php') return;
 
+    // Remove ALL Elementor callbacks from WP hooks
+    global $wp_filter;
+    $hooks = ['wp_head', 'wp_footer', 'wp_body_open', 'the_content',
+              'get_header', 'get_footer', 'wp_enqueue_scripts',
+              'wp_print_styles', 'wp_print_footer_scripts'];
+    foreach ($hooks as $hook) {
+        if (!isset($wp_filter[$hook])) continue;
+        foreach ($wp_filter[$hook]->callbacks as $priority => &$callbacks) {
+            foreach ($callbacks as $key => $cb) {
+                $func = $cb['function'];
+                $class_name = '';
+                if (is_array($func) && is_object($func[0])) {
+                    $class_name = get_class($func[0]);
+                } elseif (is_array($func) && is_string($func[0])) {
+                    $class_name = $func[0];
+                }
+                if (stripos($class_name, 'elementor') !== false) {
+                    unset($callbacks[$key]);
+                }
+            }
+        }
+    }
+
+    // Output buffer to clean up any residual Elementor markup
     ob_start(function($html) {
-        // Clean up any remaining Elementor inline styles
         $html = preg_replace('/<style[^>]*id=["\']elementor[^"\']*["\'][^>]*>.*?<\/style>/s', '', $html);
         $html = preg_replace('/<link[^>]*elementor[^>]*>/i', '', $html);
         return $html;
