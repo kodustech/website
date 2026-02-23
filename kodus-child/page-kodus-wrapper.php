@@ -14,6 +14,10 @@
     <?php
     while (have_posts()) :
         the_post();
+        // Bypass Elementor rendering — output plain WP content only
+        if (class_exists('\Elementor\Plugin')) {
+            remove_filter('the_content', [\Elementor\Plugin::$instance->frontend, 'apply_builder_in_content']);
+        }
         the_content();
     endwhile;
     ?>
