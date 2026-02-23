@@ -231,7 +231,16 @@ function kodus_remove_plugin_assets() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 9b. DISABLE WP ROCKET OPTIMIZATION ON RETRO PAGES
+// 9b. REMOVE WP AUTO-INSERTED WIDTH/HEIGHT ON RETRO IMAGES
+//     WP adds width="3684" height="3072" to <img> tags, breaking layout
+// ═══════════════════════════════════════════════════════════════
+add_filter('wp_img_tag_add_width_and_height_attr', function($value) {
+    if (kodus_is_retro_page()) return false;
+    return $value;
+});
+
+// ═══════════════════════════════════════════════════════════════
+// 9c. DISABLE WP ROCKET OPTIMIZATION ON RETRO PAGES
 //     Prevents CSS concat/minify/delay that breaks retro assets
 // ═══════════════════════════════════════════════════════════════
 add_action('wp', 'kodus_disable_rocket_on_retro');
