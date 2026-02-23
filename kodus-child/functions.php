@@ -261,14 +261,14 @@ function kodus_wrapper_strip_buffer() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 12. ONE-TIME: revert privacy-policy page template back to default
+// 12. ONE-TIME: set privacy-policy page to Kodus Wrapper template
 // ═══════════════════════════════════════════════════════════════
 add_action('init', function() {
-    if (get_transient('kodus_reverted_privacy_tpl')) return;
+    if (get_transient('kodus_set_privacy_tpl_v2')) return;
     $page = get_page_by_path('privacy-policy');
     if ($page) {
-        update_post_meta($page->ID, '_wp_page_template', 'default');
+        update_post_meta($page->ID, '_wp_page_template', 'page-kodus-wrapper.php');
     }
-    delete_transient('kodus_migrated_privacy_tpl');
-    set_transient('kodus_reverted_privacy_tpl', 1, YEAR_IN_SECONDS);
+    delete_transient('kodus_reverted_privacy_tpl');
+    set_transient('kodus_set_privacy_tpl_v2', 1, YEAR_IN_SECONDS);
 });
