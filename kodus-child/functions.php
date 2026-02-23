@@ -302,6 +302,27 @@ function kodus_inject_nav() {
     $uri = get_stylesheet_directory_uri();
     $home = home_url();
     ?>
+    <style>
+    /* Reset Elementor globals dentro do header/footer retro */
+    body .header, body .header *,
+    body .footer, body .footer * {
+        font-family: 'JetBrains Mono', monospace;
+        box-sizing: border-box;
+        text-decoration: none;
+        letter-spacing: normal;
+        text-transform: none;
+        line-height: normal;
+    }
+    body .header a, body .footer a { color: inherit; text-decoration: none; background: none; border: none; padding: 0; }
+    body .header .nav__link,
+    body .header .nav__link--external { font-size: 14px; color: #b0b0c0; }
+    body .header .nav__link:hover,
+    body .header .nav__link--external:hover { color: #fff; }
+    body .header .btn--github { background: rgba(255,255,255,0.08); color: #e0e0e0; border: 1px solid rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 6px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; }
+    body .header .btn--outline-light { background: transparent; color: #f5a623; border: 1px solid #f5a623; padding: 8px 16px; border-radius: 6px; font-size: 13px; display: inline-flex; align-items: center; }
+    body .header .btn--primary { background: #f5a623; color: #0a0a1a; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; }
+    body .header .nav__hamburger span { background: #e0e0e0; }
+    </style>
     <header class="header" id="header">
       <nav class="nav container">
         <a href="<?php echo $home; ?>" class="nav__logo">
