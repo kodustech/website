@@ -259,3 +259,15 @@ function kodus_wrapper_strip_buffer() {
         return $html;
     });
 }
+
+// ═══════════════════════════════════════════════════════════════
+// 12. ONE-TIME: set privacy-policy page to Kodus Wrapper template
+// ═══════════════════════════════════════════════════════════════
+add_action('init', function() {
+    if (get_transient('kodus_migrated_privacy_tpl')) return;
+    $page = get_page_by_path('privacy-policy');
+    if ($page) {
+        update_post_meta($page->ID, '_wp_page_template', 'page-kodus-wrapper.php');
+    }
+    set_transient('kodus_migrated_privacy_tpl', 1, YEAR_IN_SECONDS);
+});
