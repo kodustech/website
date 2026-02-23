@@ -43,4 +43,7 @@ jobs:
             sudo chown -R www-data:www-data /home/ezdevs/kodus-files/wp-content/themes/kodus-child/
             sudo chmod -R 755 /home/ezdevs/kodus-files/wp-content/themes/kodus-child/
             cd /home/ezdevs/kodus-files && wp cache flush
-            sudo rm -rf /home/ezdevs/kodus-files/wp-content/cache/wp-rocket/* 2>/dev/null
+            cd /home/ezdevs/kodus-files && wp rocket clean --confirm 2>/dev/null || true
+            sudo rm -rf /home/ezdevs/kodus-files/wp-content/cache/wp-rocket/*
+            sudo rm -rf /home/ezdevs/kodus-files/wp-content/cache/min/*
+            sudo systemctl reload php*-fpm 2>/dev/null || true
