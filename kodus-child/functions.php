@@ -25,6 +25,7 @@ function kodus_get_retro_templates() {
         'page-case-lerian.php',
         'page-case-notificacoes.php',
         'page-kodus-wrapper.php',
+        'page-blog.php',
     ];
 }
 
@@ -138,6 +139,7 @@ function kodus_register_page_templates($templates) {
     $templates['page-case-lerian.php']       = 'Kodus Case Lerian';
     $templates['page-case-notificacoes.php'] = 'Kodus Case Notificações';
     $templates['page-kodus-wrapper.php']     = 'Kodus Wrapper';
+    $templates['page-blog.php']              = 'Kodus Blog';
     return $templates;
 }
 
@@ -318,3 +320,30 @@ add_action('init', function() {
     delete_transient('kodus_reverted_privacy_tpl');
     set_transient('kodus_set_privacy_tpl_v2', 1, YEAR_IN_SECONDS);
 });
+
+// ═══════════════════════════════════════════════════════════════
+// 13. BLOG PAGE — AJAX handler + JS
+// ═══════════════════════════════════════════════════════════════
+require_once get_stylesheet_directory() . '/inc/ajax-blog.php';
+
+add_action('wp_enqueue_scripts', 'kodus_enqueue_blog_assets', 1001);
+function kodus_enqueue_blog_assets() {
+    if (!is_page()) return;
+    $tpl = get_post_meta(get_queried_object_id(), '_wp_page_template', true);
+    if ($tpl !== 'page-blog.php') return;
+
+    wp_enqueue_script(
+        'kodus-blog',
+        get_stylesheet_directory_uri() . '/assets/js/kodus-blog.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/js/kodus-blog.js'),
+        true
+    );
+
+    $lang = function_exists('pll_current_language') ? pll_current_language() : 'pt';
+    wp_localize_script('kodus-blog', 'kodusBlog', [
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'lang'    => $lang,
+        'perPage' => 9,
+    ]);
+}
