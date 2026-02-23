@@ -34,7 +34,7 @@
         <div class="footer__col">
           <h4 class="footer__col-title">Resources</h4>
           <ul class="footer__col-list">
-            <li><a href="https://kodus.io/blog/">Blog</a></li>
+            <li><a href="https://kodus.io/en/insights-en/">Blog</a></li>
             <li><a href="https://docs.kodus.io/how_to_use/en/overview">Docs</a></li>
             <li><a href="https://kodus.io/changelog-en/">Changelog</a></li>
             <li><a href="https://discord.gg/TFZBRk9fT6">Support Discord</a></li>

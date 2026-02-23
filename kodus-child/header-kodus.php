@@ -108,7 +108,7 @@
             </li>
           </ul>
         </li>
-        <li><a href="https://kodus.io/blog/" class="nav__link">Blog</a></li>
+        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
         <li><a href="https://kodus.io/pricing/" class="nav__link">Pricing</a></li>
       </ul>
 
