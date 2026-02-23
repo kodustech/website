@@ -12,6 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Prepare target directory
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 134.209.210.171
+          username: ezdevs
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            sudo chown -R ezdevs:ezdevs /home/ezdevs/kodus-files/wp-content/themes/kodus-child/
+
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@main
         with:
