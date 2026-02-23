@@ -265,17 +265,17 @@ function kodus_github_stars_cache() {
 // ═══════════════════════════════════════════════════════════════
 add_action('template_redirect', 'kodus_wrapper_disable_elementor', 0);
 function kodus_wrapper_disable_elementor() {
-    // Run on wrapper pages, blog posts, archives, blog index, and search
-    $is_wrapper = false;
+    // Run on ALL retro template pages, blog posts, archives, blog index, and search
+    $is_retro_page = false;
     if (is_page()) {
         $post_id = get_queried_object_id();
         if ($post_id) {
             $tpl = get_post_meta($post_id, '_wp_page_template', true);
-            $is_wrapper = ($tpl === 'page-kodus-wrapper.php');
+            $is_retro_page = in_array($tpl, kodus_get_retro_templates(), true);
         }
     }
     $is_blog = is_singular('post') || is_archive() || is_home() || is_search();
-    if (!$is_wrapper && !$is_blog) return;
+    if (!$is_retro_page && !$is_blog) return;
 
     // Remove ALL Elementor callbacks from WP hooks
     global $wp_filter;
