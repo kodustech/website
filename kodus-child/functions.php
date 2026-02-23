@@ -253,17 +253,6 @@ add_action('wp_enqueue_scripts', 'kodus_inject_assets', 999);
 function kodus_inject_assets() {
     if (!kodus_is_injected_page()) return;
 
-    // Remover CSS global do WP/Elementor que conflita com o header/footer retro
-    wp_dequeue_style('parent-style');
-    wp_dequeue_style('twenty-twenty-three-style');
-    wp_dequeue_style('global-styles');
-    wp_dequeue_style('wp-block-library');
-    wp_dequeue_style('dashicons');
-    wp_dequeue_style('wp-components');
-    wp_dequeue_style('classic-theme-styles');
-    wp_dequeue_style('wp-emoji-styles');
-    wp_dequeue_style('global-styles-inline');
-
     wp_enqueue_style(
         'kodus-retro',
         get_stylesheet_directory_uri() . '/assets/css/kodus-retro.css',
@@ -284,20 +273,26 @@ function kodus_inject_assets() {
         null
     );
 
-    // CSS inline: esconder header/footer do Elementor e ajustar conteúdo
+    // Esconder containers do header/footer Elementor + padding pro header fixo
     wp_add_inline_style('kodus-retro', '
-        /* Esconder header e footer globais do Elementor */
         .elementor-element[data-id="fb7ffe4"],
         .elementor-element[data-id="0f62b0c"] { display: none !important; }
-        /* Ajustar padding-top pro conteúdo não ficar atrás do header fixo */
         .elementor[data-elementor-type="wp-page"] > .elementor-top-section:first-of-type { padding-top: 80px; }
-        /* Isolar header/footer retro do CSS global do Elementor */
-        .header .btn--outline-light { background: transparent !important; color: #f5a623 !important; border: 1px solid #f5a623 !important; padding: 8px 16px !important; border-radius: 6px !important; font-size: 13px !important; font-family: "JetBrains Mono", monospace !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; }
-        .header .btn--primary { background: #f5a623 !important; color: #0a0a1a !important; border: none !important; padding: 8px 16px !important; border-radius: 6px !important; font-size: 13px !important; font-family: "JetBrains Mono", monospace !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; }
-        .header .btn--github { background: rgba(255,255,255,0.08) !important; color: #e0e0e0 !important; border: 1px solid rgba(255,255,255,0.15) !important; padding: 6px 12px !important; border-radius: 6px !important; font-size: 13px !important; font-family: "JetBrains Mono", monospace !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; }
-        .header .nav__link, .header .nav__link--external { color: #b0b0c0 !important; text-decoration: none !important; font-family: "JetBrains Mono", monospace !important; font-size: 14px !important; }
-        .header .nav__link:hover, .header .nav__link--external:hover { color: #fff !important; }
     ');
+}
+
+// 11a2. Remover CSS dos templates Elementor de header/footer via output buffer
+add_action('template_redirect', 'kodus_strip_elementor_hf_css');
+function kodus_strip_elementor_hf_css() {
+    if (!kodus_is_injected_page()) return;
+    ob_start('kodus_remove_elementor_hf_styles');
+}
+function kodus_remove_elementor_hf_styles($html) {
+    // Remove <style id="elementor-post-25308">...</style> (header global)
+    $html = preg_replace('/<style id="elementor-post-25308">[^<]*<\/style>/s', '', $html);
+    // Remove <style id="elementor-post-25462">...</style> (footer global)
+    $html = preg_replace('/<style id="elementor-post-25462">[^<]*<\/style>/s', '', $html);
+    return $html;
 }
 
 // 11b. Injetar nav retro via wp_body_open
