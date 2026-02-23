@@ -30,6 +30,11 @@ function kodus_get_retro_templates() {
 
 // Helper: checa se a página atual usa um template retro (funciona em block themes)
 function kodus_is_retro_page() {
+    // Blog posts, archives, blog index, and search use retro layout
+    if (is_singular('post') || is_archive() || is_home() || is_search()) {
+        return true;
+    }
+
     if (!is_page() && !is_front_page()) {
         return false;
     }
@@ -141,6 +146,23 @@ function kodus_register_page_templates($templates) {
 // ═══════════════════════════════════════════════════════════════
 add_filter('template_include', 'kodus_force_page_template', 999);
 function kodus_force_page_template($template) {
+    // Force single.php for individual blog posts
+    if (is_singular('post')) {
+        $child_template = get_stylesheet_directory() . '/single.php';
+        if (file_exists($child_template)) {
+            return $child_template;
+        }
+    }
+
+    // Force archive.php for blog listing, categories, tags, search
+    if (is_archive() || is_home() || is_search()) {
+        $child_template = get_stylesheet_directory() . '/archive.php';
+        if (file_exists($child_template)) {
+            return $child_template;
+        }
+    }
+
+    // Pages with custom templates
     $post_id = null;
 
     if (is_front_page()) {
@@ -241,11 +263,17 @@ function kodus_github_stars_cache() {
 // ═══════════════════════════════════════════════════════════════
 add_action('template_redirect', 'kodus_wrapper_disable_elementor', 0);
 function kodus_wrapper_disable_elementor() {
-    if (!is_page()) return;
-    $post_id = get_queried_object_id();
-    if (!$post_id) return;
-    $tpl = get_post_meta($post_id, '_wp_page_template', true);
-    if ($tpl !== 'page-kodus-wrapper.php') return;
+    // Run on wrapper pages, blog posts, archives, blog index, and search
+    $is_wrapper = false;
+    if (is_page()) {
+        $post_id = get_queried_object_id();
+        if ($post_id) {
+            $tpl = get_post_meta($post_id, '_wp_page_template', true);
+            $is_wrapper = ($tpl === 'page-kodus-wrapper.php');
+        }
+    }
+    $is_blog = is_singular('post') || is_archive() || is_home() || is_search();
+    if (!$is_wrapper && !$is_blog) return;
 
     // Remove ALL Elementor callbacks from WP hooks
     global $wp_filter;

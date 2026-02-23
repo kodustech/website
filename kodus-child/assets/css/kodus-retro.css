@@ -18,5 +18,59 @@
 .wrapper-content__inner img{max-width:100%;height:auto;border-radius:4px}
 @media(max-width:768px){.wrapper-content__inner{padding:0 16px;font-size:15px}.wrapper-content__inner h1{font-size:1.5rem}}
 
+/* ── Blog Archive Grid ── */
+.archive-header{text-align:center;padding:40px 0 20px}
+.archive-title{font-family:'JetBrains Mono',monospace;font-size:2rem;color:#fff;margin:0 0 .5em}
+.archive-title span{color:#00e5ff}
+.archive-description{color:#a0a0b0;font-size:.95rem;max-width:600px;margin:0 auto}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:32px 0}
+.blog-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;transition:border-color .2s,transform .2s}
+.blog-card:hover{border-color:#00e5ff;transform:translateY(-2px)}
+.blog-card__thumb{display:block;aspect-ratio:16/9;overflow:hidden;background:#111}
+.blog-card__thumb img{width:100%;height:100%;object-fit:cover;transition:opacity .2s}
+.blog-card:hover .blog-card__thumb img{opacity:.85}
+.blog-card__body{padding:16px 20px 20px}
+.blog-card__category{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;color:#00e5ff;letter-spacing:.05em}
+.blog-card__title{font-family:'JetBrains Mono',monospace;font-size:1rem;line-height:1.4;margin:.5em 0;color:#fff}
+.blog-card__title a{color:inherit;text-decoration:none}
+.blog-card__title a:hover{color:#00e5ff}
+.blog-card__excerpt{font-size:.875rem;color:#a0a0b0;line-height:1.5;margin:0 0 12px}
+.blog-card__date{font-size:.75rem;color:#666;font-family:'JetBrains Mono',monospace}
+.no-results{text-align:center;color:#a0a0b0;padding:60px 0}
+@media(max-width:1024px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.blog-grid{grid-template-columns:1fr}.archive-title{font-size:1.5rem}}
+
+/* ── Blog Single Post ── */
+.entry-header{text-align:center;padding:40px 0 24px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:32px}
+.entry-meta{display:flex;align-items:center;justify-content:center;gap:12px;font-size:.8rem;color:#a0a0b0;font-family:'JetBrains Mono',monospace;margin-bottom:12px}
+.entry-category{color:#00e5ff;text-decoration:none;text-transform:uppercase;font-size:.7rem;letter-spacing:.05em}
+.entry-category:hover{color:#fff}
+.entry-title{font-family:'JetBrains Mono',monospace;font-size:2rem;line-height:1.3;color:#fff;margin:0 0 16px}
+.entry-author{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.875rem;color:#a0a0b0}
+.entry-author img{border-radius:50%;width:40px;height:40px}
+.entry-featured{margin:0 0 32px;border-radius:8px;overflow:hidden}
+.entry-featured img{width:100%;height:auto;display:block}
+.entry-body{margin-bottom:40px}
+.entry-tags{display:flex;flex-wrap:wrap;gap:8px;padding:24px 0;border-top:1px solid rgba(255,255,255,.08)}
+.entry-tag{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#00e5ff;border:1px solid rgba(0,229,255,.25);padding:4px 12px;border-radius:4px;text-decoration:none;transition:background .2s}
+.entry-tag:hover{background:rgba(0,229,255,.1);color:#fff}
+@media(max-width:768px){.entry-title{font-size:1.4rem}}
+
+/* ── Post Navigation ── */
+.post-navigation{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:32px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:24px}
+.post-navigation__link{display:flex;flex-direction:column;gap:4px;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:8px;text-decoration:none;transition:border-color .2s}
+.post-navigation__link:hover{border-color:#00e5ff}
+.post-navigation__prev{text-align:left}
+.post-navigation__next{text-align:right;grid-column:2}
+.post-navigation__label{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;color:#00e5ff;letter-spacing:.05em}
+.post-navigation__title{font-size:.875rem;color:#e0e0e0;line-height:1.4}
+@media(max-width:640px){.post-navigation{grid-template-columns:1fr}.post-navigation__next{grid-column:1;text-align:left}}
+
+/* ── Pagination ── */
+.nav-links{display:flex;justify-content:center;gap:8px;padding:40px 0}
+.nav-links a,.nav-links span{font-family:'JetBrains Mono',monospace;font-size:.875rem;padding:8px 14px;border:1px solid rgba(255,255,255,.1);border-radius:4px;color:#a0a0b0;text-decoration:none;transition:border-color .2s,color .2s}
+.nav-links a:hover{border-color:#00e5ff;color:#00e5ff}
+.nav-links .current{background:#00e5ff;color:#0a0a1a;border-color:#00e5ff;font-weight:700}
+
 /* ── Hide Elementor header/footer on wrapper pages (fallback) ── */
 [data-elementor-type="header"],[data-elementor-type="footer"]{display:none!important}
