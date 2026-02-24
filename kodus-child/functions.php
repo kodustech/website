@@ -208,6 +208,22 @@ function kodus_add_lazy_loading($html) {
         '<img loading="lazy"$1$2',
         $html
     );
+
+    // Drop duplicate <script src="..."></script> tags injected by multiple plugins.
+    $seen_script_src = [];
+    $html = preg_replace_callback(
+        '/<script\b[^>]*\bsrc=(["\'])([^"\']+)\1[^>]*>\s*<\/script>/i',
+        function ($matches) use (&$seen_script_src) {
+            $src = html_entity_decode($matches[2], ENT_QUOTES);
+            if (isset($seen_script_src[$src])) {
+                return '';
+            }
+            $seen_script_src[$src] = true;
+            return $matches[0];
+        },
+        $html
+    );
+
     return $html;
 }
 
@@ -219,15 +235,150 @@ function kodus_remove_plugin_assets() {
     if (!kodus_is_retro_page()) {
         return;
     }
-    // JS de plugins desnecessários
-    wp_dequeue_script('contact-form-7');
-    wp_dequeue_script('optinmonster-api-script');
-    wp_dequeue_script('rock-convert-frontend');
-    wp_dequeue_script('lottiefiles');
-    wp_dequeue_script('wp-embed');
-    
-    // CSS de plugins  
-    wp_dequeue_style('optinmonster-api-css');
+
+    // JS de plugins/editor que não é necessário no frontend retro.
+    $script_handles = [
+        'contact-form-7',
+        'optinmonster-api-script',
+        'rock-convert-frontend',
+        'lottiefiles',
+        'lottiefiles-block-frontend',
+        'lottieFilesLocalPlayer',
+        'lottieFilesInteractivityCDN',
+        'swiper',
+        'softlite-main-script',
+        'megamenu',
+        'hoverIntent',
+        'wp-embed',
+        'jquery-core',
+        'jquery-migrate',
+        'wp-editor',
+        'wp-block-editor',
+        'wp-components',
+        'wp-blocks',
+        'wp-patterns',
+        'wp-plugins',
+        'wp-server-side-render',
+        'wp-media-utils',
+        'wp-core-data',
+        'wp-preferences',
+        'wp-preferences-persistence',
+        'wp-notices',
+        'wp-commands',
+        'wp-keyboard-shortcuts',
+        'wp-api-fetch',
+        'wp-url',
+        'wp-shortcode',
+        'wp-block-serialization-default-parser',
+        'wp-blob',
+        'wp-autop',
+        'wp-warning',
+        'wp-rich-text',
+        'wp-data',
+        'wp-redux-routine',
+        'wp-private-apis',
+        'wp-primitives',
+        'wp-html-entities',
+        'wp-date',
+        'moment',
+        'wp-compose',
+        'wp-priority-queue',
+        'wp-keycodes',
+        'wp-is-shallow-equal',
+        'wp-element',
+        'wp-escape-html',
+        'wp-dom',
+        'wp-deprecated',
+        'wp-a11y',
+        'wp-i18n',
+        'wp-hooks',
+        'wp-dom-ready',
+        'wp-token-list',
+        'wp-style-engine',
+        'wp-viewport',
+        'wp-wordcount',
+        'wp-polyfill',
+        'react',
+        'react-dom',
+        'react-jsx-runtime',
+    ];
+
+    foreach ($script_handles as $handle) {
+        wp_dequeue_script($handle);
+        wp_deregister_script($handle);
+    }
+
+    // CSS de plugins desnecessário no retro.
+    $style_handles = [
+        'optinmonster-api-css',
+    ];
+
+    foreach ($style_handles as $handle) {
+        wp_dequeue_style($handle);
+        wp_deregister_style($handle);
+    }
+}
+
+// Hard-stop late plugin/editor assets that are queued after wp_enqueue_scripts.
+add_action('wp_print_scripts', 'kodus_prune_late_assets', 1000);
+add_action('wp_print_footer_scripts', 'kodus_prune_late_assets', 1000);
+add_action('wp_print_styles', 'kodus_prune_late_assets', 1000);
+function kodus_prune_late_assets() {
+    if (!kodus_is_retro_page()) {
+        return;
+    }
+
+    $blocked_script_src_fragments = [
+        '/wp-content/plugins/lottiefiles/',
+        '/wp-content/plugins/megamenu/',
+        '/wp-content/plugins/softlite-io-integration/',
+        '/wp-content/plugins/elementor/assets/lib/swiper/',
+        '/wp-content/plugins/jquery-updater/',
+        '/wp-includes/js/dist/',
+        '/wp-includes/js/hoverIntent',
+    ];
+
+    $blocked_style_src_fragments = [
+        '/wp-content/plugins/lottiefiles/',
+        '/wp-content/plugins/megamenu/',
+        '/wp-content/plugins/softlite-io-integration/',
+        '/wp-content/plugins/elementor/',
+        'a.omappapi.com/app/js/api.min.css',
+    ];
+
+    global $wp_scripts, $wp_styles;
+
+    if ($wp_scripts instanceof WP_Scripts) {
+        foreach ((array) $wp_scripts->queue as $handle) {
+            if (!isset($wp_scripts->registered[$handle])) {
+                continue;
+            }
+            $src = (string) $wp_scripts->registered[$handle]->src;
+            foreach ($blocked_script_src_fragments as $fragment) {
+                if ($src !== '' && stripos($src, $fragment) !== false) {
+                    wp_dequeue_script($handle);
+                    wp_deregister_script($handle);
+                    break;
+                }
+            }
+        }
+    }
+
+    if ($wp_styles instanceof WP_Styles) {
+        foreach ((array) $wp_styles->queue as $handle) {
+            if (!isset($wp_styles->registered[$handle])) {
+                continue;
+            }
+            $src = (string) $wp_styles->registered[$handle]->src;
+            foreach ($blocked_style_src_fragments as $fragment) {
+                if ($src !== '' && stripos($src, $fragment) !== false) {
+                    wp_dequeue_style($handle);
+                    wp_deregister_style($handle);
+                    break;
+                }
+            }
+        }
+    }
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -296,22 +447,9 @@ function kodus_github_stars_cache() {
 // ═══════════════════════════════════════════════════════════════
 add_action('template_redirect', 'kodus_wrapper_disable_elementor', 0);
 function kodus_wrapper_disable_elementor() {
-    // Run on pages that previously had Elementor content (wrapper + blog),
-    // plus blog posts, archives, blog index, and search.
-    // NOT on other retro pages (home, pricing, etc.) — they never had Elementor.
-    $needs_elementor_cleanup = false;
-    if (is_page()) {
-        $post_id = get_queried_object_id();
-        if ($post_id) {
-            $tpl = get_post_meta($post_id, '_wp_page_template', true);
-            $needs_elementor_cleanup = in_array($tpl, [
-                'page-kodus-wrapper.php',
-                'page-blog.php',
-            ], true);
-        }
+    if (!kodus_is_retro_page()) {
+        return;
     }
-    $is_blog = is_singular('post') || is_archive() || is_home() || is_search();
-    if (!$needs_elementor_cleanup && !$is_blog) return;
 
     // Remove ALL Elementor callbacks from WP hooks
     global $wp_filter;

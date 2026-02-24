@@ -9,19 +9,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Preload critical images -->
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/castle.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-guard.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-box.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cockpit.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kilo.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/copilot.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cursor.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/openai.webp">
-  <link rel="preload" as="image" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cline.webp">
-  
+
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
