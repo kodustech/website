@@ -202,6 +202,8 @@ function kodus_start_lazy_buffer() {
 }
 
 function kodus_add_lazy_loading($html) {
+    $had_gtm = stripos($html, 'GTM-KN2J57G') !== false;
+
     // Skip images that already have loading attribute or are preloaded
     $html = preg_replace(
         '/<img(?![^>]*loading=)(?![^>]*rel="preload")([^>]*)(src=)/i',
@@ -231,12 +233,62 @@ function kodus_add_lazy_loading($html) {
         $html
     );
 
-    // Keep only the Site Kit <noscript> GTM block and strip duplicated iframe-only block.
+    // Remove direct GTM/gtag bootstrap from HTML.
+    $html = preg_replace(
+        '/<!--\s*Google Tag Manager snippet added by Site Kit\s*-->.*?<!--\s*End Google Tag Manager snippet added by Site Kit\s*-->/is',
+        '',
+        $html
+    );
+
+    $html = preg_replace(
+        '/<script[^>]*\bsrc=(["\'])https?:\/\/www\.googletagmanager\.com\/gtag\/js\?id=[^"\']+\1[^>]*>\s*<\/script>/i',
+        '',
+        $html
+    );
+
+    $html = preg_replace(
+        '/<script[^>]*id=(["\'])google_gtagjs-js-after\1[^>]*>.*?<\/script>/is',
+        '',
+        $html
+    );
+
+    $html = preg_replace(
+        '/<script[^>]*>.*?googletagmanager\.com\/gtm\.js\?id=GTM-[^<]*<\/script>/is',
+        '',
+        $html
+    );
+
+    // Remove GTM noscript iframe variants.
+    $html = preg_replace(
+        '/<noscript>\s*<iframe[^>]*googletagmanager\.com\/ns\.html[^>]*>\s*<\/iframe>\s*<\/noscript>/is',
+        '',
+        $html
+    );
+
     $html = preg_replace(
         '/<!--\s*Google Tag Manager\s*-->\s*<iframe[^>]*googletagmanager\.com\/ns\.html[^>]*>\s*<\/iframe>\s*<!--\s*End Google Tag Manager\s*-->/is',
         '',
         $html
     );
+
+    // Remove extra third-party trackers that are not needed for page rendering.
+    $html = preg_replace(
+        '/<script[^>]*\bsrc=(["\'])https?:\/\/analytics\.crawlconsole\.com\/tracker\.js[^"\']*\1[^>]*>\s*<\/script>/i',
+        '',
+        $html
+    );
+
+    $html = preg_replace(
+        '/<script[^>]*\bsrc=(["\'])https?:\/\/a\.omappapi\.com\/app\/js\/api\.min\.js[^"\']*\1[^>]*>\s*<\/script>/i',
+        '',
+        $html
+    );
+
+    // Re-inject GTM with delay to protect initial render and interactivity.
+    if ($had_gtm) {
+        $delayed_gtm_loader = "<script>(function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};var gtmLoaded=false;function loadGTM(){if(gtmLoaded){return;}gtmLoaded=true;window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-KN2J57G';document.head.appendChild(s);}var timer=setTimeout(loadGTM,7000);['click','scroll','touchstart','keydown'].forEach(function(evt){window.addEventListener(evt,function(){clearTimeout(timer);loadGTM();},{once:true,passive:true});});})();</script>";
+        $html = preg_replace('/<\/head>/i', $delayed_gtm_loader . "\n</head>", $html, 1);
+    }
 
     return $html;
 }
@@ -315,6 +367,7 @@ function kodus_remove_plugin_assets() {
         'react',
         'react-dom',
         'react-jsx-runtime',
+        'google_gtagjs',
     ];
 
     foreach ($script_handles as $handle) {
@@ -350,6 +403,9 @@ function kodus_prune_late_assets() {
         '/wp-content/plugins/jquery-updater/',
         '/wp-includes/js/dist/',
         '/wp-includes/js/hoverIntent',
+        'www.googletagmanager.com/gtag/js',
+        'analytics.crawlconsole.com/tracker.js',
+        'a.omappapi.com/app/js/',
     ];
 
     $blocked_style_src_fragments = [
