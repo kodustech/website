@@ -9,6 +9,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+$kodus_meta_title = wp_get_document_title();
+if ($kodus_meta_title === '') {
+    $kodus_meta_title = get_bloginfo('name');
+}
+$kodus_meta_description = function_exists('kodus_current_meta_description') ? kodus_current_meta_description() : '';
+?>
+  <title><?php echo esc_html($kodus_meta_title); ?></title>
+<?php if ($kodus_meta_description !== '') : ?>
+  <meta name="description" content="<?php echo esc_attr($kodus_meta_description); ?>">
+<?php endif; ?>
 
 <?php wp_head(); ?>
 </head>

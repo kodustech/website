@@ -3,6 +3,11 @@
  * Kodus Child Theme — functions.php
  */
 
+// Ensure WP outputs <title> in head.
+add_action('after_setup_theme', function () {
+    add_theme_support('title-tag');
+}, 20);
+
 // ═══════════════════════════════════════════════════════════════
 // 1. CARREGAR CSS DO TEMA PAI (pro blog funcionar)
 // ═══════════════════════════════════════════════════════════════
@@ -10,6 +15,76 @@ add_action('wp_enqueue_scripts', 'kodus_child_enqueue_parent', 10);
 function kodus_child_enqueue_parent() {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
+
+function kodus_home_meta_title() {
+    return 'Kodus | Automated Code Reviews with AI';
+}
+
+function kodus_home_meta_description() {
+    return 'Kody is an open source code review tool that learns your team\'s workflow and delivers precise reviews on quality, security, and performance.';
+}
+
+function kodus_current_meta_description() {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_description();
+    }
+    return '';
+}
+
+function kodus_is_primary_home() {
+    return is_front_page() || is_home();
+}
+
+// Core WP title for pages where Yoast does not inject a title tag.
+add_filter('pre_get_document_title', function ($title) {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_title();
+    }
+    return $title;
+}, 20);
+
+// Yoast metadata overrides for home.
+add_filter('wpseo_title', function ($title) {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_title();
+    }
+    return $title;
+}, 20);
+
+add_filter('wpseo_metadesc', function ($desc) {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_description();
+    }
+    return $desc;
+}, 20);
+
+add_filter('wpseo_opengraph_title', function ($title) {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_title();
+    }
+    return $title;
+}, 20);
+
+add_filter('wpseo_opengraph_desc', function ($desc) {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_description();
+    }
+    return $desc;
+}, 20);
+
+add_filter('wpseo_twitter_title', function ($title) {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_title();
+    }
+    return $title;
+}, 20);
+
+add_filter('wpseo_twitter_description', function ($desc) {
+    if (kodus_is_primary_home()) {
+        return kodus_home_meta_description();
+    }
+    return $desc;
+}, 20);
 
 // ═══════════════════════════════════════════════════════════════
 // 2. LISTA DE TODOS OS TEMPLATES RETRO
