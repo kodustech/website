@@ -24,13 +24,6 @@ function kodus_home_meta_description() {
     return 'Kody is an open source code review tool that learns your team\'s workflow and delivers precise reviews on quality, security, and performance.';
 }
 
-function kodus_current_meta_description() {
-    if (kodus_is_primary_home()) {
-        return kodus_home_meta_description();
-    }
-    return '';
-}
-
 function kodus_is_primary_home() {
     return is_front_page() || is_home();
 }
