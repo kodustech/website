@@ -101,7 +101,7 @@ function kodus_enqueue_retro_assets() {
     // Google Fonts
     wp_enqueue_style(
         'kodus-fonts',
-        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap',
+        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=optional',
         [],
         null
     );
@@ -221,6 +221,20 @@ function kodus_add_lazy_loading($html) {
             $seen_script_src[$src] = true;
             return $matches[0];
         },
+        $html
+    );
+
+    // Remove local @font-face bundle from parent block theme on retro pages.
+    $html = preg_replace(
+        '/<style[^>]*class=(["\'])[^"\']*wp-fonts-local[^"\']*\1[^>]*>.*?<\/style>/is',
+        '',
+        $html
+    );
+
+    // Keep only the Site Kit <noscript> GTM block and strip duplicated iframe-only block.
+    $html = preg_replace(
+        '/<!--\s*Google Tag Manager\s*-->\s*<iframe[^>]*googletagmanager\.com\/ns\.html[^>]*>\s*<\/iframe>\s*<!--\s*End Google Tag Manager\s*-->/is',
+        '',
         $html
     );
 
