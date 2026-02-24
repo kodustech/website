@@ -101,7 +101,7 @@ function kodus_enqueue_retro_assets() {
     // Google Fonts
     wp_enqueue_style(
         'kodus-fonts',
-        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=optional',
+        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap',
         [],
         null
     );
