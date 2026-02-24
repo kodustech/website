@@ -307,7 +307,7 @@ function kodus_add_lazy_loading($html) {
 
     // Re-inject GTM with delay to protect initial render and interactivity.
     if ($had_gtm) {
-        $delayed_gtm_loader = "<script>(function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};var gtmLoaded=false;function loadGTM(){if(gtmLoaded){return;}gtmLoaded=true;window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-KN2J57G';document.head.appendChild(s);}var timer=setTimeout(loadGTM,7000);['click','scroll','touchstart','keydown'].forEach(function(evt){window.addEventListener(evt,function(){clearTimeout(timer);loadGTM();},{once:true,passive:true});});})();</script>";
+        $delayed_gtm_loader = "<script>(function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};var gtmLoaded=false;function loadGTM(){if(gtmLoaded){return;}gtmLoaded=true;window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-KN2J57G';document.head.appendChild(s);}['click','scroll','touchstart','keydown','pointerdown'].forEach(function(evt){window.addEventListener(evt,loadGTM,{once:true,passive:true});});})();</script>";
         $html = preg_replace('/<\/head>/i', $delayed_gtm_loader . "\n</head>", $html, 1);
     }
 
