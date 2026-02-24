@@ -309,6 +309,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return Math.max(1, Math.floor((trackWidth + gap) / (tapeWidth + gap)));
     }
 
+    function getMaxOffset() {
+      const visible = getVisibleCount();
+      return Math.max(0, tapeCount - visible);
+    }
+
     function updateVhsShelf() {
       const tapeWidth = vhsTapes[0]?.offsetWidth || 280;
       const gap = 20;
@@ -320,14 +325,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     vhsNext?.addEventListener('click', () => {
-      const visible = getVisibleCount();
-      const maxOffset = Math.max(0, tapeCount - visible);
-      vhsOffset = Math.min(vhsOffset + 1, maxOffset);
+      const maxOffset = getMaxOffset();
+      vhsOffset = vhsOffset >= maxOffset ? 0 : vhsOffset + 1;
       updateVhsShelf();
     });
 
     vhsPrev?.addEventListener('click', () => {
-      vhsOffset = Math.max(vhsOffset - 1, 0);
+      const maxOffset = getMaxOffset();
+      vhsOffset = vhsOffset <= 0 ? maxOffset : vhsOffset - 1;
+      updateVhsShelf();
+    });
+
+    window.addEventListener('resize', () => {
+      const maxOffset = getMaxOffset();
+      if (vhsOffset > maxOffset) {
+        vhsOffset = maxOffset;
+      }
       updateVhsShelf();
     });
   }
