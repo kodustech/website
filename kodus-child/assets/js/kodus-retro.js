@@ -3,6 +3,7 @@
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* --- GitHub stars (cached via WP) --- */
   const el = document.getElementById('ghStars');
@@ -43,6 +44,58 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById(`tab-${target}`)?.classList.add('hero__tab-panel--active');
     });
   });
+
+  /* --- Lazy-load heavy videos on demand --- */
+  function hydrateLazyVideo(video) {
+    if (!video || video.dataset.loaded === '1') return;
+    const source = video.dataset.src;
+    if (!source) return;
+
+    video.dataset.loaded = '1';
+    video.src = source;
+    video.load();
+
+    if (!video.autoplay) return;
+    const tryPlay = () => {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {});
+      }
+    };
+
+    if (video.readyState >= 2) {
+      tryPlay();
+      return;
+    }
+
+    video.addEventListener('loadeddata', tryPlay, { once: true });
+  }
+
+  function setupLazyVideos() {
+    const lazyVideos = document.querySelectorAll('video.js-lazy-video[data-src]');
+    if (!lazyVideos.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      lazyVideos.forEach(hydrateLazyVideo);
+      return;
+    }
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        hydrateLazyVideo(entry.target);
+        videoObserver.unobserve(entry.target);
+      });
+    }, {
+      root: null,
+      rootMargin: '300px 0px',
+      threshold: 0.01,
+    });
+
+    lazyVideos.forEach(video => videoObserver.observe(video));
+  }
+
+  setupLazyVideos();
 
   /* --- Benchmark tabs (Detailed Results) --- */
   document.querySelectorAll('.bench__table-section').forEach(section => {
@@ -132,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const vcrCats = document.querySelectorAll('.vcr__cat');
   const vcrBtns = document.querySelectorAll('.vcr__btn[data-slide]');
   let vcrAutoRotateId = null;
+  let vcrAutoRotatePausedByUser = false;
 
   function updateVcr(index) {
     if (!vcrText) return;
@@ -162,57 +216,112 @@ document.addEventListener('DOMContentLoaded', () => {
     vcrCats.forEach((cat, i) => cat.classList.toggle('vcr__cat--active', i === index));
   }
 
-  function stopVcrAutoRotate() {
+  function stopVcrAutoRotate(byUser = false) {
     if (vcrAutoRotateId !== null) {
       clearInterval(vcrAutoRotateId);
       vcrAutoRotateId = null;
     }
+    if (byUser) {
+      vcrAutoRotatePausedByUser = true;
+    }
+  }
+
+  function startVcrAutoRotate() {
+    if (prefersReducedMotion || !vcrText || vcrSlides.length < 2 || vcrAutoRotatePausedByUser || vcrAutoRotateId !== null) {
+      return;
+    }
+    vcrAutoRotateId = setInterval(() => {
+      updateVcr((currentSlide + 1) % vcrSlides.length);
+    }, 5000);
   }
 
   vcrCats.forEach(cat => {
     cat.addEventListener('click', () => {
-      stopVcrAutoRotate();
+      stopVcrAutoRotate(true);
       updateVcr(parseInt(cat.dataset.slide, 10));
     });
   });
   vcrBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      stopVcrAutoRotate();
+      stopVcrAutoRotate(true);
       updateVcr(parseInt(btn.dataset.slide, 10));
     });
   });
 
-  // Auto-rotate every 5 seconds
-  vcrAutoRotateId = setInterval(() => {
-    updateVcr((currentSlide + 1) % vcrSlides.length);
-  }, 5000);
+  // Auto-rotate every 5 seconds (when visible and not paused by user).
+  startVcrAutoRotate();
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopVcrAutoRotate();
+      return;
+    }
+    startVcrAutoRotate();
+  });
 
   /* --- Bug parallax on scroll --- */
   const bugs = document.querySelectorAll('.site-bug');
   const bugBaseTransforms = [];
+  const bugSpeeds = [];
   bugs.forEach(bug => {
     bugBaseTransforms.push(bug.style.transform || '');
+    bugSpeeds.push(parseFloat(bug.dataset.speed) || 0.3);
   });
 
   /* --- Header scroll effect + bug parallax --- */
   const header = document.getElementById('header');
+  let latestScrollY = window.scrollY;
+  let scrollTicking = false;
+  let bugWillChangeReset = null;
 
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
+  function markBugsAsAnimating() {
+    if (prefersReducedMotion || !bugs.length) return;
+    bugs.forEach(bug => {
+      bug.style.willChange = 'transform';
+    });
 
-    if (scrollY > 100) {
-      header.style.borderBottomColor = 'var(--color-card-lv2)';
-    } else {
-      header.style.borderBottomColor = 'transparent';
+    if (bugWillChangeReset !== null) {
+      clearTimeout(bugWillChangeReset);
     }
 
-    // Parallax bugs
+    bugWillChangeReset = setTimeout(() => {
+      bugs.forEach(bug => {
+        bug.style.willChange = '';
+      });
+      bugWillChangeReset = null;
+    }, 180);
+  }
+
+  function applyScrollEffects() {
+    if (header) {
+      header.style.borderBottomColor = latestScrollY > 100 ? 'var(--color-card-lv2)' : 'transparent';
+    }
+
+    if (prefersReducedMotion || !bugs.length) {
+      return;
+    }
+
     bugs.forEach((bug, i) => {
-      const speed = parseFloat(bug.dataset.speed) || 0.3;
-      const y = scrollY * speed;
-      bug.style.transform = `${bugBaseTransforms[i]} translateY(${y}px)`;
+      const y = latestScrollY * bugSpeeds[i];
+      bug.style.transform = `${bugBaseTransforms[i]} translate3d(0, ${y}px, 0)`;
     });
+  }
+
+  function queueScrollEffects() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      applyScrollEffects();
+      scrollTicking = false;
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    latestScrollY = window.scrollY;
+    markBugsAsAnimating();
+    queueScrollEffects();
   }, { passive: true });
+
+  applyScrollEffects();
 
   /* --- Fade-in on scroll --- */
   const observerOptions = {
