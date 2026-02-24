@@ -101,7 +101,7 @@ function kodus_enqueue_retro_assets() {
     // Google Fonts
     wp_enqueue_style(
         'kodus-fonts',
-        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap',
+        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap',
         [],
         null
     );
@@ -202,27 +202,12 @@ function kodus_start_lazy_buffer() {
 }
 
 function kodus_add_lazy_loading($html) {
-    // Keep critical logo eager in the first viewport.
+    // Skip images that already have loading attribute or are preloaded
     $html = preg_replace(
-        '/<img(?![^>]*loading=)([^>]*\bnav__logo-img--critical\b[^>]*)(src=)/i',
-        '<img loading="eager" fetchpriority="high" decoding="sync"$1$2',
+        '/<img(?![^>]*loading=)(?![^>]*rel="preload")([^>]*)(src=)/i',
+        '<img loading="lazy"$1$2',
         $html
     );
-
-    // Lazy-load non-critical images and lower their network priority.
-    $html = preg_replace(
-        '/<img(?![^>]*loading=)([^>]*)(src=)/i',
-        '<img loading="lazy" decoding="async" fetchpriority="low"$1$2',
-        $html
-    );
-
-    // Avoid eager video downloads unless preload was explicitly defined.
-    $html = preg_replace(
-        '/<video(?![^>]*preload=)([^>]*)>/i',
-        '<video preload="none"$1>',
-        $html
-    );
-
     return $html;
 }
 

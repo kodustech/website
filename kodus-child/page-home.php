@@ -454,7 +454,7 @@
                   <div class="basics__panel" id="basics-panel-0">
                     <h3 class="basics__feature-title">Learns from your context</h3>
                     <div class="basics__video">
-                      <video data-src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/context.webm" autoplay loop muted playsinline preload="none" class="js-lazy-video" style="width: 100%; height: auto; display: block;"></video>
+                      <video src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/context.webm" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;"></video>
                     </div>
                     <p class="basics__feature-desc">Deep understanding of your entire project structure and logic.</p>
                     <p class="basics__feature-detail">Kody analyzes your team’s workflows, coding standards and Architecture to understand your unique needs and provide tailored reviews.</p>
@@ -464,7 +464,7 @@
                   <div class="basics__panel" id="basics-panel-1" style="display: none;">
                     <h3 class="basics__feature-title">You set the rules</h3>
                     <div class="basics__video">
-                      <video data-src="https://kodus.io/wp-content/uploads/2026/02/1111.mp4" autoplay loop muted playsinline preload="none" class="js-lazy-video" style="width: 100%; height: auto; display: block;"></video>
+                      <video src="https://kodus.io/wp-content/uploads/2026/02/1111.mp4" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;"></video>
                     </div>
                     <p class="basics__feature-desc">Teams define their own review standards.</p>
                     <p class="basics__feature-detail">Create custom review guidelines in plain language or use rules from the built-in library. Reviews consistently follow the standards defined by your team.</p>
@@ -528,7 +528,7 @@
                   <div class="basics__panel" id="basics-panel-3" style="display: none;">
                     <h3 class="basics__feature-title">Bring your business context</h3>
                     <div class="basics__video">
-                      <video data-src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/plugins.webm" autoplay loop muted playsinline preload="none" class="js-lazy-video" style="width: 100%; height: auto; display: block;"></video>
+                      <video src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/plugins.webm" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;"></video>
                     </div>
                     <p class="basics__feature-desc">Extend functionality with Model Context Protocol servers.</p>
                     <p class="basics__feature-detail">Connect tools like Jira, Notion, or Linear so Kody can understand specs, tasks, and requirements while reviewing your code.</p>
@@ -538,7 +538,7 @@
                   <div class="basics__panel" id="basics-panel-4" style="display: none;">
                     <h3 class="basics__feature-title">Track technical debt</h3>
                     <div class="basics__video">
-                      <video data-src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/issues.webm" autoplay loop muted playsinline preload="none" class="js-lazy-video" style="width: 100%; height: auto; display: block;"></video>
+                      <video src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/issues.webm" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;"></video>
                     </div>
                     <p class="basics__feature-desc">Monitor and manage technical debt over time.</p>
                     <p class="basics__feature-detail">Kodus automatically turns unimplemented suggestions into issues, helping your team visualize and reduce technical debt over time.</p>

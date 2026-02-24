@@ -107,38 +107,3 @@
   .blog-page__categories{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;padding-bottom:16px;scrollbar-width:none}
   .blog-page__categories::-webkit-scrollbar{display:none}
 }
-
-/* Perf: skip full rendering for sections below the fold on home. */
-.site-bug {
-  will-change: auto;
-}
-
-@supports (content-visibility: auto) {
-  body.page-template-page-home .cartridges,
-  body.page-template-page-home .vcr-section,
-  body.page-template-page-home .basics,
-  body.page-template-page-home .vhs-section,
-  body.page-template-page-home .roi,
-  body.page-template-page-home .faq,
-  body.page-template-page-home .ask-llm,
-  body.page-template-page-home .footer {
-    content-visibility: auto;
-    contain-intrinsic-size: 1000px;
-  }
-}
-
-/* Perf: disable expensive perpetual motion when user prefers reduced motion. */
-@media (prefers-reduced-motion: reduce) {
-  .site-bug {
-    transform: none !important;
-  }
-
-  .logo-carousel__track,
-  .model-track,
-  .pixel-heart,
-  .pixel-cloud,
-  .vcr__scanlines,
-  .chat__typing-dot {
-    animation: none !important;
-  }
-}
