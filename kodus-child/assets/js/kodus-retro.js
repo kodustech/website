@@ -479,6 +479,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const basicsTab = document.getElementById('basicsTab');
   const basicsFiles = document.querySelectorAll('.basics__tree-file');
 
+  function loadBasicsPanelVideos(index) {
+    const panel = document.getElementById(`basics-panel-${index}`);
+    if (!panel) return;
+
+    panel.querySelectorAll('video.basics__deferred-video[data-src]').forEach(video => {
+      if (video.dataset.loaded === '1') return;
+      const source = video.dataset.src;
+      if (!source) return;
+
+      video.src = source;
+      video.dataset.loaded = '1';
+      video.load();
+
+      if (video.autoplay) {
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(() => {});
+        }
+      }
+    });
+  }
+
   function updateBasics(index) {
     const feature = basicsFeatures[index];
     if (!feature || !basicsTab) return;
@@ -510,6 +532,8 @@ document.addEventListener('DOMContentLoaded', () => {
         panel.style.display = 'none';
       }
     });
+
+    loadBasicsPanelVideos(index);
   }
 
   basicsFiles.forEach(file => {
