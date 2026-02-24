@@ -254,11 +254,11 @@
 
         <!-- Tabs -->
         <div class="bench__tabs">
-          <button class="bench__tab bench__tab--active" data-tab="sentry">Sentry <span class="bench__tab-lang">PYTHON</span></button>
-          <button class="bench__tab" data-tab="calcom">Cal.com <span class="bench__tab-lang">TYPESCRIPT</span></button>
-          <button class="bench__tab" data-tab="grafana">Grafana <span class="bench__tab-lang">GO</span></button>
-          <button class="bench__tab" data-tab="discourse">Discourse <span class="bench__tab-lang">RUBY</span></button>
-          <button class="bench__tab" data-tab="keycloak">Keycloak <span class="bench__tab-lang">JAVA</span></button>
+          <button type="button" class="bench__tab bench__tab--active" data-tab="sentry">Sentry <span class="bench__tab-lang">PYTHON</span></button>
+          <button type="button" class="bench__tab" data-tab="calcom">Cal.com <span class="bench__tab-lang">TYPESCRIPT</span></button>
+          <button type="button" class="bench__tab" data-tab="grafana">Grafana <span class="bench__tab-lang">GO</span></button>
+          <button type="button" class="bench__tab" data-tab="discourse">Discourse <span class="bench__tab-lang">RUBY</span></button>
+          <button type="button" class="bench__tab" data-tab="keycloak">Keycloak <span class="bench__tab-lang">JAVA</span></button>
         </div>
 
         <!-- ===== Sentry ===== -->

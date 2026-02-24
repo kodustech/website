@@ -44,6 +44,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* --- Benchmark tabs (Detailed Results) --- */
+  document.querySelectorAll('.bench__table-section').forEach(section => {
+    const tabs = section.querySelectorAll('.bench__tab');
+    const panels = section.querySelectorAll('.bench__tab-panel');
+    if (!tabs.length || !panels.length) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = `tab-${tab.dataset.tab}`;
+        const targetPanel = section.querySelector(`#${targetId}`);
+        if (!targetPanel) return;
+
+        tabs.forEach(t => t.classList.remove('bench__tab--active'));
+        panels.forEach(p => p.classList.remove('bench__tab-panel--active'));
+
+        tab.classList.add('bench__tab--active');
+        targetPanel.classList.add('bench__tab-panel--active');
+      });
+    });
+  });
+
   /* --- Copy terminal command --- */
   const copyBtn = document.getElementById('copyCmd');
   copyBtn?.addEventListener('click', () => {
