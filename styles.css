@@ -9499,19 +9499,13 @@ body.roi-page main > section {
   position: relative;
 }
 
-/* ROI page: alternate section backgrounds like index sections */
+/* ROI page: keep section backgrounds transparent so only the global grid is visible */
 body.roi-page main > section:nth-of-type(odd) {
   background: transparent;
 }
 
 body.roi-page main > section:nth-of-type(even) {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(24, 24, 37, 0.85) 20%,
-    rgba(24, 24, 37, 0.85) 80%,
-    transparent
-  );
+  background: transparent;
 }
 
 /* Customers page: same alternating gradient pattern */

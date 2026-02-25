@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodus vs CodeRabbit — In-Depth Comparison</title>
+  <meta name="description" content="Direct comparison between Kodus and CodeRabbit across flexibility, context integrations, metrics, pricing and bug-catch performance.">
+  <meta name="keywords" content="Kodus vs CodeRabbit, AI code review, code review tool comparison">
+  <link rel="canonical" href="https://kodus.io/en/kodus-vs-coderabbit/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kodus">
+  <meta property="og:title" content="Kodus vs CodeRabbit — In-Depth Comparison">
+  <meta property="og:description" content="Compare Kodus and CodeRabbit on flexibility, integrations, metrics and bug detection on real PR datasets.">
+  <meta property="og:url" content="https://kodus.io/en/kodus-vs-coderabbit/">
+  <meta property="og:image" content="https://kodus.io/assets/img/kodus_dark.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kodus vs CodeRabbit — In-Depth Comparison">
+  <meta name="twitter:description" content="Compare Kodus and CodeRabbit on flexibility, integrations, metrics and bug detection on real PR datasets.">
+  <meta name="twitter:image" content="https://kodus.io/assets/img/kodus_dark.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    body.kvc-page {
+      background-color: #101019;
+      background-image:
+        linear-gradient(rgba(32, 32, 50, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(32, 32, 50, 0.45) 1px, transparent 1px);
+      background-size: 64px 64px;
+      background-attachment: fixed;
+    }
+
+    body.kvc-page::before {
+      display: none;
+    }
+
+    body.kvc-page main {
+      padding-top: 106px;
+    }
+
+    .kvc-section {
+      padding: 84px 0;
+    }
+
+    .kvc-hero {
+      padding: 74px 0 20px;
+      text-align: center;
+    }
+
+    .kvc-hero .section-title {
+      margin-bottom: 26px;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      letter-spacing: 0;
+      line-height: 1.2;
+    }
+
+    .kvc-hero__copy {
+      max-width: 860px;
+      margin: 0 auto;
+      color: var(--color-text-muted);
+      font-size: 1.06rem;
+      line-height: 1.72;
+    }
+
+    .kvc-label {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #8b8ba7;
+      font-size: 0.72rem;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .kvc-window {
+      background: #181825;
+      border: 1px solid #30304b;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: none;
+    }
+
+    .kvc-window__bar {
+      height: 54px;
+      background: #202032;
+      border-bottom: 1px solid #30304b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 0 20px;
+    }
+
+    .kvc-window__dots {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .kvc-window__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .kvc-window__dot--red { background: #fa5867; }
+    .kvc-window__dot--yellow { background: #f8b76d; }
+    .kvc-window__dot--green { background: #42be65; }
+
+    .kvc-window__title {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.72rem;
+      color: #cdcddf;
+    }
+
+    .kvc-window__meta {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #767695;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .kvc-dotted-bg {
+      background-color: #181825;
+      background-image: radial-gradient(#202032 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .kvc-status-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #30304b;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .kvc-status-line__left {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 0.8rem;
+      color: #f8b76d;
+    }
+
+    .kvc-status-line__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f8b76d;
+      box-shadow: 0 0 8px rgba(248, 183, 109, 0.45);
+    }
+
+    .kvc-status-line__right {
+      font-family: var(--font-mono);
+      color: #767695;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+    }
+
+    .kvc-tldr {
+      padding-top: 34px;
+    }
+
+    .kvc-tldr .kvc-window {
+      max-width: 840px;
+      margin: 0 auto;
+      border-radius: 20px;
+    }
+
+    .kvc-tldr__body {
+      padding: 20px 22px;
+      background-color: #101019;
+      background-image: radial-gradient(#202032 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .kvc-tldr__headline {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .kvc-tldr__headline h2 {
+      font-family: var(--font-pixel);
+      font-size: clamp(1.25rem, 2.8vw, 1.85rem);
+      color: #f3f3f7;
+      line-height: 1.15;
+    }
+
+    .kvc-tldr__headline span {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      font-size: 0.72rem;
+      color: #8b8ba7;
+    }
+
+    .kvc-tldr__list {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .kvc-tldr__item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .kvc-tldr__icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #30304b;
+      border-radius: 6px;
+      background: #101019;
+      color: #f8b76d;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease;
+      margin-top: 2px;
+    }
+
+    .kvc-tldr__item h4 {
+      font-size: 1.02rem;
+      line-height: 1.25;
+      font-weight: 700;
+      margin: 0 0 2px;
+      transition: color 0.2s ease;
+      color: #f3f3f7;
+    }
+
+    .kvc-tldr__item p {
+      color: #b4b4c9;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .kvc-tldr__item:hover h4 {
+      color: #f8b76d;
+    }
+
+    .kvc-tldr__item:hover .kvc-tldr__icon {
+      border-color: #f8b76d;
+    }
+
+    .kvc-tldr__footer {
+      border-top: 1px dashed #30304b;
+      margin-top: 8px;
+      padding-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kvc-tldr__footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .kvc-dots {
+      display: inline-flex;
+      gap: 7px;
+    }
+
+    .kvc-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3a3a52;
+    }
+
+    .kvc-dots span:nth-child(-n + 4) {
+      background: #8a6a45;
+    }
+
+    .kvc-tldr__footer small {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #767695;
+      font-size: 0.7rem;
+    }
+
+    .kvc-tldr__bits {
+      font-family: var(--font-mono);
+      color: #8a6a45;
+      letter-spacing: 1px;
+      font-size: 0.68rem;
+    }
+
+    .kvc-matrix .kvc-window {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .kvc-matrix .section-title {
+      text-align: center;
+      margin-bottom: 34px;
+      font-size: clamp(1.55rem, 4vw, 2.45rem);
+    }
+
+    .kvc-matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      font-family: var(--font-mono);
+      background: #181825;
+    }
+
+    .kvc-matrix-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      background: #101019;
+    }
+
+    .kvc-matrix-help {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(48, 48, 75, 0.65);
+      background: #181825;
+      flex-wrap: wrap;
+    }
+
+    .kvc-matrix-help__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #a8a8c2;
+    }
+
+    .kvc-matrix-help__item .kvc-status {
+      font-size: 0.75rem;
+    }
+
+    .kvc-matrix-table thead th {
+      border-bottom: 1px solid #30304b;
+      color: #cdcddf;
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      padding: 16px 18px;
+      text-align: left;
+      vertical-align: middle;
+      background: #181825;
+    }
+
+    .kvc-matrix-table thead th:first-child {
+      width: 56%;
+      color: #d6d6e8;
+    }
+
+    .kvc-matrix-table thead th:nth-child(2),
+    .kvc-matrix-table thead th:nth-child(3) {
+      text-align: center;
+      width: 22%;
+    }
+
+    .kvc-matrix-table tbody td {
+      border-bottom: 1px solid rgba(48, 48, 75, 0.75);
+      padding: 17px 20px;
+      color: #f3f3f7;
+      font-size: 0.95rem;
+      letter-spacing: 0.2px;
+      background: #101019;
+    }
+
+    .kvc-matrix-table tbody tr:nth-child(even) td {
+      background: #181825;
+    }
+
+    .kvc-matrix-table tbody td:nth-child(2),
+    .kvc-matrix-table tbody td:nth-child(3) {
+      text-align: center;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .kvc-matrix-colhead {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .kvc-matrix-colhead img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+    .kvc-matrix-colhead span {
+      font-size: 0.95rem;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .kvc-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      border-radius: 0;
+      border: none;
+      padding: 0;
+      font-weight: 700;
+      letter-spacing: 0;
+      background: transparent;
+      color: #c8c8dd;
+      gap: 0;
+      font-size: 0.92rem;
+      text-transform: none;
+      line-height: 1.2;
+    }
+
+    .kvc-status--ok { color: #d8d8eb; }
+    .kvc-status--lim { color: #d8d8eb; }
+    .kvc-status--no { color: #d8d8eb; }
+
+    .kvc-status em {
+      font-style: normal;
+      opacity: 0.85;
+      font-size: 0.84em;
+    }
+
+    .kvc-status__glyph {
+      font-size: 1rem;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #30304b;
+      border-radius: 9px;
+      background: #101019;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease;
+      box-shadow: none;
+    }
+
+    .kvc-status--ok .kvc-status__glyph {
+      color: #42be65;
+      border-color: #2a5040;
+      background: #101b16;
+    }
+
+    .kvc-status--lim .kvc-status__glyph {
+      color: #f8b76d;
+      border-color: #5a4a35;
+      background: #1a1510;
+    }
+
+    .kvc-status--no .kvc-status__glyph {
+      color: #fa5867;
+      border-color: #5a3440;
+      background: #1a1115;
+    }
+
+    .kvc-status__text {
+      display: none;
+    }
+
+    .kvc-price-value {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: #d8d8eb;
+      letter-spacing: 1px;
+      text-transform: none;
+      font-weight: 700;
+    }
+
+    .kvc-matrix-legend {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 16px 18px;
+      background: #181825;
+      border-top: 1px solid rgba(48, 48, 75, 0.5);
+      flex-wrap: wrap;
+    }
+
+    .kvc-legend-chip {
+      border: 1px solid #30304b;
+      border-radius: 4px;
+      padding: 5px 10px;
+      color: #9e9ebb;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .kvc-legend-chip strong {
+      color: #f3f3f7;
+      font-weight: 700;
+    }
+
+    .kvc-matrix-table tbody tr:hover td {
+      background: #202032;
+    }
+
+    .kvc-bug-analyzer .kvc-window {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .kvc-bug-analyzer .section-title {
+      margin-bottom: 24px;
+    }
+
+    .kvc-bug-analyzer {
+      padding-bottom: 18px;
+    }
+
+    .kvc-bug-analyzer__sub {
+      text-align: center;
+      color: #b8b8cd;
+      max-width: 920px;
+      margin: 0 auto 34px;
+      font-size: 1.02rem;
+      line-height: 1.72;
+    }
+
+    .kvc-bug-body {
+      padding: 30px 30px 32px;
+      background-color: #101019;
+      background-image: radial-gradient(#202032 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    .kvc-overall-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .kvc-overall-card {
+      border: 1px solid #30304b;
+      border-radius: 12px;
+      padding: 22px 22px 20px;
+      background: #101019;
+    }
+
+    .kvc-overall-card__label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b8ba7;
+      margin-bottom: 14px;
+    }
+
+    .kvc-overall-card__value {
+      font-family: var(--font-sans);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      margin: 0 0 10px;
+      color: #f3f3f7;
+    }
+
+    .kvc-overall-card--kodus .kvc-overall-card__value {
+      color: #f8b76d;
+    }
+
+    .kvc-overall-card__meta {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      color: #b6b6cc;
+    }
+
+    .kvc-severity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .kvc-sev-card {
+      background: #101019;
+      border: 1px solid #30304b;
+      border-radius: 12px;
+      padding: 18px 16px;
+    }
+
+    .kvc-sev-card__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(48, 48, 75, 0.5);
+      padding-bottom: 10px;
+    }
+
+    .kvc-sev-card__head h4 {
+      font-family: var(--font-pixel);
+      font-size: 1.02rem;
+      color: #f3f3f7;
+      letter-spacing: 0;
+    }
+
+    .kvc-sev-card__head span {
+      font-family: var(--font-mono);
+      color: #8b8ba7;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 1.3px;
+    }
+
+    .kvc-sev-row {
+      margin-bottom: 14px;
+    }
+
+    .kvc-sev-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .kvc-sev-row__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      font-size: 0.72rem;
+      color: #9f9fba;
+    }
+
+    .kvc-sev-row__track {
+      height: 30px;
+      background: #101019;
+      border: 1px solid #30304b;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .kvc-sev-row__fill {
+      width: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 9px;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: width 1.2s cubic-bezier(0.2, 0.65, 0.22, 1);
+      white-space: nowrap;
+      overflow: hidden;
+      color: #101019;
+    }
+
+    .kvc-sev-row__fill--kodus {
+      background: #f8b76d;
+    }
+
+    .kvc-sev-row__fill--coderabbit {
+      background: #3b3b5e;
+      color: #f3f3f7;
+    }
+
+    .kvc-sev-foot {
+      margin-top: 13px;
+      border: 1px solid #30304b;
+      border-radius: 6px;
+      padding: 5px 8px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      color: #8f8fac;
+      background: #101019;
+    }
+
+    .kvc-sev-foot--win {
+      border-color: rgba(248, 183, 109, 0.6);
+      color: #f8b76d;
+    }
+
+    .kvc-bug-compare {
+      padding-top: 18px;
+    }
+
+    .kvc-bug-compare .section-title {
+      margin-bottom: 36px;
+    }
+
+    .kvc-bug-compare .bench__tabs,
+    .kvc-bug-compare .bench__tab-panel,
+    .kvc-bug-compare .bench__table-frame {
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .kvc-bug-compare .bench__tabs {
+      margin-bottom: 0;
+    }
+
+    .kvc-bug-compare .bench__tab-panel .bench__table-frame {
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .kvc-bug-compare .bench__table {
+      min-width: 960px;
+    }
+
+    .kvc-bug-compare .bench__th-issue {
+      min-width: 460px;
+    }
+
+    .kvc-bug-compare .bench__td-check {
+      font-size: 1rem;
+    }
+
+    .kvc-pair-section .section-title {
+      margin-bottom: 26px;
+      font-size: clamp(1.55rem, 4vw, 2.45rem);
+    }
+
+    .kvc-pair-section__sub {
+      text-align: center;
+      color: #b8b8cd;
+      max-width: 920px;
+      margin: 0 auto 30px;
+      font-size: 1.06rem;
+      line-height: 1.7;
+    }
+
+    .kvc-pair-grid {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .kvc-pair-card {
+      background: #101019;
+      border: 1px solid #30304b;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .kvc-pair-card__bar {
+      height: 58px;
+      border-bottom: 1px solid #30304b;
+      background: #202032;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .kvc-pair-card__bar .kvc-window__dots {
+      position: static;
+      transform: none;
+    }
+
+    .kvc-pair-card__tag {
+      border: 1px solid #30304b;
+      background: #181825;
+      color: #c7c7dc;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      border-radius: 4px;
+      padding: 4px 8px;
+    }
+
+    .kvc-pair-card--kodus .kvc-pair-card__tag {
+      border-color: rgba(248, 183, 109, 0.55);
+      color: #f8b76d;
+    }
+
+    .kvc-pair-card--coderabbit .kvc-pair-card__tag {
+      border-color: #4a4a74;
+      color: #c9bbf2;
+    }
+
+    .kvc-pair-card__body {
+      padding: 0;
+      background: #101019;
+    }
+
+    .kvc-pair-card__copy {
+      color: #f3f3f7;
+      font-size: 0.98rem;
+      line-height: 1.62;
+      margin: 0;
+      min-height: 0;
+      padding: 16px 18px 14px;
+      border-bottom: 1px solid rgba(48, 48, 75, 0.55);
+      background: #101019;
+    }
+
+    .kvc-pair-card__copy strong {
+      color: #f8b76d;
+      font-weight: 700;
+    }
+
+    .kvc-pair-card__media {
+      margin: 0;
+      background: #101019;
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+      min-height: 340px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .kvc-pair-card__media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(#202032 1px, transparent 1px);
+      background-size: 14px 14px;
+      opacity: 0.35;
+    }
+
+    .kvc-pair-card__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(255, 255, 255, 0.03) 3px,
+        rgba(255, 255, 255, 0.03) 4px
+      );
+      opacity: 0.3;
+    }
+
+    .kvc-pair-card__media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .kvc-reco {
+      padding-top: 96px;
+    }
+
+    .kvc-reco-window {
+      max-width: 1180px;
+      margin: 0 auto;
+      border: 1px solid #30304b;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #101019;
+    }
+
+    .kvc-reco-top {
+      height: 52px;
+      background: #202032;
+      border-bottom: 1px solid #30304b;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kvc-reco-top__left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 0.83rem;
+      color: #d6d6e8;
+    }
+
+    .kvc-reco-top__left span:first-child {
+      color: #f8b76d;
+      font-size: 1rem;
+    }
+
+    .kvc-reco-top__ctrls {
+      display: flex;
+      gap: 4px;
+    }
+
+    .kvc-reco-top__ctrls span {
+      width: 19px;
+      height: 18px;
+      border: 1px solid #404062;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      color: #9d9dba;
+      line-height: 1;
+      background: #181825;
+    }
+
+    .kvc-reco-menu {
+      height: 40px;
+      border-bottom: 1px solid #30304b;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #8b8ba7;
+      font-size: 0.7rem;
+      background: #181825;
+    }
+
+    .kvc-reco-body {
+      padding: 30px 28px 30px;
+      background-color: #101019;
+      background-image: radial-gradient(#202032 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .kvc-reco-headline {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .kvc-reco-headline h2 {
+      font-family: var(--font-pixel);
+      font-size: clamp(1.45rem, 3.2vw, 2.45rem);
+      line-height: 1.2;
+      margin: 0;
+      color: #f3f3f7;
+    }
+
+    .kvc-reco-intro {
+      font-size: clamp(1rem, 1.8vw, 1.32rem);
+      line-height: 1.55;
+      margin-bottom: 28px;
+      color: #cdcddf;
+      max-width: 1060px;
+    }
+
+    .kvc-reco-intro strong {
+      color: #f3f3f7;
+      text-decoration: underline;
+      text-decoration-color: #f8b76d;
+      text-underline-offset: 4px;
+    }
+
+    .kvc-reco-panel,
+    .kvc-reco-alt {
+      border: 1px solid #30304b;
+      background: #181825;
+      padding: 26px 28px;
+    }
+
+    .kvc-reco-panel {
+      margin-bottom: 26px;
+    }
+
+    .kvc-reco-panel__label,
+    .kvc-reco-alt__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #7e7e9c;
+      font-size: 0.74rem;
+    }
+
+    .kvc-reco-panel__label::before {
+      content: "■";
+      color: #f8b76d;
+      font-size: 0.65rem;
+    }
+
+    .kvc-reco-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .kvc-reco-list li {
+      position: relative;
+      padding-left: 30px;
+      color: #c8c8de;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .kvc-reco-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #f8b76d;
+      font-size: 1.05em;
+      line-height: 1.45;
+    }
+
+    .kvc-reco-alt__label::before {
+      content: "›";
+      color: #8b8ba7;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .kvc-reco-alt p {
+      color: #9d9db8;
+      font-size: 1.04rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .kvc-reco-alt hr {
+      border: 0;
+      border-top: 1px solid #30304b;
+      margin: 18px 0;
+    }
+
+    .kvc-reco-alt strong {
+      color: #f8b76d;
+    }
+
+    .kvc-sep-tight {
+      padding-top: 64px;
+    }
+
+    @media (max-width: 1120px) {
+      .kvc-severity-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kvc-pair-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kvc-overall-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kvc-status-line {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .kvc-status-line__right {
+        padding-left: 20px;
+      }
+
+      .kvc-reco-headline {
+        margin-bottom: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .kvc-section {
+        padding: 68px 0;
+      }
+
+      .kvc-hero {
+        padding-top: 58px;
+      }
+
+      .kvc-hero__copy {
+        font-size: 1rem;
+      }
+
+      .kvc-tldr__body,
+      .kvc-bug-body,
+      .kvc-reco-body {
+        padding: 20px 16px 20px;
+      }
+
+      .kvc-tldr__headline {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .kvc-tldr__headline span {
+        font-size: 0.66rem;
+        letter-spacing: 1.4px;
+      }
+
+      .kvc-tldr__item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .kvc-tldr__icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .kvc-tldr__item h4 {
+        font-size: 1rem;
+      }
+
+      .kvc-tldr__item p {
+        font-size: 0.88rem;
+      }
+
+      .kvc-tldr__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .kvc-matrix-table thead th,
+      .kvc-matrix-table tbody td {
+        font-size: 0.86rem;
+        padding: 13px 12px;
+      }
+
+      .kvc-matrix-colhead img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .kvc-matrix-colhead {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .kvc-status {
+        min-width: 0;
+        font-size: 0.72rem;
+        padding: 0;
+      }
+
+      .kvc-overall-card__meta {
+        font-size: 1rem;
+      }
+
+      .kvc-sev-card__head h4 {
+        font-size: 0.86rem;
+      }
+
+      .kvc-pair-card__copy {
+        font-size: 0.92rem;
+        padding: 14px 14px 12px;
+      }
+
+      .kvc-pair-card__media {
+        min-height: 235px;
+        padding: 2px;
+      }
+
+      .kvc-window__meta {
+        display: none;
+      }
+
+      .kvc-reco-top {
+        padding: 0 10px;
+      }
+
+      .kvc-reco-menu {
+        gap: 14px;
+        font-size: 0.62rem;
+        padding: 0 10px;
+      }
+
+      .kvc-reco-headline {
+        margin-bottom: 12px;
+      }
+
+      .kvc-reco-list li {
+        padding-left: 24px;
+      }
+    }
+  </style>
+</head>
+<body class="kvc-page">
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link nav__link--external" target="_blank" rel="noopener">Docs</a></li>
+        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link nav__link--external" target="_blank" rel="noopener">Community</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
+          <ul class="nav__dropdown-menu">
+            <li>
+              <a href="https://kodus.io/en/code-review-rules/">
+                <span class="nav__item-title">Kody Rules</span>
+                <span class="nav__item-desc">Library of production tested review rules for real world codebases.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://kodus.io/en/changelog-en/">
+                <span class="nav__item-title">Changelog</span>
+                <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
+              </a>
+            </li>
+            <li>
+              <a href="roi.html">
+                <span class="nav__item-title">ROI Calculator</span>
+                <span class="nav__item-desc">Model driven estimate of the impact of catching issues before they hit production.</span>
+              </a>
+            </li>
+            <li>
+              <a href="customers.html">
+                <span class="nav__item-title">Customers</span>
+                <span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.kodus.io/how_to_use/en/security/data_usage">
+                <span class="nav__item-title">Security</span>
+                <span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span>
+              </a>
+            </li>
+            <li>
+              <a href="benchmark.html">
+                <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
+                <span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://codereviewbench.com/">
+                <span class="nav__item-title">LLMs Performance Benchmark</span>
+                <span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://ai-skills.io/">
+                <span class="nav__item-title">Agent Skills Library</span>
+                <span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
+        <li><a href="pricing.html" class="nav__link">Pricing</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a href="#" class="btn btn--github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span id="ghStars">--</span>
+        </a>
+        <a href="https://app.kodus.io/sign-in" class="btn btn--outline-light">Login</a>
+        <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Start Free Trial</a>
+      </div>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="kvc-hero">
+      <div class="container">
+        <h1 class="section-title">Kodus vs CodeRabbit</h1>
+        <p class="kvc-hero__copy">If you're here, you're probably deciding which AI reviewer will scrutinise every pull request your team ships. Below is a direct, in-depth comparison of Kodus and CodeRabbit, laser-focused on the things that matter most: rule flexibility, integrations, quality metrics and licensing model.</p>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-sep-tight kvc-tldr">
+      <div class="container">
+        <div class="kvc-window">
+          <div class="kvc-window__bar">
+            <div class="kvc-window__dots">
+              <span class="kvc-window__dot kvc-window__dot--red"></span>
+              <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+              <span class="kvc-window__dot kvc-window__dot--green"></span>
+            </div>
+            <span class="kvc-window__title">COMPARE_TOOLS.REPORT</span>
+          </div>
+
+          <div class="kvc-tldr__body">
+            <div class="kvc-status-line">
+              <div class="kvc-status-line__left"><span class="kvc-status-line__dot"></span><span>System Status: Active</span></div>
+              <div class="kvc-status-line__right">Ref: KODUS_V2.5_STABLE</div>
+            </div>
+
+            <div class="kvc-tldr__headline">
+              <h2>TL;DR</h2>
+              <span>Summary Report</span>
+            </div>
+
+            <div class="kvc-tldr__list">
+              <article class="kvc-tldr__item">
+                <div class="kvc-tldr__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 6L10 12L5 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 18H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <h4>Ultra-custom rules (Kodus)</h4>
+                  <p>&mdash; write policies in natural language and scope them by repo, folder, file or individual PR.</p>
+                </div>
+              </article>
+
+              <article class="kvc-tldr__item">
+                <div class="kvc-tldr__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V7H21V17H16V21H8V17H3V7H8V3Z" stroke="currentColor" stroke-width="2"/><path d="M9 8H15V16H9V8Z" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <h4>MCP &amp; external context (Kodus)</h4>
+                  <p>&mdash; surface CI results, Jira tickets, Notion pages or Playwright tests inside the same review comment.</p>
+                </div>
+              </article>
+
+              <article class="kvc-tldr__item">
+                <div class="kvc-tldr__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L12 7L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 20H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <h4>Native IDE plugin (CodeRabbit)</h4>
+                  <p>&mdash; official VS Code / Cursor extension gives feedback before you push.</p>
+                </div>
+              </article>
+
+              <article class="kvc-tldr__item">
+                <div class="kvc-tldr__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="6" height="6" stroke="currentColor" stroke-width="2"/><rect x="14" y="4" width="6" height="6" stroke="currentColor" stroke-width="2"/><rect x="4" y="14" width="6" height="6" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="6" height="6" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <h4>Cockpit + Kody Issues (Kodus)</h4>
+                  <p>&mdash; built-in productivity &amp; quality metrics plus an automatic backlog of unresolved suggestions.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="kvc-tldr__footer">
+              <div class="kvc-tldr__footer-left">
+                <span class="kvc-dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+                <small>Data Processing Unit</small>
+              </div>
+              <span class="kvc-tldr__bits">01001011 01001111 01000100 01010101 01010011</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-matrix">
+      <div class="container">
+        <h2 class="section-title">AT-A-GLANCE COMPARISON</h2>
+        <div class="kvc-window">
+          <div class="kvc-window__bar">
+            <div class="kvc-window__dots">
+              <span class="kvc-window__dot kvc-window__dot--red"></span>
+              <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+              <span class="kvc-window__dot kvc-window__dot--green"></span>
+            </div>
+            <span class="kvc-window__title">FEATURE_MATRIX.DAT</span>
+            <span class="kvc-window__meta">11 FEATURES</span>
+          </div>
+
+          <div class="kvc-matrix-help">
+            <span class="kvc-matrix-help__item"><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span>Included</span>
+            <span class="kvc-matrix-help__item"><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span>Limited</span>
+            <span class="kvc-matrix-help__item"><span class="kvc-status kvc-status--no"><span class="kvc-status__glyph">&#10005;</span></span>Not available</span>
+          </div>
+
+          <div class="kvc-matrix-wrap">
+            <table class="kvc-matrix-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>
+                    <div class="kvc-matrix-colhead">
+                      <img src="assets/img/kody-maromba.png" alt="Kodus">
+                      <span>Kodus</span>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="kvc-matrix-colhead">
+                      <img src="assets/img/rabbit.png" alt="CodeRabbit">
+                      <span>CodeRabbit</span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>AI-powered code summaries</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                </tr>
+                <tr>
+                  <td>In-line comments</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Chat with PR bot</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Rules per repo / folder / file / PR</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span></td>
+                </tr>
+                <tr>
+                  <td>External context (MCP &amp; Plugins)</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--no"><span class="kvc-status__glyph">&#10005;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Native IDE plugin</td>
+                  <td><span class="kvc-status kvc-status--no"><span class="kvc-status__glyph">&#10005;</span></span></td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Metrics dashboard</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Technical-debt backlog</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--no"><span class="kvc-status__glyph">&#10005;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Noise filters (limit &amp; severity)</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Self-host option</td>
+                  <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
+                  <td><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span></td>
+                </tr>
+                <tr>
+                  <td>Pricing</td>
+                  <td><span class="kvc-price-value">$10/user + BYOK</span></td>
+                  <td><span class="kvc-price-value">$15-$30/user</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="kvc-matrix-legend">
+            <span class="kvc-legend-chip"><strong>&#10003;</strong> Available</span>
+            <span class="kvc-legend-chip"><strong>&#9651;</strong> Partial / Limited</span>
+            <span class="kvc-legend-chip"><strong>&#10005;</strong> Not available</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-bug-analyzer">
+      <div class="container">
+        <h2 class="section-title">Bug Catch Comparison</h2>
+        <p class="kvc-bug-analyzer__sub">To evaluate real-world performance, we compared Kody and CodeRabbit reviews across several PRs from projects like Sentry, Cal.com, Grafana, Discourse and Keycloak.</p>
+        <div class="kvc-window">
+          <div class="kvc-window__bar">
+            <div class="kvc-window__dots">
+              <span class="kvc-window__dot kvc-window__dot--red"></span>
+              <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+              <span class="kvc-window__dot kvc-window__dot--green"></span>
+            </div>
+            <span class="kvc-window__title">BUG_CATCH_ANALYZER.V2</span>
+            <span class="kvc-window__meta">LIVE DATASET</span>
+          </div>
+
+          <div class="kvc-bug-body">
+            <div class="kvc-overall-grid">
+              <article class="kvc-overall-card kvc-overall-card--kodus">
+                <p class="kvc-overall-card__label">Overall Performance · Kodus</p>
+                <h3 class="kvc-overall-card__value">64%</h3>
+                <p class="kvc-overall-card__meta">21 / 33</p>
+              </article>
+              <article class="kvc-overall-card">
+                <p class="kvc-overall-card__label">Overall Performance · CodeRabbit</p>
+                <h3 class="kvc-overall-card__value">39%</h3>
+                <p class="kvc-overall-card__meta">13 / 33</p>
+              </article>
+            </div>
+
+            <div class="kvc-severity-grid" id="kvcSeverityGrid">
+              <article class="kvc-sev-card">
+                <div class="kvc-sev-card__head">
+                  <h4>Critical</h4>
+                  <span>11 PRs</span>
+                </div>
+                <div class="kvc-sev-row">
+                  <div class="kvc-sev-row__meta"><span>Kodus · 36%</span><span>4 / 11</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="36">4 / 11</div></div>
+                </div>
+                <div class="kvc-sev-row">
+                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 36%</span><span>4 / 11</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="36">4 / 11</div></div>
+                </div>
+              </article>
+
+              <article class="kvc-sev-card">
+                <div class="kvc-sev-card__head">
+                  <h4>High</h4>
+                  <span>14 PRs</span>
+                </div>
+                <div class="kvc-sev-row">
+                  <div class="kvc-sev-row__meta"><span>Kodus · 71%</span><span>10 / 14</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="71">10 / 14</div></div>
+                </div>
+                <div class="kvc-sev-row">
+                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 29%</span><span>4 / 14</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="29">4 / 14</div></div>
+                </div>
+              </article>
+
+              <article class="kvc-sev-card">
+                <div class="kvc-sev-card__head">
+                  <h4>Medium</h4>
+                  <span>8 PRs</span>
+                </div>
+                <div class="kvc-sev-row">
+                  <div class="kvc-sev-row__meta"><span>Kodus · 88%</span><span>7 / 8</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="88">7 / 8</div></div>
+                </div>
+                <div class="kvc-sev-row">
+                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 63%</span><span>5 / 8</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="63">5 / 8</div></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-bug-compare">
+      <div class="container">
+        <h2 class="section-title">Detailed Results</h2>
+        <div id="kvcBugCompareMount"></div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-pair-section">
+      <div class="container">
+        <h2 class="section-title">Flexibility &amp; Control</h2>
+        <p class="kvc-pair-section__sub">Use any model you want&mdash;and keep every review fully under your control.</p>
+
+        <div class="kvc-pair-grid">
+          <article class="kvc-pair-card kvc-pair-card--kodus">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">Kodus</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Run with your own API keys&mdash;GPT-5, Claude, Gemini, or any model you choose.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%282%29.png" alt="Kodus model flexibility">
+              </div>
+            </div>
+          </article>
+
+          <article class="kvc-pair-card kvc-pair-card--coderabbit">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">CodeRabbit</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>CodeRabbit</strong> &mdash; Locked to a single provider&mdash;no model choice or cost control.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/coderabbit1.png" alt="CodeRabbit provider lock-in">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-pair-section">
+      <div class="container">
+        <h2 class="section-title">Rules &amp; Customization</h2>
+        <p class="kvc-pair-section__sub">Version-controlled guidelines you can scope from the whole repo down to a single file&mdash;or import ready-made in one click.</p>
+
+        <div class="kvc-pair-grid">
+          <article class="kvc-pair-card kvc-pair-card--kodus">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">Kodus</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Granular, version-controlled rules for any file, folder or PR, with a one-click community library ready to import.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%286%29.png" alt="Kodus rules library">
+              </div>
+            </div>
+          </article>
+
+          <article class="kvc-pair-card kvc-pair-card--coderabbit">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">CodeRabbit</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>Coderabbit</strong> &mdash; Single YAML or dashboard for the whole repo&mdash;handy tweaks, but no file-level targeting or rule library.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%287%29.png" alt="CodeRabbit rule customization">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-pair-section">
+      <div class="container">
+        <h2 class="section-title">Context &amp; Plugins</h2>
+        <p class="kvc-pair-section__sub">Bring the right context into every review&mdash;or get feedback before code ever hits the PR.</p>
+
+        <div class="kvc-pair-grid">
+          <article class="kvc-pair-card kvc-pair-card--kodus">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">Kodus</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Pull CI results, Jira tickets, Notion docs, Playwright runs&mdash;or any custom script&mdash;into one clean comment.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%288%29.png" alt="Kodus MCP integrations">
+              </div>
+            </div>
+          </article>
+
+          <article class="kvc-pair-card kvc-pair-card--coderabbit">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">CodeRabbit</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>Coderabbit</strong> &mdash; Basic semantic look-ups for Jira and Linear issues&mdash;no MCP layer, no CI or test data.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%289%29.png" alt="CodeRabbit context integrations">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-pair-section">
+      <div class="container">
+        <h2 class="section-title">Metrics &amp; Issues</h2>
+        <p class="kvc-pair-section__sub">Turn review data into team KPIs&mdash;or just tally how many warnings you raised.</p>
+
+        <div class="kvc-pair-grid">
+          <article class="kvc-pair-card kvc-pair-card--kodus">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">Kodus</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Cockpit tracks deploys, cycle-time and Implementation Rate, while Kody Issues turns every unresolved suggestion into a living backlog.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%2810%29.png" alt="Kodus cockpit and kody issues">
+              </div>
+            </div>
+          </article>
+
+          <article class="kvc-pair-card kvc-pair-card--coderabbit">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">CodeRabbit</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy"><strong>CodeRabbit</strong> &mdash; Dashboard counts suggestions and linter findings&mdash;no implementation tracking, no backlog.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%2811%29.png" alt="CodeRabbit metrics dashboard">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-reco">
+      <div class="container">
+        <div class="kvc-reco-window">
+          <div class="kvc-reco-top">
+            <div class="kvc-reco-top__left">
+              <span>&#9633;</span>
+              <span>RECOMMENDATION_WIZARD.EXE</span>
+            </div>
+            <div class="kvc-reco-top__ctrls" aria-hidden="true">
+              <span>_</span>
+              <span>&#9633;</span>
+              <span>&#10005;</span>
+            </div>
+          </div>
+
+          <div class="kvc-reco-menu"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+
+          <div class="kvc-reco-body">
+            <div class="kvc-reco-headline">
+              <h2>SYSTEM RECOMMENDATION</h2>
+            </div>
+
+            <p class="kvc-reco-intro">If your team values <strong>precision</strong>, <strong>visibility</strong>, and <strong>control</strong>, Kodus is the clear choice.</p>
+
+            <div class="kvc-reco-panel">
+              <span class="kvc-reco-panel__label">KODUS_CAPABILITIES_V3.0</span>
+              <ul class="kvc-reco-list">
+                <li>Use your own API keys and choose the model that makes the most sense for your team.</li>
+                <li>Scope rules from repo level down to a single file or PR and track every change in Git.</li>
+                <li>Pull real-time context (CI, Jira, Notion, Playwright, custom scripts) into one authoritative review comment.</li>
+                <li>See what actually ships with Cockpit metrics and automatically convert unresolved suggestions into a tidy backlog.</li>
+                <li>Deploy the way you need: free self-host for full ownership or a flat-price cloud with unlimited seats.</li>
+              </ul>
+            </div>
+
+            <div class="kvc-reco-alt">
+              <span class="kvc-reco-alt__label">ALTERNATIVE_PATH_ANALYSIS</span>
+              <p>CodeRabbit is a solid, fully managed SaaS for teams that just want &ldquo;set-it-and-forget-it&rdquo; reviews and are happy with a single YAML config plus basic suggestion counts.</p>
+              <hr>
+              <p>But if you want deeper customisation, richer insight, and the freedom to run on-prem or in the cloud, Kodus delivers more&mdash;without locking you in.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo">
+          <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
+        </a>
+        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Legal &amp; Contact</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="https://kodus.io/en/terms-of-use/">Terms of Use</a></li>
+            <li><a href="mailto:support@kodus.io">support@kodus.io</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Meet Kody</h4>
+          <ul class="footer__col-list">
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="customers.html">Customers</a></li>
+            <li><a href="https://kodus.io/en/code-review-rules/">Kody Rules</a></li>
+            <li><a href="roi.html">ROI Calculator</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Resources</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/insights-en/">Blog</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/overview">Docs</a></li>
+            <li><a href="https://kodus.io/en/changelog-en/">Changelog</a></li>
+            <li><a href="https://discord.gg/TFZBRk9fT6">Support Discord</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Helpful Links</h4>
+          <ul class="footer__col-list">
+            <li><a href="benchmark.html">AI Code Review Tools Benchmarks</a></li>
+            <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
+            <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
+            <li><a href="https://kodus.io/en/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Our Network</h4>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/kodustech/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="LinkedIn">
+              <img src="assets/img/linkedin.png" alt="LinkedIn" class="footer__social-icon">
+            </a>
+            <a href="https://twitter.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="X (Twitter)">
+              <img src="assets/img/x-1.png?v=2" alt="X (Twitter)" class="footer__social-icon">
+            </a>
+            <a href="https://www.reddit.com/r/Kodus/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Reddit">
+              <img src="assets/img/reddit.png" alt="Reddit" class="footer__social-icon">
+            </a>
+            <a href="https://github.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub">
+              <img src="assets/img/github.png" alt="GitHub" class="footer__social-icon">
+            </a>
+            <div style="flex-basis: 100%; height: 0;"></div>
+            <a href="https://discord.gg/TFZBRk9fT6" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Discord">
+              <img src="assets/img/discord.png" alt="Discord" class="footer__social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Kodus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const BUG_DATA = {
+      "Sentry": [
+        { "title": "Replays Self-Serve Bulk Delete System", "desc": "Breaking changes in error response format", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/10", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/5" },
+        { "title": "GitHub OAuth Security Enhancement", "desc": "Null reference if github_authenticated_user state is missing", "severity": "Critical", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/9", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/4" },
+        { "title": "Optimize spans buffer insertion with eviction during insert", "desc": "Negative offset cursor manipulation bypasses pagination boundaries", "severity": "Critical", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/2" },
+        { "title": "Enhanced Pagination Performance for High-Volume Audit Logs", "desc": "Importing non-existent OptimizedCursorPaginator", "severity": "High", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/1", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/1" },
+        { "title": "Reorganize incident creation / issue occurrence logic", "desc": "Using stale config variable instead of updated one", "severity": "High", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/11", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9" },
+        { "title": "Add ability to use queues to manage parallelism", "desc": "Invalid queue.ShutDown exception handling", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/12", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9" },
+        { "title": "Add hook for producing occurrences from the stateful detector", "desc": "Incomplete implementation (only contains pass)", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/13", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/10" },
+        { "title": "Span Buffer Multiprocess Enhancement with Health Monitoring", "desc": "Inconsistent metric tagging with 'shard' and 'shards'", "severity": "Medium", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/19", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/6" },
+        { "title": "Implement cross-system issue synchronization", "desc": "Shared mutable default in dataclass timestamp", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/18", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/7" }
+      ],
+      "Cal.com": [
+        { "title": "feat: 2fa backup codes", "desc": "Backup codes not invalidated after use", "severity": "Critical", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/6", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/3" },
+        { "title": "fix: handle collective multiple host on destinationCalendar", "desc": "Null reference error if array is empty", "severity": "Medium", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/14", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/4" },
+        { "title": "feat: convert InsightsBookingService to use Prisma.sql raw queries", "desc": "Potential SQL injection risk in raw SQL query construction", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/8", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/5" },
+        { "title": "Comprehensive workflow reminder management for booking lifecycle events", "desc": "Missing database cleanup when immediateDelete is true", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/9", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/6" },
+        { "title": "Advanced date override handling and timezone compatibility improvements", "desc": "Incorrect end time calculation using slotStartTime instead of slotEndTime", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/10", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/7" },
+        { "title": "OAuth credential sync and app integration enhancements", "desc": "Timing attack vulnerability using direct string comparison", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/11", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/8" },
+        { "title": "SMS workflow reminder retry count tracking", "desc": "OR condition causes deletion of all workflow reminders", "severity": "High", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/12", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/9" },
+        { "title": "Add guest management functionality to existing bookings", "desc": "Case sensitivity bypass in email blacklist", "severity": "High", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/13", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/10" }
+      ],
+      "Grafana": [
+        { "title": "Advanced SQL Analytics Framework", "desc": "enableSqlExpressions function always returns false, disabling SQL functionality", "severity": "Critical", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/14", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/9" },
+        { "title": "Unified Storage Performance Optimizations", "desc": "Race condition in cache locking", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/15", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/10" },
+        { "title": "Notification Rule Processing Engine", "desc": "Missing key prop causing React rendering issues", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/11", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/5" },
+        { "title": "Advanced Query Processing Architecture", "desc": "Double interpolation risk", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/10", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/4" },
+        { "title": "Dual Storage Architecture", "desc": "Incorrect metrics recording methods causing misleading performance tracking", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/12", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/6" },
+        { "title": "Frontend Asset Optimization", "desc": "Deadlock potential during concurrent annotation deletion operations", "severity": "High", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/13", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/8" },
+        { "title": "AuthZService: improve authz caching", "desc": "Cache entries without expiration causing permanent permission denials", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/8", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/2" },
+        { "title": "Anonymous: Add configurable device limit", "desc": "Race condition in CreateOrUpdateDevice method", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/7", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/1" }
+      ],
+      "Discourse": [
+        { "title": "FEATURE: automatically downsize large images", "desc": "Method overwriting causing parameter mismatch", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/1", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/1" },
+        { "title": "FEATURE: per-topic unsubscribe option in emails", "desc": "Nil reference non-existent TopicUser", "severity": "High", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/2", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/2" },
+        { "title": "Add comprehensive email validation for blocked users", "desc": "BlockedEmail.should_block? modifies DB during read", "severity": "Critical", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/3", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/3" },
+        { "title": "Enhance embed URL handling and validation system", "desc": "SSRF vulnerability using open(url) without validation", "severity": "Critical", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/4", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/4" },
+        { "title": "UX: show complete URL path if website domain is same as instance domain", "desc": "String mutation with << operator", "severity": "Medium", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/5", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/6" },
+        { "title": "FIX: proper handling of group memberships", "desc": "Race conditions in async member loading", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/6", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/8" },
+        { "title": "FEATURE: Localization fallbacks (server-side)", "desc": "Thread-safety issue with lazy @loaded_locales", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/7", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/9" },
+        { "title": "FEATURE: Can edit category/host relationships for embedding", "desc": "NoMethodError before_validation in EmbeddableHost", "severity": "Critical", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/8", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/10" }
+      ]
+    };
+
+    const TAB_META = {
+      "Sentry": { slug: "sentry", lang: "PYTHON", file: "SENTRY_REPORT.CSV" },
+      "Cal.com": { slug: "calcom", lang: "TYPESCRIPT", file: "CALCOM_REPORT.CSV" },
+      "Grafana": { slug: "grafana", lang: "GO", file: "GRAFANA_REPORT.CSV" },
+      "Discourse": { slug: "discourse", lang: "RUBY", file: "DISCOURSE_REPORT.CSV" }
+    };
+
+    function sevClass(sev) {
+      const s = String(sev).toLowerCase();
+      if (s === 'critical') return 'bench__sev bench__sev--critical';
+      if (s === 'high') return 'bench__sev bench__sev--high';
+      return 'bench__sev bench__sev--medium';
+    }
+
+    function boolCell(hit, url) {
+      const mark = hit ? '<span class="bench__hit">&#10003;</span>' : '<span class="bench__miss">&#10005;</span>';
+      if (url) {
+        return '<a href="' + url + '" target="_blank" rel="noopener" class="bench__td-link">' + mark + '</a>';
+      }
+      return '<span>' + mark + '</span>';
+    }
+
+    function buildBugComparison() {
+      const mount = document.getElementById('kvcBugCompareMount');
+      if (!mount) return;
+
+      const repos = Object.keys(BUG_DATA);
+
+      const tabsHtml = '<div class="bench__tabs">' + repos.map((name, idx) => {
+        const meta = TAB_META[name];
+        return '<button class="bench__tab' + (idx === 0 ? ' bench__tab--active' : '') + '" data-tab="' + meta.slug + '">' + name + ' <span class="bench__tab-lang">' + meta.lang + '</span></button>';
+      }).join('') + '</div>';
+
+      const panelsHtml = repos.map((name, idx) => {
+        const meta = TAB_META[name];
+        const rows = BUG_DATA[name];
+        const total = rows.length;
+        const kodusHits = rows.filter(r => r.kodusHit).length;
+        const coderabbitHits = rows.filter(r => r.coderabbitHit).length;
+
+        const bodyRows = rows.map(row => {
+          return '<tr>' +
+            '<td class="bench__td-issue"><strong>' + row.title + '</strong><span class="bench__td-desc">' + row.desc + '</span></td>' +
+            '<td><span class="' + sevClass(row.severity) + '">' + row.severity.toUpperCase() + '</span></td>' +
+            '<td class="bench__td-check">' + boolCell(row.kodusHit, row.kodusUrl) + '</td>' +
+            '<td class="bench__td-check">' + boolCell(row.coderabbitHit, row.coderabbitUrl) + '</td>' +
+          '</tr>';
+        }).join('');
+
+        return '<div class="bench__tab-panel' + (idx === 0 ? ' bench__tab-panel--active' : '') + '" id="kvc-tab-' + meta.slug + '">' +
+          '<div class="bench__table-frame">' +
+            '<div class="bench__charts-bar">' +
+              '<div class="bench__terminal-dots">' +
+                '<span class="bench__dot bench__dot--red"></span>' +
+                '<span class="bench__dot bench__dot--yellow"></span>' +
+                '<span class="bench__dot bench__dot--green"></span>' +
+              '</div>' +
+              '<span class="bench__charts-bar-title">' + meta.file + '</span>' +
+              '<span class="bench__charts-bar-status">' + total + ' RECORDS</span>' +
+            '</div>' +
+            '<div class="bench__table-wrap">' +
+              '<table class="bench__table">' +
+                '<thead><tr><th class="bench__th-issue">PR / Bug</th><th class="bench__th-sev">Severity</th><th>Kodus</th><th>CodeRabbit</th></tr></thead>' +
+                '<tbody>' + bodyRows + '</tbody>' +
+                '<tfoot><tr class="bench__totals"><td><strong>Total</strong></td><td></td><td><strong class="bench__total--kodus">' + kodusHits + ' / ' + total + '</strong></td><td><strong>' + coderabbitHits + ' / ' + total + '</strong></td></tr></tfoot>' +
+              '</table>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      mount.innerHTML = tabsHtml + panelsHtml;
+
+      const tabs = mount.querySelectorAll('.bench__tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('bench__tab--active'));
+          mount.querySelectorAll('.bench__tab-panel').forEach(p => p.classList.remove('bench__tab-panel--active'));
+          tab.classList.add('bench__tab--active');
+          const panel = mount.querySelector('#kvc-tab-' + tab.dataset.tab);
+          if (panel) panel.classList.add('bench__tab-panel--active');
+        });
+      });
+    }
+
+    function animateSeverityBars() {
+      const grid = document.getElementById('kvcSeverityGrid');
+      if (!grid) return;
+
+      const fills = Array.from(grid.querySelectorAll('.kvc-sev-row__fill'));
+      if (!fills.length) return;
+
+      let played = false;
+      const run = () => {
+        if (played) return;
+        played = true;
+        fills.forEach((el, idx) => {
+          const target = Number(el.dataset.target || 0);
+          setTimeout(() => {
+            el.style.width = Math.max(0, Math.min(100, target)) + '%';
+          }, idx * 110);
+        });
+      };
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            run();
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.28 });
+
+      io.observe(grid);
+    }
+
+    buildBugComparison();
+    animateSeverityBars();
+  </script>
+</body>
+</html>
