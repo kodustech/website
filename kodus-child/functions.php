@@ -3,6 +3,8 @@
  * Kodus Child Theme — functions.php
  */
 
+require_once get_stylesheet_directory() . '/inc/comparison-page.php';
+
 // Ensure WP outputs <title> in head.
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -94,6 +96,10 @@ function kodus_get_retro_templates() {
         'page-case-notificacoes.php',
         'page-kodus-wrapper.php',
         'page-blog.php',
+        'page-kodus-vs-coderabbit.php',
+        'page-kodus-vs-bugbot.php',
+        'page-kodus-vs-github.php',
+        'page-kodus-vs-claude.php',
     ];
 }
 
@@ -208,6 +214,10 @@ function kodus_register_page_templates($templates) {
     $templates['page-case-notificacoes.php'] = 'Kodus Case Notificações';
     $templates['page-kodus-wrapper.php']     = 'Kodus Wrapper';
     $templates['page-blog.php']              = 'Kodus Blog';
+    $templates['page-kodus-vs-coderabbit.php'] = 'Kodus vs CodeRabbit';
+    $templates['page-kodus-vs-bugbot.php']     = 'Kodus vs Cursor BugBot';
+    $templates['page-kodus-vs-github.php']     = 'Kodus vs GitHub Copilot';
+    $templates['page-kodus-vs-claude.php']     = 'Kodus vs Claude';
     return $templates;
 }
 

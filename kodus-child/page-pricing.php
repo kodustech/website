@@ -494,6 +494,7 @@
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_19.webp" alt="Logo 18" class="logo-carousel__img">
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/brendi_v2.webp" alt="Brendi" class="logo-carousel__img">
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/lerian_v2.webp" alt="Lerian" class="logo-carousel__img">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/clickbus.png" alt="ClickBus" class="logo-carousel__img">
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/notificacoes.webp" alt="Notificações Inteligentes" class="logo-carousel__img">
 
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/purple_metrics.webp" alt="Purple Metrics" class="logo-carousel__img">
@@ -516,6 +517,7 @@
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_19.webp" alt="Logo 18" class="logo-carousel__img">
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/brendi_v2.webp" alt="Brendi" class="logo-carousel__img">
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/lerian_v2.webp" alt="Lerian" class="logo-carousel__img">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/clickbus.png" alt="ClickBus" class="logo-carousel__img">
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/notificacoes.webp" alt="Notificações Inteligentes" class="logo-carousel__img">
                 </div>
               </div>
