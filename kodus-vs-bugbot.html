@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kodus vs CodeRabbit — In-Depth Comparison</title>
-  <meta name="description" content="Direct comparison between Kodus and CodeRabbit across flexibility, context integrations, metrics, pricing and bug-catch performance.">
-  <meta name="keywords" content="Kodus vs CodeRabbit, AI code review, code review tool comparison">
+  <title>Kodus vs Cursor Bugbot — In-Depth Comparison</title>
+  <meta name="description" content="Direct comparison between Kodus and Cursor Bugbot across flexibility, context integrations, metrics, pricing and bug-catch performance.">
+  <meta name="keywords" content="Kodus vs Cursor Bugbot, AI code review, code review tool comparison">
   <link rel="canonical" href="https://kodus.io/en/kodus-vs-coderabbit/">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kodus">
-  <meta property="og:title" content="Kodus vs CodeRabbit — In-Depth Comparison">
-  <meta property="og:description" content="Compare Kodus and CodeRabbit on flexibility, integrations, metrics and bug detection on real PR datasets.">
+  <meta property="og:title" content="Kodus vs Cursor Bugbot — In-Depth Comparison">
+  <meta property="og:description" content="Compare Kodus and Cursor Bugbot on flexibility, integrations, metrics and bug detection on real PR datasets.">
   <meta property="og:url" content="https://kodus.io/en/kodus-vs-coderabbit/">
   <meta property="og:image" content="https://kodus.io/assets/img/kodus_dark.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kodus vs CodeRabbit — In-Depth Comparison">
-  <meta name="twitter:description" content="Compare Kodus and CodeRabbit on flexibility, integrations, metrics and bug detection on real PR datasets.">
+  <meta name="twitter:title" content="Kodus vs Cursor Bugbot — In-Depth Comparison">
+  <meta name="twitter:description" content="Compare Kodus and Cursor Bugbot on flexibility, integrations, metrics and bug detection on real PR datasets.">
   <meta name="twitter:image" content="https://kodus.io/assets/img/kodus_dark.png">
   <link rel="stylesheet" href="styles.css">
 
@@ -404,8 +404,8 @@
     .kvc-matrix-table tbody td:nth-child(3) {
       text-align: center;
       font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      text-transform: none;
+      letter-spacing: 0.2px;
     }
 
     .kvc-matrix-colhead {
@@ -494,6 +494,27 @@
       display: none;
     }
 
+    .kvc-status--lim .kvc-status__glyph {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      border: 1px solid #5a4a35;
+      background: #1a1510;
+      color: #f8b76d;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .kvc-matrix-value {
+      font-family: var(--font-sans);
+      font-size: 0.96rem;
+      letter-spacing: 0;
+      color: #d6d6e8;
+      font-weight: 500;
+      text-transform: none;
+    }
+
     .kvc-price-value {
       font-family: var(--font-mono);
       font-size: 0.95rem;
@@ -554,6 +575,29 @@
       color: #fa5867;
       border-color: #5a3440;
       background: #1a1115;
+    }
+
+    .kvc-platform-icons {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+      color: #a5a5bc;
+    }
+
+    .kvc-platform-icons .hero__provider {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+      opacity: 0.95;
+    }
+
+    .kvc-platform-icons .hero__provider svg {
+      width: 20px;
+      height: 20px;
+      display: block;
     }
 
     .kvc-matrix-table tbody tr:hover td {
@@ -1157,7 +1201,7 @@
       padding-left: 14px;
       border-radius: 0 6px 6px 0;
       background: transparent;
-      margin-top: 2px;
+      margin-top: 8px;
     }
 
     .kvc-reco-alt p.kvc-reco-alt__emphasis strong {
@@ -1435,10 +1479,10 @@
       <div class="container">
         <div class="kvc-hero__layout">
           <div class="kvc-hero__text">
-            <h1 class="section-title">Kodus vs CodeRabbit</h1>
-            <p class="kvc-hero__copy">If you're here, you're probably deciding which AI reviewer will scrutinise every pull request your team ships. Below is a direct, in-depth comparison of Kodus and CodeRabbit, laser-focused on the things that matter most: rule flexibility, integrations, quality metrics and licensing model.</p>
+            <h1 class="section-title">Kodus vs Bugbot</h1>
+            <p class="kvc-hero__copy">If you&rsquo;re here, you&rsquo;re probably deciding which AI code reviewer will scrutinize every pull request your team ships. Below is a direct, in-depth comparison of Kodus and Cursor&rsquo;s BugBot, focused on the things that matter most: breadth of issue detection, rule flexibility, integrations, quality metrics, and deployment model.</p>
           </div>
-          <img class="kvc-hero__art" src="assets/img/kody-coderabbit.png" alt="Kody vs CodeRabbit">
+          <img class="kvc-hero__art" src="assets/img/kody-coderabbit.png" alt="Kody vs Cursor Bugbot">
         </div>
       </div>
     </section>
@@ -1473,7 +1517,7 @@
                 </div>
                 <div>
                   <h4>Ultra-custom rules (Kodus)</h4>
-                  <p>&mdash; write policies in natural language and scope them by repo, folder, file or individual PR.</p>
+                  <p>&ndash; Write policies in natural language and scope them by repository, folder, file or even individual PR.</p>
                 </div>
               </article>
 
@@ -1483,7 +1527,7 @@
                 </div>
                 <div>
                   <h4>MCP &amp; external context (Kodus)</h4>
-                  <p>&mdash; surface CI results, Jira tickets, Notion pages or Playwright tests inside the same review comment.</p>
+                  <p>&ndash; Surface CI results, Jira/Linear tickets, Notion pages, or even test run outputs inside the same review comment.</p>
                 </div>
               </article>
 
@@ -1492,8 +1536,8 @@
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L12 7L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 20H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                 </div>
                 <div>
-                  <h4>Native IDE plugin (CodeRabbit)</h4>
-                  <p>&mdash; official VS Code / Cursor extension gives feedback before you push.</p>
+                  <h4>Cursor IDE integration (BugBot)</h4>
+                  <p>&ndash; BugBot integrates with the Cursor AI editor, offering a &ldquo;Fix in Cursor&rdquo; button on each issue.</p>
                 </div>
               </article>
 
@@ -1503,7 +1547,7 @@
                 </div>
                 <div>
                   <h4>Cockpit + Kody Issues (Kodus)</h4>
-                  <p>&mdash; built-in productivity &amp; quality metrics plus an automatic backlog of unresolved suggestions.</p>
+                  <p>&ndash; Kodus provides a metrics dashboard and an automatic backlog of unresolved suggestions.</p>
                 </div>
               </article>
             </div>
@@ -1531,7 +1575,7 @@
               <span class="kvc-window__dot kvc-window__dot--green"></span>
             </div>
             <span class="kvc-window__title">FEATURE_MATRIX.DAT</span>
-            <span class="kvc-window__meta">11 FEATURES</span>
+            <span class="kvc-window__meta">12 FEATURES</span>
           </div>
 
           <div class="kvc-matrix-legend">
@@ -1553,13 +1597,39 @@
                   </th>
                   <th>
                     <div class="kvc-matrix-colhead">
-                      <img src="assets/img/rabbit.png" alt="CodeRabbit">
-                      <span>CodeRabbit</span>
+                      <img src="assets/img/rabbit.png" alt="Cursor Bugbot">
+                      <span>Cursor Bugbot</span>
                     </div>
                   </th>
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td>Supported Platforms</td>
+                  <td>
+                    <span class="kvc-platform-icons" aria-label="GitHub, GitLab, Bitbucket and Azure DevOps">
+                      <span class="hero__provider" aria-label="GitHub">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                      </span>
+                      <span class="hero__provider" aria-label="GitLab">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 01-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 014.82 2a.43.43 0 01.58 0 .42.42 0 01.11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0118.6 2a.43.43 0 01.58 0 .42.42 0 01.11.18l2.44 7.51L23 13.45a.84.84 0 01-.35.94z"/></svg>
+                      </span>
+                      <span class="hero__provider" aria-label="Bitbucket">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.65 3A1 1 0 001.66 4.18l2.75 17.63a1.36 1.36 0 001.33 1.14h12.9a1 1 0 001-.85l2.75-17.92A1 1 0 0021.35 3zm11.59 12.83H9.84L8.9 9.57h6.28z"/></svg>
+                      </span>
+                      <span class="hero__provider" aria-label="Azure DevOps">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 8.877L2.247 5.91l8.405-3.416V.022l7.37 5.393L2.966 8.338v8.225L0 15.707zm24-4.45v14.651l-5.753 4.9-9.303-3.057v3.056l-5.978-7.416 15.057 1.98V2.244z"/></svg>
+                      </span>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="kvc-platform-icons" aria-label="GitHub">
+                      <span class="hero__provider" aria-label="GitHub">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                      </span>
+                    </span>
+                  </td>
+                </tr>
                 <tr>
                   <td>AI-powered code summaries</td>
                   <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
@@ -1612,8 +1682,8 @@
                 </tr>
                 <tr>
                   <td>Pricing</td>
-                  <td><span class="kvc-price-value">$10/user + BYOK</span></td>
-                  <td><span class="kvc-price-value">$15-$30/user</span></td>
+                  <td><span class="kvc-price-value">BYOK &ndash; $10 / monthly</span></td>
+                  <td><span class="kvc-price-value">$40 / monthly</span></td>
                 </tr>
               </tbody>
             </table>
@@ -1626,7 +1696,7 @@
     <section class="kvc-section kvc-bug-analyzer">
       <div class="container">
         <h2 class="section-title">Bug Catch Comparison</h2>
-        <p class="kvc-bug-analyzer__sub">To evaluate real-world performance, we compared Kody and CodeRabbit reviews across several PRs from projects like Sentry, Cal.com, Grafana, Discourse and Keycloak.</p>
+        <p class="kvc-bug-analyzer__sub">To evaluate real-world performance, we compared Kody and Cursor Bugbot reviews across several PRs from projects like Sentry, Cal.com, Grafana, Discourse, and Keycloak.</p>
         <div class="kvc-window">
           <div class="kvc-window__bar">
             <div class="kvc-window__dots">
@@ -1646,9 +1716,9 @@
                 <p class="kvc-overall-card__meta">30 / 38</p>
               </article>
               <article class="kvc-overall-card">
-                <p class="kvc-overall-card__label">Overall Performance · CodeRabbit</p>
-                <h3 class="kvc-overall-card__value">39%</h3>
-                <p class="kvc-overall-card__meta">15 / 38</p>
+                <p class="kvc-overall-card__label">Overall Performance · Cursor Bugbot</p>
+                <h3 class="kvc-overall-card__value">58%</h3>
+                <p class="kvc-overall-card__meta">22 / 38</p>
               </article>
             </div>
 
@@ -1663,8 +1733,8 @@
                   <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="69"></div></div>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 38%</span><span>5 / 13</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="38"></div></div>
+                  <div class="kvc-sev-row__meta"><span>Cursor Bugbot · 62%</span><span>8 / 13</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="62"></div></div>
                 </div>
               </article>
 
@@ -1678,8 +1748,8 @@
                   <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="81"></div></div>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 31%</span><span>5 / 16</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="31"></div></div>
+                  <div class="kvc-sev-row__meta"><span>Cursor Bugbot · 50%</span><span>8 / 16</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="50"></div></div>
                 </div>
               </article>
 
@@ -1693,8 +1763,8 @@
                   <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="89"></div></div>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 56%</span><span>5 / 9</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="56"></div></div>
+                  <div class="kvc-sev-row__meta"><span>Cursor Bugbot · 67%</span><span>6 / 9</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="67"></div></div>
                 </div>
               </article>
             </div>
@@ -1740,7 +1810,7 @@
                 <span class="kvc-window__dot kvc-window__dot--yellow"></span>
                 <span class="kvc-window__dot kvc-window__dot--green"></span>
               </div>
-              <span class="kvc-pair-card__tag">CodeRabbit</span>
+              <span class="kvc-pair-card__tag">Cursor Bugbot</span>
             </div>
             <div class="kvc-pair-card__body">
               <p class="kvc-pair-card__copy">Locked to a single provider &mdash; no model choice or cost control.</p>
@@ -1783,12 +1853,12 @@
                 <span class="kvc-window__dot kvc-window__dot--yellow"></span>
                 <span class="kvc-window__dot kvc-window__dot--green"></span>
               </div>
-              <span class="kvc-pair-card__tag">CodeRabbit</span>
+              <span class="kvc-pair-card__tag">Cursor Bugbot</span>
             </div>
             <div class="kvc-pair-card__body">
               <p class="kvc-pair-card__copy">Single YAML or dashboard for the whole repo &mdash; handy tweaks, but no file-level targeting or rule library.</p>
               <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%287%29.png" alt="CodeRabbit rule customization">
+                <img src="assets/img/admin-ajax%20%287%29.png" alt="Cursor Bugbot rule customization">
               </div>
             </div>
           </article>
@@ -1826,12 +1896,12 @@
                 <span class="kvc-window__dot kvc-window__dot--yellow"></span>
                 <span class="kvc-window__dot kvc-window__dot--green"></span>
               </div>
-              <span class="kvc-pair-card__tag">CodeRabbit</span>
+              <span class="kvc-pair-card__tag">Cursor Bugbot</span>
             </div>
             <div class="kvc-pair-card__body">
               <p class="kvc-pair-card__copy">Basic semantic look-ups for Jira and Linear issues &mdash; no MCP layer, no CI or test data.</p>
               <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%289%29.png" alt="CodeRabbit context integrations">
+                <img src="assets/img/admin-ajax%20%289%29.png" alt="Cursor Bugbot context integrations">
               </div>
             </div>
           </article>
@@ -1869,12 +1939,12 @@
                 <span class="kvc-window__dot kvc-window__dot--yellow"></span>
                 <span class="kvc-window__dot kvc-window__dot--green"></span>
               </div>
-              <span class="kvc-pair-card__tag">CodeRabbit</span>
+              <span class="kvc-pair-card__tag">Cursor Bugbot</span>
             </div>
             <div class="kvc-pair-card__body">
               <p class="kvc-pair-card__copy">Dashboard counts suggestions and linter findings &mdash; no implementation tracking, no backlog.</p>
               <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%2811%29.png" alt="CodeRabbit metrics dashboard">
+                <img src="assets/img/admin-ajax%20%2811%29.png" alt="Cursor Bugbot metrics dashboard">
               </div>
             </div>
           </article>
@@ -1901,27 +1971,27 @@
 
           <div class="kvc-reco-body">
             <div class="kvc-reco-headline">
-              <h2>SYSTEM RECOMMENDATION</h2>
+              <h2>RECOMMENDATION</h2>
             </div>
 
-            <p class="kvc-reco-intro">If your team values <strong>precision</strong>, <strong>visibility</strong>, and <strong>control</strong>, Kodus is the clear choice.</p>
+            <p class="kvc-reco-intro">If your team values <strong>precision</strong>, <strong>visibility</strong>, and <strong>control</strong>, Kodus is the clear choice. It lets you:</p>
 
             <div class="kvc-reco-panel">
               <span class="kvc-reco-panel__label">KODUS_CAPABILITIES_V3.0</span>
               <ul class="kvc-reco-list">
-                <li>Use your own API keys and choose the model that makes the most sense for your team.</li>
-                <li>Scope rules from repo level down to a single file or PR and track every change in Git.</li>
-                <li>Pull real-time context (CI, Jira, Notion, Playwright, custom scripts) into one authoritative review comment.</li>
-                <li>See what actually ships with Cockpit metrics and automatically convert unresolved suggestions into a tidy backlog.</li>
-                <li>Deploy the way you need: free self-host for full ownership or a flat-price cloud with unlimited seats.</li>
+                <li><strong>Enforce your standards</strong> &ndash; Scope rules from repo-level down to a single file or PR, with every change tracked in Git. This ensures the AI reviewer truly understands and enforces your specific coding conventions.</li>
+                <li><strong>Bring in full context</strong> &ndash; Pull real-time context (CI results, Jira stories, Notion specs, test results, etc.) into one authoritative review comment, so suggestions come with evidence and relevance attached.</li>
+                <li><strong>Track outcomes</strong> &ndash; See what actually ships with Cockpit&rsquo;s metrics, and automatically convert unresolved suggestions into a tidy backlog for follow-up. You&rsquo;ll know if issues are being fixed and where your code quality is improving or slipping.</li>
+                <li><strong>Deploy on your terms</strong> &ndash; Run Kodus self-hosted for free (full ownership of your data), or use a flat-price cloud with unlimited seats. No vendor lock-in &mdash; you can even inspect or extend the open-source code.</li>
               </ul>
             </div>
 
             <div class="kvc-reco-alt">
               <span class="kvc-reco-alt__label">ALTERNATIVE_PATH_ANALYSIS</span>
-              <p>CodeRabbit is a solid, fully managed SaaS for teams that just want &ldquo;set-it-and-forget-it&rdquo; reviews and are happy with a single YAML config plus basic suggestion counts.</p>
+              <p>Cursor&rsquo;s BugBot is a solid, fully managed SaaS tool for teams that want quick &ldquo;set-it-and-forget-it&rdquo; AI reviews with minimal configuration. It&rsquo;s especially attractive if you&rsquo;re already using the Cursor IDE and primarily need to catch bugs and security issues in GitHub PRs without much customization effort.</p>
               <hr>
-              <p class="kvc-reco-alt__emphasis">But if you want <strong>deeper customisation</strong>, <strong>richer insight</strong>, and the freedom to run on-prem or in the cloud, <strong>Kodus delivers more</strong> &mdash; without locking you in.</p>
+              <p class="kvc-reco-alt__emphasis">However, if you&rsquo;re looking for deeper customization, richer insights, broader issue coverage, and the freedom to run on-prem or adapt the tool to your workflow, Kodus delivers far more &ndash; and does so without locking you into a proprietary ecosystem.</p>
+              <p class="kvc-reco-alt__emphasis">In short, Kodus offers a more comprehensive solution for AI-assisted code review, empowering your team to ship faster and safer with a level of flexibility that BugBot can&rsquo;t match.</p>
             </div>
           </div>
         </div>
@@ -1965,7 +2035,7 @@
         <a href="/" class="nav__logo">
           <img src="assets/img/kodus_dark.png" alt="Kodus" class="nav__logo-img">
         </a>
-        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+        <p class="footer__tagline">The Open Source Alternative to Cursor Bugbot</p>
       </div>
       <div class="footer__columns">
         <div class="footer__col">
@@ -2001,7 +2071,7 @@
             <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
             <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
             <li><a href="https://kodus.io/en/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
-            <li><a href="https://kodus.io/en/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
+            <li><a href="https://kodus.io/en/kodus-vs-coderabbit/">Kodus vs Cursor Bugbot</a></li>
             <li><a href="https://kodus.io/en/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
             <li><a href="https://kodus.io/en/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
           </ul>
@@ -2051,9 +2121,9 @@
             "desc": "Null reference if github_authenticated_user state is missing",
             "severity": "Critical",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/9",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/4"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/4"
         },
         {
             "title": "Optimize spans buffer insertion with eviction during insert",
@@ -2062,7 +2132,7 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/kodustech/sentry-kodus/pull/7",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/2"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/2"
         },
         {
             "title": "Enhanced Pagination Performance for High-Volume Audit Logs",
@@ -2071,16 +2141,16 @@
             "kodusHit": false,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/1",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/1"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/1"
         },
         {
             "title": "Reorganize incident creation / issue occurrence logic",
             "desc": "Using stale config variable instead of updated one",
             "severity": "High",
             "kodusHit": true,
-            "coderabbitHit": true,
+            "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus/pull/27",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/8"
         },
         {
             "title": "Add ability to use queues to manage parallelism",
@@ -2089,16 +2159,16 @@
             "kodusHit": true,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/12",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/9"
         },
         {
             "title": "Add hook for producing occurrences from the stateful detector",
             "desc": "Incomplete implementation (only contains pass)",
             "severity": "High",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/13",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/10"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/10"
         },
         {
             "title": "Span Buffer Multiprocess Enhancement with Health Monitoring",
@@ -2107,7 +2177,7 @@
             "kodusHit": true,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/kodustech/sentry-kodus/pull/9",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/6"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/6"
         },
         {
             "title": "Implement cross-system issue synchronization",
@@ -2116,7 +2186,7 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/18",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/7"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/7"
         }
     ],
     "Cal.com": [
@@ -2125,18 +2195,18 @@
             "desc": "Backup codes not invalidated after use",
             "severity": "Critical",
             "kodusHit": false,
-            "coderabbitHit": true,
+            "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/6",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/3"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/3"
         },
         {
             "title": "fix: handle collective multiple host on destinationCalendar",
             "desc": "Null reference error if array is empty",
             "severity": "Medium",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/14",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/4"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/4"
         },
         {
             "title": "feat: convert InsightsBookingService to use Prisma.sql raw queries",
@@ -2145,25 +2215,25 @@
             "kodusHit": false,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/8",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/5"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/5"
         },
         {
             "title": "Comprehensive workflow reminder management for booking lifecycle events",
             "desc": "Missing database cleanup when immediateDelete is true",
             "severity": "High",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/9",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/6"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/6"
         },
         {
             "title": "Advanced date override handling and timezone compatibility improvements",
             "desc": "Incorrect end time calculation using slotStartTime instead of slotEndTime",
             "severity": "Medium",
             "kodusHit": true,
-            "coderabbitHit": true,
+            "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/10",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/7"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/7"
         },
         {
             "title": "OAuth credential sync and app integration enhancements",
@@ -2172,7 +2242,7 @@
             "kodusHit": true,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/kodustech/cal.com-kodus/pull/1",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/8"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/8"
         },
         {
             "title": "SMS workflow reminder retry count tracking",
@@ -2181,7 +2251,7 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/12",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/9"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/9"
         },
         {
             "title": "Add guest management functionality to existing bookings",
@@ -2190,7 +2260,7 @@
             "kodusHit": false,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/13",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/10"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-cursor/pull/10"
         }
     ],
     "Grafana": [
@@ -2201,16 +2271,16 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/14",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/9"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/9"
         },
         {
             "title": "Unified Storage Performance Optimizations",
             "desc": "Race condition in cache locking",
             "severity": "High",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/15",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/10"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/10"
         },
         {
             "title": "Notification Rule Processing Engine",
@@ -2219,16 +2289,16 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/11",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/5"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/5"
         },
         {
             "title": "Advanced Query Processing Architecture",
             "desc": "Double interpolation risk",
             "severity": "Critical",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/kodustech/grafana-kodus/pull/1",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/4"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/4"
         },
         {
             "title": "Dual Storage Architecture",
@@ -2237,7 +2307,7 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/12",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/6"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/6"
         },
         {
             "title": "Frontend Asset Optimization",
@@ -2246,16 +2316,16 @@
             "kodusHit": false,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/13",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/8"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/8"
         },
         {
             "title": "AuthZService: improve authz caching",
             "desc": "Cache entries without expiration causing permanent permission denials",
             "severity": "High",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/8",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/2"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/2"
         },
         {
             "title": "Anonymous: Add configurable device limit",
@@ -2264,7 +2334,7 @@
             "kodusHit": true,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/7",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/1"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-cursor/pull/1"
         }
     ],
     "Discourse": [
@@ -2275,7 +2345,7 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/1",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/1"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/1"
         },
         {
             "title": "FEATURE: per-topic unsubscribe option in emails",
@@ -2284,16 +2354,16 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/2",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/2"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/2"
         },
         {
             "title": "Add comprehensive email validation for blocked users",
             "desc": "BlockedEmail.should_block? modifies DB during read",
             "severity": "Critical",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/3",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/3"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/3"
         },
         {
             "title": "Enhance embed URL handling and validation system",
@@ -2302,16 +2372,16 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/kodustech/discourse-kodus/pull/1",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/4"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/4"
         },
         {
             "title": "UX: show complete URL path if website domain is same as instance domain",
             "desc": "String mutation with << operator",
             "severity": "Medium",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/5",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/6"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/6"
         },
         {
             "title": "FIX: proper handling of group memberships",
@@ -2320,7 +2390,7 @@
             "kodusHit": true,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/6",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/8"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/8"
         },
         {
             "title": "FEATURE: Localization fallbacks (server-side)",
@@ -2329,16 +2399,16 @@
             "kodusHit": true,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/7",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/9"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/9"
         },
         {
             "title": "FEATURE: Can edit category/host relationships for embedding",
             "desc": "NoMethodError before_validation in EmbeddableHost",
             "severity": "Critical",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/8",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/10"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-cursor/pull/10"
         }
     ],
     "Keycloak": [
@@ -2347,9 +2417,9 @@
             "desc": "Returns wrong provider (default keystore instead of BouncyCastle)",
             "severity": "High",
             "kodusHit": true,
-            "coderabbitHit": true,
+            "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/3",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/3"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-cursor/pull/3"
         },
         {
             "title": "Fixing Re-authentication with passkeys",
@@ -2358,16 +2428,16 @@
             "kodusHit": false,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/1",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/1"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-cursor/pull/1"
         },
         {
             "title": "Add Client resource type and scopes to authorization schema",
             "desc": "Inconsistent feature flag bug causing orphaned permissions",
             "severity": "High",
             "kodusHit": true,
-            "coderabbitHit": false,
+            "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/5",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/5"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-cursor/pull/5"
         },
         {
             "title": "Implement access token context encoding framework",
@@ -2376,7 +2446,7 @@
             "kodusHit": true,
             "coderabbitHit": true,
             "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/6",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/8"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-cursor/pull/8"
         },
         {
             "title": "Add caching support for IdentityProviderStorageProvider .getForLogin operations",
@@ -2385,7 +2455,7 @@
             "kodusHit": false,
             "coderabbitHit": false,
             "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/2",
-            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pulls"
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-cursor/pull/2"
         }
     ]
 };
@@ -2473,7 +2543,7 @@
             '</div>' +
             '<div class="bench__table-wrap">' +
               '<table class="bench__table">' +
-                '<thead><tr><th class="bench__th-issue">PR / Bug</th><th class="bench__th-sev">Severity</th><th>Kodus</th><th>CodeRabbit</th></tr></thead>' +
+                '<thead><tr><th class="bench__th-issue">PR / Bug</th><th class="bench__th-sev">Severity</th><th>Kodus</th><th>Cursor Bugbot</th></tr></thead>' +
                 '<tbody>' + bodyRows + '</tbody>' +
                 '<tfoot><tr class="bench__totals"><td><strong>Total</strong></td><td></td><td><strong class="bench__total--kodus">' + kodusHits + ' / ' + total + '</strong></td><td><strong>' + coderabbitHits + ' / ' + total + '</strong></td></tr></tfoot>' +
               '</table>' +
