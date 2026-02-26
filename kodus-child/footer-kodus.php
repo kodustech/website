@@ -50,6 +50,7 @@
             <li><a href="https://kodus.io/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
             <li><a href="https://kodus.io/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
             <li><a href="https://kodus.io/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
+            <li><a href="https://kodus.io/kodus-vs-claude/">Kodus vs Claude</a></li>
           </ul>
         </div>
         <div class="footer__col">

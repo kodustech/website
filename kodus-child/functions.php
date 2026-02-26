@@ -690,3 +690,29 @@ function kodus_enqueue_blog_assets() {
         'perPage' => 9,
     ]);
 }
+
+// ═══════════════════════════════════════════════════════════════
+// 14. COMPARISON PAGES — 301 redirects from old URLs to final slugs
+// ═══════════════════════════════════════════════════════════════
+add_action('template_redirect', 'kodus_comparison_redirects', 1);
+function kodus_comparison_redirects() {
+    $redirects = [
+        // Old PT slugs
+        '/comparacao-kodus-vs-coderabbit/'     => '/kodus-vs-coderabbit/',
+        '/comparacao-kodus-vs-github-copilot/' => '/kodus-vs-github-copilot/',
+        '/comparacao-kodus-vs-claude-code/'    => '/kodus-vs-claude/',
+        '/kodus-x-cursor-bugbot/'             => '/kodus-vs-cursor-bugbot/',
+        // Old EN slugs
+        '/en/kodus-vs-coderabbit/'            => '/kodus-vs-coderabbit/',
+        '/en/kodus-vs-cursor-bugbot/'         => '/kodus-vs-cursor-bugbot/',
+        '/en/kodus-vs-github-copilot/'        => '/kodus-vs-github-copilot/',
+        '/en/kodus-vs-claude/'                => '/kodus-vs-claude/',
+    ];
+
+    $path = trailingslashit(wp_parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+    if (isset($redirects[$path])) {
+        wp_redirect(home_url($redirects[$path]), 301);
+        exit;
+    }
+}
