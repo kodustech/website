@@ -865,7 +865,7 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: 22px;
     }
 
     .kvc-pair-card {
@@ -945,7 +945,7 @@
       border: none;
       border-radius: 0;
       overflow: hidden;
-      min-height: 340px;
+      min-height: 390px;
       padding: 0;
       display: flex;
       align-items: center;
@@ -962,9 +962,10 @@
     }
 
     .kvc-pair-card__media img {
-      width: 90%;
+      width: min(100%, 560px);
+      max-width: 560px;
       height: auto;
-      max-height: 100%;
+      max-height: none;
       display: block;
       object-fit: contain;
       position: relative;
@@ -1195,8 +1196,7 @@
       margin: 0;
     }
 
-    .kvc-reco-alt p.kvc-reco-alt__emphasis {
-      color: #d7d7e8;
+    .kvc-reco-alt .kvc-reco-alt__emphasis {
       border-left: 2px solid rgba(248, 183, 109, 0.55);
       padding-left: 14px;
       border-radius: 0 6px 6px 0;
@@ -1204,7 +1204,16 @@
       margin-top: 8px;
     }
 
-    .kvc-reco-alt p.kvc-reco-alt__emphasis strong {
+    .kvc-reco-alt .kvc-reco-alt__emphasis p {
+      color: #d7d7e8;
+      margin: 0;
+    }
+
+    .kvc-reco-alt .kvc-reco-alt__emphasis p + p {
+      margin-top: 12px;
+    }
+
+    .kvc-reco-alt .kvc-reco-alt__emphasis strong {
       color: #f8b76d;
       font-weight: 700;
     }
@@ -1357,8 +1366,13 @@
       }
 
       .kvc-pair-card__media {
-        min-height: 250px;
+        min-height: 290px;
         padding: 0;
+      }
+
+      .kvc-pair-card__media img {
+        width: min(100%, 520px);
+        max-width: 520px;
       }
 
       .kvc-pair-card__media--notfound {
@@ -1482,7 +1496,7 @@
             <h1 class="section-title">Kodus vs Bugbot</h1>
             <p class="kvc-hero__copy">If you&rsquo;re here, you&rsquo;re probably deciding which AI code reviewer will scrutinize every pull request your team ships. Below is a direct, in-depth comparison of Kodus and Cursor&rsquo;s BugBot, focused on the things that matter most: breadth of issue detection, rule flexibility, integrations, quality metrics, and deployment model.</p>
           </div>
-          <img class="kvc-hero__art" src="assets/img/kody-coderabbit.png" alt="Kody vs Cursor Bugbot">
+          <img class="kvc-hero__art" src="assets/img/kody%20vs%20cursor.png" alt="Kody vs Cursor Bugbot">
         </div>
       </div>
     </section>
@@ -1597,7 +1611,7 @@
                   </th>
                   <th>
                     <div class="kvc-matrix-colhead">
-                      <img src="assets/img/rabbit.png" alt="Cursor Bugbot">
+                      <img src="assets/img/bugbot.png" alt="Cursor Bugbot">
                       <span>Cursor Bugbot</span>
                     </div>
                   </th>
@@ -1841,7 +1855,7 @@
             <div class="kvc-pair-card__body">
               <p class="kvc-pair-card__copy">Granular, version-controlled rules for any file, folder or PR, with a one-click community library ready to import.</p>
               <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%286%29.png" alt="Kodus rules library">
+                <img src="assets/img/rules1.png" alt="Kodus rules library">
               </div>
             </div>
           </article>
@@ -1856,52 +1870,9 @@
               <span class="kvc-pair-card__tag">Cursor Bugbot</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy">Single YAML or dashboard for the whole repo &mdash; handy tweaks, but no file-level targeting or rule library.</p>
+              <p class="kvc-pair-card__copy">Directory-scoped .cursor/BUGBOT.md guidelines; no per-file/PR targeting and fewer noise controls.</p>
               <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%287%29.png" alt="Cursor Bugbot rule customization">
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="kvc-section kvc-pair-section">
-      <div class="container">
-        <h2 class="section-title">Context &amp; Plugins</h2>
-        <p class="kvc-pair-section__sub">Bring the right context into every review &mdash; or get feedback before code ever hits the PR.</p>
-
-        <div class="kvc-pair-grid">
-          <article class="kvc-pair-card kvc-pair-card--kodus">
-            <div class="kvc-pair-card__bar">
-              <div class="kvc-window__dots">
-                <span class="kvc-window__dot kvc-window__dot--red"></span>
-                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
-                <span class="kvc-window__dot kvc-window__dot--green"></span>
-              </div>
-              <span class="kvc-pair-card__tag">Kodus</span>
-            </div>
-            <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy">Pull CI results, Jira tickets, Notion docs, Playwright runs &mdash; or any custom script &mdash; into one clean comment.</p>
-              <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%288%29.png" alt="Kodus MCP integrations">
-              </div>
-            </div>
-          </article>
-
-          <article class="kvc-pair-card kvc-pair-card--coderabbit">
-            <div class="kvc-pair-card__bar">
-              <div class="kvc-window__dots">
-                <span class="kvc-window__dot kvc-window__dot--red"></span>
-                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
-                <span class="kvc-window__dot kvc-window__dot--green"></span>
-              </div>
-              <span class="kvc-pair-card__tag">Cursor Bugbot</span>
-            </div>
-            <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy">Basic semantic look-ups for Jira and Linear issues &mdash; no MCP layer, no CI or test data.</p>
-              <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%289%29.png" alt="Cursor Bugbot context integrations">
+                <img src="assets/img/admin-ajax%20%2812%29.png" alt="Cursor Bugbot rule customization">
               </div>
             </div>
           </article>
@@ -1927,7 +1898,7 @@
             <div class="kvc-pair-card__body">
               <p class="kvc-pair-card__copy">Cockpit tracks deploys, cycle-time and Implementation Rate, while Kody Issues turns every unresolved suggestion into a living backlog.</p>
               <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%2810%29.png" alt="Kodus cockpit and kody issues">
+                <img src="assets/img/cockpit12.png" alt="Kodus cockpit and kody issues">
               </div>
             </div>
           </article>
@@ -1942,9 +1913,52 @@
               <span class="kvc-pair-card__tag">Cursor Bugbot</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy">Dashboard counts suggestions and linter findings &mdash; no implementation tracking, no backlog.</p>
+              <p class="kvc-pair-card__copy">Basic usage analytics; no native backlog of unresolved comments.</p>
               <div class="kvc-pair-card__media">
-                <img src="assets/img/admin-ajax%20%2811%29.png" alt="Cursor Bugbot metrics dashboard">
+                <img src="assets/img/admin-ajax%20%2813%29.png" alt="Cursor Bugbot metrics dashboard">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="kvc-section kvc-pair-section">
+      <div class="container">
+        <h2 class="section-title">Coverage &amp; Depth</h2>
+        <p class="kvc-pair-section__sub">Bring the right context into every review—or get feedback before code ever hits the PR.</p>
+
+        <div class="kvc-pair-grid">
+          <article class="kvc-pair-card kvc-pair-card--kodus">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">Kodus</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy">Beyond bugs &mdash; enforces security, code quality, performance, duplication, and architectural/governance policies across the repo.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%2815%29.png" alt="Kodus coverage depth">
+              </div>
+            </div>
+          </article>
+
+          <article class="kvc-pair-card kvc-pair-card--coderabbit">
+            <div class="kvc-pair-card__bar">
+              <div class="kvc-window__dots">
+                <span class="kvc-window__dot kvc-window__dot--red"></span>
+                <span class="kvc-window__dot kvc-window__dot--yellow"></span>
+                <span class="kvc-window__dot kvc-window__dot--green"></span>
+              </div>
+              <span class="kvc-pair-card__tag">Cursor Bugbot</span>
+            </div>
+            <div class="kvc-pair-card__body">
+              <p class="kvc-pair-card__copy">Primarily bug/security findings on the PR diff; limited coverage of maintainability, performance, or architecture.</p>
+              <div class="kvc-pair-card__media">
+                <img src="assets/img/admin-ajax%20%2814%29.png" alt="Cursor Bugbot coverage depth">
               </div>
             </div>
           </article>
@@ -1990,8 +2004,10 @@
               <span class="kvc-reco-alt__label">ALTERNATIVE_PATH_ANALYSIS</span>
               <p>Cursor&rsquo;s BugBot is a solid, fully managed SaaS tool for teams that want quick &ldquo;set-it-and-forget-it&rdquo; AI reviews with minimal configuration. It&rsquo;s especially attractive if you&rsquo;re already using the Cursor IDE and primarily need to catch bugs and security issues in GitHub PRs without much customization effort.</p>
               <hr>
-              <p class="kvc-reco-alt__emphasis">However, if you&rsquo;re looking for deeper customization, richer insights, broader issue coverage, and the freedom to run on-prem or adapt the tool to your workflow, Kodus delivers far more &ndash; and does so without locking you into a proprietary ecosystem.</p>
-              <p class="kvc-reco-alt__emphasis">In short, Kodus offers a more comprehensive solution for AI-assisted code review, empowering your team to ship faster and safer with a level of flexibility that BugBot can&rsquo;t match.</p>
+              <div class="kvc-reco-alt__emphasis">
+                <p>However, if you&rsquo;re looking for deeper customization, richer insights, broader issue coverage, and the freedom to run on-prem or adapt the tool to your workflow, Kodus delivers far more &ndash; and does so without locking you into a proprietary ecosystem.</p>
+                <p>In short, Kodus offers a more comprehensive solution for AI-assisted code review, empowering your team to ship faster and safer with a level of flexibility that BugBot can&rsquo;t match.</p>
+              </div>
             </div>
           </div>
         </div>
