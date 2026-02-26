@@ -47,23 +47,49 @@
     }
 
     .kvc-hero {
-      padding: 74px 0 20px;
+      padding: 48px 0 34px;
       text-align: center;
     }
 
+    .kvc-hero__layout {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .kvc-hero__text {
+      min-width: 0;
+      max-width: 900px;
+    }
+
     .kvc-hero .section-title {
-      margin-bottom: 26px;
-      font-size: clamp(2.2rem, 6vw, 4rem);
+      margin-bottom: 0;
+      font-size: clamp(1.7rem, 4vw, 2.65rem);
       letter-spacing: 0;
-      line-height: 1.2;
+      line-height: 1.12;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .kvc-hero__art {
+      order: -1;
+      width: clamp(240px, 30vw, 360px);
+      height: auto;
+      object-fit: contain;
+      image-rendering: pixelated;
+      flex-shrink: 0;
     }
 
     .kvc-hero__copy {
-      max-width: 860px;
-      margin: 0 auto;
+      max-width: 760px;
+      margin: 14px auto 0;
       color: var(--color-text-muted);
-      font-size: 1.06rem;
-      line-height: 1.72;
+      font-size: 0.99rem;
+      line-height: 1.65;
+      text-align: center;
     }
 
     .kvc-label {
@@ -336,31 +362,6 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       background: #101019;
-    }
-
-    .kvc-matrix-help {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      padding: 10px 14px;
-      border-bottom: 1px solid rgba(48, 48, 75, 0.65);
-      background: #181825;
-      flex-wrap: wrap;
-    }
-
-    .kvc-matrix-help__item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.67rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #a8a8c2;
-    }
-
-    .kvc-matrix-help__item .kvc-status {
-      font-size: 0.75rem;
     }
 
     .kvc-matrix-table thead th {
@@ -663,9 +664,9 @@
 
     .kvc-sev-row__track {
       height: 30px;
-      background: #101019;
+      background: rgba(32, 32, 50, 0.6);
       border: 1px solid #30304b;
-      border-radius: 6px;
+      border-radius: 3px;
       overflow: hidden;
       position: relative;
     }
@@ -673,27 +674,18 @@
     .kvc-sev-row__fill {
       width: 0;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 9px;
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+      display: block;
       transition: width 1.2s cubic-bezier(0.2, 0.65, 0.22, 1);
-      white-space: nowrap;
-      overflow: hidden;
-      color: #101019;
+      border-radius: 2px;
     }
 
     .kvc-sev-row__fill--kodus {
-      background: #f8b76d;
+      background: linear-gradient(90deg, rgba(248, 183, 109, 0.25) 0%, #f8b76d 100%);
+      box-shadow: 0 0 10px rgba(248, 183, 109, 0.16);
     }
 
     .kvc-sev-row__fill--coderabbit {
-      background: #3b3b5e;
-      color: #f3f3f7;
+      background: linear-gradient(90deg, rgba(48, 48, 75, 0.5) 0%, #30304b 100%);
     }
 
     .kvc-sev-foot {
@@ -752,6 +744,37 @@
       font-size: 1rem;
     }
 
+    .kvc-bug-compare .bench__td-link {
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      background: transparent;
+      border: 1px solid transparent;
+      transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .kvc-bug-compare .bench__td-link:hover,
+    .kvc-bug-compare .bench__td-link:focus-visible {
+      border-color: #30304b;
+      background: rgba(32, 32, 50, 0.5);
+      box-shadow: inset 0 0 0 1px rgba(248, 183, 109, 0.18);
+      transform: translateY(-1px);
+      outline: none;
+      text-decoration: none;
+    }
+
+    .kvc-bug-compare .bench__td-link:hover .bench__hit,
+    .kvc-bug-compare .bench__td-link:focus-visible .bench__hit,
+    .kvc-bug-compare .bench__td-link:hover .bench__miss,
+    .kvc-bug-compare .bench__td-link:focus-visible .bench__miss {
+      text-shadow: 0 0 8px currentColor;
+    }
+
     .kvc-pair-section .section-title {
       margin-bottom: 26px;
       font-size: clamp(1.55rem, 4vw, 2.45rem);
@@ -780,6 +803,11 @@
       border-radius: 14px;
       overflow: hidden;
       position: relative;
+    }
+
+    .kvc-pair-card--kodus {
+      border-color: #f8b76d;
+      box-shadow: inset 0 0 0 1px rgba(248, 183, 109, 0.16);
     }
 
     .kvc-pair-card__bar {
@@ -847,7 +875,7 @@
       border-radius: 0;
       overflow: hidden;
       min-height: 340px;
-      padding: 4px;
+      padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -855,33 +883,17 @@
     }
 
     .kvc-pair-card__media::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(#202032 1px, transparent 1px);
-      background-size: 14px 14px;
-      opacity: 0.35;
+      display: none;
     }
 
     .kvc-pair-card__media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent 0px,
-        transparent 3px,
-        rgba(255, 255, 255, 0.03) 3px,
-        rgba(255, 255, 255, 0.03) 4px
-      );
-      opacity: 0.3;
+      display: none;
     }
 
     .kvc-pair-card__media img {
-      width: 100%;
-      height: 100%;
+      width: 90%;
+      height: auto;
+      max-height: 100%;
       display: block;
       object-fit: contain;
       position: relative;
@@ -889,10 +901,56 @@
       border: none;
       border-radius: 0;
       background: transparent;
+      filter: none;
+      image-rendering: auto;
+      margin: 0 auto;
+    }
+
+    .kvc-pair-card__media--notfound {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 14px;
+    }
+
+    .kvc-notfound-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      padding: 16px 26px;
+      min-width: 272px;
+      border: 2px solid #fa5867;
+      border-radius: 8px;
+      background: #101019;
+      color: #fa5867;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: clamp(1.05rem, 2vw, 1.4rem);
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: inset 0 0 0 1px rgba(250, 88, 103, 0.3), 0 0 18px rgba(250, 88, 103, 0.12);
+      animation: kvc-notfound-blink 1.1s steps(2, end) infinite, kvc-notfound-pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes kvc-notfound-blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0.42; }
+    }
+
+    @keyframes kvc-notfound-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
     }
 
     .kvc-reco {
       padding-top: 96px;
+    }
+
+    body.kvc-page .roi-cta {
+      padding-top: 72px;
+      padding-bottom: 96px;
     }
 
     .kvc-reco-window {
@@ -985,11 +1043,11 @@
     }
 
     .kvc-reco-intro {
-      font-size: clamp(1rem, 1.8vw, 1.32rem);
-      line-height: 1.55;
-      margin-bottom: 28px;
+      font-size: clamp(0.92rem, 1.25vw, 1.12rem);
+      line-height: 1.48;
+      margin-bottom: 24px;
       color: #cdcddf;
-      max-width: 1060px;
+      max-width: 920px;
     }
 
     .kvc-reco-intro strong {
@@ -1066,6 +1124,20 @@
       margin: 0;
     }
 
+    .kvc-reco-alt p.kvc-reco-alt__emphasis {
+      color: #d7d7e8;
+      border-left: 2px solid rgba(248, 183, 109, 0.55);
+      padding-left: 14px;
+      border-radius: 0 6px 6px 0;
+      background: transparent;
+      margin-top: 2px;
+    }
+
+    .kvc-reco-alt p.kvc-reco-alt__emphasis strong {
+      color: #f8b76d;
+      font-weight: 700;
+    }
+
     .kvc-reco-alt hr {
       border: 0;
       border-top: 1px solid #30304b;
@@ -1114,11 +1186,28 @@
       }
 
       .kvc-hero {
-        padding-top: 58px;
+        padding-top: 36px;
+      }
+
+      .kvc-hero__layout {
+        gap: 10px;
+      }
+
+      .kvc-hero__art {
+        width: min(72vw, 270px);
+      }
+
+      .kvc-hero .section-title {
+        white-space: normal;
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+        line-height: 1.25;
+        text-align: center;
       }
 
       .kvc-hero__copy {
         font-size: 1rem;
+        text-align: center;
+        margin: 10px auto 0;
       }
 
       .kvc-tldr__body,
@@ -1197,8 +1286,20 @@
       }
 
       .kvc-pair-card__media {
-        min-height: 235px;
-        padding: 2px;
+        min-height: 250px;
+        padding: 0;
+      }
+
+      .kvc-pair-card__media--notfound {
+        justify-content: center;
+        padding: 10px;
+      }
+
+      .kvc-notfound-pill {
+        min-width: 220px;
+        padding: 14px 18px;
+        font-size: 0.98rem;
+        letter-spacing: 2.8px;
       }
 
       .kvc-window__meta {
@@ -1249,12 +1350,6 @@
               <a href="https://kodus.io/en/changelog-en/">
                 <span class="nav__item-title">Changelog</span>
                 <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
-              </a>
-            </li>
-            <li>
-              <a href="roi.html">
-                <span class="nav__item-title">ROI Calculator</span>
-                <span class="nav__item-desc">Model driven estimate of the impact of catching issues before they hit production.</span>
               </a>
             </li>
             <li>
@@ -1311,8 +1406,13 @@
   <main>
     <section class="kvc-hero">
       <div class="container">
-        <h1 class="section-title">Kodus vs CodeRabbit</h1>
-        <p class="kvc-hero__copy">If you're here, you're probably deciding which AI reviewer will scrutinise every pull request your team ships. Below is a direct, in-depth comparison of Kodus and CodeRabbit, laser-focused on the things that matter most: rule flexibility, integrations, quality metrics and licensing model.</p>
+        <div class="kvc-hero__layout">
+          <div class="kvc-hero__text">
+            <h1 class="section-title">Kodus vs CodeRabbit</h1>
+            <p class="kvc-hero__copy">If you're here, you're probably deciding which AI reviewer will scrutinise every pull request your team ships. Below is a direct, in-depth comparison of Kodus and CodeRabbit, laser-focused on the things that matter most: rule flexibility, integrations, quality metrics and licensing model.</p>
+          </div>
+          <img class="kvc-hero__art" src="assets/img/kody-coderabbit.png" alt="Kody vs CodeRabbit">
+        </div>
       </div>
     </section>
 
@@ -1407,12 +1507,6 @@
             <span class="kvc-window__meta">11 FEATURES</span>
           </div>
 
-          <div class="kvc-matrix-help">
-            <span class="kvc-matrix-help__item"><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span>Included</span>
-            <span class="kvc-matrix-help__item"><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span>Limited</span>
-            <span class="kvc-matrix-help__item"><span class="kvc-status kvc-status--no"><span class="kvc-status__glyph">&#10005;</span></span>Not available</span>
-          </div>
-
           <div class="kvc-matrix-wrap">
             <table class="kvc-matrix-table">
               <thead>
@@ -1466,7 +1560,7 @@
                 <tr>
                   <td>Metrics dashboard</td>
                   <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
-                  <td><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span></td>
+                  <td><span class="kvc-status kvc-status--no"><span class="kvc-status__glyph">&#10005;</span></span></td>
                 </tr>
                 <tr>
                   <td>Technical-debt backlog</td>
@@ -1476,7 +1570,7 @@
                 <tr>
                   <td>Noise filters (limit &amp; severity)</td>
                   <td><span class="kvc-status kvc-status--ok"><span class="kvc-status__glyph">&#10003;</span></span></td>
-                  <td><span class="kvc-status kvc-status--lim"><span class="kvc-status__glyph">&#9651;</span></span></td>
+                  <td><span class="kvc-status kvc-status--no"><span class="kvc-status__glyph">&#10005;</span></span></td>
                 </tr>
                 <tr>
                   <td>Self-host option</td>
@@ -1492,11 +1586,6 @@
             </table>
           </div>
 
-          <div class="kvc-matrix-legend">
-            <span class="kvc-legend-chip"><strong>&#10003;</strong> Available</span>
-            <span class="kvc-legend-chip"><strong>&#9651;</strong> Partial / Limited</span>
-            <span class="kvc-legend-chip"><strong>&#10005;</strong> Not available</span>
-          </div>
         </div>
       </div>
     </section>
@@ -1520,13 +1609,13 @@
             <div class="kvc-overall-grid">
               <article class="kvc-overall-card kvc-overall-card--kodus">
                 <p class="kvc-overall-card__label">Overall Performance · Kodus</p>
-                <h3 class="kvc-overall-card__value">64%</h3>
-                <p class="kvc-overall-card__meta">21 / 33</p>
+                <h3 class="kvc-overall-card__value">79%</h3>
+                <p class="kvc-overall-card__meta">30 / 38</p>
               </article>
               <article class="kvc-overall-card">
                 <p class="kvc-overall-card__label">Overall Performance · CodeRabbit</p>
                 <h3 class="kvc-overall-card__value">39%</h3>
-                <p class="kvc-overall-card__meta">13 / 33</p>
+                <p class="kvc-overall-card__meta">15 / 38</p>
               </article>
             </div>
 
@@ -1534,45 +1623,45 @@
               <article class="kvc-sev-card">
                 <div class="kvc-sev-card__head">
                   <h4>Critical</h4>
-                  <span>11 PRs</span>
+                  <span>13 PRs</span>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>Kodus · 36%</span><span>4 / 11</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="36">4 / 11</div></div>
+                  <div class="kvc-sev-row__meta"><span>Kodus · 69%</span><span>9 / 13</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="69"></div></div>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 36%</span><span>4 / 11</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="36">4 / 11</div></div>
+                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 38%</span><span>5 / 13</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="38"></div></div>
                 </div>
               </article>
 
               <article class="kvc-sev-card">
                 <div class="kvc-sev-card__head">
                   <h4>High</h4>
-                  <span>14 PRs</span>
+                  <span>16 PRs</span>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>Kodus · 71%</span><span>10 / 14</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="71">10 / 14</div></div>
+                  <div class="kvc-sev-row__meta"><span>Kodus · 81%</span><span>13 / 16</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="81"></div></div>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 29%</span><span>4 / 14</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="29">4 / 14</div></div>
+                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 31%</span><span>5 / 16</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="31"></div></div>
                 </div>
               </article>
 
               <article class="kvc-sev-card">
                 <div class="kvc-sev-card__head">
                   <h4>Medium</h4>
-                  <span>8 PRs</span>
+                  <span>9 PRs</span>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>Kodus · 88%</span><span>7 / 8</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="88">7 / 8</div></div>
+                  <div class="kvc-sev-row__meta"><span>Kodus · 89%</span><span>8 / 9</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--kodus" data-target="89"></div></div>
                 </div>
                 <div class="kvc-sev-row">
-                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 63%</span><span>5 / 8</span></div>
-                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="63">5 / 8</div></div>
+                  <div class="kvc-sev-row__meta"><span>CodeRabbit · 56%</span><span>5 / 9</span></div>
+                  <div class="kvc-sev-row__track"><div class="kvc-sev-row__fill kvc-sev-row__fill--coderabbit" data-target="56"></div></div>
                 </div>
               </article>
             </div>
@@ -1591,7 +1680,7 @@
     <section class="kvc-section kvc-pair-section">
       <div class="container">
         <h2 class="section-title">Flexibility &amp; Control</h2>
-        <p class="kvc-pair-section__sub">Use any model you want&mdash;and keep every review fully under your control.</p>
+        <p class="kvc-pair-section__sub">Use any model you want &mdash; and keep every review fully under your control.</p>
 
         <div class="kvc-pair-grid">
           <article class="kvc-pair-card kvc-pair-card--kodus">
@@ -1604,7 +1693,7 @@
               <span class="kvc-pair-card__tag">Kodus</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Run with your own API keys&mdash;GPT-5, Claude, Gemini, or any model you choose.</p>
+              <p class="kvc-pair-card__copy">Run with your own API keys &mdash; GPT-5, Claude, Gemini, or any model you choose.</p>
               <div class="kvc-pair-card__media">
                 <img src="assets/img/admin-ajax%20%282%29.png" alt="Kodus model flexibility">
               </div>
@@ -1621,9 +1710,9 @@
               <span class="kvc-pair-card__tag">CodeRabbit</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>CodeRabbit</strong> &mdash; Locked to a single provider&mdash;no model choice or cost control.</p>
-              <div class="kvc-pair-card__media">
-                <img src="assets/img/coderabbit1.png" alt="CodeRabbit provider lock-in">
+              <p class="kvc-pair-card__copy">Locked to a single provider &mdash; no model choice or cost control.</p>
+              <div class="kvc-pair-card__media kvc-pair-card__media--notfound">
+                <span class="kvc-notfound-pill">Not Found</span>
               </div>
             </div>
           </article>
@@ -1634,7 +1723,7 @@
     <section class="kvc-section kvc-pair-section">
       <div class="container">
         <h2 class="section-title">Rules &amp; Customization</h2>
-        <p class="kvc-pair-section__sub">Version-controlled guidelines you can scope from the whole repo down to a single file&mdash;or import ready-made in one click.</p>
+        <p class="kvc-pair-section__sub">Version-controlled guidelines you can scope from the whole repo down to a single file &mdash; or import ready-made in one&nbsp;click.</p>
 
         <div class="kvc-pair-grid">
           <article class="kvc-pair-card kvc-pair-card--kodus">
@@ -1647,7 +1736,7 @@
               <span class="kvc-pair-card__tag">Kodus</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Granular, version-controlled rules for any file, folder or PR, with a one-click community library ready to import.</p>
+              <p class="kvc-pair-card__copy">Granular, version-controlled rules for any file, folder or PR, with a one-click community library ready to import.</p>
               <div class="kvc-pair-card__media">
                 <img src="assets/img/admin-ajax%20%286%29.png" alt="Kodus rules library">
               </div>
@@ -1664,7 +1753,7 @@
               <span class="kvc-pair-card__tag">CodeRabbit</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>Coderabbit</strong> &mdash; Single YAML or dashboard for the whole repo&mdash;handy tweaks, but no file-level targeting or rule library.</p>
+              <p class="kvc-pair-card__copy">Single YAML or dashboard for the whole repo &mdash; handy tweaks, but no file-level targeting or rule library.</p>
               <div class="kvc-pair-card__media">
                 <img src="assets/img/admin-ajax%20%287%29.png" alt="CodeRabbit rule customization">
               </div>
@@ -1677,7 +1766,7 @@
     <section class="kvc-section kvc-pair-section">
       <div class="container">
         <h2 class="section-title">Context &amp; Plugins</h2>
-        <p class="kvc-pair-section__sub">Bring the right context into every review&mdash;or get feedback before code ever hits the PR.</p>
+        <p class="kvc-pair-section__sub">Bring the right context into every review &mdash; or get feedback before code ever hits the PR.</p>
 
         <div class="kvc-pair-grid">
           <article class="kvc-pair-card kvc-pair-card--kodus">
@@ -1690,7 +1779,7 @@
               <span class="kvc-pair-card__tag">Kodus</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Pull CI results, Jira tickets, Notion docs, Playwright runs&mdash;or any custom script&mdash;into one clean comment.</p>
+              <p class="kvc-pair-card__copy">Pull CI results, Jira tickets, Notion docs, Playwright runs &mdash; or any custom script &mdash; into one clean comment.</p>
               <div class="kvc-pair-card__media">
                 <img src="assets/img/admin-ajax%20%288%29.png" alt="Kodus MCP integrations">
               </div>
@@ -1707,7 +1796,7 @@
               <span class="kvc-pair-card__tag">CodeRabbit</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>Coderabbit</strong> &mdash; Basic semantic look-ups for Jira and Linear issues&mdash;no MCP layer, no CI or test data.</p>
+              <p class="kvc-pair-card__copy">Basic semantic look-ups for Jira and Linear issues &mdash; no MCP layer, no CI or test data.</p>
               <div class="kvc-pair-card__media">
                 <img src="assets/img/admin-ajax%20%289%29.png" alt="CodeRabbit context integrations">
               </div>
@@ -1720,7 +1809,7 @@
     <section class="kvc-section kvc-pair-section">
       <div class="container">
         <h2 class="section-title">Metrics &amp; Issues</h2>
-        <p class="kvc-pair-section__sub">Turn review data into team KPIs&mdash;or just tally how many warnings you raised.</p>
+        <p class="kvc-pair-section__sub">Turn review data into team KPIs &mdash; or just tally how many warnings you raised.</p>
 
         <div class="kvc-pair-grid">
           <article class="kvc-pair-card kvc-pair-card--kodus">
@@ -1733,7 +1822,7 @@
               <span class="kvc-pair-card__tag">Kodus</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>Kodus</strong> &mdash; Cockpit tracks deploys, cycle-time and Implementation Rate, while Kody Issues turns every unresolved suggestion into a living backlog.</p>
+              <p class="kvc-pair-card__copy">Cockpit tracks deploys, cycle-time and Implementation Rate, while Kody Issues turns every unresolved suggestion into a living backlog.</p>
               <div class="kvc-pair-card__media">
                 <img src="assets/img/admin-ajax%20%2810%29.png" alt="Kodus cockpit and kody issues">
               </div>
@@ -1750,7 +1839,7 @@
               <span class="kvc-pair-card__tag">CodeRabbit</span>
             </div>
             <div class="kvc-pair-card__body">
-              <p class="kvc-pair-card__copy"><strong>CodeRabbit</strong> &mdash; Dashboard counts suggestions and linter findings&mdash;no implementation tracking, no backlog.</p>
+              <p class="kvc-pair-card__copy">Dashboard counts suggestions and linter findings &mdash; no implementation tracking, no backlog.</p>
               <div class="kvc-pair-card__media">
                 <img src="assets/img/admin-ajax%20%2811%29.png" alt="CodeRabbit metrics dashboard">
               </div>
@@ -1799,7 +1888,37 @@
               <span class="kvc-reco-alt__label">ALTERNATIVE_PATH_ANALYSIS</span>
               <p>CodeRabbit is a solid, fully managed SaaS for teams that just want &ldquo;set-it-and-forget-it&rdquo; reviews and are happy with a single YAML config plus basic suggestion counts.</p>
               <hr>
-              <p>But if you want deeper customisation, richer insight, and the freedom to run on-prem or in the cloud, Kodus delivers more&mdash;without locking you in.</p>
+              <p class="kvc-reco-alt__emphasis">But if you want <strong>deeper customisation</strong>, <strong>richer insight</strong>, and the freedom to run on-prem or in the cloud, <strong>Kodus delivers more</strong> &mdash; without locking you in.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="roi-cta">
+      <div class="container">
+        <div class="pixel-cta">
+          <div class="pixel-cta__window">
+            <div class="pixel-cta__bar">
+              <span class="pixel-cta__bar-text">COMPARE_CTA.EXE</span>
+            </div>
+            <div class="pixel-cta__content">
+              <div class="pixel-cta__media">
+                <img src="assets/img/kody-review.png" alt="Kody Review" class="pixel-cta__kody">
+              </div>
+              <div class="pixel-cta__copy">
+                <h2 class="pixel-cta__title">Don't take our word for it.<br>Try Kody on your next PR.</h2>
+                <p class="pixel-cta__desc">Spin it up in under 2 minutes &mdash; cloud or self-hosted, no credit card.</p>
+                <div class="pixel-cta__actions">
+                  <a href="https://github.com/kodustech/kodus-ai" class="btn btn--outline-light pixel-cta__btn">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    DEPLOY
+                  </a>
+                  <a href="https://app.kodus.io/sign-up" class="btn btn--primary pixel-cta__btn">
+                    START FREE TRIAL
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1817,7 +1936,7 @@
       </div>
       <div class="footer__columns">
         <div class="footer__col">
-          <h4 class="footer__col-title">Legal &amp; Contact</h4>
+          <h4 class="footer__col-title">Legal & Contact</h4>
           <ul class="footer__col-list">
             <li><a href="https://kodus.io/en/privacy-policy/">Privacy Policy</a></li>
             <li><a href="https://kodus.io/en/terms-of-use/">Terms of Use</a></li>
@@ -1830,7 +1949,6 @@
             <li><a href="pricing.html">Pricing</a></li>
             <li><a href="customers.html">Customers</a></li>
             <li><a href="https://kodus.io/en/code-review-rules/">Kody Rules</a></li>
-            <li><a href="roi.html">ROI Calculator</a></li>
             <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
           </ul>
         </div>
@@ -1859,20 +1977,19 @@
           <h4 class="footer__col-title">Our Network</h4>
           <div class="footer__social">
             <a href="https://www.linkedin.com/company/kodustech/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="LinkedIn">
-              <img src="assets/img/linkedin.png" alt="LinkedIn" class="footer__social-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
             <a href="https://twitter.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="X (Twitter)">
-              <img src="assets/img/x-1.png?v=2" alt="X (Twitter)" class="footer__social-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
             <a href="https://www.reddit.com/r/Kodus/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Reddit">
-              <img src="assets/img/reddit.png" alt="Reddit" class="footer__social-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 01-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 01.042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 014.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 01.14-.197.35.35 0 01.238-.042l2.906.617a1.214 1.214 0 011.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 00-.231.094.33.33 0 000 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 000-.463.327.327 0 00-.462 0c-.545.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 00-.205-.094z"/></svg>
             </a>
             <a href="https://github.com/kodustech" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub">
-              <img src="assets/img/github.png" alt="GitHub" class="footer__social-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
             </a>
-            <div style="flex-basis: 100%; height: 0;"></div>
             <a href="https://discord.gg/TFZBRk9fT6" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Discord">
-              <img src="assets/img/discord.png" alt="Discord" class="footer__social-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
             </a>
           </div>
         </div>
@@ -1886,55 +2003,387 @@
   <script src="script.js"></script>
   <script>
     const BUG_DATA = {
-      "Sentry": [
-        { "title": "Replays Self-Serve Bulk Delete System", "desc": "Breaking changes in error response format", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/10", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/5" },
-        { "title": "GitHub OAuth Security Enhancement", "desc": "Null reference if github_authenticated_user state is missing", "severity": "Critical", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/9", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/4" },
-        { "title": "Optimize spans buffer insertion with eviction during insert", "desc": "Negative offset cursor manipulation bypasses pagination boundaries", "severity": "Critical", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/2" },
-        { "title": "Enhanced Pagination Performance for High-Volume Audit Logs", "desc": "Importing non-existent OptimizedCursorPaginator", "severity": "High", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/1", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/1" },
-        { "title": "Reorganize incident creation / issue occurrence logic", "desc": "Using stale config variable instead of updated one", "severity": "High", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/11", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9" },
-        { "title": "Add ability to use queues to manage parallelism", "desc": "Invalid queue.ShutDown exception handling", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/12", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9" },
-        { "title": "Add hook for producing occurrences from the stateful detector", "desc": "Incomplete implementation (only contains pass)", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/13", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/10" },
-        { "title": "Span Buffer Multiprocess Enhancement with Health Monitoring", "desc": "Inconsistent metric tagging with 'shard' and 'shards'", "severity": "Medium", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/19", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/6" },
-        { "title": "Implement cross-system issue synchronization", "desc": "Shared mutable default in dataclass timestamp", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/18", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/7" }
-      ],
-      "Cal.com": [
-        { "title": "feat: 2fa backup codes", "desc": "Backup codes not invalidated after use", "severity": "Critical", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/6", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/3" },
-        { "title": "fix: handle collective multiple host on destinationCalendar", "desc": "Null reference error if array is empty", "severity": "Medium", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/14", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/4" },
-        { "title": "feat: convert InsightsBookingService to use Prisma.sql raw queries", "desc": "Potential SQL injection risk in raw SQL query construction", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/8", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/5" },
-        { "title": "Comprehensive workflow reminder management for booking lifecycle events", "desc": "Missing database cleanup when immediateDelete is true", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/9", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/6" },
-        { "title": "Advanced date override handling and timezone compatibility improvements", "desc": "Incorrect end time calculation using slotStartTime instead of slotEndTime", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/10", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/7" },
-        { "title": "OAuth credential sync and app integration enhancements", "desc": "Timing attack vulnerability using direct string comparison", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/11", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/8" },
-        { "title": "SMS workflow reminder retry count tracking", "desc": "OR condition causes deletion of all workflow reminders", "severity": "High", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/12", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/9" },
-        { "title": "Add guest management functionality to existing bookings", "desc": "Case sensitivity bypass in email blacklist", "severity": "High", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/13", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/10" }
-      ],
-      "Grafana": [
-        { "title": "Advanced SQL Analytics Framework", "desc": "enableSqlExpressions function always returns false, disabling SQL functionality", "severity": "Critical", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/14", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/9" },
-        { "title": "Unified Storage Performance Optimizations", "desc": "Race condition in cache locking", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/15", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/10" },
-        { "title": "Notification Rule Processing Engine", "desc": "Missing key prop causing React rendering issues", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/11", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/5" },
-        { "title": "Advanced Query Processing Architecture", "desc": "Double interpolation risk", "severity": "Critical", "kodusHit": false, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/10", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/4" },
-        { "title": "Dual Storage Architecture", "desc": "Incorrect metrics recording methods causing misleading performance tracking", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/12", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/6" },
-        { "title": "Frontend Asset Optimization", "desc": "Deadlock potential during concurrent annotation deletion operations", "severity": "High", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/13", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/8" },
-        { "title": "AuthZService: improve authz caching", "desc": "Cache entries without expiration causing permanent permission denials", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/8", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/2" },
-        { "title": "Anonymous: Add configurable device limit", "desc": "Race condition in CreateOrUpdateDevice method", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/7", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/1" }
-      ],
-      "Discourse": [
-        { "title": "FEATURE: automatically downsize large images", "desc": "Method overwriting causing parameter mismatch", "severity": "Medium", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/1", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/1" },
-        { "title": "FEATURE: per-topic unsubscribe option in emails", "desc": "Nil reference non-existent TopicUser", "severity": "High", "kodusHit": true, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/2", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/2" },
-        { "title": "Add comprehensive email validation for blocked users", "desc": "BlockedEmail.should_block? modifies DB during read", "severity": "Critical", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/3", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/3" },
-        { "title": "Enhance embed URL handling and validation system", "desc": "SSRF vulnerability using open(url) without validation", "severity": "Critical", "kodusHit": false, "coderabbitHit": true, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/4", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/4" },
-        { "title": "UX: show complete URL path if website domain is same as instance domain", "desc": "String mutation with << operator", "severity": "Medium", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/5", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/6" },
-        { "title": "FIX: proper handling of group memberships", "desc": "Race conditions in async member loading", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/6", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/8" },
-        { "title": "FEATURE: Localization fallbacks (server-side)", "desc": "Thread-safety issue with lazy @loaded_locales", "severity": "High", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/7", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/9" },
-        { "title": "FEATURE: Can edit category/host relationships for embedding", "desc": "NoMethodError before_validation in EmbeddableHost", "severity": "Critical", "kodusHit": true, "coderabbitHit": false, "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/8", "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/10" }
-      ]
-    };
+    "Sentry": [
+        {
+            "title": "Replays Self-Serve Bulk Delete System",
+            "desc": "Breaking changes in error response format",
+            "severity": "Critical",
+            "kodusHit": false,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/10",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-cursor/pull/5"
+        },
+        {
+            "title": "GitHub OAuth Security Enhancement",
+            "desc": "Null reference if github_authenticated_user state is missing",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/9",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/4"
+        },
+        {
+            "title": "Optimize spans buffer insertion with eviction during insert",
+            "desc": "Negative offset cursor manipulation bypasses pagination boundaries",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/kodustech/sentry-kodus/pull/7",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/2"
+        },
+        {
+            "title": "Enhanced Pagination Performance for High-Volume Audit Logs",
+            "desc": "Importing non-existent OptimizedCursorPaginator",
+            "severity": "High",
+            "kodusHit": false,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/1",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/1"
+        },
+        {
+            "title": "Reorganize incident creation / issue occurrence logic",
+            "desc": "Using stale config variable instead of updated one",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus/pull/27",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9"
+        },
+        {
+            "title": "Add ability to use queues to manage parallelism",
+            "desc": "Invalid queue.ShutDown exception handling",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/12",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/9"
+        },
+        {
+            "title": "Add hook for producing occurrences from the stateful detector",
+            "desc": "Incomplete implementation (only contains pass)",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/13",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/10"
+        },
+        {
+            "title": "Span Buffer Multiprocess Enhancement with Health Monitoring",
+            "desc": "Inconsistent metric tagging with 'shard' and 'shards'",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/kodustech/sentry-kodus/pull/9",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/6"
+        },
+        {
+            "title": "Implement cross-system issue synchronization",
+            "desc": "Shared mutable default in dataclass timestamp",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/sentry-kodus-review/pull/18",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/sentry-coderabbit/pull/7"
+        }
+    ],
+    "Cal.com": [
+        {
+            "title": "feat: 2fa backup codes",
+            "desc": "Backup codes not invalidated after use",
+            "severity": "Critical",
+            "kodusHit": false,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/6",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/3"
+        },
+        {
+            "title": "fix: handle collective multiple host on destinationCalendar",
+            "desc": "Null reference error if array is empty",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/14",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/4"
+        },
+        {
+            "title": "feat: convert InsightsBookingService to use Prisma.sql raw queries",
+            "desc": "Potential SQL injection risk in raw SQL query construction",
+            "severity": "Critical",
+            "kodusHit": false,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/8",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/5"
+        },
+        {
+            "title": "Comprehensive workflow reminder management for booking lifecycle events",
+            "desc": "Missing database cleanup when immediateDelete is true",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/9",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/6"
+        },
+        {
+            "title": "Advanced date override handling and timezone compatibility improvements",
+            "desc": "Incorrect end time calculation using slotStartTime instead of slotEndTime",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/10",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/7"
+        },
+        {
+            "title": "OAuth credential sync and app integration enhancements",
+            "desc": "Timing attack vulnerability using direct string comparison",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/kodustech/cal.com-kodus/pull/1",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/8"
+        },
+        {
+            "title": "SMS workflow reminder retry count tracking",
+            "desc": "OR condition causes deletion of all workflow reminders",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/12",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/9"
+        },
+        {
+            "title": "Add guest management functionality to existing bookings",
+            "desc": "Case sensitivity bypass in email blacklist",
+            "severity": "High",
+            "kodusHit": false,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/cal.com-kodus/pull/13",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/cal.com-coderabbit/pull/10"
+        }
+    ],
+    "Grafana": [
+        {
+            "title": "Advanced SQL Analytics Framework",
+            "desc": "enableSqlExpressions function always returns false, disabling SQL functionality",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/14",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/9"
+        },
+        {
+            "title": "Unified Storage Performance Optimizations",
+            "desc": "Race condition in cache locking",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/15",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/10"
+        },
+        {
+            "title": "Notification Rule Processing Engine",
+            "desc": "Missing key prop causing React rendering issues",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/11",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/5"
+        },
+        {
+            "title": "Advanced Query Processing Architecture",
+            "desc": "Double interpolation risk",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/kodustech/grafana-kodus/pull/1",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/4"
+        },
+        {
+            "title": "Dual Storage Architecture",
+            "desc": "Incorrect metrics recording methods causing misleading performance tracking",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/12",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/6"
+        },
+        {
+            "title": "Frontend Asset Optimization",
+            "desc": "Deadlock potential during concurrent annotation deletion operations",
+            "severity": "High",
+            "kodusHit": false,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/13",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/8"
+        },
+        {
+            "title": "AuthZService: improve authz caching",
+            "desc": "Cache entries without expiration causing permanent permission denials",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/8",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/2"
+        },
+        {
+            "title": "Anonymous: Add configurable device limit",
+            "desc": "Race condition in CreateOrUpdateDevice method",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/grafana-kodus/pull/7",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/grafana-coderabbit/pull/1"
+        }
+    ],
+    "Discourse": [
+        {
+            "title": "FEATURE: automatically downsize large images",
+            "desc": "Method overwriting causing parameter mismatch",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/1",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/1"
+        },
+        {
+            "title": "FEATURE: per-topic unsubscribe option in emails",
+            "desc": "Nil reference non-existent TopicUser",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/2",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/2"
+        },
+        {
+            "title": "Add comprehensive email validation for blocked users",
+            "desc": "BlockedEmail.should_block? modifies DB during read",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/3",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/3"
+        },
+        {
+            "title": "Enhance embed URL handling and validation system",
+            "desc": "SSRF vulnerability using open(url) without validation",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/kodustech/discourse-kodus/pull/1",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/4"
+        },
+        {
+            "title": "UX: show complete URL path if website domain is same as instance domain",
+            "desc": "String mutation with << operator",
+            "severity": "Medium",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/5",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/6"
+        },
+        {
+            "title": "FIX: proper handling of group memberships",
+            "desc": "Race conditions in async member loading",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/6",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/8"
+        },
+        {
+            "title": "FEATURE: Localization fallbacks (server-side)",
+            "desc": "Thread-safety issue with lazy @loaded_locales",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/7",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/9"
+        },
+        {
+            "title": "FEATURE: Can edit category/host relationships for embedding",
+            "desc": "NoMethodError before_validation in EmbeddableHost",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/discourse-kodus/pull/8",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/discourse-coderabbit/pull/10"
+        }
+    ],
+    "Keycloak": [
+        {
+            "title": "Add AuthzClientCryptoProvider for authorization client cryptographic operations",
+            "desc": "Returns wrong provider (default keystore instead of BouncyCastle)",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/3",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/3"
+        },
+        {
+            "title": "Fixing Re-authentication with passkeys",
+            "desc": "ConditionalPasskeysEnabled() called without UserModel parameter",
+            "severity": "Medium",
+            "kodusHit": false,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/1",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/1"
+        },
+        {
+            "title": "Add Client resource type and scopes to authorization schema",
+            "desc": "Inconsistent feature flag bug causing orphaned permissions",
+            "severity": "High",
+            "kodusHit": true,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/5",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/5"
+        },
+        {
+            "title": "Implement access token context encoding framework",
+            "desc": "Wrong parameter in null check (grantType vs. rawTokenId)",
+            "severity": "Critical",
+            "kodusHit": true,
+            "coderabbitHit": true,
+            "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/6",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pull/8"
+        },
+        {
+            "title": "Add caching support for IdentityProviderStorageProvider .getForLogin operations",
+            "desc": "Recursive caching call using session instead of delegate",
+            "severity": "Critical",
+            "kodusHit": false,
+            "coderabbitHit": false,
+            "kodusUrl": "https://github.com/edvaldofreitas/keycloak-kodus/pull/2",
+            "coderabbitUrl": "https://github.com/ai-code-review-evaluation/keycloak-coderabbit/pulls"
+        }
+    ]
+};
 
     const TAB_META = {
-      "Sentry": { slug: "sentry", lang: "PYTHON", file: "SENTRY_REPORT.CSV" },
-      "Cal.com": { slug: "calcom", lang: "TYPESCRIPT", file: "CALCOM_REPORT.CSV" },
-      "Grafana": { slug: "grafana", lang: "GO", file: "GRAFANA_REPORT.CSV" },
-      "Discourse": { slug: "discourse", lang: "RUBY", file: "DISCOURSE_REPORT.CSV" }
-    };
+    "Sentry": {
+        "slug": "sentry",
+        "lang": "PYTHON",
+        "file": "SENTRY_REPORT.CSV"
+    },
+    "Cal.com": {
+        "slug": "calcom",
+        "lang": "TYPESCRIPT",
+        "file": "CALCOM_REPORT.CSV"
+    },
+    "Grafana": {
+        "slug": "grafana",
+        "lang": "GO",
+        "file": "GRAFANA_REPORT.CSV"
+    },
+    "Discourse": {
+        "slug": "discourse",
+        "lang": "RUBY",
+        "file": "DISCOURSE_REPORT.CSV"
+    },
+    "Keycloak": {
+        "slug": "keycloak",
+        "lang": "JAVA",
+        "file": "KEYCLOAK_REPORT.CSV"
+    }
+};
 
     function sevClass(sev) {
       const s = String(sev).toLowerCase();
@@ -1946,7 +2395,7 @@
     function boolCell(hit, url) {
       const mark = hit ? '<span class="bench__hit">&#10003;</span>' : '<span class="bench__miss">&#10005;</span>';
       if (url) {
-        return '<a href="' + url + '" target="_blank" rel="noopener" class="bench__td-link">' + mark + '</a>';
+        return '<a href="' + url + '" target="_blank" rel="noopener" class="bench__td-link" title="Open PR link" aria-label="Open PR link">' + mark + '</a>';
       }
       return '<span>' + mark + '</span>';
     }
