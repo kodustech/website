@@ -192,6 +192,15 @@ function kodus_preconnect_fonts() {
     }
 }
 
+add_action('wp_head', 'kodus_preload_404_image', 2);
+function kodus_preload_404_image() {
+    if (!is_404()) {
+        return;
+    }
+    $href = esc_url(get_stylesheet_directory_uri() . '/assets/img/kody-404.png');
+    echo '<link rel="preload" as="image" href="' . $href . '">' . "\n";
+}
+
 // ═══════════════════════════════════════════════════════════════
 // 5. AUMENTAR LIMITE DE UPLOAD
 // ═══════════════════════════════════════════════════════════════

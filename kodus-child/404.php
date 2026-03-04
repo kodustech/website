@@ -6,32 +6,95 @@ $requested_path = (string) wp_parse_url($requested_uri, PHP_URL_PATH);
 $decoded_path = rawurldecode($requested_path);
 $normalized_path = trim($decoded_path, '/');
 
-$segments = array_values(array_filter(explode('/', strtolower($normalized_path))));
-if (!empty($segments) && in_array($segments[0], ['pt', 'en', 'es', 'zh'], true)) {
-    array_shift($segments);
+$raw_segments = array_values(array_filter(explode('/', strtolower($normalized_path))));
+$detected_lang = 'pt';
+
+if (!empty($raw_segments)) {
+    $first_segment = $raw_segments[0];
+    if ($first_segment === 'en') {
+        $detected_lang = 'en';
+    }
 }
+
+$segments = $raw_segments;
+if (!empty($segments)) {
+    $first_segment = $segments[0];
+    if ($first_segment === 'en') {
+        array_shift($segments);
+    }
+}
+
 $lookup_text = str_replace(['-', '_'], ' ', implode(' ', $segments));
+$normalize_text = static function ($value) {
+    $value = strtolower(remove_accents((string) $value));
+    $value = preg_replace('/[^a-z0-9]+/', ' ', $value);
+    $value = preg_replace('/\s+/', ' ', (string) $value);
+    return trim((string) $value);
+};
+
+$lookup_normalized = $normalize_text($lookup_text);
+$lookup_tokens = array_values(array_filter(array_unique(explode(' ', $lookup_normalized)), static function ($token) {
+    return strlen($token) >= 2;
+}));
+
+$keyword_score = static function ($keyword) use ($normalize_text, $lookup_normalized, $lookup_tokens) {
+    $keyword_normalized = $normalize_text($keyword);
+    if ($keyword_normalized === '' || $lookup_normalized === '') {
+        return 0;
+    }
+
+    if (strlen($keyword_normalized) <= 3) {
+        return in_array($keyword_normalized, $lookup_tokens, true) ? 2 : 0;
+    }
+
+    if (strpos($lookup_normalized, $keyword_normalized) !== false) {
+        return 4;
+    }
+
+    $keyword_tokens = array_values(array_filter(explode(' ', $keyword_normalized)));
+    $hits = 0;
+    $long_hits = 0;
+    foreach ($keyword_tokens as $token) {
+        if (in_array($token, $lookup_tokens, true)) {
+            $hits++;
+            if (strlen($token) >= 4) {
+                $long_hits++;
+            }
+        }
+    }
+
+    if ($hits === count($keyword_tokens) && $hits > 1) {
+        return 3;
+    }
+    if ($hits > 0 && $long_hits > 0) {
+        return 2;
+    }
+    if ($hits > 0) {
+        return 1;
+    }
+    return 0;
+};
 
 $suggestion_catalog = [
     [
         'title' => 'Pricing',
         'url' => home_url('/pricing/'),
-        'keywords' => ['pricing', 'plan', 'plans', 'price', 'preco', 'precos', 'subscription'],
+        'keywords' => ['pricing', 'plan', 'plans', 'price', 'subscription', 'preco', 'precos', 'valor', 'planos'],
     ],
     [
         'title' => 'Customers',
         'url' => home_url('/customers/'),
-        'keywords' => ['customer', 'customers', 'case', 'cases', 'cliente', 'clientes', 'brendi', 'lerian', 'notificacoes'],
+        'keywords' => ['customer', 'customers', 'case', 'cases', 'cliente', 'clientes', 'case study', 'brendi', 'lerian', 'notificacoes'],
     ],
     [
         'title' => 'ROI Calculator',
         'url' => home_url('/roi/'),
-        'keywords' => ['roi', 'calculator', 'calc', 'retorno', 'investment'],
+        'keywords' => ['roi', 'calculator', 'calc', 'return on investment', 'retorno', 'investment'],
     ],
     [
         'title' => 'AI Benchmark',
         'url' => home_url('/benchmark-ai-code-review/'),
-        'keywords' => ['benchmark', 'bench', 'performance', 'compar', 'comparison', 'code review'],
+        'keywords' => ['benchmark', 'bench', 'performance', 'comparison', 'comparativo', 'code review', 'review tools'],
     ],
     [
         'title' => 'Kodus vs CodeRabbit',
@@ -56,7 +119,7 @@ $suggestion_catalog = [
     [
         'title' => 'Blog',
         'url' => home_url('/en/insights-en/'),
-        'keywords' => ['blog', 'insights', 'post', 'article', 'artigo'],
+        'keywords' => ['blog', 'insights', 'post', 'posts', 'article', 'articles', 'artigo', 'artigos', 'news'],
     ],
     [
         'title' => 'Documentation',
@@ -70,43 +133,94 @@ $suggestion_catalog = [
     ],
 ];
 
-$matched_suggestions = [];
-if ($lookup_text !== '') {
-    foreach ($suggestion_catalog as $entry) {
+$matched_suggestions_scored = [];
+if ($lookup_normalized !== '') {
+    foreach ($suggestion_catalog as $index => $entry) {
+        $best_score = 0;
         foreach ($entry['keywords'] as $keyword) {
-            if (strpos($lookup_text, $keyword) !== false) {
-                $matched_suggestions[] = [
-                    'title' => $entry['title'],
-                    'url' => $entry['url'],
-                ];
-                break;
+            $score = $keyword_score($keyword);
+            if ($score > $best_score) {
+                $best_score = $score;
             }
+        }
+        if ($best_score > 0) {
+            $matched_suggestions_scored[] = [
+                'title' => $entry['title'],
+                'url' => $entry['url'],
+                'score' => $best_score,
+                'index' => $index,
+            ];
         }
     }
 }
 
-$search_suggestions = [];
-if ($lookup_text !== '') {
-    // Prioritize posts (articles) first, then pages.
-    foreach (['post', 'page'] as $content_type) {
-        if (count($search_suggestions) >= 4) {
-            break;
+$matched_suggestions = [];
+if (!empty($matched_suggestions_scored)) {
+    usort($matched_suggestions_scored, static function ($a, $b) {
+        if ($a['score'] === $b['score']) {
+            return $a['index'] <=> $b['index'];
         }
+        return $b['score'] <=> $a['score'];
+    });
 
-        $search_query = new WP_Query([
-            'post_type' => $content_type,
+    foreach ($matched_suggestions_scored as $entry) {
+        $matched_suggestions[] = [
+            'title' => $entry['title'],
+            'url' => $entry['url'],
+        ];
+    }
+}
+
+$search_suggestions = [];
+if ($lookup_normalized !== '') {
+    // Posts first (article intent), following URL language when available.
+    $post_args = [
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'posts_per_page' => 4,
+        's' => $lookup_text,
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'no_found_rows' => true,
+        'ignore_sticky_posts' => true,
+    ];
+    if (function_exists('pll_default_language') && in_array($detected_lang, ['pt', 'en'], true)) {
+        $post_args['lang'] = $detected_lang;
+    }
+
+    $post_query = new WP_Query($post_args);
+    if ($post_query->have_posts()) {
+        while ($post_query->have_posts()) {
+            if (count($search_suggestions) >= 4) {
+                break;
+            }
+            $post_query->the_post();
+            $search_suggestions[] = [
+                'title' => get_the_title(),
+                'url' => get_permalink(),
+            ];
+        }
+    }
+    wp_reset_postdata();
+
+    // Then pages (kept broad; still useful as fallback).
+    if (count($search_suggestions) < 4) {
+        $page_query = new WP_Query([
+            'post_type' => 'page',
             'post_status' => 'publish',
             'posts_per_page' => 4,
             's' => $lookup_text,
+            'orderby' => 'date',
+            'order' => 'DESC',
             'no_found_rows' => true,
         ]);
 
-        if ($search_query->have_posts()) {
-            while ($search_query->have_posts()) {
+        if ($page_query->have_posts()) {
+            while ($page_query->have_posts()) {
                 if (count($search_suggestions) >= 4) {
                     break;
                 }
-                $search_query->the_post();
+                $page_query->the_post();
                 $search_suggestions[] = [
                     'title' => get_the_title(),
                     'url' => get_permalink(),
@@ -119,21 +233,26 @@ if ($lookup_text !== '') {
 
 $prefer_search_terms = [
     'code review',
+    'code',
     'review',
     'artigo',
+    'artigos',
     'article',
+    'posts',
     'blog',
     'insights',
     'guide',
+    'guia',
     'tutorial',
     'how to',
+    'como',
     'pull request',
     'pr',
 ];
 
 $prefer_search = false;
 foreach ($prefer_search_terms as $term) {
-    if (strpos($lookup_text, $term) !== false) {
+    if ($keyword_score($term) >= 2) {
         $prefer_search = true;
         break;
     }
@@ -146,11 +265,27 @@ if ($prefer_search) {
     $suggestions = array_merge($matched_suggestions, $search_suggestions);
 }
 
+$blog_default_url = home_url('/en/insights-en/');
+$posts_page_id = (int) get_option('page_for_posts');
+if ($posts_page_id > 0) {
+    $blog_page_id = $posts_page_id;
+    if (function_exists('pll_get_post')) {
+        $translated_page_id = pll_get_post($posts_page_id, $detected_lang);
+        if (!empty($translated_page_id)) {
+            $blog_page_id = (int) $translated_page_id;
+        }
+    }
+    $blog_permalink = get_permalink($blog_page_id);
+    if (is_string($blog_permalink) && $blog_permalink !== '') {
+        $blog_default_url = $blog_permalink;
+    }
+}
+
 $default_suggestions = [
     ['title' => 'Homepage', 'url' => home_url('/')],
     ['title' => 'Pricing', 'url' => home_url('/pricing/')],
     ['title' => 'Customers', 'url' => home_url('/customers/')],
-    ['title' => 'Blog', 'url' => home_url('/en/insights-en/')],
+    ['title' => 'Blog', 'url' => $blog_default_url],
 ];
 
 foreach ($default_suggestions as $entry) {
@@ -270,6 +405,11 @@ $requested_label = $normalized_path !== '' ? '/' . trim($normalized_path, '/') :
       <img
         src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/kody-404.png'); ?>"
         alt="Error 404"
+        width="840"
+        height="590"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
         style="width:min(420px,82vw);margin:0 auto 16px;display:block;"
       >
 
