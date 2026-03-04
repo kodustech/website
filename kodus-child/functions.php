@@ -106,7 +106,7 @@ function kodus_get_retro_templates() {
 // Helper: checa se a página atual usa um template retro (funciona em block themes)
 function kodus_is_retro_page() {
     // Blog posts, archives, blog index, and search use retro layout
-    if (is_singular('post') || is_archive() || is_home() || is_search()) {
+    if (is_singular('post') || is_archive() || is_home() || is_search() || is_404()) {
         return true;
     }
 
@@ -226,6 +226,14 @@ function kodus_register_page_templates($templates) {
 // ═══════════════════════════════════════════════════════════════
 add_filter('template_include', 'kodus_force_page_template', 999);
 function kodus_force_page_template($template) {
+    // Force custom 404 template for block theme setup.
+    if (is_404()) {
+        $child_template = get_stylesheet_directory() . '/404.php';
+        if (file_exists($child_template)) {
+            return $child_template;
+        }
+    }
+
     // Force single.php for individual blog posts
     if (is_singular('post')) {
         $child_template = get_stylesheet_directory() . '/single.php';

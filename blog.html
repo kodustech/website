@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodus | Blog Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="kodus-child/assets/css/kodus-retro.css">
+  <style>
+    .blog-card.is-hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="https://kodus.io/" class="nav__logo">
+        <img src="kodus-child/assets/img/kodus_dark.webp" alt="Kodus" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="https://docs.kodus.io/how_to_use/en/overview" class="nav__link nav__link--external" target="_blank" rel="noopener">Docs</a></li>
+        <li><a href="https://discord.gg/TFZBRk9fT6" class="nav__link nav__link--external" target="_blank" rel="noopener">Community</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
+          <ul class="nav__dropdown-menu">
+            <li><a href="https://kodus.io/code-review-rules/"><span class="nav__item-title">Kody Rules</span><span class="nav__item-desc">Library of production tested review rules for real world codebases.</span></a></li>
+            <li><a href="https://kodus.io/changelog-en/"><span class="nav__item-title">Changelog</span><span class="nav__item-desc">Detailed release notes for every Kodus update.</span></a></li>
+            <li><a href="https://kodus.io/customers/"><span class="nav__item-title">Customers</span><span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span></a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage"><span class="nav__item-title">Security</span><span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span></a></li>
+            <li><a href="https://kodus.io/benchmark-ai-code-review/"><span class="nav__item-title">AI Code Review Tools Benchmarks</span><span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span></a></li>
+            <li><a href="https://codereviewbench.com/"><span class="nav__item-title">LLMs Performance Benchmark</span><span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span></a></li>
+            <li><a href="https://ai-skills.io/"><span class="nav__item-title">Agent Skills Library</span><span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span></a></li>
+          </ul>
+        </li>
+        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
+        <li><a href="https://kodus.io/pricing/" class="nav__link">Pricing</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a href="https://github.com/kodustech/kodus-ai/stargazers" target="_blank" rel="noopener noreferrer" class="btn btn--github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span id="ghStars">--</span>
+        </a>
+        <a href="https://app.kodus.io/sign-in" class="btn btn--outline-light">Login</a>
+        <a href="https://app.kodus.io/sign-up" class="btn btn--primary">Start Free Trial</a>
+      </div>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="blog-page">
+      <div class="container">
+        <header class="blog-page__header">
+          <h1 class="section-title">Insights</h1>
+          <p class="blog-page__subtitle">Articles about code review, AI, and engineering productivity</p>
+          <div class="blog-page__langs">
+            <a href="#" class="hero__tab hero__tab--active" aria-current="page">English</a>
+            <a href="#" class="hero__tab">Português</a>
+          </div>
+        </header>
+
+        <nav class="blog-page__categories" aria-label="Categories">
+          <button class="blog-cat-btn blog-cat-btn--active" data-cat="all">All</button>
+          <button class="blog-cat-btn" data-cat="ai-review">AI Code Review</button>
+          <button class="blog-cat-btn" data-cat="benchmark">Benchmark</button>
+          <button class="blog-cat-btn" data-cat="engineering">Engineering</button>
+          <button class="blog-cat-btn" data-cat="security">Security</button>
+        </nav>
+
+        <div class="blog-grid" id="blog-grid">
+          <article class="blog-card" data-cat-list="ai-review,engineering">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-review.webp" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">AI Review</span>
+              <h2 class="blog-card__title"><a href="#">How To Reduce PR Review Time With AI Workflows</a></h2>
+              <p class="blog-card__excerpt">A practical setup to cut review cycle time without increasing false positives in your pull requests.</p>
+              <time class="blog-card__date" datetime="2026-02-14">February 14, 2026</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="benchmark,ai-review">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-coderabbit.png" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Benchmark</span>
+              <h2 class="blog-card__title"><a href="#">Kodus vs CodeRabbit On Real Pull Requests</a></h2>
+              <p class="blog-card__excerpt">What changes when you compare AI review tools using production diffs instead of toy snippets.</p>
+              <time class="blog-card__date" datetime="2026-01-30">January 30, 2026</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="engineering">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-space.webp" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Engineering</span>
+              <h2 class="blog-card__title"><a href="#">Code Review Rules That Scale Across Teams</a></h2>
+              <p class="blog-card__excerpt">Patterns for creating a shared rule set that works for multiple squads and repositories.</p>
+              <time class="blog-card__date" datetime="2026-01-19">January 19, 2026</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="security,ai-review">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-security.webp" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Security</span>
+              <h2 class="blog-card__title"><a href="#">Security Checks To Add In AI-Assisted Reviews</a></h2>
+              <p class="blog-card__excerpt">A baseline checklist you can enforce automatically to keep vulnerabilities from reaching production.</p>
+              <time class="blog-card__date" datetime="2025-12-22">December 22, 2025</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="benchmark">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kodyvsgithub.png" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Benchmark</span>
+              <h2 class="blog-card__title"><a href="#">Kodus vs GitHub Copilot For PR Review Comments</a></h2>
+              <p class="blog-card__excerpt">A side-by-side analysis of signal quality, actionable feedback, and review consistency.</p>
+              <time class="blog-card__date" datetime="2025-12-10">December 10, 2025</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="engineering,ai-review">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-team.webp" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Engineering</span>
+              <h2 class="blog-card__title"><a href="#">Designing Team Workflows Around Pull Request Bots</a></h2>
+              <p class="blog-card__excerpt">How to avoid noise and still use automated comments as a reliable step in your review process.</p>
+              <time class="blog-card__date" datetime="2025-11-27">November 27, 2025</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="ai-review">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-noise.webp" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">AI Review</span>
+              <h2 class="blog-card__title"><a href="#">Reducing False Positives In Automated PR Reviews</a></h2>
+              <p class="blog-card__excerpt">A calibration flow to improve precision while preserving coverage in large codebases.</p>
+              <time class="blog-card__date" datetime="2025-11-18">November 18, 2025</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="security,engineering">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-guard.webp" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Security</span>
+              <h2 class="blog-card__title"><a href="#">Secure Defaults For Multi-Repo Review Automation</a></h2>
+              <p class="blog-card__excerpt">Configuration defaults that prevent accidental exposure of sensitive code and credentials.</p>
+              <time class="blog-card__date" datetime="2025-11-04">November 4, 2025</time>
+            </div>
+          </article>
+
+          <article class="blog-card" data-cat-list="benchmark,engineering">
+            <a href="#" class="blog-card__thumb"><img src="kodus-child/assets/img/kody-money.webp" alt=""></a>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Benchmark</span>
+              <h2 class="blog-card__title"><a href="#">Cost Analysis: AI Review Tooling At Scale</a></h2>
+              <p class="blog-card__excerpt">A model-by-model breakdown of operating costs for teams reviewing thousands of PRs per month.</p>
+              <time class="blog-card__date" datetime="2025-10-28">October 28, 2025</time>
+            </div>
+          </article>
+        </div>
+
+        <p class="no-results" id="blog-no-results" style="display:none;">No posts found for this category.</p>
+
+        <div class="blog-page__load-more">
+          <button class="btn btn--outline-light" id="blog-load-more">Load More</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <a href="https://kodus.io/" class="nav__logo">
+          <img src="kodus-child/assets/img/kodus_dark.webp" alt="Kodus" class="nav__logo-img">
+        </a>
+        <p class="footer__tagline">The Open Source Alternative to CodeRabbit</p>
+      </div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4 class="footer__col-title">Legal & Contact</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="https://kodus.io/terms-of-use/">Terms of Use</a></li>
+            <li><a href="mailto:support@kodus.io">support@kodus.io</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Meet Kody</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/pricing/">Pricing</a></li>
+            <li><a href="https://kodus.io/customers/">Customers</a></li>
+            <li><a href="https://kodus.io/code-review-rules/">Kody Rules</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Resources</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/en/insights-en/">Blog</a></li>
+            <li><a href="https://docs.kodus.io/how_to_use/en/overview">Docs</a></li>
+            <li><a href="https://kodus.io/changelog-en/">Changelog</a></li>
+            <li><a href="https://discord.gg/TFZBRk9fT6">Support Discord</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Helpful Links</h4>
+          <ul class="footer__col-list">
+            <li><a href="https://kodus.io/benchmark-ai-code-review/">AI Code Review Tools Benchmarks</a></li>
+            <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
+            <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
+            <li><a href="https://kodus.io/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
+            <li><a href="https://kodus.io/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>
+            <li><a href="https://kodus.io/kodus-vs-cursor-bugbot/">Kodus vs BugBot</a></li>
+            <li><a href="https://kodus.io/kodus-vs-github-copilot/">Kodus vs Copilot</a></li>
+            <li><a href="https://kodus.io/kodus-vs-claude/">Kodus vs Claude</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Kodus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const perPage = 6;
+      let visibleCount = perPage;
+      let activeCat = 'all';
+
+      const cards = Array.from(document.querySelectorAll('#blog-grid .blog-card'));
+      const catBtns = Array.from(document.querySelectorAll('.blog-cat-btn'));
+      const loadMoreBtn = document.getElementById('blog-load-more');
+      const noResults = document.getElementById('blog-no-results');
+
+      function cardMatches(card, cat) {
+        if (cat === 'all') return true;
+        const list = (card.getAttribute('data-cat-list') || '').split(',').map(v => v.trim());
+        return list.includes(cat);
+      }
+
+      function render() {
+        const filtered = cards.filter(card => cardMatches(card, activeCat));
+        cards.forEach(card => card.classList.add('is-hidden'));
+        filtered.slice(0, visibleCount).forEach(card => card.classList.remove('is-hidden'));
+
+        noResults.style.display = filtered.length ? 'none' : 'block';
+        loadMoreBtn.style.display = filtered.length > visibleCount ? '' : 'none';
+      }
+
+      catBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          catBtns.forEach(b => b.classList.remove('blog-cat-btn--active'));
+          this.classList.add('blog-cat-btn--active');
+          activeCat = this.getAttribute('data-cat') || 'all';
+          visibleCount = perPage;
+          render();
+        });
+      });
+
+      loadMoreBtn.addEventListener('click', function () {
+        visibleCount += perPage;
+        render();
+      });
+
+      render();
+    })();
+  </script>
+  <script src="kodus-child/assets/js/kodus-retro.js"></script>
+</body>
+</html>

@@ -58,9 +58,10 @@ $args = [
     'post_type'      => 'post',
     'post_status'    => 'publish',
     'posts_per_page' => $per_page,
-    'offset'         => 0,
+    'paged'          => 1,
     'orderby'        => 'date',
     'order'          => 'DESC',
+    'ignore_sticky_posts' => true,
 ];
 if (function_exists('pll_current_language')) {
     $args['lang'] = $current_lang;

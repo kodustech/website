@@ -4,7 +4,7 @@
   var state = {
     lang: kodusBlog.lang,
     category: 'all',
-    offset: kodusBlog.perPage,
+    page: 2,
     loading: false
   };
 
@@ -29,7 +29,7 @@
       'action=kodus_blog_posts',
       'lang=' + encodeURIComponent(state.lang),
       'category=' + encodeURIComponent(state.category),
-      'offset=' + (opts.offset || 0)
+      'page=' + (opts.page || 1)
     ];
 
     setLoading(true);
@@ -49,7 +49,7 @@
         grid.insertAdjacentHTML('beforeend', data.html || '');
       }
 
-      state.offset = (opts.offset || 0) + kodusBlog.perPage;
+      state.page = data.next_page || ((opts.page || 1) + 1);
 
       if (loadMoreWrap) {
         loadMoreWrap.style.display = data.has_more ? '' : 'none';
@@ -67,8 +67,8 @@
       btn.classList.add('blog-cat-btn--active');
 
       state.category = btn.getAttribute('data-cat');
-      state.offset = 0;
-      fetchPosts({ offset: 0, replace: true });
+      state.page = 2;
+      fetchPosts({ page: 1, replace: true });
     });
   });
 
@@ -76,7 +76,7 @@
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', function () {
       if (state.loading) return;
-      fetchPosts({ offset: state.offset, replace: false });
+      fetchPosts({ page: state.page, replace: false });
     });
   }
 })();
