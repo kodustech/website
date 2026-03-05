@@ -19,7 +19,7 @@ function kodus_child_enqueue_parent() {
 }
 
 function kodus_home_meta_title() {
-    return 'Kodus | Automated Code Reviews with AI';
+    return 'Kodus – Open Source AI Code Review';
 }
 
 function kodus_home_meta_description() {
