@@ -400,9 +400,10 @@ function kodus_add_lazy_loading($html) {
         $html
     );
 
-    // Re-inject GTM with delay to protect initial render and interactivity.
+    // Re-inject GTM with short delay plus interaction fallback.
+    // This keeps performance protection while preserving page view tracking.
     if ($had_gtm) {
-        $delayed_gtm_loader = "<script>(function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};var gtmLoaded=false;function loadGTM(){if(gtmLoaded){return;}gtmLoaded=true;window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-KN2J57G';document.head.appendChild(s);}['click','keydown'].forEach(function(evt){window.addEventListener(evt,loadGTM,{once:true,passive:true});});})();</script>";
+        $delayed_gtm_loader = "<script>(function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};var gtmLoaded=false;var timeoutId=null;var interactionEvents=['click','keydown','scroll','touchstart'];function removeListeners(){interactionEvents.forEach(function(evt){window.removeEventListener(evt,loadGTM,{capture:false});});}function loadGTM(){if(gtmLoaded){return;}gtmLoaded=true;if(timeoutId){clearTimeout(timeoutId);}removeListeners();window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-KN2J57G';document.head.appendChild(s);}interactionEvents.forEach(function(evt){window.addEventListener(evt,loadGTM,{once:true,passive:true});});if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){timeoutId=setTimeout(loadGTM,800);},{once:true});}else{timeoutId=setTimeout(loadGTM,800);}})();</script>";
         $html = preg_replace('/<\/head>/i', $delayed_gtm_loader . "\n</head>", $html, 1);
     }
 
