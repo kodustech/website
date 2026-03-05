@@ -49,7 +49,7 @@
                 <span class="pricing__price-value">Free</span>
               </div>
 
-              <a href="https://app.kodus.io/sign-up" class="btn btn--outline-light pricing__cta">Start Free</a>
+              <a href="https://app.kodus.io/sign-up" class="btn btn--outline-light pricing__cta" id="pricingCommunityStartFreeBtn">Start Free</a>
 
               <div class="pricing__divider"></div>
 
@@ -96,7 +96,7 @@
               <p class="pricing__price-note">+ Tokens per dev</p>
               <p class="pricing__price-detail">Tokens included during the free trial. No API key required.</p>
 
-              <a href="https://app.kodus.io/sign-up" class="btn btn--primary pricing__cta">Start Free Trial</a>
+              <a href="https://app.kodus.io/sign-up" class="btn btn--primary pricing__cta" id="pricingTeamsStartFreeTrialBtn">Start Free Trial</a>
               <p class="pricing__trial-note">14-day free trial &bull; no credit card required</p>
 
               <div class="pricing__divider"></div>
@@ -139,6 +139,7 @@
               <button
                 type="button"
                 class="btn btn--outline-light pricing__cta"
+                id="pricingContactSalesBtn"
                 data-cal-link="gabrielmalinosqui/30min"
                 data-cal-config='{"layout":"month_view"}'
               >Contact Sales</button>
@@ -450,7 +451,7 @@
                 We offer <strong>30–100% discounts</strong> for startups, open-source projects, and teams in countries with weaker currencies
                 — so you can focus on shipping great software.
               </p>
-              <a href="https://tally.so/r/npjK2P" class="btn btn--primary builders-cta__btn">Apply now</a>
+              <a href="https://tally.so/r/npjK2P" class="btn btn--primary builders-cta__btn" id="pricingBuildersApplyNowBtn">Apply now</a>
             </div>
           </div>
         </div>

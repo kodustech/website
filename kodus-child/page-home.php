@@ -74,7 +74,7 @@
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M0 8.877L2.247 5.91l8.405-3.416V.022l7.37 5.393L2.966 8.338v8.225L0 15.707zm24-4.45v14.651l-5.753 4.9-9.303-3.057v3.056l-5.978-7.416 15.057 1.98V2.244z"/></svg>
                 </span>
               </div>
-              <a href="https://app.kodus.io/sign-up" class="btn btn--primary hero__cta-btn">Start Free Trial</a>
+              <a href="https://app.kodus.io/sign-up" class="btn btn--primary hero__cta-btn" id="homeHeroStartFreeTrialBtn">Start Free Trial</a>
             </div>
 
             <!-- Terminal tab -->
@@ -891,7 +891,7 @@
             </div>
           </div>
 
-          <a href="https://app.kodus.io/sign-up" class="btn btn--primary roi-calc__cta">Start Free Trial</a>
+          <a href="https://app.kodus.io/sign-up" class="btn btn--primary roi-calc__cta" id="homeRoiStartFreeTrialBtn">Start Free Trial</a>
         </div>
 
       </div>
