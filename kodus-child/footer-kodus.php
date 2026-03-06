@@ -29,6 +29,7 @@
             <li><a href="https://kodus.io/customers/">Customers</a></li>
             <li><a href="https://kodus.io/code-review-rules/">Kody Rules</a></li>
             <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
+            <li><a href="https://status.kodus.io/">Status Kodus</a></li>
           </ul>
         </div>
         <div class="footer__col">
