@@ -172,6 +172,15 @@ function kodus_enqueue_retro_assets() {
         true
     );
 
+    // Terminal dev mode (pure JS overlay, no SEO impact)
+    wp_enqueue_script(
+        'kodus-terminal',
+        get_stylesheet_directory_uri() . '/assets/js/kodus-terminal.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/js/kodus-terminal.js'),
+        true
+    );
+
     // Google Fonts
     wp_enqueue_style(
         'kodus-fonts',
