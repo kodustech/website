@@ -813,6 +813,33 @@
                 </div>
               </div>
 
+              <!-- VHS 9: Igor Duca -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-secondary);">
+                  <span class="vhs__spine-title">DUCA_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-secondary);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/igor-duca.png" alt="Igor Duca" class="vhs__avatar-img">
+                    </div>
+                    <h4 class="vhs__name">Igor Duca</h4>
+                    <p class="vhs__role">@ducaswtf</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">Kodus helped me move as fast as I ever could during my development days. <span style="color: #339966;"><b>It has never been so easy to ship reliable code and build real solutions.</b></span></p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -827,7 +854,7 @@
           <span class="vhs__counter-label">TAPE</span>
           <span class="vhs__counter-current" id="vhsCounterCurrent">001</span>
           <span class="vhs__counter-sep">/</span>
-          <span class="vhs__counter-total" id="vhsCounterTotal">006</span>
+          <span class="vhs__counter-total" id="vhsCounterTotal">009</span>
         </div>
 
       </div>
