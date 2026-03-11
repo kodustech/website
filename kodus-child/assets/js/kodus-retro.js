@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* --- OS-aware install command --- */
+  const codeEl = document.querySelector('.hero__terminal-code');
+  if (codeEl && (/Win/i.test(navigator.platform) || /Windows/i.test(navigator.userAgent))) {
+    codeEl.textContent = 'irm https://review-skill.com/install.ps1 | iex';
+  }
+
   /* --- Copy terminal command --- */
   const copyBtn = document.getElementById('copyCmd');
   copyBtn?.addEventListener('click', () => {
