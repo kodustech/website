@@ -692,7 +692,7 @@
                       <img src="https://kodus.io/wp-content/uploads/2025/10/ricardo-ikatec-150x150-1.jpg" alt="Ricardo" class="vhs__avatar-img">
                     </div>
                     <h4 class="vhs__name">Ricardo</h4>
-                    <p class="vhs__role">@Icatec</p>
+                    <p class="vhs__role">@Ikatec</p>
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">Since we started using Kody, the dev experience has improved a lot. <span style="color: #339966;"><b>Time spent on code reviews dropped by around 30%</b></span>, and the AI brings valuable insights on performance, security, and code optimization. One of the best parts is that we can tailor how it works for each project.</p>
