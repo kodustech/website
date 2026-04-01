@@ -172,55 +172,7 @@
               </div>
             </div>
             <div class="retro-window__body">
-              <div class="logo-carousel">
-                <div class="logo-carousel__track" id="logoTrack">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/purple_metrics.webp" alt="Purple Metrics" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/r10.webp" alt="R10" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_16.webp" alt="Mecanizou" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/cred.webp" alt="Cred Aluga" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/ikatec.webp" alt="Ikatec" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/maino.webp" alt="Mainô" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_9.webp" alt="Logo 7" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_7.webp" alt="Logo 8" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/vixt.webp" alt="Vixting" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_12.webp" alt="Logo 10" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_10.webp" alt="Logo 11" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_8.webp" alt="Logo 12" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_11.webp" alt="Logo 13" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/doji.webp" alt="Doji" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_13.webp" alt="Logo 15" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_14.webp" alt="Logo 16" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_17.webp" alt="Logo 17" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_19.webp" alt="Logo 18" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/brendi_v2.webp" alt="Brendi" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/lerian_v2.webp" alt="Lerian" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/clickbus.png" alt="ClickBus" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/notifica1.webp" alt="Notificações Inteligentes" class="logo-carousel__img">
-
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/purple_metrics.webp" alt="Purple Metrics" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/r10.webp" alt="R10" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_16.webp" alt="Mecanizou" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/cred.webp" alt="Cred Aluga" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/ikatec.webp" alt="Ikatec" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/maino.webp" alt="Mainô" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_9.webp" alt="Logo 7" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_7.webp" alt="Logo 8" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/vixt.webp" alt="Vixting" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_12.webp" alt="Logo 10" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_10.webp" alt="Logo 11" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_8.webp" alt="Logo 12" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_11.webp" alt="Logo 13" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/doji.webp" alt="Doji" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_13.webp" alt="Logo 15" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_14.webp" alt="Logo 16" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_17.webp" alt="Logo 17" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_19.webp" alt="Logo 18" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/brendi_v2.webp" alt="Brendi" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/lerian_v2.webp" alt="Lerian" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/clickbus.png" alt="ClickBus" class="logo-carousel__img">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/notifica1.webp" alt="Notificações Inteligentes" class="logo-carousel__img">
-                </div>
-              </div>
+              <?php kodus_render_trusted_logo_carousel(); ?>
             </div>
           </div>
         </div>

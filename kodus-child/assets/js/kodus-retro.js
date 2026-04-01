@@ -87,6 +87,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* --- Trusted by logo carousels --- */
+  const logoCarousels = Array.from(document.querySelectorAll('[data-logo-carousel]'));
+
+  if (logoCarousels.length) {
+    let logoCarouselFrame = null;
+
+    const refreshLogoCarousels = () => {
+      logoCarousels.forEach(carousel => {
+        const track = carousel.querySelector('.logo-carousel__track');
+        const group = carousel.querySelector('.logo-carousel__group');
+        if (!track || !group) return;
+
+        const gapValue = window.getComputedStyle(track).gap || window.getComputedStyle(track).columnGap || '0px';
+        const gap = Number.parseFloat(gapValue) || 0;
+        const groupWidth = Math.ceil(group.getBoundingClientRect().width);
+        if (!groupWidth) return;
+
+        const travelDistance = groupWidth + gap;
+        const speed = 110;
+        const duration = Math.max(travelDistance / speed, 18);
+
+        carousel.style.setProperty('--logo-gap', `${gap}px`);
+        carousel.style.setProperty('--logo-group-width', `${groupWidth}px`);
+        carousel.style.setProperty('--logo-duration', `${duration.toFixed(2)}s`);
+        carousel.classList.add('is-ready');
+      });
+    };
+
+    const scheduleLogoCarouselRefresh = () => {
+      if (logoCarouselFrame !== null) {
+        cancelAnimationFrame(logoCarouselFrame);
+      }
+
+      logoCarouselFrame = requestAnimationFrame(() => {
+        refreshLogoCarousels();
+        logoCarouselFrame = null;
+      });
+    };
+
+    logoCarousels.forEach(carousel => {
+      carousel.querySelectorAll('.logo-carousel__img').forEach(img => {
+        img.addEventListener('load', scheduleLogoCarouselRefresh, { once: true });
+      });
+    });
+
+    window.addEventListener('load', scheduleLogoCarouselRefresh, { once: true });
+    window.addEventListener('resize', scheduleLogoCarouselRefresh, { passive: true });
+
+    if (document.fonts && typeof document.fonts.ready?.then === 'function') {
+      document.fonts.ready.then(scheduleLogoCarouselRefresh).catch(() => {});
+    }
+
+    scheduleLogoCarouselRefresh();
+  }
+
   /* --- VCR carousel --- */
   const vcrSlides = [
     {

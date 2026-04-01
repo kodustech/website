@@ -121,6 +121,65 @@ function kodus_is_retro_page() {
     return in_array($tpl, kodus_get_retro_templates(), true);
 }
 
+function kodus_get_trusted_logo_items() {
+    return [
+        ['file' => 'logos_new/purple_metrics.webp', 'name' => 'Purple Metrics'],
+        ['file' => 'logos_new/r10.webp', 'name' => 'R10 Score'],
+        ['file' => 'logos_new/frame_16.webp', 'name' => 'Sommus Sistemas'],
+        ['file' => 'logos_new/cred.webp', 'name' => 'Cred Aluga'],
+        ['file' => 'logos_new/ikatec.webp', 'name' => 'Ikatec'],
+        ['file' => 'logos_new/maino.webp', 'name' => 'Mainô'],
+        ['file' => 'logos_new/frame_9.webp', 'name' => 'Open Co'],
+        ['file' => 'logos_new/frame_7.webp', 'name' => 'Rocket.Chat'],
+        ['file' => 'logos_new/vixt.webp', 'name' => 'Vixting'],
+        ['file' => 'logos_new/frame_12.webp', 'name' => 'Seeds'],
+        ['file' => 'logos_new/frame_10.webp', 'name' => 'Pilar'],
+        ['file' => 'logos_new/frame_8.webp', 'name' => 'Asksuite'],
+        ['file' => 'logos_new/frame_11.webp', 'name' => 'Mecanizou'],
+        ['file' => 'logos_new/doji.webp', 'name' => 'Doji'],
+        ['file' => 'logos_new/frame_13.webp', 'name' => 'Lecom'],
+        ['file' => 'logos_new/frame_14.webp', 'name' => 'Precisão Sistemas'],
+        ['file' => 'logos_new/frame_17.webp', 'name' => 'Up Estate'],
+        ['file' => 'logos_new/frame_19.webp', 'name' => 'SaaSJet'],
+        ['file' => 'logos_new/brendi_v2.webp', 'name' => 'Brendi'],
+        ['file' => 'logos_new/lerian_v2.webp', 'name' => 'Lerian', 'class' => 'logo-carousel__img--lerian'],
+        ['file' => 'logos_new/notificacoes.webp', 'name' => 'Notificações Inteligentes', 'class' => 'logo-carousel__img--notificacoes'],
+        ['file' => 'clickbus.png', 'name' => 'ClickBus', 'class' => 'logo-carousel__img--clickbus'],
+        ['file' => 'logos_new/quintoandar.png', 'name' => 'QuintoAndar', 'class' => 'logo-carousel__img--quintoandar'],
+    ];
+}
+
+function kodus_render_trusted_logo_carousel() {
+    $base_uri = trailingslashit(get_stylesheet_directory_uri()) . 'assets/img/';
+    $logos = kodus_get_trusted_logo_items();
+
+    echo '<div class="logo-carousel" data-logo-carousel>';
+    echo '<div class="logo-carousel__track">';
+
+    for ($copy = 0; $copy < 2; $copy++) {
+        echo '<div class="logo-carousel__group"' . ($copy === 1 ? ' aria-hidden="true"' : '') . '>';
+
+        foreach ($logos as $logo) {
+            $classes = 'logo-carousel__img';
+            if (!empty($logo['class'])) {
+                $classes .= ' ' . $logo['class'];
+            }
+
+            printf(
+                '<img src="%s" alt="%s" class="%s" decoding="async">',
+                esc_url($base_uri . $logo['file']),
+                esc_attr($logo['name']),
+                esc_attr($classes)
+            );
+        }
+
+        echo '</div>';
+    }
+
+    echo '</div>';
+    echo '</div>';
+}
+
 // ═══════════════════════════════════════════════════════════════
 // 3. CARREGAR ASSETS RETRO NAS PÁGINAS CUSTOM
 // ═══════════════════════════════════════════════════════════════
