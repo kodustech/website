@@ -12,7 +12,7 @@
     <section class="pricing">
       <div class="container">
         <h1 class="section-title">Choose your plan</h1>
-        <p class="pricing__subtitle">Open source, model agnostic, zero markup on AI costs.</p>
+        <p class="pricing__subtitle">Open source, model-agnostic. Bring your own API keys like OpenAI, Anthropic, and Gemini, and pay providers directly. Zero markup on AI costs.</p>
 
         <!-- Toggle Monthly / Annual -->
         <div class="pricing__toggle">
