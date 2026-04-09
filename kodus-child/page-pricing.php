@@ -147,7 +147,7 @@
               <div class="pricing__divider"></div>
 
               <ul class="pricing__features">
-                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Hosted by Kodus</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Self Hosted or Hosted by Kodus</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> SSO</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> Unlimited PRs using our AI Tokens API key</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited users</li>
