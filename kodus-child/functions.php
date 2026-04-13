@@ -81,6 +81,35 @@ add_filter('wpseo_twitter_description', function ($desc) {
     return $desc;
 }, 20);
 
+// Add x-default hreflang for single blog posts, preferring the EN translation.
+add_action('wp_head', 'kodus_add_post_x_default_hreflang', 20);
+function kodus_add_post_x_default_hreflang() {
+    if (!is_singular('post')) {
+        return;
+    }
+
+    $post_id = get_queried_object_id();
+    if (!$post_id) {
+        return;
+    }
+
+    $target_post_id = $post_id;
+
+    if (function_exists('pll_get_post')) {
+        $english_post_id = pll_get_post($post_id, 'en');
+        if (!empty($english_post_id)) {
+            $target_post_id = $english_post_id;
+        }
+    }
+
+    $target_url = get_permalink($target_post_id);
+    if (!$target_url) {
+        return;
+    }
+
+    echo '<link rel="alternate" hreflang="x-default" href="' . esc_url($target_url) . '">' . "\n";
+}
+
 // ═══════════════════════════════════════════════════════════════
 // 2. LISTA DE TODOS OS TEMPLATES RETRO
 // ═══════════════════════════════════════════════════════════════
