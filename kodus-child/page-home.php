@@ -6,6 +6,36 @@
 ?>
 <?php get_header('kodus'); ?>
 
+<style>
+  .hero__terminal-cmd {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 18px;
+    overflow: visible;
+  }
+
+  .hero__terminal-code {
+    display: block;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  @media (max-width: 480px) {
+    .hero__terminal-cmd {
+      gap: 8px;
+      padding: 12px;
+    }
+  }
+</style>
+
 <!-- Global bugs container for parallax effect across the site -->
   <div class="site-bugs" aria-hidden="true">
     <!-- Hero bugs (moved from hero section) -->
