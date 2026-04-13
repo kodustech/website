@@ -547,10 +547,10 @@
           <div class="vhs__shelf-track" id="vhsTrack">
             <div class="vhs__shelf" id="vhsShelf">
 
-              <!-- VHS 1: Leonardo Maia -->
+              <!-- VHS 1: David Barnett -->
               <div class="vhs">
                 <div class="vhs__spine" style="--vhs-accent: var(--color-primary);">
-                  <span class="vhs__spine-title">VOLTZ_01</span>
+                  <span class="vhs__spine-title">QUINTO_01</span>
                 </div>
                 <div class="vhs__cover">
                   <div class="vhs__cover-top" style="--vhs-accent: var(--color-primary);">
@@ -558,13 +558,13 @@
                   </div>
                   <div class="vhs__cover-body">
                     <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/10/leonardo-maia-1-150x150-1.jpeg" alt="Leonardo Maia" class="vhs__avatar-img">
+                      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/david-quinto-andar.png'); ?>" alt="David Barnett" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">Leonardo Maia</h4>
-                    <p class="vhs__role">@Conta Voltz</p>
+                    <h4 class="vhs__name">David Barnett</h4>
+                    <p class="vhs__role">@QuintoAndar</p>
                   </div>
                   <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kody feels like having a senior dev reviewing every pull request—clear, actionable feedback on quality, security, and performance, right in Git. Since we started using it, our <span style="color: #339966;"><b>code review time dropped by 40%</b></span>, and production bugs were reduced by half.</p>
+                    <p class="vhs__quote">Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review. I appreciate the flexibility to configure custom rules and integrations.</p>
                   </div>
                   <div class="vhs__cover-bottom">
                     <span class="vhs__tape-label">&#9654; PLAY</span>

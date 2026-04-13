@@ -538,7 +538,7 @@
     ];
 
     var testimonials = [
-      { who: 'Leonardo Maia',    co: 'Conta Voltz',   text: 'Review time dropped 40%, production bugs halved.' },
+      { who: 'David Barnett',    co: 'QuintoAndar',   text: 'Custom rules and integrations make reviews more effective.' },
       { who: 'Andre Diogo',      co: 'Brendi',        text: 'Faster feedback, can focus on other things.' },
       { who: 'Joao H. Kersul',   co: 'Doji',          text: 'Error handling, unnoticed suggestions, fast turnaround.' },
       { who: 'Ricardo',          co: 'Ikatec',        text: 'Review time down 30%, insights on performance/security.' },
