@@ -356,7 +356,7 @@
                     <p class="vhs__role">@QuintoAndar</p>
                   </div>
                   <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review. I appreciate the flexibility to configure custom rules and integrations.</p>
+                    <p class="vhs__quote">Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. <span style="color: #339966;"><b>Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review.</b></span> I appreciate the flexibility to configure custom rules and integrations.</p>
                   </div>
                   <div class="vhs__cover-bottom">
                     <span class="vhs__tape-label">&#9654; PLAY</span>
