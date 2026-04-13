@@ -37,28 +37,28 @@
         <div class="cust-featured__card">
           <div class="cust-featured__card-bar">
             <span class="cust-featured__file-label">PERSONNEL_FILE: SEC-8492</span>
-            <span class="pricing__card-bar-title">origen_testimonial.dat</span>
+            <span class="pricing__card-bar-title">quintoandar_testimonial.dat</span>
           </div>
           <div class="cust-featured__body">
             <aside class="cust-featured__profile">
               <div class="cust-featured__photo-wrap">
-                <img src="https://kodus.io/wp-content/uploads/2025/04/Jonathan-Georgeu-1-1.jpeg" alt="Jonathan Georgeu" class="cust-featured__avatar">
+                <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/david-quinto-andar.png'); ?>" alt="David Barnett" class="cust-featured__avatar">
                 <span class="cust-featured__stamp">VERIFIED</span>
               </div>
 
               <div class="cust-featured__meta-item">
                 <span class="cust-featured__meta-label">NAME</span>
-                <span class="cust-featured__meta-value">Jonathan Georgeu</span>
+                <span class="cust-featured__meta-value">David Barnett</span>
               </div>
 
               <div class="cust-featured__meta-item">
                 <span class="cust-featured__meta-label">ROLE</span>
-                <span class="cust-featured__meta-value">CTO</span>
+                <span class="cust-featured__meta-value">Staff Software Engineer</span>
               </div>
 
               <div class="cust-featured__meta-item">
                 <span class="cust-featured__meta-label">COMPANY</span>
-                <span class="cust-featured__meta-value">origen.</span>
+                <span class="cust-featured__meta-value">QuintoAndar</span>
               </div>
             </aside>
 
@@ -69,7 +69,7 @@
               </div>
 
               <blockquote class="cust-featured__quote">
-                &ldquo;Kodus has massively improved our PR workflow. It catches the kind of details that are easy to miss, and with custom rules we can align the automated review with our own standards. We keep quality high with a lot less manual work.&rdquo;
+                &ldquo;Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review. I appreciate the flexibility to configure custom rules and integrations.&rdquo;
               </blockquote>
             </div>
           </div>
@@ -96,7 +96,7 @@
             <div class="cust-logos__grid">
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/purple_metrics.webp" alt="Purple Metrics"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/r10.webp" alt="R10"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_9.webp" alt="Sommus"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/clickbus.png" alt="ClickBus"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_7.webp" alt="Logo"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/ikatec.webp" alt="Ikatec"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/maino.webp" alt="Maino"></div>
@@ -107,7 +107,7 @@
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_12.webp" alt="Pilar"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_13.webp" alt="Asksuite"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_16.webp" alt="Mecanizou"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/doji.webp" alt="Doji"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/quintoandar.png" alt="QuintoAndar"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_14.webp" alt="Lecom"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_17.webp" alt="Precisao"></div>
               <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_19.webp" alt="Up Estate"></div>
