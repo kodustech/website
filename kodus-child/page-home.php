@@ -13,10 +13,10 @@
 
   @media (min-width: 769px) {
     #tab-terminal .hero__terminal-cmd {
-      width: 100%;
-      max-width: 100%;
-      margin-bottom: 0;
-      padding: 16px 18px;
+      width: calc(100% - 24px);
+      max-width: calc(100% - 24px);
+      margin: 0 auto;
+      padding: 18px 20px;
     }
 
     #tab-terminal .hero__terminal-code {
