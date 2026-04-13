@@ -380,6 +380,45 @@ $requested_label = $normalized_path !== '' ? '/' . trim($normalized_path, '/') :
     border-color: var(--color-primary);
     background: var(--color-primary-dark);
   }
+
+  .error-404-art {
+    position: relative;
+    width: min(560px, 92vw);
+    margin: 0 auto 20px;
+    padding: clamp(8px, 1.8vw, 16px);
+  }
+
+  .error-404-art::before {
+    content: '';
+    position: absolute;
+    inset: 10% 12% 8%;
+    border-radius: 28px;
+    background: radial-gradient(circle at 50% 55%, rgba(248, 183, 109, 0.18) 0%, rgba(248, 183, 109, 0.08) 30%, rgba(248, 183, 109, 0) 72%);
+    filter: blur(18px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .error-404-art img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.34));
+    transform: translateZ(0);
+  }
+
+  @media (max-width: 640px) {
+    .error-404-art {
+      width: min(500px, 94vw);
+      margin-bottom: 16px;
+      padding: 6px;
+    }
+  }
 </style>
 
 <main>
@@ -402,16 +441,17 @@ $requested_label = $normalized_path !== '' ? '/' . trim($normalized_path, '/') :
     </div>
 
     <div class="container hero__container">
-      <img
-        src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/kody-404.png'); ?>"
-        alt="Error 404"
-        width="840"
-        height="590"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        style="width:min(420px,82vw);margin:0 auto 16px;display:block;"
-      >
+      <div class="error-404-art">
+        <img
+          src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/kody-404.png'); ?>"
+          alt="Error 404"
+          width="840"
+          height="590"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        >
+      </div>
 
       <p class="hero__subtitle" style="margin-top:12px;margin-bottom:0;">
         The page you requested was not found.<br>
