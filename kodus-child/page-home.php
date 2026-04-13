@@ -7,31 +7,23 @@
 <?php get_header('kodus'); ?>
 
 <style>
-  .hero__terminal-cmd {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: start;
-    gap: 14px;
+  #tab-terminal {
     width: 100%;
-    padding: 16px 18px;
-    overflow: visible;
   }
 
-  .hero__terminal-code {
-    display: block;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    line-height: 1.45;
-    text-align: left;
-  }
+  @media (min-width: 769px) {
+    #tab-terminal .hero__terminal-cmd {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 0;
+      padding: 16px 18px;
+    }
 
-  @media (max-width: 480px) {
-    .hero__terminal-cmd {
-      gap: 8px;
-      padding: 12px;
+    #tab-terminal .hero__terminal-code {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
     }
   }
 </style>
