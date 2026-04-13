@@ -7,23 +7,75 @@
 <?php get_header('kodus'); ?>
 
 <style>
-  #tab-terminal {
-    width: 100%;
+  .hero__ctas {
+    max-width: 520px !important;
   }
 
-  @media (min-width: 769px) {
-    #tab-terminal .hero__terminal-cmd {
-      width: calc(100% - 24px);
-      max-width: calc(100% - 24px);
-      margin: 0 auto;
-      padding: 18px 20px;
+  .hero__cta-content {
+    padding: 0 !important;
+    min-height: 140px !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+  }
+
+  #tab-git,
+  #tab-terminal {
+    width: 100%;
+    box-sizing: border-box !important;
+  }
+
+  #tab-git {
+    padding: 24px 40px !important;
+  }
+
+  #tab-terminal {
+    padding: 28px 12px 30px !important;
+  }
+
+  #tab-terminal .hero__terminal-cmd {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 14px 18px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    border-radius: 6px !important;
+  }
+
+  #tab-terminal .hero__terminal-code {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: block !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: left !important;
+    line-height: 1.35 !important;
+  }
+
+  #tab-terminal .hero__terminal-copy {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  @media (max-width: 768px) {
+    .hero__ctas {
+      max-width: 100% !important;
     }
 
-    #tab-terminal .hero__terminal-code {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: left;
+    #tab-git {
+      padding: 22px 26px !important;
+    }
+
+    #tab-terminal {
+      padding: 16px 10px 18px !important;
+    }
+
+    #tab-terminal .hero__terminal-cmd {
+      padding: 14px 16px !important;
     }
   }
 </style>
