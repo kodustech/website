@@ -6,6 +6,7 @@
 require_once get_stylesheet_directory() . '/inc/comparison-page.php';
 require_once get_stylesheet_directory() . '/inc/llms-txt.php';
 require_once get_stylesheet_directory() . '/inc/schema.php';
+require_once get_stylesheet_directory() . '/inc/security-headers.php';
 
 // Ensure WP outputs <title> in head.
 add_action('after_setup_theme', function () {
