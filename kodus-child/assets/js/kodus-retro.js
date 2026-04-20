@@ -670,6 +670,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalDesc = document.getElementById('modalDesc');
   const modalClose = document.getElementById('modalClose');
   let modalScrollY = 0;
+  let modalHideTimer = null;
+  let lastModalTrigger = null;
 
   function lockModalScroll() {
     if (document.body.classList.contains('modal-open')) return;
@@ -687,20 +689,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openModal(key) {
     const data = modalData[key];
-    if (!data) return;
+    if (!data || !overlay) return;
+    lastModalTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (modalHideTimer) {
+      clearTimeout(modalHideTimer);
+      modalHideTimer = null;
+    }
     modalTitle.textContent = data.title;
     // Use innerHTML to allow HTML tags like <br> and <ul>
     modalDesc.innerHTML = data.desc.replace(/\n/g, '<br>');
-    overlay.classList.add('is-open');
+    overlay.hidden = false;
+    overlay.removeAttribute('inert');
     overlay.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => {
+      overlay.classList.add('is-open');
+    });
     lockModalScroll();
     if (modalContent) modalContent.scrollTop = 0;
+    modalClose?.focus();
   }
 
   function closeModal() {
+    if (!overlay) return;
     overlay.classList.remove('is-open');
     overlay.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('inert', '');
+    if (modalHideTimer) clearTimeout(modalHideTimer);
+    modalHideTimer = window.setTimeout(() => {
+      if (!overlay.classList.contains('is-open')) {
+        overlay.hidden = true;
+      }
+    }, 250);
     unlockModalScroll();
+    if (lastModalTrigger) {
+      lastModalTrigger.focus();
+      lastModalTrigger = null;
+    }
   }
 
   document.querySelectorAll('.cartridge[data-modal]').forEach(btn => {

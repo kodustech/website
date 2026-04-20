@@ -210,7 +210,7 @@
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <h3 class="cartridge__title">Generous<br>Free Tier</h3>
+                <p class="cartridge__title">Generous<br>Free Tier</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
@@ -260,7 +260,7 @@
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <h3 class="cartridge__title">Model<br>Agnostic</h3>
+                <p class="cartridge__title">Model<br>Agnostic</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
@@ -288,7 +288,7 @@
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <h3 class="cartridge__title">Zero<br>Markup</h3>
+                <p class="cartridge__title">Zero<br>Markup</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
@@ -315,7 +315,7 @@
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <h3 class="cartridge__title">Flexible<br>Configuration</h3>
+                <p class="cartridge__title">Flexible<br>Configuration</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
@@ -330,11 +330,11 @@
     </section>
 
     <!-- ========== CARTRIDGE MODALS ========== -->
-    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
-      <div class="modal" id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true" hidden inert>
+      <div class="modal" id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
         <button class="modal__close" id="modalClose" aria-label="Close modal">&times;</button>
         <div class="modal__header">
-          <h3 class="modal__title" id="modalTitle"></h3>
+          <p class="modal__title" id="modalTitle"></p>
         </div>
         <div class="modal__desc" id="modalDesc"></div>
       </div>
@@ -478,7 +478,7 @@
                 <div class="basics__content-body" id="basicsDetail">
                   <!-- Panel 0: Learns from your context -->
                   <div class="basics__panel" id="basics-panel-0">
-                    <h3 class="basics__feature-title">Learns from your context</h3>
+                    <p class="basics__feature-title">Learns from your context</p>
                     <div class="basics__video">
                       <video src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/context.webm" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;"></video>
                     </div>
@@ -488,7 +488,7 @@
 
                   <!-- Panel 1: You set the rules -->
                   <div class="basics__panel" id="basics-panel-1" style="display: none;">
-                    <h3 class="basics__feature-title">You set the rules</h3>
+                    <p class="basics__feature-title">You set the rules</p>
                     <div class="basics__video">
                       <video data-src="https://kodus.io/wp-content/uploads/2026/02/1111.mp4" preload="none" autoplay loop muted playsinline class="basics__deferred-video" style="width: 100%; height: auto; display: block;"></video>
                     </div>
@@ -498,7 +498,7 @@
 
                   <!-- Panel 2: Rule Sync -->
                   <div class="basics__panel" id="basics-panel-2" style="display: none;">
-                    <h3 class="basics__feature-title">Sync Your Existing Rules</h3>
+                    <p class="basics__feature-title">Sync Your Existing Rules</p>
                     <div class="basics__video">
                       <div class="rule-sync-animation" style="position: relative; width: 100%; height: 320px; display: flex; justify-content: center; align-items: center; background: transparent; overflow: hidden; opacity: 0; animation: fade-in-anim 0.3s forwards;">
                         <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
@@ -552,7 +552,7 @@
 
                   <!-- Panel 3: Bring your business context -->
                   <div class="basics__panel" id="basics-panel-3" style="display: none;">
-                    <h3 class="basics__feature-title">Bring your business context</h3>
+                    <p class="basics__feature-title">Bring your business context</p>
                     <div class="basics__video">
                       <video data-src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/plugins.webm" preload="none" autoplay loop muted playsinline class="basics__deferred-video" style="width: 100%; height: auto; display: block;"></video>
                     </div>
@@ -562,7 +562,7 @@
 
                   <!-- Panel 4: Track technical debt -->
                   <div class="basics__panel" id="basics-panel-4" style="display: none;">
-                    <h3 class="basics__feature-title">Track technical debt</h3>
+                    <p class="basics__feature-title">Track technical debt</p>
                     <div class="basics__video">
                       <video data-src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/issues.webm" preload="none" autoplay loop muted playsinline class="basics__deferred-video" style="width: 100%; height: auto; display: block;"></video>
                     </div>
@@ -572,7 +572,7 @@
 
                   <!-- Panel 5: Accelerate your delivery -->
                   <div class="basics__panel" id="basics-panel-5" style="display: none;">
-                    <h3 class="basics__feature-title">Accelerate your delivery</h3>
+                    <p class="basics__feature-title">Accelerate your delivery</p>
                     <div class="basics__video">
                       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cockpit.webp" alt="Accelerate your delivery" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
@@ -582,7 +582,7 @@
 
                   <!-- Panel 6: Privacy & Security -->
                   <div class="basics__panel" id="basics-panel-6" style="display: none;">
-                    <h3 class="basics__feature-title">Privacy & Security</h3>
+                    <p class="basics__feature-title">Privacy & Security</p>
                     <div class="basics__video">
                       <div class="security-anim" style="width: 100%; height: 320px; position: relative; overflow: hidden; background: transparent;">
                         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
@@ -634,7 +634,7 @@
                     <div class="vhs__avatar">
                       <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/david-quinto-andar.png'); ?>" alt="David Barnett" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">David Barnett</h4>
+                    <p class="vhs__name">David Barnett</p>
                     <p class="vhs__role">@QuintoAndar</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -661,7 +661,7 @@
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/04/andre.jpg" alt="André Diogo" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">André Diogo</h4>
+                    <p class="vhs__name">André Diogo</p>
                     <p class="vhs__role">@Brendi</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -688,7 +688,7 @@
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/04/joao-doji.jpg" alt="João H. Kersul" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">João H. Kersul</h4>
+                    <p class="vhs__name">João H. Kersul</p>
                     <p class="vhs__role">@Doji</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -715,7 +715,7 @@
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/10/ricardo-ikatec-150x150-1.jpg" alt="Ricardo" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">Ricardo</h4>
+                    <p class="vhs__name">Ricardo</p>
                     <p class="vhs__role">@Ikatec</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -742,7 +742,7 @@
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/10/LF-Lerian-300x300-1.jpeg" alt="Luiz Barrile" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">Luiz Barrile</h4>
+                    <p class="vhs__name">Luiz Barrile</p>
                     <p class="vhs__role">@Lerian</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -769,7 +769,7 @@
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/10/raphael-pilar-300x300-1.jpeg" alt="Raphael Sampaio" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">Raphael Sampaio</h4>
+                    <p class="vhs__name">Raphael Sampaio</p>
                     <p class="vhs__role">@Pilar</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -796,7 +796,7 @@
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/10/pedro-maia.jpeg" alt="Pedro Maia" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">Pedro Maia</h4>
+                    <p class="vhs__name">Pedro Maia</p>
                     <p class="vhs__role">@Notificações Inteligentes</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -823,7 +823,7 @@
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/04/Jonathan-Georgeu-1-1.jpeg" alt="Jonathan Georgeu" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">Jonathan Georgeu</h4>
+                    <p class="vhs__name">Jonathan Georgeu</p>
                     <p class="vhs__role">@Origen</p>
                   </div>
                   <div class="vhs__synopsis">
@@ -850,7 +850,7 @@
                     <div class="vhs__avatar">
                       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/igor-duca.png" alt="Igor Duca" class="vhs__avatar-img">
                     </div>
-                    <h4 class="vhs__name">Igor Duca</h4>
+                    <p class="vhs__name">Igor Duca</p>
                     <p class="vhs__role">@ducaswtf</p>
                   </div>
                   <div class="vhs__synopsis">
