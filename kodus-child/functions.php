@@ -4,6 +4,7 @@
  */
 
 require_once get_stylesheet_directory() . '/inc/comparison-page.php';
+require_once get_stylesheet_directory() . '/inc/llms-txt.php';
 
 // Ensure WP outputs <title> in head.
 add_action('after_setup_theme', function () {
@@ -80,6 +81,55 @@ add_filter('wpseo_twitter_description', function ($desc) {
     }
     return $desc;
 }, 20);
+
+add_filter('robots_txt', function ($output, $public) {
+    if (!$public) {
+        return $output;
+    }
+
+    $ai_directives = [
+        'User-agent: GPTBot',
+        'Allow: /',
+        '',
+        'User-agent: ClaudeBot',
+        'Allow: /',
+        '',
+        'User-agent: Google-Extended',
+        'Allow: /',
+        '',
+        'User-agent: Amazonbot',
+        'Allow: /',
+        '',
+        'User-agent: ChatGPT-User',
+        'Allow: /',
+        '',
+        'User-agent: PerplexityBot',
+        'Allow: /',
+    ];
+
+    $normalized_output = trim(str_replace("\r\n", "\n", (string) $output));
+
+    if ($normalized_output === '') {
+        return implode("\n", $ai_directives) . "\n";
+    }
+
+    if (strpos($normalized_output, 'User-agent: GPTBot') !== false) {
+        return $normalized_output . "\n";
+    }
+
+    $sitemap_position = strpos($normalized_output, "\nSitemap:");
+    $directive_block = implode("\n", $ai_directives);
+
+    if ($sitemap_position === false && strpos($normalized_output, 'Sitemap:') === 0) {
+        return $directive_block . "\n\n" . $normalized_output . "\n";
+    }
+
+    if ($sitemap_position !== false) {
+        return substr($normalized_output, 0, $sitemap_position) . "\n\n" . $directive_block . substr($normalized_output, $sitemap_position) . "\n";
+    }
+
+    return $normalized_output . "\n\n" . $directive_block . "\n";
+}, 20, 2);
 
 // Add x-default hreflang for single blog posts, preferring the EN translation.
 add_action('wp_head', 'kodus_add_post_x_default_hreflang', 20);
