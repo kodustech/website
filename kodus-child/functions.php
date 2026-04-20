@@ -83,54 +83,25 @@ add_filter('wpseo_twitter_description', function ($desc) {
     return $desc;
 }, 20);
 
-add_filter('robots_txt', function ($output, $public) {
-    if (!$public) {
-        return $output;
+function kodus_register_ai_robots_rules($robots_txt_helper) {
+    if (!is_object($robots_txt_helper) || !method_exists($robots_txt_helper, 'add_allow')) {
+        return;
     }
 
-    $ai_directives = [
-        'User-agent: GPTBot',
-        'Allow: /',
-        '',
-        'User-agent: ClaudeBot',
-        'Allow: /',
-        '',
-        'User-agent: Google-Extended',
-        'Allow: /',
-        '',
-        'User-agent: Amazonbot',
-        'Allow: /',
-        '',
-        'User-agent: ChatGPT-User',
-        'Allow: /',
-        '',
-        'User-agent: PerplexityBot',
-        'Allow: /',
+    $allowed_ai_bots = [
+        'GPTBot',
+        'ClaudeBot',
+        'Google-Extended',
+        'Amazonbot',
+        'ChatGPT-User',
+        'PerplexityBot',
     ];
 
-    $normalized_output = trim(str_replace("\r\n", "\n", (string) $output));
-
-    if ($normalized_output === '') {
-        return implode("\n", $ai_directives) . "\n";
+    foreach ($allowed_ai_bots as $bot_name) {
+        $robots_txt_helper->add_allow($bot_name, '/');
     }
-
-    if (strpos($normalized_output, 'User-agent: GPTBot') !== false) {
-        return $normalized_output . "\n";
-    }
-
-    $sitemap_position = strpos($normalized_output, "\nSitemap:");
-    $directive_block = implode("\n", $ai_directives);
-
-    if ($sitemap_position === false && strpos($normalized_output, 'Sitemap:') === 0) {
-        return $directive_block . "\n\n" . $normalized_output . "\n";
-    }
-
-    if ($sitemap_position !== false) {
-        return substr($normalized_output, 0, $sitemap_position) . "\n\n" . $directive_block . substr($normalized_output, $sitemap_position) . "\n";
-    }
-
-    return $normalized_output . "\n\n" . $directive_block . "\n";
-}, 20, 2);
+}
+add_action('Yoast\WP\SEO\register_robots_rules', 'kodus_register_ai_robots_rules', 10, 1);
 
 // Add x-default hreflang for single blog posts, preferring the EN translation.
 add_action('wp_head', 'kodus_add_post_x_default_hreflang', 20);
