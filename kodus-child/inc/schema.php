@@ -3,22 +3,6 @@
  * Structured data enhancements for Kodus retro pages.
  */
 
-function kodus_get_current_page_template() {
-    if (is_front_page()) {
-        $front_page_id = (int) get_option('page_on_front');
-        if ($front_page_id > 0) {
-            return (string) get_post_meta($front_page_id, '_wp_page_template', true);
-        }
-    }
-
-    $post_id = get_queried_object_id();
-    if (!$post_id) {
-        return '';
-    }
-
-    return (string) get_post_meta($post_id, '_wp_page_template', true);
-}
-
 function kodus_get_schema_logo_url() {
     return 'https://kodus.io/wp-content/uploads/2023/11/Kodus-ColoredBackground.png';
 }
@@ -31,6 +15,7 @@ function kodus_get_software_application_schema() {
         '@id' => home_url('/#software-application'),
         'name' => 'Kodus',
         'url' => home_url('/'),
+        'inLanguage' => 'en-US',
         'applicationCategory' => 'DeveloperApplication',
         'operatingSystem' => 'Web',
         'description' => 'Open source AI code review platform for pull requests, code quality, security, engineering standards, and team-specific review workflows.',
@@ -81,6 +66,7 @@ function kodus_get_home_faq_schema() {
         '@context' => 'https://schema.org',
         '@type' => 'FAQPage',
         '@id' => home_url('/#faq'),
+        'inLanguage' => 'en-US',
         'mainEntity' => [
             [
                 '@type' => 'Question',

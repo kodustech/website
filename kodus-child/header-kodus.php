@@ -5,7 +5,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php if (kodus_is_english_product_page()) : ?>lang="en-US"<?php else : language_attributes(); endif; ?>>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,7 +65,7 @@
               </a>
             </li>
             <li>
-              <a href="https://kodus.io/customers/">
+              <a href="<?php echo esc_url(home_url('/customers/')); ?>">
                 <span class="nav__item-title">Customers</span>
                 <span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span>
               </a>
@@ -77,7 +77,7 @@
               </a>
             </li>
             <li>
-              <a href="https://kodus.io/benchmark-ai-code-review/">
+              <a href="<?php echo esc_url(home_url('/benchmark-ai-code-review/')); ?>">
                 <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
                 <span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span>
               </a>
@@ -96,8 +96,8 @@
             </li>
           </ul>
         </li>
-        <li><a href="https://kodus.io/en/insights-en/" class="nav__link">Blog</a></li>
-        <li><a href="https://kodus.io/pricing/" class="nav__link">Pricing</a></li>
+        <li><a href="<?php echo esc_url(home_url('/en/insights-en/')); ?>" class="nav__link">Blog</a></li>
+        <li><a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="nav__link">Pricing</a></li>
       </ul>
 
       <div class="nav__actions">

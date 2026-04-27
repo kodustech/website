@@ -10,7 +10,7 @@ function kodus_get_llms_txt_content() {
         '> Kodus is an open source AI code review platform for pull requests, code quality, security, and team-specific engineering standards.',
         '',
         'Kodus helps engineering teams automate reviews, learn team context, measure ROI, and compare AI review systems with a public benchmark.',
-        'The main site uses Portuguese locale defaults, while documentation and blog resources linked below include English content.',
+        'The main product site is published in English, while the blog and linked resources include English content plus some legacy Portuguese entries.',
         '',
         '## Product',
         '- [Homepage](' . home_url('/') . '): Main product overview',

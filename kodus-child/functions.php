@@ -21,12 +21,129 @@ function kodus_child_enqueue_parent() {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
 
+function kodus_get_current_page_template() {
+    if (is_front_page()) {
+        $front_page_id = (int) get_option('page_on_front');
+        if ($front_page_id > 0) {
+            return (string) get_post_meta($front_page_id, '_wp_page_template', true);
+        }
+    }
+
+    $post_id = get_queried_object_id();
+    if (!$post_id) {
+        return '';
+    }
+
+    return (string) get_post_meta($post_id, '_wp_page_template', true);
+}
+
+function kodus_get_english_product_templates() {
+    return [
+        'page-home.php',
+        'page-pricing.php',
+        'page-customers.php',
+        'page-roi.php',
+        'page-benchmark.php',
+        'page-case-brendi.php',
+        'page-case-lerian.php',
+        'page-case-notificacoes.php',
+        'page-kodus-wrapper.php',
+        'page-kodus-vs-coderabbit.php',
+        'page-kodus-vs-bugbot.php',
+        'page-kodus-vs-github.php',
+        'page-kodus-vs-claude.php',
+    ];
+}
+
+function kodus_is_english_product_page() {
+    if (!is_page() && !is_front_page()) {
+        return false;
+    }
+
+    return in_array(kodus_get_current_page_template(), kodus_get_english_product_templates(), true);
+}
+
+function kodus_get_current_page_permalink() {
+    if (is_front_page()) {
+        return home_url('/');
+    }
+
+    $post_id = get_queried_object_id();
+    if ($post_id) {
+        $permalink = get_permalink($post_id);
+        if ($permalink) {
+            return $permalink;
+        }
+    }
+
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? (string) wp_unslash($_SERVER['REQUEST_URI']) : '/';
+    $request_path = (string) wp_parse_url($request_uri, PHP_URL_PATH);
+
+    return home_url(trailingslashit($request_path));
+}
+
 function kodus_home_meta_title() {
-    return 'Kodus – Open Source AI Code Review';
+    return 'Kodus | Open Source AI Code Review';
 }
 
 function kodus_home_meta_description() {
     return 'Kody is an open source code review tool that learns your team\'s workflow and delivers precise reviews on quality, security, and performance.';
+}
+
+function kodus_get_product_meta_titles() {
+    return [
+        'page-home.php' => 'Kodus | Open Source AI Code Review',
+        'page-pricing.php' => 'Kodus Pricing | AI Code Review | Try for free',
+        'page-customers.php' => 'Kodus Customers | AI Code Review',
+        'page-benchmark.php' => 'AI Code Review Tools Benchmark',
+        'page-case-brendi.php' => 'Brendi Case Study | Kodus',
+        'page-case-lerian.php' => 'Lerian Case Study | Kodus',
+        'page-case-notificacoes.php' => 'Notificações Inteligentes Case Study | Kodus',
+        'page-kodus-vs-coderabbit.php' => 'Kodus vs CodeRabbit | AI Code Review Tools Compared',
+        'page-kodus-vs-bugbot.php' => 'Kodus vs Cursor BugBot | AI Code Review Tools Compared',
+        'page-kodus-vs-github.php' => 'Kodus vs GitHub Copilot | AI Code Review Tools Compared',
+        'page-kodus-vs-claude.php' => 'Kodus vs Claude | AI Code Review Tools Compared',
+    ];
+}
+
+function kodus_get_current_page_meta_title() {
+    $template = kodus_get_current_page_template();
+    $titles = kodus_get_product_meta_titles();
+
+    if (isset($titles[$template])) {
+        return $titles[$template];
+    }
+
+    return '';
+}
+
+function kodus_get_product_meta_descriptions() {
+    return [
+        'page-home.php' => 'Open source AI code review — reviews that adapt to your team. Catch issues early, keep delivery moving, and improve quality without slowing things down.',
+        'page-pricing.php' => 'Choose the right plan for your engineering team and get AI-powered code reviews that feel like your senior dev wrote them — with context, quality, and consistency.',
+        'page-customers.php' => 'See how engineering teams use Kodus to speed up code review, improve pull request quality, and enforce custom standards across repositories.',
+        'page-roi.php' => 'Calculate the ROI of AI code review with Kodus and estimate time saved, review cost reduction, and engineering impact for your team.',
+        'page-benchmark.php' => 'We evaluated the leading AI code review tools using real PRs from open-source projects. See how each solution performs in practice.',
+        'page-case-brendi.php' => 'Before Kodus, I woke up to 3/4 PRs waiting for review—and 2 hours of my day gone in manual checks.',
+        'page-case-lerian.php' => 'Discover how Lerian cut review time by over 60% with Kodus, freeing up engineers to focus on critical tasks and accelerating product delivery.',
+        'page-case-notificacoes.php' => 'See how Notificacoes Inteligentes uses Kody as a senior reviewer to bring consistency, reduce rework, and deliver with more confidence.',
+        'page-kodus-wrapper.php' => 'Explore Kodus, the open source AI code review platform for pull requests, engineering standards, security checks, and customizable team workflows.',
+        'page-kodus-vs-coderabbit.php' => 'See how Kodus stacks up against CodeRabbit in features, customization, context awareness, and team fit.',
+        'page-kodus-vs-bugbot.php' => 'See how Kodus stacks up against Cursor Bugbot in features, customization, context awareness, and team fit.',
+        'page-kodus-vs-github.php' => 'Here’s how Kodus stacks up against GitHub Copilot in features, customization, context understanding, and how well it fits your team.',
+        'page-kodus-vs-claude.php' => 'See how Kodus compares to Claude in features, customization, contextual understanding, and overall fit for your team.',
+    ];
+}
+
+function kodus_get_current_page_meta_description() {
+    $template = kodus_get_current_page_template();
+    $descriptions = kodus_get_product_meta_descriptions();
+
+    if (isset($descriptions[$template])) {
+        return $descriptions[$template];
+    }
+
+    return '';
 }
 
 function kodus_is_primary_home() {
@@ -38,6 +155,10 @@ add_filter('pre_get_document_title', function ($title) {
     if (kodus_is_primary_home()) {
         return kodus_home_meta_title();
     }
+    $custom_title = kodus_get_current_page_meta_title();
+    if ($custom_title !== '') {
+        return $custom_title;
+    }
     return $title;
 }, 20);
 
@@ -46,12 +167,20 @@ add_filter('wpseo_title', function ($title) {
     if (kodus_is_primary_home()) {
         return kodus_home_meta_title();
     }
+    $custom_title = kodus_get_current_page_meta_title();
+    if ($custom_title !== '') {
+        return $custom_title;
+    }
     return $title;
 }, 20);
 
 add_filter('wpseo_metadesc', function ($desc) {
     if (kodus_is_primary_home()) {
         return kodus_home_meta_description();
+    }
+    $custom_description = kodus_get_current_page_meta_description();
+    if ($custom_description !== '') {
+        return $custom_description;
     }
     return $desc;
 }, 20);
@@ -60,12 +189,20 @@ add_filter('wpseo_opengraph_title', function ($title) {
     if (kodus_is_primary_home()) {
         return kodus_home_meta_title();
     }
+    $custom_title = kodus_get_current_page_meta_title();
+    if ($custom_title !== '') {
+        return $custom_title;
+    }
     return $title;
 }, 20);
 
 add_filter('wpseo_opengraph_desc', function ($desc) {
     if (kodus_is_primary_home()) {
         return kodus_home_meta_description();
+    }
+    $custom_description = kodus_get_current_page_meta_description();
+    if ($custom_description !== '') {
+        return $custom_description;
     }
     return $desc;
 }, 20);
@@ -74,12 +211,20 @@ add_filter('wpseo_twitter_title', function ($title) {
     if (kodus_is_primary_home()) {
         return kodus_home_meta_title();
     }
+    $custom_title = kodus_get_current_page_meta_title();
+    if ($custom_title !== '') {
+        return $custom_title;
+    }
     return $title;
 }, 20);
 
 add_filter('wpseo_twitter_description', function ($desc) {
     if (kodus_is_primary_home()) {
         return kodus_home_meta_description();
+    }
+    $custom_description = kodus_get_current_page_meta_description();
+    if ($custom_description !== '') {
+        return $custom_description;
     }
     return $desc;
 }, 20);
@@ -525,6 +670,20 @@ function kodus_add_lazy_loading($html) {
     if ($had_gtm) {
         $delayed_gtm_loader = "<script>(function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};var gtmLoaded=false;var timeoutId=null;var interactionEvents=['click','keydown','scroll','touchstart'];function removeListeners(){interactionEvents.forEach(function(evt){window.removeEventListener(evt,loadGTM,{capture:false});});}function loadGTM(){if(gtmLoaded){return;}gtmLoaded=true;if(timeoutId){clearTimeout(timeoutId);}removeListeners();window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-KN2J57G';document.head.appendChild(s);}interactionEvents.forEach(function(evt){window.addEventListener(evt,loadGTM,{once:true,passive:true});});if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){timeoutId=setTimeout(loadGTM,800);},{once:true});}else{timeoutId=setTimeout(loadGTM,800);}})();</script>";
         $html = preg_replace('/<\/head>/i', $delayed_gtm_loader . "\n</head>", $html, 1);
+    }
+
+    if (kodus_is_english_product_page()) {
+        $current_url = esc_url(kodus_get_current_page_permalink());
+        $hreflang_links = '<link rel="alternate" href="' . $current_url . '" hreflang="en" />' . "\n";
+        $hreflang_links .= '<link rel="alternate" href="' . $current_url . '" hreflang="x-default" />' . "\n";
+
+        $html = preg_replace('/<html\b[^>]*\blang=(["\'])[^"\']+\1([^>]*)>/i', '<html lang="en-US"$2>', $html, 1);
+        $html = preg_replace('/\s*<link rel="alternate" href="[^"]+" hreflang="[^"]+"\s*\/?>\s*/i', "\n", $html);
+        $html = preg_replace('/\s*<meta property="og:locale:alternate" content="[^"]+"\s*\/?>\s*/i', "\n", $html);
+        $html = preg_replace('/<meta property="og:locale" content="[^"]+"\s*\/?>/i', '<meta property="og:locale" content="en_US" />', $html, 1);
+        $html = preg_replace('/(<meta name=[\'"]robots[\'"][^>]*>\s*)/i', "$1" . $hreflang_links, $html, 1);
+        $html = str_replace('"inLanguage":"pt-BR"', '"inLanguage":"en-US"', $html);
+        $html = str_replace('"inLanguage":"pt_BR"', '"inLanguage":"en_US"', $html);
     }
 
     return $html;
