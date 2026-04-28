@@ -7,6 +7,146 @@ function kodus_get_schema_logo_url() {
     return 'https://kodus.io/wp-content/uploads/2023/11/Kodus-ColoredBackground.png';
 }
 
+function kodus_get_visible_software_application_reviews() {
+    return [
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'David Barnett',
+            ],
+            'reviewBody' => 'Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review. I appreciate the flexibility to configure custom rules and integrations.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'André Diogo',
+            ],
+            'reviewBody' => 'Kodus fit like a glove for me. Before, I was buried in slow code reviews. Now, feedback happens way faster, and I can actually focus on other things.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'João H. Kersul',
+            ],
+            'reviewBody' => 'These days, Kodus is part of our daily review routine. It helps a lot with error handling and brings up suggestions that would often go unnoticed. This active listening and fast turnaround have made a real difference for our engineering team.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'Ricardo',
+            ],
+            'reviewBody' => 'Since we started using Kody, the dev experience has improved a lot. Time spent on code reviews dropped by around 30%, and the AI brings valuable insights on performance, security, and code optimization. One of the best parts is that we can tailor how it works for each project.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'Luiz Barrile',
+            ],
+            'reviewBody' => 'Kodus has become an essential part of our process at Lerian. By standardizing steps and automating checks, we\'ve gained more speed and consistency, while reducing rework and improving delivery quality.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'Raphael Sampaio',
+            ],
+            'reviewBody' => 'Kodus has been helping us save a lot of time on code reviews, while also providing key engineering productivity metrics. Since we started using the tool, our average review time has dropped from hours to minutes.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'Pedro Maia',
+            ],
+            'reviewBody' => 'We trained the team to use AI in day-to-day coding, and Kodus stepped in as our senior reviewer that never forgets anything. It doesn\'t replace human review, but it\'s now a required step: it ensures consistency and prevents repeat incidents.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'Jonathan Georgeu',
+            ],
+            'reviewBody' => 'Kodus has had a huge impact on our workflow by saving us valuable time during PR reviews. It consistently catches the small details that are easy to miss, and the ability to set up custom rules means we can align automated reviews with our own standards.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+        [
+            '@type' => 'Review',
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'Igor Duca',
+            ],
+            'reviewBody' => 'Kodus helped me move as fast as I ever could during my development days. It has never been so easy to ship reliable code and build real solutions.',
+            'reviewRating' => [
+                '@type' => 'Rating',
+                'ratingValue' => 5,
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ],
+        ],
+    ];
+}
+
+function kodus_current_page_has_visible_software_reviews() {
+    return kodus_is_primary_home() || kodus_get_current_page_template() === 'page-roi.php';
+}
+
+function kodus_should_output_software_application_schema() {
+    // Keep software app markup only on pages that visibly show the matching reviews.
+    return kodus_current_page_has_visible_software_reviews();
+}
+
 function kodus_get_software_application_schema() {
     $pricing_url = home_url('/pricing/');
     $schema = [
@@ -45,10 +185,6 @@ function kodus_get_software_application_schema() {
 
     $template = kodus_get_current_page_template();
 
-    if ($template === 'page-pricing.php') {
-        $schema['description'] = 'Pricing for Kodus, an open source and model-agnostic AI code review platform with BYOK support and zero markup on AI costs.';
-    }
-
     if ($template === 'page-roi.php') {
         $schema['description'] = 'ROI calculator for Kodus to estimate time savings and engineering impact from automated AI code review.';
         $schema['featureList'] = [
@@ -56,6 +192,10 @@ function kodus_get_software_application_schema() {
             'Estimate monthly review cost and time saved',
             'Evaluate the business impact of AI-assisted code review',
         ];
+    }
+
+    if (kodus_current_page_has_visible_software_reviews()) {
+        $schema['review'] = kodus_get_visible_software_application_reviews();
     }
 
     return $schema;
@@ -149,10 +289,9 @@ function kodus_output_structured_data() {
         return;
     }
 
-    $template = kodus_get_current_page_template();
     $schemas = [];
 
-    if (kodus_is_primary_home() || $template === 'page-pricing.php' || $template === 'page-roi.php') {
+    if (kodus_should_output_software_application_schema()) {
         $schemas[] = kodus_get_software_application_schema();
     }
 
