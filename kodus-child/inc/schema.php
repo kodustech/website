@@ -7,6 +7,83 @@ function kodus_get_schema_logo_url() {
     return 'https://kodus.io/wp-content/uploads/2023/11/Kodus-ColoredBackground.png';
 }
 
+function kodus_get_schema_publisher_reference() {
+    return [
+        '@id' => home_url('/#organization'),
+    ];
+}
+
+function kodus_get_schema_page_post_id() {
+    if (is_front_page()) {
+        return (int) get_option('page_on_front');
+    }
+
+    return (int) get_queried_object_id();
+}
+
+function kodus_get_schema_page_dates() {
+    $post_id = kodus_get_schema_page_post_id();
+    if (!$post_id) {
+        return [
+            'published' => '',
+            'modified' => '',
+        ];
+    }
+
+    return [
+        'published' => get_post_time(DATE_W3C, true, $post_id),
+        'modified' => get_post_modified_time(DATE_W3C, true, $post_id),
+    ];
+}
+
+function kodus_get_schema_page_title() {
+    $title = '';
+
+    if (function_exists('kodus_get_current_page_meta_title')) {
+        $title = trim((string) kodus_get_current_page_meta_title());
+    }
+
+    if ($title !== '') {
+        return wp_strip_all_tags($title);
+    }
+
+    $post_id = kodus_get_schema_page_post_id();
+    if (!$post_id) {
+        return '';
+    }
+
+    return wp_strip_all_tags((string) get_the_title($post_id));
+}
+
+function kodus_get_schema_page_description() {
+    if (function_exists('kodus_get_current_page_meta_description')) {
+        $description = trim((string) kodus_get_current_page_meta_description());
+        if ($description !== '') {
+            return $description;
+        }
+    }
+
+    return '';
+}
+
+function kodus_get_schema_text_things($items) {
+    $things = [];
+
+    foreach ($items as $item) {
+        $name = trim((string) $item);
+        if ($name === '') {
+            continue;
+        }
+
+        $things[] = [
+            '@type' => 'Thing',
+            'name' => $name,
+        ];
+    }
+
+    return $things;
+}
+
 function kodus_get_visible_software_application_reviews() {
     return [
         [
@@ -143,12 +220,15 @@ function kodus_current_page_has_visible_software_reviews() {
 }
 
 function kodus_should_output_software_application_schema() {
-    // Keep software app markup only on pages that visibly show the matching reviews.
-    return kodus_current_page_has_visible_software_reviews();
+    $template = kodus_get_current_page_template();
+
+    return kodus_is_primary_home() || in_array($template, ['page-roi.php', 'page-pricing.php'], true);
 }
 
 function kodus_get_software_application_schema() {
+    $template = kodus_get_current_page_template();
     $pricing_url = home_url('/pricing/');
+    $page_url = kodus_get_current_page_permalink();
     $schema = [
         '@context' => 'https://schema.org',
         '@type' => 'SoftwareApplication',
@@ -160,9 +240,7 @@ function kodus_get_software_application_schema() {
         'operatingSystem' => 'Web',
         'description' => 'Open source AI code review platform for pull requests, code quality, security, engineering standards, and team-specific review workflows.',
         'image' => kodus_get_schema_logo_url(),
-        'publisher' => [
-            '@id' => home_url('/#organization'),
-        ],
+        'publisher' => kodus_get_schema_publisher_reference(),
         'offers' => [
             [
                 '@type' => 'Offer',
@@ -174,16 +252,28 @@ function kodus_get_software_application_schema() {
             ],
             [
                 '@type' => 'Offer',
-                'name' => 'Teams',
+                'name' => 'Teams Monthly',
                 'price' => '10',
                 'priceCurrency' => 'USD',
                 'url' => $pricing_url,
-                'description' => 'Teams plan starting at $10 per developer per month.',
+                'description' => 'Teams plan billed monthly at $10 per developer per month.',
+            ],
+            [
+                '@type' => 'Offer',
+                'name' => 'Teams Annual',
+                'price' => '8',
+                'priceCurrency' => 'USD',
+                'url' => $pricing_url,
+                'description' => 'Teams plan billed annually at an effective rate of $8 per developer per month.',
+            ],
+            [
+                '@type' => 'Offer',
+                'name' => 'Enterprise',
+                'url' => $pricing_url,
+                'description' => 'Custom enterprise setup for organizations that need SSO, compliance, and dedicated support.',
             ],
         ],
     ];
-
-    $template = kodus_get_current_page_template();
 
     if ($template === 'page-roi.php') {
         $schema['description'] = 'ROI calculator for Kodus to estimate time savings and engineering impact from automated AI code review.';
@@ -192,6 +282,11 @@ function kodus_get_software_application_schema() {
             'Estimate monthly review cost and time saved',
             'Evaluate the business impact of AI-assisted code review',
         ];
+    }
+
+    if ($template === 'page-pricing.php') {
+        $schema['description'] = 'Pricing plans for Kodus, the open source AI code review platform, including Community, Teams, and Enterprise options.';
+        $schema['mainEntityOfPage'] = $page_url;
     }
 
     if (kodus_current_page_has_visible_software_reviews()) {
@@ -284,6 +379,115 @@ function kodus_get_home_faq_schema() {
     ];
 }
 
+function kodus_get_article_schema_templates() {
+    return [
+        'page-benchmark.php',
+        'page-kodus-vs-coderabbit.php',
+        'page-kodus-vs-bugbot.php',
+        'page-kodus-vs-github.php',
+        'page-kodus-vs-claude.php',
+    ];
+}
+
+function kodus_should_output_article_schema() {
+    return in_array(kodus_get_current_page_template(), kodus_get_article_schema_templates(), true);
+}
+
+function kodus_get_article_schema_about() {
+    $template = kodus_get_current_page_template();
+
+    $about_map = [
+        'page-benchmark.php' => ['AI code review', 'Benchmarking', 'Kodus', 'CodeRabbit', 'GitHub Copilot', 'Cursor'],
+        'page-kodus-vs-coderabbit.php' => ['Kodus', 'CodeRabbit', 'AI code review'],
+        'page-kodus-vs-bugbot.php' => ['Kodus', 'Cursor BugBot', 'AI code review'],
+        'page-kodus-vs-github.php' => ['Kodus', 'GitHub Copilot', 'AI code review'],
+        'page-kodus-vs-claude.php' => ['Kodus', 'Claude Code', 'AI code review'],
+    ];
+
+    return $about_map[$template] ?? [];
+}
+
+function kodus_get_article_schema() {
+    $page_url = kodus_get_current_page_permalink();
+    $page_dates = kodus_get_schema_page_dates();
+    $schema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Article',
+        '@id' => $page_url . '#article',
+        'headline' => kodus_get_schema_page_title(),
+        'description' => kodus_get_schema_page_description(),
+        'url' => $page_url,
+        'mainEntityOfPage' => $page_url,
+        'inLanguage' => 'en-US',
+        'author' => kodus_get_schema_publisher_reference(),
+        'publisher' => kodus_get_schema_publisher_reference(),
+        'image' => kodus_get_schema_logo_url(),
+    ];
+
+    if ($page_dates['published'] !== '') {
+        $schema['datePublished'] = $page_dates['published'];
+    }
+
+    if ($page_dates['modified'] !== '') {
+        $schema['dateModified'] = $page_dates['modified'];
+    }
+
+    $about = kodus_get_schema_text_things(kodus_get_article_schema_about());
+    if (!empty($about)) {
+        $schema['about'] = $about;
+    }
+
+    return $schema;
+}
+
+function kodus_should_output_collection_page_schema() {
+    return kodus_get_current_page_template() === 'page-customers.php';
+}
+
+function kodus_get_customers_collection_schema() {
+    $page_url = kodus_get_current_page_permalink();
+
+    return [
+        '@context' => 'https://schema.org',
+        '@type' => 'CollectionPage',
+        '@id' => $page_url . '#collection-page',
+        'name' => kodus_get_schema_page_title(),
+        'description' => kodus_get_schema_page_description(),
+        'url' => $page_url,
+        'inLanguage' => 'en-US',
+        'mainEntity' => [
+            '@type' => 'ItemList',
+            'name' => 'Kodus customer case studies',
+            'itemListElement' => [
+                [
+                    '@type' => 'ListItem',
+                    'position' => 1,
+                    'url' => home_url('/case-brendi/'),
+                    'name' => 'Brendi Case Study',
+                ],
+                [
+                    '@type' => 'ListItem',
+                    'position' => 2,
+                    'url' => home_url('/case-lerian/'),
+                    'name' => 'Lerian Case Study',
+                ],
+                [
+                    '@type' => 'ListItem',
+                    'position' => 3,
+                    'url' => home_url('/case-notificacoes/'),
+                    'name' => 'Notificações Inteligentes Case Study',
+                ],
+            ],
+        ],
+        'about' => kodus_get_schema_text_things([
+            'Customer stories',
+            'Case studies',
+            'AI code review',
+            'Engineering teams',
+        ]),
+    ];
+}
+
 function kodus_output_structured_data() {
     if (is_admin() || is_feed()) {
         return;
@@ -297,6 +501,14 @@ function kodus_output_structured_data() {
 
     if (kodus_is_primary_home()) {
         $schemas[] = kodus_get_home_faq_schema();
+    }
+
+    if (kodus_should_output_article_schema()) {
+        $schemas[] = kodus_get_article_schema();
+    }
+
+    if (kodus_should_output_collection_page_schema()) {
+        $schemas[] = kodus_get_customers_collection_schema();
     }
 
     foreach ($schemas as $schema) {
