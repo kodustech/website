@@ -156,7 +156,7 @@
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Priority queue for Kody Agents</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Engineering Metrics / Cockpit</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> RBAC + Audit logs and analytics</li>
-                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> SOC 2 in progress</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> SOC 2</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Up to 5 hours month dedicated support with personalized onboarding</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Private Discord Channel and Email Support</li>
               </ul>
