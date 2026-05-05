@@ -17,7 +17,7 @@ jobs:
       - name: Prepare target directory
         uses: appleboy/ssh-action@v1
         with:
-          host: 134.209.210.171
+          host: 167.99.229.121
           username: ezdevs
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
@@ -27,7 +27,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          REMOTE_HOST: 134.209.210.171
+          REMOTE_HOST: 167.99.229.121
           REMOTE_USER: ezdevs
           SOURCE: kodus-child/
           TARGET: /home/ezdevs/kodus-files/wp-content/themes/kodus-child/
@@ -36,7 +36,7 @@ jobs:
       - name: Fix permissions and clear cache
         uses: appleboy/ssh-action@v1
         with:
-          host: 134.209.210.171
+          host: 167.99.229.121
           username: ezdevs
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
@@ -46,4 +46,4 @@ jobs:
             cd /home/ezdevs/kodus-files && wp rocket clean --confirm 2>/dev/null || true
             sudo rm -rf /home/ezdevs/kodus-files/wp-content/cache/wp-rocket/*
             sudo rm -rf /home/ezdevs/kodus-files/wp-content/cache/min/*
-            sudo systemctl reload php*-fpm 2>/dev/null || true
+            sudo systemctl reload php8.3-fpm 2>/dev/null || true
