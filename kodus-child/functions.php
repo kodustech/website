@@ -454,6 +454,11 @@ function kodus_preconnect_fonts() {
     if (kodus_is_retro_page()) {
         echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
         echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+        // High-priority preload of the Google Fonts stylesheet so the
+        // @font-face declarations arrive before render-blocking parsing
+        // of the body. Lighthouse 11/mai showed LCP waiting on hero
+        // font (Press Start 2P / Inter) on homepage and pricing.
+        echo '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" crossorigin>' . "\n";
     }
 }
 
