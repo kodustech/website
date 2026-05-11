@@ -881,6 +881,71 @@ function kodus_prioritize_featured_image($attr, $attachment, $size) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 9b3. INLINE CRITICAL CSS + ASYNC kodus-retro.css (LCP fix)
+//      Lighthouse 11/mai showed LCP 4.5-5.3s with hero text/image
+//      waiting on the 183 KiB kodus-retro.css render-blocking load.
+//      Per-template critical CSS (above-the-fold) is inlined in
+//      <head> priority 1, and the full stylesheet loads async via
+//      preload+onload swap. Pages without critical CSS render normally.
+// ═══════════════════════════════════════════════════════════════
+function kodus_get_critical_css_name() {
+    if (is_front_page()) {
+        return 'homepage';
+    }
+    if (is_page()) {
+        $template = basename((string) get_page_template_slug());
+        if ($template === 'page-pricing.php') {
+            return 'pricing';
+        }
+    }
+    if (is_singular('post')) {
+        $slug = (string) get_post_field('post_name');
+        if ($slug === 'coderabbit-alternative') {
+            return 'coderabbit-alternative';
+        }
+        if ($slug === 'ai-code-review-tools') {
+            return 'ai-code-review-tools';
+        }
+    }
+    return null;
+}
+
+add_action('wp_head', 'kodus_inline_critical_css', 1);
+function kodus_inline_critical_css() {
+    $name = kodus_get_critical_css_name();
+    if ($name === null) {
+        return;
+    }
+    $path = get_stylesheet_directory() . "/assets/css/critical/{$name}.css";
+    if (!is_readable($path)) {
+        return;
+    }
+    $css = file_get_contents($path);
+    if ($css === false || $css === '') {
+        return;
+    }
+    // Already minified by extraction tool; inline as-is.
+    echo "<style id=\"kodus-critical\">{$css}</style>\n";
+}
+
+add_filter('style_loader_tag', 'kodus_async_retro_css', 10, 4);
+function kodus_async_retro_css($html, $handle, $href, $media) {
+    if ($handle !== 'kodus-retro') {
+        return $html;
+    }
+    if (kodus_get_critical_css_name() === null) {
+        // No critical CSS for this page; keep sync load to avoid FOUC.
+        return $html;
+    }
+    $url = esc_url($href);
+    return sprintf(
+        '<link rel="preload" as="style" href="%1$s" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n" .
+        '<noscript><link rel="stylesheet" href="%1$s"></noscript>' . "\n",
+        $url
+    );
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 9c. DISABLE WP ROCKET OPTIMIZATION ON RETRO PAGES
 //     Prevents CSS concat/minify/delay that breaks retro assets
 // ═══════════════════════════════════════════════════════════════
