@@ -472,6 +472,42 @@ function kodus_preload_404_image() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 4b. PRELOAD FEATURED IMAGE ON SINGULAR POSTS/PAGES
+//     Lighthouse 11/mai flagged the featured image as LCP element
+//     on alternative/comparison posts (e.g. /en/coderabbit-alternative/)
+//     with requestDiscoverable=false. Preloading via <link rel=preload>
+//     with imagesrcset/imagesizes makes the LCP candidate discoverable
+//     during the initial HTML parse, before kodus-retro.css loads.
+//     Paired with the wp_get_attachment_image_attributes filter that
+//     also adds fetchpriority=high to the actual <img> tag.
+// ═══════════════════════════════════════════════════════════════
+add_action('wp_head', 'kodus_preload_featured_image', 2);
+function kodus_preload_featured_image() {
+    if (!is_singular() || !has_post_thumbnail()) {
+        return;
+    }
+    $thumb_id = (int) get_post_thumbnail_id();
+    if ($thumb_id <= 0) {
+        return;
+    }
+    $url = wp_get_attachment_image_url($thumb_id, 'large');
+    if (!$url) {
+        return;
+    }
+    $srcset = wp_get_attachment_image_srcset($thumb_id, 'large');
+    $sizes  = wp_get_attachment_image_sizes($thumb_id, 'large');
+    $tag = '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url($url) . '"';
+    if ($srcset) {
+        $tag .= ' imagesrcset="' . esc_attr($srcset) . '"';
+    }
+    if ($sizes) {
+        $tag .= ' imagesizes="' . esc_attr($sizes) . '"';
+    }
+    $tag .= '>';
+    echo $tag . "\n";
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 5. AUMENTAR LIMITE DE UPLOAD
 // ═══════════════════════════════════════════════════════════════
 add_filter('upload_size_limit', function() {
