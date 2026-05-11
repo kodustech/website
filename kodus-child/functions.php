@@ -858,6 +858,29 @@ add_filter('wp_img_tag_add_width_and_height_attr', function($value) {
 });
 
 // ═══════════════════════════════════════════════════════════════
+// 9b2. PROMOTE FEATURED IMAGE TO LCP CANDIDATE ON SINGULAR PAGES
+//      Lighthouse 11/mai flagged loading=lazy + missing fetchpriority
+//      on /en/coderabbit-alternative/ and /en/ai-code-review-tools/
+//      featured images (the LCP element). This filter eagerly loads
+//      and prioritizes the post thumbnail on singular post/page views.
+// ═══════════════════════════════════════════════════════════════
+add_filter('wp_get_attachment_image_attributes', 'kodus_prioritize_featured_image', 10, 3);
+function kodus_prioritize_featured_image($attr, $attachment, $size) {
+    if (!is_singular() || !in_the_loop() || !has_post_thumbnail()) {
+        return $attr;
+    }
+    if ((int) $attachment->ID !== (int) get_post_thumbnail_id()) {
+        return $attr;
+    }
+    $attr['loading'] = 'eager';
+    $attr['fetchpriority'] = 'high';
+    if (isset($attr['decoding']) && $attr['decoding'] === 'async') {
+        $attr['decoding'] = 'sync';
+    }
+    return $attr;
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 9c. DISABLE WP ROCKET OPTIMIZATION ON RETRO PAGES
 //     Prevents CSS concat/minify/delay that breaks retro assets
 // ═══════════════════════════════════════════════════════════════
