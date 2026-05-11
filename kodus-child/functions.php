@@ -802,6 +802,7 @@ function kodus_prune_late_assets() {
         'www.googletagmanager.com/gtag/js',
         'analytics.crawlconsole.com/tracker.js',
         'a.omappapi.com/app/js/',
+        'connect.facebook.net/',
     ];
 
     $blocked_style_src_fragments = [
