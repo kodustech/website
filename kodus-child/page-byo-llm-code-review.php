@@ -2637,12 +2637,12 @@
         <div class="lp-byo__receipt lp-byo__receipt--bad">
           <div class="lp-byo__receipt-head">
             <span class="lp-byo__receipt-vendor">Bundled vendor</span>
-            <span class="lp-byo__receipt-id">INV-2026-04 &middot; CodeRabbit Pro (example)</span>
+            <span class="lp-byo__receipt-id">INV-2026-04 &middot; CodeRabbit Pro (annual)</span>
           </div>
           <div class="lp-byo__receipt-rows">
             <div class="lp-byo__receipt-row">
-              <span class="lp-byo__receipt-line">50 seats &middot; Pro</span>
-              <span class="lp-byo__receipt-amount">$1,200.00</span>
+              <span class="lp-byo__receipt-line">50 seats &middot; Pro &middot; $48/dev</span>
+              <span class="lp-byo__receipt-amount">$2,400.00</span>
             </div>
             <div class="lp-byo__receipt-row lp-byo__receipt-row--hidden">
               <span class="lp-byo__receipt-line">Inference (bundled)</span>
@@ -2655,9 +2655,9 @@
           </div>
           <div class="lp-byo__receipt-total">
             <span>Monthly total</span>
-            <strong>$1,200.00</strong>
+            <strong>$2,400.00</strong>
           </div>
-          <p class="lp-byo__receipt-note">Inference cost is folded into the per-seat price. You cannot tell what the model actually costs or what margin sits on top.</p>
+          <p class="lp-byo__receipt-note">Inference cost is folded into the per-seat price. You cannot tell what the model actually costs or what margin sits on top. Monthly billing pushes this to $3,000 ($60/dev).</p>
         </div>
 
         <div class="lp-byo__receipt lp-byo__receipt--good">
@@ -2667,7 +2667,7 @@
           </div>
           <div class="lp-byo__receipt-rows">
             <div class="lp-byo__receipt-row">
-              <span class="lp-byo__receipt-line">50 seats &middot; Teams</span>
+              <span class="lp-byo__receipt-line">50 seats &middot; Teams &middot; $10/dev</span>
               <span class="lp-byo__receipt-amount">$500.00</span>
             </div>
             <div class="lp-byo__receipt-row">
@@ -2690,12 +2690,12 @@
 
       <div class="lp-byo__savings">
         <span class="lp-byo__savings-label">Monthly delta in this example</span>
-        <span class="lp-byo__savings-amount">&minus; $281.80</span>
-        <span class="lp-byo__savings-meta">23% lower, and the inference number is yours to optimize (switch to Haiku for triage, Sonnet for review, etc).</span>
+        <span class="lp-byo__savings-amount">&minus; $1,481.80</span>
+        <span class="lp-byo__savings-meta">62% lower at the annual rate, even more at monthly billing. And the inference number is yours to optimize (Haiku for triage, Sonnet for review, internal vLLM for the sensitive repos).</span>
       </div>
 
       <p class="lp-byo__disclaimer">
-        Numbers above use public list pricing for CodeRabbit Pro and Anthropic Claude Sonnet 4.6 as of 2026-05. Inference estimate assumes ~3.5k input + ~600 output tokens per PR review. Your bill will vary with model choice, PR size, and rule depth. Talk to us for a real estimate against your repo history.
+        Numbers above use public list pricing as of 2026-05: CodeRabbit Pro at $48/dev/month with annual prepay ($60/dev/month if billed monthly), Kodus Teams at $10/dev/month, Anthropic Claude Sonnet 4.6 at list passthrough rates. Inference estimate assumes ~3.5k input + ~600 output tokens per PR review across 1,500 reviewed PRs/month. Your bill will vary with model choice, PR size, and rule depth. Talk to us for a real estimate against your repo history.
       </p>
     </div>
   </section>
