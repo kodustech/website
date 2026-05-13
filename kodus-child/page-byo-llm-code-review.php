@@ -2574,7 +2574,7 @@
         <div class="lp-byo__flow" role="presentation" aria-hidden="true">
           <div class="lp-byo__flow-bar">
             <span class="lp-byo__flow-bar-title">the money path</span>
-            <span class="lp-byo__flow-bar-meta">// 50 devs, ~30 PRs/dev</span>
+            <span class="lp-byo__flow-bar-meta">// 50 devs, annual rates</span>
           </div>
 
           <div class="lp-byo__flow-body">
@@ -2598,7 +2598,7 @@
               </div>
               <div class="lp-byo__flow-pipe">
                 <span class="lp-byo__flow-node">YOU</span>
-                <span class="lp-byo__flow-arrow lp-byo__flow-arrow--good"><strong>$918</strong> <i>&rarr;</i></span>
+                <span class="lp-byo__flow-arrow lp-byo__flow-arrow--good"><strong>$818</strong> <i>&rarr;</i></span>
                 <span class="lp-byo__flow-node lp-byo__flow-node--model">MODEL</span>
               </div>
             </div>
@@ -2609,8 +2609,8 @@
             </div>
 
             <div class="lp-byo__flow-payoff">
-              <span class="lp-byo__flow-payoff-amount">&minus; $1,482/mo</span>
-              <span class="lp-byo__flow-payoff-meta">Same review. 62% less spend. Every line item visible.</span>
+              <span class="lp-byo__flow-payoff-amount">&minus; $1,582/mo</span>
+              <span class="lp-byo__flow-payoff-meta">Same review. 66% less spend. Every line item visible.</span>
             </div>
 
           </div>
@@ -2675,7 +2675,7 @@
       <span class="lp-shp__eyebrow">What the bill looks like</span>
       <h2 class="lp-shp__title">Two invoices. <span class="highlight">One difference.</span></h2>
       <p class="lp-shp__lede" style="margin-bottom: 36px;">
-        Bundled-vendor pricing hides what the inference actually costs. BYO LLM splits the bill cleanly: orchestration on one side, inference on the other, both audited by you. Example below uses a 50-developer team running ~30 PRs per developer per month on Claude Sonnet 4.6.
+        Bundled-vendor pricing hides what the inference actually costs. BYO LLM splits the bill cleanly: orchestration on one side, inference on the other, both audited by you. Example below uses a 50-developer team on annual rates, running ~30 PRs per developer per month on Claude Sonnet 4.6.
       </p>
 
       <div class="lp-byo__receipts">
@@ -2713,8 +2713,8 @@
           </div>
           <div class="lp-byo__receipt-rows">
             <div class="lp-byo__receipt-row">
-              <span class="lp-byo__receipt-line">50 seats &middot; Teams &middot; $10/dev</span>
-              <span class="lp-byo__receipt-amount">$500.00</span>
+              <span class="lp-byo__receipt-line">50 seats &middot; Teams &middot; $8/dev annual</span>
+              <span class="lp-byo__receipt-amount">$400.00</span>
             </div>
             <div class="lp-byo__receipt-row">
               <span class="lp-byo__receipt-line">Inference (Anthropic, passthrough)</span>
@@ -2727,7 +2727,7 @@
           </div>
           <div class="lp-byo__receipt-total">
             <span>Monthly total</span>
-            <strong>$918.20</strong>
+            <strong>$818.20</strong>
           </div>
           <p class="lp-byo__receipt-note">Two invoices, two providers, two line items you can take to finance. The inference invoice comes from Anthropic with your seat count, your token usage, your spend cap.</p>
         </div>
@@ -2736,12 +2736,12 @@
 
       <div class="lp-byo__savings">
         <span class="lp-byo__savings-label">Monthly delta in this example</span>
-        <span class="lp-byo__savings-amount">&minus; $1,481.80</span>
-        <span class="lp-byo__savings-meta">62% lower at the annual rate, even more at monthly billing. And the inference number is yours to optimize (Haiku for triage, Sonnet for review, internal vLLM for the sensitive repos).</span>
+        <span class="lp-byo__savings-amount">&minus; $1,581.80</span>
+        <span class="lp-byo__savings-meta">66% lower at annual rates, even bigger at monthly billing. And the inference number is yours to optimize (Haiku for triage, Sonnet for review, internal vLLM for the sensitive repos).</span>
       </div>
 
       <p class="lp-byo__disclaimer">
-        Numbers above use public list pricing as of 2026-05: CodeRabbit Pro at $48/dev/month with annual prepay ($60/dev/month if billed monthly), Kodus Teams at $10/dev/month, Anthropic Claude Sonnet 4.6 at list passthrough rates. Inference estimate assumes ~3.5k input + ~600 output tokens per PR review across 1,500 reviewed PRs/month. Your bill will vary with model choice, PR size, and rule depth. Talk to us for a real estimate against your repo history.
+        Numbers above use public list pricing as of 2026-05 on annual prepay: CodeRabbit Pro at $48/dev/month (or $60/dev/month if billed monthly), Kodus Teams at $8/dev/month (or $10/dev/month if billed monthly), Anthropic Claude Sonnet 4.6 at list passthrough rates. Inference estimate assumes ~3.5k input + ~600 output tokens per PR review across 1,500 reviewed PRs/month. Your bill will vary with model choice, PR size, and rule depth. Talk to us for a real estimate against your repo history.
       </p>
     </div>
   </section>
@@ -3543,82 +3543,6 @@
           <p>Llama, Mistral, Qwen, GLM, Kimi, DeepSeek. If your governance policy says no closed-weight models in the loop, point Kodus at an internal inference server and the agent never knows the difference.</p>
           <div class="lp-shp__case-meta"><strong>Open weights &middot; vLLM &middot; TGI &middot; Ollama</strong></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SECURITY ========== -->
-  <section class="lp-shp__section lp-shp__section--tinted">
-    <div class="container">
-      <span class="lp-shp__eyebrow">Inside the boundary</span>
-      <h2 class="lp-shp__title">The controls security <span class="highlight">asks for.</span></h2>
-      <p class="lp-shp__lede" style="margin-bottom: 36px;">
-        Community ships with the basics every self-hosted team needs. Enterprise unlocks the controls a security review wants to see. Both run on the same Docker stack. See the <a href="https://docs.kodus.io/how_to_use/en/security/sso" style="color: var(--color-primary);">security docs</a> and the <a href="https://docs.kodus.io/how_to_deploy/en/deploy_kodus/telemetry" style="color: var(--color-primary);">telemetry policy</a> for the full picture.
-      </p>
-
-      <div class="lp-shp__audit">
-        <div class="lp-shp__audit-bar"></div>
-        <div class="lp-shp__audit-prompt">kodus security --check <em># click any row to inspect</em></div>
-
-        <details class="lp-shp__audit-row">
-          <summary>
-            <span class="ok">OK</span>
-            <span class="name">sso-saml</span>
-            <span class="tier tier--ee">Enterprise</span>
-            <span class="chev">▶</span>
-          </summary>
-          <div class="lp-shp__audit-detail">
-            Wire Kodus to Okta, Entra, Google Workspace, or any <strong>SAML 2.0 IdP</strong>. Map <code>firstName</code>, <code>lastName</code>, <code>email</code>. Test the IdP connection before flipping the org-wide flag.
-          </div>
-        </details>
-
-        <details class="lp-shp__audit-row">
-          <summary>
-            <span class="ok">OK</span>
-            <span class="name">rbac</span>
-            <span class="tier tier--ee">Enterprise</span>
-            <span class="chev">▶</span>
-          </summary>
-          <div class="lp-shp__audit-detail">
-            Policy guard on every API endpoint via <code>@CheckPolicies</code>. Per-role scoping for repos, rules, and analytics. Roles are first-class and live in your database.
-          </div>
-        </details>
-
-        <details class="lp-shp__audit-row">
-          <summary>
-            <span class="ok">OK</span>
-            <span class="name">audit-logs</span>
-            <span class="tier tier--ee">Enterprise</span>
-            <span class="chev">▶</span>
-          </summary>
-          <div class="lp-shp__audit-detail">
-            Every workspace action with <strong>actor, target, and timestamp</strong>. Forwarded to your logging stack of choice (Datadog, Splunk, Loki, ELK). Retention is your policy, not ours.
-          </div>
-        </details>
-
-        <details class="lp-shp__audit-row">
-          <summary>
-            <span class="ok">OK</span>
-            <span class="name">source-available-agent</span>
-            <span class="tier tier--all">All editions</span>
-            <span class="chev">▶</span>
-          </summary>
-          <div class="lp-shp__audit-detail">
-            Read every line of Kody before it touches your repos. <strong>AGPLv3 on GitHub</strong>, tagged releases, CVE-mapped advisories. Your security team can diff every upgrade before it ships.
-          </div>
-        </details>
-
-        <details class="lp-shp__audit-row">
-          <summary>
-            <span class="ok">OK</span>
-            <span class="name">secrets-in-your-vault</span>
-            <span class="tier tier--all">All editions</span>
-            <span class="chev">▶</span>
-          </summary>
-          <div class="lp-shp__audit-detail">
-            API keys, LLM tokens, OAuth secrets, webhook signatures: all live in your secret store. Kodus reads them at runtime through your container. <strong>We never get a copy.</strong>
-          </div>
-        </details>
       </div>
     </div>
   </section>
