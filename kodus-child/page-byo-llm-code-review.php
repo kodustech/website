@@ -3293,7 +3293,7 @@
       <span class="lp-shp__eyebrow">BYO LLM vs alternatives</span>
       <h2 class="lp-shp__title">Kodus is the BYO-friendly side. <span class="highlight">Everyone else bundles.</span></h2>
       <p class="lp-shp__lede" style="margin-bottom: 36px;">
-        Most AI code review vendors lock the model. The honest exception is Qodo (open source PR-Agent). Below: how Kodus, Qodo, and the bundled-model crowd stack on the eight things that matter for BYO LLM teams.
+        Most AI code review vendors lock the model. The honest exception is PR-Agent, the open source agent Qodo donated to the community in late 2025 (now maintained at <code>the-PR-Agent/pr-agent</code>, distinct from Qodo's commercial Qodo Merge). Below: how Kodus, PR-Agent, and the bundled crowd stack on the eight things that matter for BYO LLM teams.
       </p>
 
       <div class="lp-shp__cmp-verdict">
@@ -3310,24 +3310,24 @@
             <span class="lp-shp__cmp-verdict-score">8 / 8</span>
           </div>
           <div class="lp-shp__cmp-verdict-row">
-            <span class="lp-shp__cmp-verdict-name">Qodo PR-Agent</span>
+            <span class="lp-shp__cmp-verdict-name">PR-Agent (OSS)</span>
             <span class="lp-shp__cmp-verdict-bar" style="--filled: 7;"></span>
             <span class="lp-shp__cmp-verdict-score">7 / 8</span>
-          </div>
-          <div class="lp-shp__cmp-verdict-row">
-            <span class="lp-shp__cmp-verdict-name">CodeRabbit</span>
-            <span class="lp-shp__cmp-verdict-bar" style="--filled: 2;"></span>
-            <span class="lp-shp__cmp-verdict-score">2 / 8</span>
-          </div>
-          <div class="lp-shp__cmp-verdict-row">
-            <span class="lp-shp__cmp-verdict-name">Cursor BugBot</span>
-            <span class="lp-shp__cmp-verdict-bar" style="--filled: 2;"></span>
-            <span class="lp-shp__cmp-verdict-score">2 / 8</span>
           </div>
           <div class="lp-shp__cmp-verdict-row">
             <span class="lp-shp__cmp-verdict-name">Sourcery</span>
             <span class="lp-shp__cmp-verdict-bar" style="--filled: 2;"></span>
             <span class="lp-shp__cmp-verdict-score">2 / 8</span>
+          </div>
+          <div class="lp-shp__cmp-verdict-row">
+            <span class="lp-shp__cmp-verdict-name">CodeRabbit</span>
+            <span class="lp-shp__cmp-verdict-bar" style="--filled: 1;"></span>
+            <span class="lp-shp__cmp-verdict-score">1 / 8</span>
+          </div>
+          <div class="lp-shp__cmp-verdict-row">
+            <span class="lp-shp__cmp-verdict-name">Greptile</span>
+            <span class="lp-shp__cmp-verdict-bar" style="--filled: 1;"></span>
+            <span class="lp-shp__cmp-verdict-score">1 / 8</span>
           </div>
         </div>
       </div>
@@ -3345,8 +3345,14 @@
               </th>
               <th style="width: 13.75%;">
                 <span class="lp-shp__cmp-brand">
-                  <span class="lp-shp__cmp-mono">QO</span>
-                  Qodo
+                  <span class="lp-shp__cmp-mono">PA</span>
+                  PR-Agent
+                </span>
+              </th>
+              <th style="width: 13.75%;">
+                <span class="lp-shp__cmp-brand">
+                  <span class="lp-shp__cmp-mono">SC</span>
+                  Sourcery
                 </span>
               </th>
               <th style="width: 13.75%;">
@@ -3357,14 +3363,8 @@
               </th>
               <th style="width: 13.75%;">
                 <span class="lp-shp__cmp-brand">
-                  <span class="lp-shp__cmp-mono">BB</span>
-                  BugBot
-                </span>
-              </th>
-              <th style="width: 13.75%;">
-                <span class="lp-shp__cmp-brand">
-                  <span class="lp-shp__cmp-mono">SC</span>
-                  Sourcery
+                  <span class="lp-shp__cmp-mono">GR</span>
+                  Greptile
                 </span>
               </th>
             </tr>
@@ -3377,17 +3377,17 @@
               <td>Bring your own API key</td>
               <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">Yes</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--yes">Yes</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">Bundled</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--part">Enterprise only</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">Bundled</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">Bundled</span></td>
             </tr>
             <tr>
               <td>Multi-provider support</td>
               <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">14+ providers</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--yes">6+ providers</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">OpenAI only</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">Anthropic only</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">OpenAI only</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--yes">LiteLLM (many)</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--no">Proprietary</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--no">Internal routing</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--no">Internal routing</span></td>
             </tr>
             <tr>
               <td>Pin specific model version</td>
@@ -3399,8 +3399,8 @@
             </tr>
             <tr>
               <td>Local / open-weight models</td>
-              <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">vLLM, Ollama</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--yes">Ollama</span></td>
+              <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">vLLM, Ollama, TGI</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--yes">Ollama, vLLM</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
@@ -3432,10 +3432,10 @@
             <tr>
               <td>Free hosted Cloud option</td>
               <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">Yes</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">Paid only</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--no">Self-host only</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--part">Free for OSS</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--part">Trial</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">Paid</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--part">Free tier</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--part">Trial</span></td>
             </tr>
             <tr>
               <td>Open source agent</td>
@@ -3702,11 +3702,11 @@
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "How does Kodus compare to Qodo on BYO LLM?"</span>
+                <span class="faq__question-text">kodus --help "How does Kodus compare to PR-Agent on BYO LLM?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Qodo PR-Agent is the honest peer on BYO LLM mechanics. Both bring your key, both pin model versions, both support local models, both run open source. The difference is on the product side: Kodus ships a free hosted Cloud option (Qodo Merge is paid), a polished web UI for review history and Kody Rules, and direct integrations with GitHub Enterprise Server, GitLab Self-Managed, and Bitbucket Data Center as first-class targets. Pick Qodo if CLI-first PR review is your style. Pick Kodus if you want the BYO LLM mechanics plus a managed surface for the rest of the team.</p>
+                <p>PR-Agent is the honest peer on BYO LLM mechanics. It is the open source agent Qodo donated to the community in late 2025, now maintained at <code>the-PR-Agent/pr-agent</code> (11k+ stars, active releases through 2026). It is a separate project from Qodo Merge, which is Qodo's commercial paid product with bundled models. Both Kodus and PR-Agent bring your key, pin model versions, support local models, and run open source. The difference is on the product side: Kodus ships a free hosted Cloud option (PR-Agent is self-host only), a polished web UI for review history and Kody Rules, and first-class integrations with GitHub Enterprise Server, GitLab Self-Managed, and Bitbucket Data Center. Pick PR-Agent if CLI-first OSS-only is your stance. Pick Kodus if you want the same BYO LLM mechanics plus a managed surface for the rest of the team.</p>
               </div>
             </div>
 
@@ -3814,21 +3814,21 @@
   "@context": "https://schema.org",
   "@type": "Table",
   "about": "Comparison of BYO LLM AI code review tools",
-  "name": "Kodus BYO LLM vs Qodo, CodeRabbit, Cursor BugBot, Sourcery",
+  "name": "Kodus BYO LLM vs PR-Agent, Sourcery, CodeRabbit, Greptile",
   "url": "https://kodus.io/byo-llm-code-review/#comparison",
   "isPartOf": {
     "@type": "WebPage",
     "url": "https://kodus.io/byo-llm-code-review/"
   },
   "mainEntity": [
-    {"@type": "PropertyValue", "name": "Bring your own API key", "value": "Kodus: Yes; Qodo: Yes; CodeRabbit: Bundled; BugBot: Bundled; Sourcery: Bundled"},
-    {"@type": "PropertyValue", "name": "Multi-provider support", "value": "Kodus: 14+ providers; Qodo: 6+ providers; CodeRabbit: OpenAI only; BugBot: Anthropic only; Sourcery: OpenAI only"},
-    {"@type": "PropertyValue", "name": "Pin specific model version", "value": "Kodus: Yes; Qodo: Yes; CodeRabbit: No; BugBot: No; Sourcery: No"},
-    {"@type": "PropertyValue", "name": "Local / open-weight models", "value": "Kodus: vLLM, Ollama, TGI, LiteLLM; Qodo: Ollama; CodeRabbit: No; BugBot: No; Sourcery: No"},
-    {"@type": "PropertyValue", "name": "Zero markup on inference", "value": "Kodus: Yes; Qodo: Yes (OSS); CodeRabbit: Bundled; BugBot: Bundled; Sourcery: Bundled"},
-    {"@type": "PropertyValue", "name": "Inference billed separately", "value": "Kodus: Yes; Qodo: Yes; CodeRabbit: Opaque; BugBot: Opaque; Sourcery: Opaque"},
-    {"@type": "PropertyValue", "name": "Free hosted Cloud option", "value": "Kodus: Yes; Qodo: Paid only; CodeRabbit: Trial; BugBot: Paid; Sourcery: Free tier"},
-    {"@type": "PropertyValue", "name": "Open source agent", "value": "Kodus: AGPLv3; Qodo: Apache 2.0; CodeRabbit: No; BugBot: No; Sourcery: No"}
+    {"@type": "PropertyValue", "name": "Bring your own API key", "value": "Kodus: Yes; PR-Agent: Yes; Sourcery: Enterprise only; CodeRabbit: Bundled; Greptile: Bundled"},
+    {"@type": "PropertyValue", "name": "Multi-provider support", "value": "Kodus: 14+ providers; PR-Agent: LiteLLM (many); Sourcery: Proprietary; CodeRabbit: Internal routing; Greptile: Internal routing"},
+    {"@type": "PropertyValue", "name": "Pin specific model version", "value": "Kodus: Yes; PR-Agent: Yes; Sourcery: No; CodeRabbit: No; Greptile: No"},
+    {"@type": "PropertyValue", "name": "Local / open-weight models", "value": "Kodus: vLLM, Ollama, TGI; PR-Agent: Ollama, vLLM; Sourcery: No; CodeRabbit: No; Greptile: No"},
+    {"@type": "PropertyValue", "name": "Zero markup on inference", "value": "Kodus: Yes; PR-Agent: Yes (OSS); Sourcery: Bundled; CodeRabbit: Bundled; Greptile: Bundled"},
+    {"@type": "PropertyValue", "name": "Inference billed separately", "value": "Kodus: Yes; PR-Agent: Yes; Sourcery: Opaque; CodeRabbit: Opaque; Greptile: Opaque"},
+    {"@type": "PropertyValue", "name": "Free hosted Cloud option", "value": "Kodus: Yes; PR-Agent: Self-host only; Sourcery: Free for OSS; CodeRabbit: Trial; Greptile: Trial"},
+    {"@type": "PropertyValue", "name": "Open source agent", "value": "Kodus: AGPLv3; PR-Agent: Apache 2.0; Sourcery: No; CodeRabbit: No; Greptile: No"}
   ]
 }
 </script>
@@ -3847,7 +3847,7 @@
     {"@type": "Question", "name": "Is there a default model if I do not bring one?", "acceptedAnswer": {"@type": "Answer", "text": "On Cloud, yes: a hosted default kicks in during trial. On self-hosted, no, you must set the three .env vars before the agent can call out."}},
     {"@type": "Question", "name": "What happens when a model gets deprecated?", "acceptedAnswer": {"@type": "Answer", "text": "The provider notifies you. We do not silently swap the model. We recommend running a regression set of historical PRs against the candidate version before flipping the env var."}},
     {"@type": "Question", "name": "How do I compare costs across providers?", "acceptedAnswer": {"@type": "Answer", "text": "Each review logs token counts and the provider invoice gives cost per call. You can rebuild the math in BigQuery or your data warehouse, or run the same PR through two model env vars and compare findings."}},
-    {"@type": "Question", "name": "How does Kodus compare to Qodo on BYO LLM?", "acceptedAnswer": {"@type": "Answer", "text": "Qodo PR-Agent is the honest peer on BYO LLM mechanics. Both bring your key, pin versions, support local models, run open source. The difference is on the product side: Kodus ships a free hosted Cloud option, polished web UI, and first-class GitHub Enterprise Server, GitLab Self-Managed, and Bitbucket Data Center integrations."}}
+    {"@type": "Question", "name": "How does Kodus compare to PR-Agent on BYO LLM?", "acceptedAnswer": {"@type": "Answer", "text": "PR-Agent is the honest peer on BYO LLM mechanics. It is the open source agent Qodo donated to the community in late 2025, now maintained at the-PR-Agent/pr-agent, distinct from Qodo's commercial Qodo Merge. Both Kodus and PR-Agent bring your key, pin versions, support local models, run open source. The difference is on the product side: Kodus ships a free hosted Cloud option, polished web UI, and first-class GitHub Enterprise Server, GitLab Self-Managed, and Bitbucket Data Center integrations."}}
   ]
 }
 </script>
