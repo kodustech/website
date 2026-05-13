@@ -1992,28 +1992,33 @@
   margin-top: 22px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
 .lp-shp__byo-tier {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 6px;
+  row-gap: 8px;
 }
 .lp-shp__byo-tier-label {
+  flex-basis: 100%;
   font-family: var(--font-mono);
   font-size: .62rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--color-text-dim);
-  min-width: 130px;
+  margin-bottom: 2px;
 }
 .lp-shp__byo-tier-label::before {
   content: '// ';
   color: var(--color-primary);
 }
-@media (max-width: 540px) {
-  .lp-shp__byo-tier-label { min-width: 100%; margin-bottom: 2px; }
+.lp-shp__byo-tier .lp-shp__pill {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  padding: 5px 10px;
 }
 .lp-shp__pill {
   font-family: var(--font-mono);
