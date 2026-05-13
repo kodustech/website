@@ -2705,7 +2705,7 @@
     <div class="container">
       <div class="lp-hk__head">
         <span class="lp-hk__eyebrow">how kody reviews</span>
-        <h2 class="lp-hk__title">From PR opened to <em>inline comments</em>. Four stages, your network.</h2>
+        <h2 class="lp-hk__title">From PR opened to <em>inline comments</em>. Four stages, the model you brought.</h2>
         <p class="lp-hk__sub">Deterministic pipeline. Real components in the repo, no marketing-ware. Click any stage to read the source.</p>
       </div>
 
@@ -3176,53 +3176,6 @@
             <span class="lp-shp__spec-k">PHONE</span>
             <span class="lp-shp__spec-v">Anonymous heartbeat</span>
             <span class="lp-shp__spec-r">opt-out via env</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== AIR-GAPPED ========== -->
-  <section class="lp-shp__section lp-shp__section--tinted">
-    <div class="container">
-      <span class="lp-shp__eyebrow">Air-gapped deployment</span>
-      <h2 class="lp-shp__title">Off the <span class="highlight">public wire.</span></h2>
-      <p class="lp-shp__lede" style="margin-bottom: 36px;">
-        For defense contractors, sovereign environments, and IP-controlled networks. There is no packaged air-gap installer, but every dependency is replaceable with something you operate. Four switches and you are off the public internet.
-      </p>
-
-      <div class="lp-shp__panel">
-        <div class="lp-shp__panel-bar"></div>
-        <div class="lp-shp__switch">
-          <span class="lp-shp__switch-id">SW-01</span>
-          <span class="lp-shp__switch-toggle"><span class="lp-shp__switch-toggle-knob"></span></span>
-          <div class="lp-shp__switch-body">
-            <h3>Mirror the container images</h3>
-            <p>Push <code>ghcr.io/kodustech/*</code> to your private registry. Pin <code>KODUS_VERSION</code> in <code>.env</code> so deploys stay reproducible offline.</p>
-          </div>
-        </div>
-        <div class="lp-shp__switch">
-          <span class="lp-shp__switch-id">SW-02</span>
-          <span class="lp-shp__switch-toggle"><span class="lp-shp__switch-toggle-knob"></span></span>
-          <div class="lp-shp__switch-body">
-            <h3>Bring the LLM inside the wire</h3>
-            <p>Point <code>API_OPENAI_FORCE_BASE_URL</code> at an internal OpenAI-compatible endpoint (vLLM, TGI, Ollama, or any inference server you operate on your network).</p>
-          </div>
-        </div>
-        <div class="lp-shp__switch">
-          <span class="lp-shp__switch-id">SW-03</span>
-          <span class="lp-shp__switch-toggle"><span class="lp-shp__switch-toggle-knob"></span></span>
-          <div class="lp-shp__switch-body">
-            <h3>Use a local Git provider</h3>
-            <p>Webhooks land where the diff lives. GitHub Enterprise Server, GitLab Self-Managed, or Bitbucket DC on the same network keep the loop closed.</p>
-          </div>
-        </div>
-        <div class="lp-shp__switch">
-          <span class="lp-shp__switch-id">SW-04</span>
-          <span class="lp-shp__switch-toggle"><span class="lp-shp__switch-toggle-knob"></span></span>
-          <div class="lp-shp__switch-body">
-            <h3>Silence the heartbeat</h3>
-            <p>Set <code>KODUS_TELEMETRY_DISABLED=true</code>. The anonymous daily ping is the only outbound call by default and it goes away with one flag.</p>
           </div>
         </div>
       </div>
