@@ -182,13 +182,20 @@
   min-width: 56px;
   text-align: center;
 }
-.lp-byo__flow-node--vendor { color: #E07A7A; border-color: rgba(224, 122, 122, 0.42); }
+.lp-byo__flow-node--vendor {
+  color: #E07A7A;
+  border-color: rgba(224, 122, 122, 0.42);
+  padding: 6px 12px 8px;
+}
 .lp-byo__flow-node--vendor em {
   font-style: normal;
-  font-size: .58rem;
+  font-size: .56rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 0.95;
+  margin-top: 1px;
+  color: #E07A7A;
+  font-weight: 600;
 }
 .lp-byo__flow-node--model { color: var(--color-secondary); border-color: rgba(201, 187, 242, 0.42); }
 .lp-byo__flow-arrow {
@@ -197,7 +204,14 @@
   gap: 4px;
   color: var(--color-text-dim);
   font-size: .82rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+}
+.lp-byo__flow-arrow strong {
+  font-weight: 700;
+  color: var(--color-text);
+  font-family: var(--font-pixel);
+  font-size: .78rem;
+  letter-spacing: -0.5px;
 }
 .lp-byo__flow-arrow i {
   font-style: normal;
@@ -206,11 +220,13 @@
   color: var(--color-text-muted);
 }
 .lp-byo__flow-arrow--bad { color: #E07A7A; }
+.lp-byo__flow-arrow--bad strong { color: #E07A7A; }
 .lp-byo__flow-arrow--bad i { color: #E07A7A; }
 .lp-byo__flow-arrow--good { color: #6FBF73; }
+.lp-byo__flow-arrow--good strong { color: #6FBF73; }
 .lp-byo__flow-arrow--good i { color: #6FBF73; }
 .lp-byo__flow-orchestration {
-  margin-top: 12px;
+  margin-top: 14px;
   padding: 10px 14px;
   background: rgba(248, 183, 109, 0.08);
   border: 1px dashed rgba(248, 183, 109, 0.4);
@@ -230,6 +246,30 @@
   font-size: .72rem;
   color: var(--color-text-dim);
   font-family: var(--font-sans);
+}
+.lp-byo__flow-payoff {
+  margin-top: 18px;
+  padding: 14px 16px 12px;
+  border-top: 1px dashed var(--color-card-lv2);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.lp-byo__flow-payoff-amount {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+  color: #6FBF73;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.lp-byo__flow-payoff-meta {
+  font-family: var(--font-sans);
+  font-size: .82rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
 }
 
 /* ====== Cost comparison receipts (BYO LLM cost flow section) ====== */
@@ -2534,7 +2574,7 @@
         <div class="lp-byo__flow" role="presentation" aria-hidden="true">
           <div class="lp-byo__flow-bar">
             <span class="lp-byo__flow-bar-title">the money path</span>
-            <span class="lp-byo__flow-bar-meta">// inference $ flow</span>
+            <span class="lp-byo__flow-bar-meta">// 50 devs, ~30 PRs/dev</span>
           </div>
 
           <div class="lp-byo__flow-body">
@@ -2545,9 +2585,9 @@
               </div>
               <div class="lp-byo__flow-pipe">
                 <span class="lp-byo__flow-node">YOU</span>
-                <span class="lp-byo__flow-arrow lp-byo__flow-arrow--bad">$ $ $ <i>&rarr;</i></span>
-                <span class="lp-byo__flow-node lp-byo__flow-node--vendor">VENDOR<em>+ markup</em></span>
-                <span class="lp-byo__flow-arrow">$ <i>&rarr;</i></span>
+                <span class="lp-byo__flow-arrow lp-byo__flow-arrow--bad"><strong>$2,400</strong> <i>&rarr;</i></span>
+                <span class="lp-byo__flow-node lp-byo__flow-node--vendor">VENDOR<em>keeps $1,500</em></span>
+                <span class="lp-byo__flow-arrow"><strong>~$900</strong> <i>&rarr;</i></span>
                 <span class="lp-byo__flow-node lp-byo__flow-node--model">MODEL</span>
               </div>
             </div>
@@ -2558,13 +2598,19 @@
               </div>
               <div class="lp-byo__flow-pipe">
                 <span class="lp-byo__flow-node">YOU</span>
-                <span class="lp-byo__flow-arrow lp-byo__flow-arrow--good">$ $ <i>&rarr;</i></span>
+                <span class="lp-byo__flow-arrow lp-byo__flow-arrow--good"><strong>$918</strong> <i>&rarr;</i></span>
                 <span class="lp-byo__flow-node lp-byo__flow-node--model">MODEL</span>
               </div>
-              <div class="lp-byo__flow-orchestration">
-                <span class="lp-byo__flow-kodus">KODUS</span>
-                <span class="lp-byo__flow-kodus-note">orchestration only, never in the money path</span>
-              </div>
+            </div>
+
+            <div class="lp-byo__flow-orchestration">
+              <span class="lp-byo__flow-kodus">KODUS</span>
+              <span class="lp-byo__flow-kodus-note">orchestrates only, never in the money path</span>
+            </div>
+
+            <div class="lp-byo__flow-payoff">
+              <span class="lp-byo__flow-payoff-amount">&minus; $1,482/mo</span>
+              <span class="lp-byo__flow-payoff-meta">Same review. 62% less spend. Every line item visible.</span>
             </div>
 
           </div>
