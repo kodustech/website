@@ -109,6 +109,23 @@
   flex-wrap: wrap;
   gap: 14px;
 }
+.lp-shp__hero-foot {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--color-text-dim);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: baseline;
+}
+.lp-shp__hero-foot a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.lp-shp__hero-foot a:hover { color: var(--color-primary); }
+.lp-shp__hero-foot a::before { content: '\2192  '; color: var(--color-primary); }
 
 /* ====== Hero cost-flow diagram (BYO LLM money path visualization) ====== */
 
@@ -270,6 +287,166 @@
   font-size: .82rem;
   color: var(--color-text-muted);
   line-height: 1.4;
+}
+
+/* ====== Cost calculator (3 scenarios via CSS :checked) ====== */
+
+.lp-byo__calc {
+  background: var(--color-card-lv1);
+  border: var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.lp-byo__calc > input[type="radio"] { display: none; }
+
+.lp-byo__calc-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: var(--rule);
+}
+@media (max-width: 760px) {
+  .lp-byo__calc-nav { grid-template-columns: 1fr; }
+}
+.lp-byo__calc-nav label {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  border-right: var(--rule);
+  background: var(--color-bg);
+  transition: background .15s ease;
+}
+.lp-byo__calc-nav label:last-child { border-right: none; }
+.lp-byo__calc-nav label:hover { background: var(--color-card-lv2); }
+.lp-byo__calc-nav label strong {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  font-weight: 700;
+}
+.lp-byo__calc-nav label span {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  color: var(--color-text-dim);
+}
+
+#calc-a:checked ~ .lp-byo__calc-nav label[for="calc-a"],
+#calc-b:checked ~ .lp-byo__calc-nav label[for="calc-b"],
+#calc-c:checked ~ .lp-byo__calc-nav label[for="calc-c"] {
+  background: var(--color-card-lv2);
+  box-shadow: inset 0 -3px 0 var(--color-primary);
+}
+#calc-a:checked ~ .lp-byo__calc-nav label[for="calc-a"] strong,
+#calc-b:checked ~ .lp-byo__calc-nav label[for="calc-b"] strong,
+#calc-c:checked ~ .lp-byo__calc-nav label[for="calc-c"] strong {
+  color: var(--color-primary);
+}
+
+.lp-byo__calc-panels { padding: 28px 26px 24px; }
+.lp-byo__calc-panel { display: none; }
+#calc-a:checked ~ .lp-byo__calc-panels #panel-calc-a,
+#calc-b:checked ~ .lp-byo__calc-panels #panel-calc-b,
+#calc-c:checked ~ .lp-byo__calc-panels #panel-calc-c { display: block; }
+
+.lp-byo__calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+@media (max-width: 760px) {
+  .lp-byo__calc-grid { grid-template-columns: 1fr; }
+}
+.lp-byo__calc-cell {
+  background: var(--color-bg);
+  border: var(--rule);
+  border-radius: 4px;
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.lp-byo__calc-cell--bad { border-left: 3px solid #E07A7A; }
+.lp-byo__calc-cell--good { border-left: 3px solid #6FBF73; }
+.lp-byo__calc-cell--save {
+  border-left: 3px solid var(--color-primary);
+  background: rgba(248, 183, 109, 0.06);
+}
+.lp-byo__calc-cell-label {
+  font-family: var(--font-mono);
+  font-size: .64rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+.lp-byo__calc-cell-amount {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+  color: var(--color-text);
+}
+.lp-byo__calc-cell--bad .lp-byo__calc-cell-amount { color: #E07A7A; }
+.lp-byo__calc-cell--good .lp-byo__calc-cell-amount { color: #6FBF73; }
+.lp-byo__calc-cell--save .lp-byo__calc-cell-amount { color: var(--color-primary); }
+.lp-byo__calc-cell-detail {
+  font-family: var(--font-sans);
+  font-size: .82rem;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+.lp-byo__calc-note {
+  font-family: var(--font-sans);
+  font-size: .88rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ====== Why BYO matters (3 risk cards) ====== */
+
+.lp-byo__risks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 880px) {
+  .lp-byo__risks { grid-template-columns: 1fr; gap: 16px; }
+}
+.lp-byo__risk {
+  background: var(--color-card-lv1);
+  border: var(--rule);
+  border-left: 3px solid #E07A7A;
+  padding: 24px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.lp-byo__risk-num {
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  color: #E07A7A;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.lp-byo__risk h3 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--color-text);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.lp-byo__risk p {
+  font-family: var(--font-sans);
+  font-size: .92rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  margin: 0;
 }
 
 /* ====== Cost comparison receipts (BYO LLM cost flow section) ====== */
@@ -1811,6 +1988,33 @@
   flex-wrap: wrap;
   gap: 6px;
 }
+.lp-shp__byo-tiers {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lp-shp__byo-tier {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.lp-shp__byo-tier-label {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  min-width: 130px;
+}
+.lp-shp__byo-tier-label::before {
+  content: '// ';
+  color: var(--color-primary);
+}
+@media (max-width: 540px) {
+  .lp-shp__byo-tier-label { min-width: 100%; margin-bottom: 2px; }
+}
 .lp-shp__pill {
   font-family: var(--font-mono);
   font-size: .72rem;
@@ -2488,6 +2692,9 @@
   margin-top: 14px;
   font-family: var(--font-mono);
   font-size: .82rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 .lp-shp__final-aside a {
   color: var(--color-text-muted);
@@ -2562,13 +2769,18 @@
             BYO LLM code review.
           </h1>
           <p class="lp-shp__hero-sub">
-            Open source AI code review without vendor lock-in. You bring the model. We never touch your bill. Pay your provider directly with zero markup on inference, switch models in one config line, see every cent the review costs.
+            Open source AI code review without vendor lock-in. The first model-agnostic AI code review tool with predictable AI review costs. You bring the model, we never touch your bill. Pay your provider directly with zero markup on inference, switch models in one config line, see every cent the review costs.
           </p>
 
           <div class="lp-shp__hero-ctas">
             <a href="#byok-config" class="btn btn--primary" id="lpByoModelBtn">Pick your model</a>
-            <a href="https://docs.kodus.io/how_to_deploy/en/deploy_kodus/generic_vm" class="btn btn--outline-light" id="lpByoInstallBtn">Install on a VM</a>
+            <a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="btn btn--outline-light" id="lpByoPricingBtn">See pricing</a>
           </div>
+          <p class="lp-shp__hero-foot">
+            <a href="https://docs.kodus.io/how_to_deploy/en/deploy_kodus/generic_vm" id="lpByoInstallBtn">Install on a VM</a>
+            <span>&middot;</span>
+            <a href="https://github.com/kodustech/kodus-installer" target="_blank" rel="noopener" id="lpByoInstallerBtn">Get the installer</a>
+          </p>
         </div>
 
         <div class="lp-byo__flow" role="presentation" aria-hidden="true">
@@ -2627,6 +2839,35 @@
         <p class="lp-shp__def-text">
           <strong>BYO LLM code review</strong> is when an AI code reviewer runs on a model you own (your account, your API key, your pricing), instead of a model bundled by the review vendor. The vendor charges for orchestration. You pay the model provider directly for inference, with no markup in the middle.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY BYO MATTERS ========== -->
+  <section class="lp-shp__section">
+    <div class="container">
+      <span class="lp-shp__eyebrow">Why this matters</span>
+      <h2 class="lp-shp__title">Three things a bundled model <span class="highlight">decides for you.</span></h2>
+      <p class="lp-shp__lede" style="margin-bottom: 36px;">
+        SaaS code review vendors that lock the model are deciding three things on your behalf. Each one looks like a feature in the marketing page and shows up as a bill or a migration headache later.
+      </p>
+
+      <div class="lp-byo__risks">
+        <div class="lp-byo__risk">
+          <span class="lp-byo__risk-num">01</span>
+          <h3>Vendor lock-in on the model contract</h3>
+          <p>The model lives behind the vendor's account. When you outgrow them, switching is not "swap an env var", it is renegotiating the entire review pipeline. With BYO LLM, the agent is the thing you can swap. The model contract stays where it always was: with the provider.</p>
+        </div>
+        <div class="lp-byo__risk">
+          <span class="lp-byo__risk-num">02</span>
+          <h3>Cost opacity on inference</h3>
+          <p>Bundled-vendor pricing rolls inference into a per-seat fee. You cannot tell what fraction is the model and what fraction is margin. When the bill grows, you have no levers (cheaper model, smaller context, fewer reviews) because you do not see the math. BYO LLM gives you two invoices and an audit trail per request.</p>
+        </div>
+        <div class="lp-byo__risk">
+          <span class="lp-byo__risk-num">03</span>
+          <h3>Model lifecycle traps</h3>
+          <p>Provider deprecates the snapshot the vendor bundled. The vendor moves you to the next default without telling you. Your review behavior shifts overnight. With BYO LLM, you pin the snapshot, you run a regression set on the candidate before flipping, and the deprecation is your calendar event, not a surprise.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -2742,6 +2983,109 @@
 
       <p class="lp-byo__disclaimer">
         Numbers above use public list pricing as of 2026-05 on annual prepay: CodeRabbit Pro at $48/dev/month (or $60/dev/month if billed monthly), Kodus Teams at $8/dev/month (or $10/dev/month if billed monthly), Anthropic Claude Sonnet 4.6 at list passthrough rates. Inference estimate assumes ~3.5k input + ~600 output tokens per PR review across 1,500 reviewed PRs/month. Your bill will vary with model choice, PR size, and rule depth. Talk to us for a real estimate against your repo history.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== CALCULATOR (3 scenarios) ========== -->
+  <section class="lp-shp__section lp-shp__section--tinted">
+    <div class="container">
+      <span class="lp-shp__eyebrow">Cost calculator</span>
+      <h2 class="lp-shp__title">Run the math on <span class="highlight">your team.</span></h2>
+      <p class="lp-shp__lede" style="margin-bottom: 36px;">
+        Three pre-computed scenarios across team size and model class. Pick the one closest to your shape. Numbers use public list pricing on annual prepay for both vendors, with Anthropic passthrough rates for the inference side.
+      </p>
+
+      <div class="lp-byo__calc">
+        <input type="radio" name="calc-scenario" id="calc-a">
+        <input type="radio" name="calc-scenario" id="calc-b" checked>
+        <input type="radio" name="calc-scenario" id="calc-c">
+
+        <div class="lp-byo__calc-nav">
+          <label for="calc-a">
+            <strong>Cost-optimized</strong>
+            <span>10 devs &middot; Haiku 4.5</span>
+          </label>
+          <label for="calc-b">
+            <strong>Balanced</strong>
+            <span>50 devs &middot; Sonnet 4.6</span>
+          </label>
+          <label for="calc-c">
+            <strong>Scale</strong>
+            <span>200 devs &middot; Sonnet 4.6</span>
+          </label>
+        </div>
+
+        <div class="lp-byo__calc-panels">
+
+          <div class="lp-byo__calc-panel" id="panel-calc-a">
+            <div class="lp-byo__calc-grid">
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--bad">
+                <span class="lp-byo__calc-cell-label">CodeRabbit Pro</span>
+                <span class="lp-byo__calc-cell-amount">$480/mo</span>
+                <span class="lp-byo__calc-cell-detail">10 seats &times; $48 (annual prepay)</span>
+              </div>
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--good">
+                <span class="lp-byo__calc-cell-label">Kodus BYO</span>
+                <span class="lp-byo__calc-cell-amount">$102/mo</span>
+                <span class="lp-byo__calc-cell-detail">$80 seats + $22 Haiku 4.5 inference</span>
+              </div>
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--save">
+                <span class="lp-byo__calc-cell-label">Monthly delta</span>
+                <span class="lp-byo__calc-cell-amount">&minus; $378/mo</span>
+                <span class="lp-byo__calc-cell-detail">79% lower &middot; ~$4.5k/yr saved</span>
+              </div>
+            </div>
+            <p class="lp-byo__calc-note">Smaller team, fast triage on Haiku. Inference is so cheap it almost vanishes against seats.</p>
+          </div>
+
+          <div class="lp-byo__calc-panel" id="panel-calc-b">
+            <div class="lp-byo__calc-grid">
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--bad">
+                <span class="lp-byo__calc-cell-label">CodeRabbit Pro</span>
+                <span class="lp-byo__calc-cell-amount">$2,400/mo</span>
+                <span class="lp-byo__calc-cell-detail">50 seats &times; $48 (annual prepay)</span>
+              </div>
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--good">
+                <span class="lp-byo__calc-cell-label">Kodus BYO</span>
+                <span class="lp-byo__calc-cell-amount">$818/mo</span>
+                <span class="lp-byo__calc-cell-detail">$400 seats + $418 Sonnet 4.6 inference</span>
+              </div>
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--save">
+                <span class="lp-byo__calc-cell-label">Monthly delta</span>
+                <span class="lp-byo__calc-cell-amount">&minus; $1,582/mo</span>
+                <span class="lp-byo__calc-cell-detail">66% lower &middot; ~$19k/yr saved</span>
+              </div>
+            </div>
+            <p class="lp-byo__calc-note">Mid-sized team on Sonnet for balanced reasoning depth. This is the receipt comparison shown above.</p>
+          </div>
+
+          <div class="lp-byo__calc-panel" id="panel-calc-c">
+            <div class="lp-byo__calc-grid">
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--bad">
+                <span class="lp-byo__calc-cell-label">CodeRabbit Pro</span>
+                <span class="lp-byo__calc-cell-amount">$9,600/mo</span>
+                <span class="lp-byo__calc-cell-detail">200 seats &times; $48 (annual prepay)</span>
+              </div>
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--good">
+                <span class="lp-byo__calc-cell-label">Kodus BYO</span>
+                <span class="lp-byo__calc-cell-amount">$3,272/mo</span>
+                <span class="lp-byo__calc-cell-detail">$1,600 seats + $1,672 Sonnet 4.6 inference</span>
+              </div>
+              <div class="lp-byo__calc-cell lp-byo__calc-cell--save">
+                <span class="lp-byo__calc-cell-label">Monthly delta</span>
+                <span class="lp-byo__calc-cell-amount">&minus; $6,328/mo</span>
+                <span class="lp-byo__calc-cell-detail">66% lower &middot; ~$76k/yr saved</span>
+              </div>
+            </div>
+            <p class="lp-byo__calc-note">Larger org. Same model class, 4x the PR volume. Annual savings buys a senior eng FTE.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="lp-byo__disclaimer" style="margin-top: 24px;">
+        All scenarios assume ~30 PRs per developer per month with ~3.5k input + ~600 output tokens per PR review on Anthropic list pricing. CodeRabbit Pro at $48/dev/month annual prepay ($60/dev/month monthly). Kodus Teams at $8/dev/month annual prepay ($10/dev/month monthly). Real numbers will vary with model choice, PR size, and rule depth. Reach out for a quote based on your actual repo history.
       </p>
     </div>
   </section>
@@ -3236,24 +3580,41 @@
           <span class="lp-shp__eyebrow">Supported providers</span>
           <h2 class="lp-shp__title">14+ providers. <span class="highlight">One config shape.</span></h2>
           <p class="lp-shp__lede">
-            Three env vars and the agent talks to any of them. Frontier models, speed-tuned inference, open weights, or a local endpoint you operate. Same code path on every side.
+            Run code review with Claude Sonnet 4.6, GPT-5.1, Gemini 2.5 Pro, Llama 3.3, Kimi K2, GLM 4.6, or any OpenAI-compatible endpoint you operate. Three env vars and the agent talks to any of them. Frontier models, speed-tuned inference, open weights. Same code path on every side.
           </p>
 
-          <div class="lp-shp__pills">
-            <span class="lp-shp__pill">OpenAI</span>
-            <span class="lp-shp__pill">Anthropic</span>
-            <span class="lp-shp__pill">Google</span>
-            <span class="lp-shp__pill">Vertex AI</span>
-            <span class="lp-shp__pill">Novita</span>
-            <span class="lp-shp__pill">Groq</span>
-            <span class="lp-shp__pill">Cerebras</span>
-            <span class="lp-shp__pill">Together AI</span>
-            <span class="lp-shp__pill">Fireworks</span>
-            <span class="lp-shp__pill">Moonshot / Kimi</span>
-            <span class="lp-shp__pill">Z.ai / GLM</span>
-            <span class="lp-shp__pill">Chutes</span>
-            <span class="lp-shp__pill">Synthetic</span>
-            <span class="lp-shp__pill lp-shp__pill--accent">+ any OpenAI-compatible</span>
+          <div class="lp-shp__byo-tiers">
+            <div class="lp-shp__byo-tier">
+              <span class="lp-shp__byo-tier-label">Frontier</span>
+              <span class="lp-shp__pill">claude-opus-4-7</span>
+              <span class="lp-shp__pill">claude-sonnet-4-6</span>
+              <span class="lp-shp__pill">gpt-5.1</span>
+              <span class="lp-shp__pill">gemini-2.5-pro</span>
+            </div>
+            <div class="lp-shp__byo-tier">
+              <span class="lp-shp__byo-tier-label">Speed / cost</span>
+              <span class="lp-shp__pill">claude-haiku-4-5</span>
+              <span class="lp-shp__pill">groq llama-3.3-70b</span>
+              <span class="lp-shp__pill">cerebras qwen3-coder</span>
+              <span class="lp-shp__pill">together-ai</span>
+              <span class="lp-shp__pill">fireworks</span>
+            </div>
+            <div class="lp-shp__byo-tier">
+              <span class="lp-shp__byo-tier-label">Open weights</span>
+              <span class="lp-shp__pill">llama-3.3</span>
+              <span class="lp-shp__pill">mistral-large</span>
+              <span class="lp-shp__pill">kimi-k2</span>
+              <span class="lp-shp__pill">glm-4.6</span>
+              <span class="lp-shp__pill">deepseek-v3</span>
+            </div>
+            <div class="lp-shp__byo-tier">
+              <span class="lp-shp__byo-tier-label">Local / self-hosted</span>
+              <span class="lp-shp__pill">vLLM</span>
+              <span class="lp-shp__pill">Ollama</span>
+              <span class="lp-shp__pill">TGI</span>
+              <span class="lp-shp__pill">LiteLLM gateway</span>
+              <span class="lp-shp__pill lp-shp__pill--accent">+ any OpenAI-compatible</span>
+            </div>
           </div>
         </div>
 
@@ -3706,10 +4067,11 @@
             Three env vars and the agent talks to any OpenAI-compatible provider. Switch in one line. No markup, ever.
           </p>
           <div class="lp-shp__final-ctas">
-            <a href="https://docs.kodus.io/how_to_deploy/en/deploy_kodus/generic_vm" class="btn btn--primary" id="lpByoFinalInstallBtn">Install on a VM</a>
+            <a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="btn btn--primary" id="lpByoFinalPricingBtn">See pricing</a>
             <a href="#byok-config" class="btn btn--outline-light" id="lpByoFinalConfigBtn">See the config</a>
           </div>
           <div class="lp-shp__final-aside">
+            <a href="https://docs.kodus.io/how_to_deploy/en/deploy_kodus/generic_vm" id="lpByoFinalInstallBtn">Install on a VM</a>
             <a href="https://github.com/kodustech/kodus-ai" target="_blank" rel="noopener" id="lpByoFinalGithubBtn">Star kodus-ai on GitHub</a>
           </div>
         </div>
@@ -3802,6 +4164,65 @@
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://kodus.io/byo-llm-code-review/#pr-agent",
+  "name": "PR-Agent",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Linux, Docker",
+  "url": "https://github.com/The-PR-Agent/pr-agent",
+  "description": "Open source AI code review agent supporting bring-your-own-LLM via LiteLLM. Donated by Qodo to the community in late 2025. Apache 2.0.",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "downloadUrl": "https://github.com/The-PR-Agent/pr-agent",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Open source, self-host only"}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://kodus.io/byo-llm-code-review/#sourcery",
+  "name": "Sourcery",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "url": "https://sourcery.ai/",
+  "description": "AI code review tool with proprietary models. BYO LLM endpoint is enterprise-tier only. Free tier covers open-source repos.",
+  "offers": {"@type": "Offer", "price": "12", "priceCurrency": "USD", "description": "Pro plan starting at $12 per seat per month"}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://kodus.io/byo-llm-code-review/#coderabbit",
+  "name": "CodeRabbit",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "url": "https://coderabbit.ai/",
+  "description": "Cloud-only AI code review with bundled multi-LLM routing internal to the vendor. No bring-your-own-LLM option.",
+  "offers": {"@type": "Offer", "price": "48", "priceCurrency": "USD", "description": "Pro plan at $48 per seat per month with annual prepay, $60 per seat per month if billed monthly"}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://kodus.io/byo-llm-code-review/#greptile",
+  "name": "Greptile",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "url": "https://greptile.com/",
+  "description": "AI code review with full-repo context. Bundled LLM, usage-based pricing. No bring-your-own-LLM by default. Self-hosting available on enterprise.",
+  "offers": {"@type": "Offer", "priceCurrency": "USD", "description": "Usage-based billing, contact for enterprise self-hosted"}
+}
+</script>
+
 
 <script type="application/ld+json">
 {
