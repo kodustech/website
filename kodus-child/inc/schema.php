@@ -387,6 +387,7 @@ function kodus_get_article_schema_templates() {
         'page-kodus-vs-github.php',
         'page-kodus-vs-claude.php',
         'page-self-hosted-ai-code-review.php',
+        'page-byo-llm-code-review.php',
     ];
 }
 
@@ -404,6 +405,7 @@ function kodus_get_article_schema_about() {
         'page-kodus-vs-github.php' => ['Kodus', 'GitHub Copilot', 'AI code review'],
         'page-kodus-vs-claude.php' => ['Kodus', 'Claude Code', 'AI code review'],
         'page-self-hosted-ai-code-review.php' => ['Kodus', 'AI code review', 'Self-hosted', 'Open source', 'AGPLv3'],
+        'page-byo-llm-code-review.php' => ['Kodus', 'AI code review', 'BYO LLM', 'Model agnostic', 'Open source'],
     ];
 
     return $about_map[$template] ?? [];
