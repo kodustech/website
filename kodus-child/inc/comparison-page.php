@@ -85,14 +85,11 @@ function kodus_render_comparison_page($slug) {
         echo '<main><div class="container"><p>Main comparison content was not found in source file.</p></div></main>';
     }
 
-    // Render inline scripts needed by comparison blocks.
+    // Render inline scripts needed by comparison blocks (including JSON-LD schemas).
     if (preg_match_all('#<script\b[^>]*>.*?</script>#is', $html, $script_matches)) {
         foreach ($script_matches[0] as $script_tag) {
-            // Skip external scripts and JSON-LD schema blocks from static page.
+            // Skip external scripts (they should be enqueued via WP, not inline).
             if (stripos($script_tag, ' src=') !== false || stripos($script_tag, ' src =') !== false) {
-                continue;
-            }
-            if (stripos($script_tag, 'application/ld+json') !== false) {
                 continue;
             }
             echo $script_tag . "\n";

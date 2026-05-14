@@ -1933,6 +1933,117 @@
       </div>
     </section>
 
+    <section class="faq" id="faq" style="border-top: 1px solid var(--color-card-lv2);">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq__terminal">
+          <div class="faq__bar">
+            <div class="faq__bar-dots">
+              <span class="faq__dot faq__dot--red"></span>
+              <span class="faq__dot faq__dot--yellow"></span>
+              <span class="faq__dot faq__dot--green"></span>
+            </div>
+            <span class="faq__bar-title">kodus-vs-coderabbit-faq(1)</span>
+            <span class="faq__bar-status">bash</span>
+          </div>
+          <div class="faq__body">
+            <div class="faq__man-header">
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+              <span class="faq__man-center">Kodus vs CodeRabbit</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+
+            <div class="faq__list">
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "How does pricing compare between Kodus and CodeRabbit?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus Teams is $10/dev/month monthly or $8/dev/month on annual prepay, plus your own model bill (you bring your LLM key). CodeRabbit Pro is $24/dev/month annual prepay with the LLM bundled; CodeRabbit Pro Plus is $48/dev/month annual. CodeRabbit is free forever for public repositories. Kodus self-hosted is free for any repo under AGPLv3 with the same model setup. Numbers reflect public pricing pages as of 2026-05; verify before locking a budget.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Is either tool open source?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus is open source under AGPLv3 (<a href="https://github.com/kodustech/kodus-ai" target="_blank" rel="noopener">github.com/kodustech/kodus-ai</a>). You can self-host, fork, audit the code, and run it inside your own network. CodeRabbit is closed source; their agent ships as a managed service.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Can I bring my own LLM (BYOK)?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus yes, end to end. Point three env vars at any OpenAI-compatible provider (OpenAI, Anthropic, Gemini, Groq, Cerebras, vLLM, Ollama, LiteLLM) and the agent calls your account directly with zero markup on inference. CodeRabbit bundles the LLM internally; you cannot swap the provider or see token-level cost.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Is there a self-hosted option?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus self-hosted is free under AGPLv3 and runs with Docker Compose on a single VM or Kubernetes. Source code, LLM calls, and review history stay on your infrastructure. CodeRabbit offers self-hosting only on the Enterprise tier (contact sales). EU SaaS deployment is also available on CodeRabbit Enterprise.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Do both support custom rules?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Yes, both. Kodus uses markdown files in <code>.kody/rules/</code> with YAML frontmatter (title, scope, path globs, severity_min) plus a plain-English Instructions section. Rules inherit Global to Repository to Directory. CodeRabbit uses <code>.coderabbit.yaml</code> with <code>path_instructions</code> taking natural language per path glob. Kodus also auto-detects existing IDE rule files (.cursorrules, CLAUDE.md, .windsurfrules, .github/copilot-instructions.md) and reuses them.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "How do I migrate from CodeRabbit?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Three steps. (1) Install Kodus on Cloud (free trial) or self-host with the kodus-installer. (2) Convert your existing <code>.coderabbit.yaml</code> <code>path_instructions</code> into markdown rules under <code>.kody/rules/</code> (one file per instruction, with the path glob in the frontmatter). (3) Point your Git host webhook to Kodus and disable CodeRabbit on the repos you migrate. Reviews start picking up on the next PR.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Which is better for public / OSS repos?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Both work well for public repositories. CodeRabbit offers free reviews forever on public repos (hosted only, no self-host on the free tier). Kodus Cloud has a free trial; Kodus self-hosted is free for any repo. If you want full ownership of the data path on a public repo, Kodus self-host is the option.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="faq__man-footer">
+              <span class="faq__man-section">Kodus v2.0</span>
+              <span class="faq__man-center">2026-05-14</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="roi-cta">
       <div class="container">
         <div class="pixel-cta">
@@ -2532,6 +2643,98 @@
 
     buildBugComparison();
     animateSeverityBars();
+  </script>
+
+  <!-- ========== SCHEMAS (JSON-LD) ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Kodus", "item": "https://kodus.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Kodus vs CodeRabbit", "item": "https://kodus.io/kodus-vs-coderabbit/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kodus",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web, Linux, Docker",
+    "url": "https://kodus.io/",
+    "description": "Open source AI code review without vendor lock-in. Bring your own LLM, self-host under AGPLv3, write custom rules as markdown files in .kody/rules/. Reviews PRs on GitHub, GitLab, Bitbucket, and Azure DevOps.",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "downloadUrl": "https://github.com/kodustech/kodus-ai",
+    "offers": {
+      "@type": "Offer",
+      "price": "10",
+      "priceCurrency": "USD",
+      "description": "Teams plan at $10 per developer per month monthly billing ($8 per developer per month on annual prepay). Self-hosted edition free under AGPLv3."
+    },
+    "publisher": {"@type": "Organization", "name": "Kodus", "url": "https://kodus.io/"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://kodus.io/kodus-vs-coderabbit/#coderabbit",
+    "name": "CodeRabbit",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://coderabbit.ai/",
+    "description": "Cloud AI code review with bundled LLM. .coderabbit.yaml config supports path_instructions in natural language per path glob. Free forever for public repositories. Self-hosting only on the Enterprise tier.",
+    "offers": {
+      "@type": "Offer",
+      "price": "24",
+      "priceCurrency": "USD",
+      "description": "Pro plan at $24 per user per month annual prepay. Pro Plus at $48 per user per month annual. Free plan for public repos. Enterprise (self-host, EU SaaS) by contact sales."
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Table",
+    "about": "Feature comparison between Kodus and CodeRabbit",
+    "name": "Kodus vs CodeRabbit at-a-glance comparison",
+    "url": "https://kodus.io/kodus-vs-coderabbit/#at-a-glance",
+    "isPartOf": {"@type": "WebPage", "url": "https://kodus.io/kodus-vs-coderabbit/"},
+    "mainEntity": [
+      {"@type": "PropertyValue", "name": "AI-powered code summaries", "value": "Kodus: Yes; CodeRabbit: Yes"},
+      {"@type": "PropertyValue", "name": "In-line comments", "value": "Kodus: Yes; CodeRabbit: Yes"},
+      {"@type": "PropertyValue", "name": "Chat with PR bot", "value": "Kodus: Yes; CodeRabbit: Yes"},
+      {"@type": "PropertyValue", "name": "Rules per repo / folder / file / PR", "value": "Kodus: Yes; CodeRabbit: Limited"},
+      {"@type": "PropertyValue", "name": "External context (MCP and Plugins)", "value": "Kodus: Yes; CodeRabbit: No"},
+      {"@type": "PropertyValue", "name": "Native IDE plugin", "value": "Kodus: No; CodeRabbit: Yes"},
+      {"@type": "PropertyValue", "name": "Metrics dashboard", "value": "Kodus: Yes; CodeRabbit: No"},
+      {"@type": "PropertyValue", "name": "Technical-debt backlog", "value": "Kodus: Yes; CodeRabbit: No"},
+      {"@type": "PropertyValue", "name": "Noise filters (limit and severity)", "value": "Kodus: Yes; CodeRabbit: No"},
+      {"@type": "PropertyValue", "name": "Self-host option", "value": "Kodus: Yes (free, AGPLv3); CodeRabbit: Enterprise tier only"},
+      {"@type": "PropertyValue", "name": "Pricing", "value": "Kodus: $10/user/month + BYOK ($8 annual); CodeRabbit: Pro $24/user/month annual, Pro Plus $48/user/month annual"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "How does pricing compare between Kodus and CodeRabbit?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus Teams is $10 per developer per month monthly or $8 per developer per month annual prepay, plus your own model bill. CodeRabbit Pro is $24 per developer per month annual prepay with the LLM bundled; CodeRabbit Pro Plus is $48 per developer per month annual. CodeRabbit is free forever for public repositories. Kodus self-hosted is free for any repo under AGPLv3."}},
+      {"@type": "Question", "name": "Is either tool open source?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus is open source under AGPLv3 (github.com/kodustech/kodus-ai). You can self-host, fork, audit the code. CodeRabbit is closed source; their agent ships as a managed service."}},
+      {"@type": "Question", "name": "Can I bring my own LLM (BYOK)?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus yes, end to end. Point three env vars at any OpenAI-compatible provider and the agent calls your account directly with zero markup. CodeRabbit bundles the LLM internally; you cannot swap the provider or see token-level cost."}},
+      {"@type": "Question", "name": "Is there a self-hosted option?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus self-hosted is free under AGPLv3 and runs with Docker Compose. CodeRabbit offers self-hosting only on the Enterprise tier (contact sales)."}},
+      {"@type": "Question", "name": "Do both support custom rules?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Kodus uses markdown files in .kody/rules/ with YAML frontmatter plus plain-English instructions. CodeRabbit uses .coderabbit.yaml with path_instructions taking natural language per path glob. Kodus also auto-detects existing IDE rule files like .cursorrules and CLAUDE.md."}},
+      {"@type": "Question", "name": "How do I migrate from CodeRabbit?", "acceptedAnswer": {"@type": "Answer", "text": "Three steps. Install Kodus (Cloud or self-host). Convert your .coderabbit.yaml path_instructions into markdown rules under .kody/rules/, one file per instruction with the path glob in the frontmatter. Point your Git host webhook to Kodus and disable CodeRabbit on the repos you migrate."}},
+      {"@type": "Question", "name": "Which is better for public OSS repos?", "acceptedAnswer": {"@type": "Answer", "text": "Both work. CodeRabbit offers free hosted reviews forever on public repos. Kodus self-hosted is free for any repo. If you want full ownership of the data path on a public repo, Kodus self-host is the option."}}
+    ]
+  }
   </script>
 </body>
 </html>

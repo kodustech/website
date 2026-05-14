@@ -2019,6 +2019,117 @@
       </div>
     </section>
 
+    <section class="faq" id="faq" style="border-top: 1px solid var(--color-card-lv2);">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq__terminal">
+          <div class="faq__bar">
+            <div class="faq__bar-dots">
+              <span class="faq__dot faq__dot--red"></span>
+              <span class="faq__dot faq__dot--yellow"></span>
+              <span class="faq__dot faq__dot--green"></span>
+            </div>
+            <span class="faq__bar-title">kodus-vs-cursor-bugbot-faq(1)</span>
+            <span class="faq__bar-status">bash</span>
+          </div>
+          <div class="faq__body">
+            <div class="faq__man-header">
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+              <span class="faq__man-center">Kodus vs Cursor BugBot</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+
+            <div class="faq__list">
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "What is Cursor BugBot exactly?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>BugBot is Cursor's AI code reviewer. It reviews PRs directly on GitHub (not just inside the Cursor IDE) and posts inline comments on potential issues, auto-running on every new PR when enabled. It is a separate feature from the Cursor IDE chat or completions, and it can be configured with natural-language &ldquo;Bugbot Rules&rdquo; that define custom coding standards.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "How does pricing compare?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Cursor BugBot moved to usage-based billing in mid-2026. Each BugBot run costs roughly $1.00 to $1.50 depending on PR size and effort level (Default, High, or custom). For Teams, this comes from on-demand spend; for Individuals, it eats included usage. Legacy customers still pay the previous $40 per seat per month flat rate. Kodus Teams is $10 per developer per month monthly ($8 annual) plus your own model bill, or free self-hosted under AGPLv3.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Does BugBot work outside GitHub?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>No. BugBot reviews pull requests on GitHub only. Kodus reviews PRs on GitHub, GitLab, Bitbucket, and Azure DevOps, including the self-managed variants of each (GitHub Enterprise Server, GitLab Self-Managed, Bitbucket Data Center).</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Can I bring my own LLM with BugBot?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>No, BugBot routes through Cursor's internal model selection (configurable effort levels: Default, High, custom prompt) but you do not bring your own API key or pick the provider. Kodus has full BYO LLM: point three env vars at any OpenAI-compatible provider (OpenAI, Anthropic, Gemini, Groq, Cerebras, vLLM, Ollama) and the inference call hits your account directly.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Do I need a Cursor IDE subscription to use BugBot?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>BugBot is billed through Cursor plans (Individual, Pro, Pro Plus, Teams, Ultra, Enterprise). It is part of the Cursor product suite even though it runs on GitHub PRs. Kodus is a standalone product and does not depend on any IDE.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Do both support custom rules?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Both do. Kodus uses markdown files in <code>.kody/rules/</code> with YAML frontmatter (scope, path globs, severity) plus plain-English instructions. Kodus also auto-detects <code>.cursorrules</code>, <code>CLAUDE.md</code>, <code>.windsurfrules</code>, and <code>.github/copilot-instructions.md</code> as rule sources. BugBot Rules accept natural-language coding standards and enforce them across reviews, configured per project.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Is there a self-hosted option?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus self-hosted is free under AGPLv3 and runs with Docker Compose. Source code, LLM calls, and review history stay on your infrastructure. BugBot is a SaaS-only product. There is no on-prem deployment option today.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="faq__man-footer">
+              <span class="faq__man-section">Kodus v2.0</span>
+              <span class="faq__man-center">2026-05-14</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="roi-cta">
       <div class="container">
         <div class="pixel-cta">
@@ -2618,6 +2729,100 @@
 
     buildBugComparison();
     animateSeverityBars();
+  </script>
+
+  <!-- ========== SCHEMAS (JSON-LD) ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Kodus", "item": "https://kodus.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Kodus vs Cursor BugBot", "item": "https://kodus.io/kodus-vs-bugbot/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kodus",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web, Linux, Docker",
+    "url": "https://kodus.io/",
+    "description": "Open source AI code review without vendor lock-in. Bring your own LLM, self-host under AGPLv3, write custom rules as markdown files. Reviews PRs on GitHub, GitLab, Bitbucket, and Azure DevOps (including self-managed variants). Standalone product, no IDE subscription required.",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "downloadUrl": "https://github.com/kodustech/kodus-ai",
+    "offers": {
+      "@type": "Offer",
+      "price": "10",
+      "priceCurrency": "USD",
+      "description": "Teams plan at $10 per developer per month monthly ($8 per developer per month annual prepay). Self-hosted edition free under AGPLv3."
+    },
+    "publisher": {"@type": "Organization", "name": "Kodus", "url": "https://kodus.io/"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://kodus.io/kodus-vs-bugbot/#bugbot",
+    "name": "Cursor BugBot",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://cursor.com/bugbot",
+    "description": "Cursor's AI code reviewer. Auto-reviews pull requests directly on GitHub with inline comments. Configurable Bugbot Rules accept natural-language coding standards. SaaS only; routes through Cursor's internal model selection with configurable effort levels (Default, High, custom). Part of the Cursor product suite.",
+    "offers": {
+      "@type": "Offer",
+      "price": "1.25",
+      "priceCurrency": "USD",
+      "description": "Usage-based billing as of mid-2026: roughly $1.00-$1.50 per BugBot run depending on PR size and effort level. Legacy customers may still pay $40 per seat per month flat rate."
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Table",
+    "about": "Feature comparison between Kodus and Cursor BugBot",
+    "name": "Kodus vs Cursor BugBot at-a-glance comparison",
+    "url": "https://kodus.io/kodus-vs-bugbot/#at-a-glance",
+    "isPartOf": {"@type": "WebPage", "url": "https://kodus.io/kodus-vs-bugbot/"},
+    "mainEntity": [
+      {"@type": "PropertyValue", "name": "Supported platforms", "value": "Kodus: GitHub, GitLab, Bitbucket, Azure DevOps (+ self-managed); Cursor BugBot: GitHub only"},
+      {"@type": "PropertyValue", "name": "Bring your own LLM", "value": "Kodus: Yes; Cursor BugBot: No (internal routing with effort levels)"},
+      {"@type": "PropertyValue", "name": "AI-powered code summaries", "value": "Kodus: Yes; Cursor BugBot: Yes"},
+      {"@type": "PropertyValue", "name": "In-line comments", "value": "Kodus: Yes; Cursor BugBot: Yes"},
+      {"@type": "PropertyValue", "name": "Chat with PR bot", "value": "Kodus: Yes; Cursor BugBot: Yes"},
+      {"@type": "PropertyValue", "name": "Rules per repo / folder / file / PR", "value": "Kodus: Yes; Cursor BugBot: Limited (Bugbot Rules at project level)"},
+      {"@type": "PropertyValue", "name": "External context (MCP and Plugins)", "value": "Kodus: Yes; Cursor BugBot: No"},
+      {"@type": "PropertyValue", "name": "Native IDE plugin", "value": "Kodus: No; Cursor BugBot: Yes (inside Cursor)"},
+      {"@type": "PropertyValue", "name": "Metrics dashboard", "value": "Kodus: Yes; Cursor BugBot: No"},
+      {"@type": "PropertyValue", "name": "Technical-debt backlog", "value": "Kodus: Yes; Cursor BugBot: No"},
+      {"@type": "PropertyValue", "name": "Noise filters (limit and severity)", "value": "Kodus: Yes; Cursor BugBot: No"},
+      {"@type": "PropertyValue", "name": "Self-host option", "value": "Kodus: Yes (free, AGPLv3); Cursor BugBot: No"},
+      {"@type": "PropertyValue", "name": "Pricing", "value": "Kodus: $10/user/month + BYOK ($8 annual); Cursor BugBot: usage-based, ~$1.00-$1.50 per run (legacy $40/seat/month)"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "What is Cursor BugBot exactly?", "acceptedAnswer": {"@type": "Answer", "text": "BugBot is Cursor's AI code reviewer. It reviews PRs directly on GitHub and posts inline comments on potential issues, auto-running on every new PR when enabled. It is a separate feature from the Cursor IDE chat or completions, and can be configured with natural-language Bugbot Rules."}},
+      {"@type": "Question", "name": "How does pricing compare?", "acceptedAnswer": {"@type": "Answer", "text": "Cursor BugBot moved to usage-based billing in mid-2026. Each run costs roughly $1.00-$1.50 depending on PR size and effort level. Legacy customers still pay $40 per seat per month flat. Kodus Teams is $10 per developer per month monthly ($8 annual) plus your own model bill, or free self-hosted under AGPLv3."}},
+      {"@type": "Question", "name": "Does BugBot work outside GitHub?", "acceptedAnswer": {"@type": "Answer", "text": "No. BugBot reviews pull requests on GitHub only. Kodus reviews PRs on GitHub, GitLab, Bitbucket, and Azure DevOps, including the self-managed variants."}},
+      {"@type": "Question", "name": "Can I bring my own LLM with BugBot?", "acceptedAnswer": {"@type": "Answer", "text": "No. BugBot routes through Cursor's internal model selection with effort levels (Default, High, custom prompt) but you do not bring your own API key. Kodus has full BYO LLM: point env vars at any OpenAI-compatible provider and the inference call hits your account directly."}},
+      {"@type": "Question", "name": "Do I need a Cursor IDE subscription to use BugBot?", "acceptedAnswer": {"@type": "Answer", "text": "BugBot is billed through Cursor plans (Individual, Pro, Pro Plus, Teams, Ultra, Enterprise). Kodus is a standalone product and does not depend on any IDE."}},
+      {"@type": "Question", "name": "Do both support custom rules?", "acceptedAnswer": {"@type": "Answer", "text": "Both do. Kodus uses markdown files in .kody/rules/ with YAML frontmatter plus plain-English instructions, and auto-detects .cursorrules, CLAUDE.md, .windsurfrules. BugBot Rules accept natural-language coding standards and enforce them across reviews."}},
+      {"@type": "Question", "name": "Is there a self-hosted option?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus self-hosted is free under AGPLv3 and runs with Docker Compose. BugBot is a SaaS-only product with no on-prem deployment today."}}
+    ]
+  }
   </script>
 </body>
 </html>
