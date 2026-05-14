@@ -2790,27 +2790,76 @@
 .lp-pol__split-bar-title { color: var(--color-text); font-weight: 700; }
 .lp-pol__split-bar-meta { color: var(--color-text-dim); }
 .lp-pol__split-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 320px;
-}
-@media (max-width: 760px) {
-  .lp-pol__split-body { grid-template-columns: 1fr; }
+  display: flex;
+  flex-direction: column;
 }
 .lp-pol__split-pane {
-  padding: 18px 18px 22px;
+  padding: 22px 22px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.lp-pol__split-pane + .lp-pol__split-pane {
-  border-left: 1px dashed var(--color-card-lv2);
+.lp-pol__split-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--color-card-lv2);
+  font-size: .68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
-@media (max-width: 760px) {
-  .lp-pol__split-pane + .lp-pol__split-pane {
-    border-left: none;
-    border-top: 1px dashed var(--color-card-lv2);
-  }
+.lp-pol__split-step-num {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  padding: 3px 8px;
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: 1px;
+}
+.lp-pol__split-step-label {
+  color: var(--color-text);
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+.lp-pol__split-step-meta {
+  margin-left: auto;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+  font-size: .62rem;
+}
+.lp-pol__split-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  position: relative;
+  background: rgba(248, 183, 109, 0.04);
+  border-top: 1px solid var(--color-card-lv2);
+  border-bottom: 1px solid var(--color-card-lv2);
+}
+.lp-pol__split-arrow::before {
+  content: '';
+  width: 2px;
+  height: 20px;
+  background: var(--color-primary);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-65%);
+  box-shadow: 0 0 0 0 var(--color-primary);
+}
+.lp-pol__split-arrow::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 9px solid var(--color-primary);
+  position: absolute;
+  top: 50%;
+  transform: translateY(15%);
 }
 .lp-pol__split-tag {
   display: flex;
@@ -2933,7 +2982,7 @@
   margin: 0;
 }
 
-/* ====== How natural-language policies work (3-step row) ====== */
+/* ====== How rules work (3-step row) ====== */
 
 .lp-pol__how {
   display: grid;
@@ -3216,7 +3265,7 @@
             Policy as code review.
           </h1>
           <p class="lp-shp__hero-sub">
-            Open source AI code review without vendor lock-in. Write your team's review rules in plain English. Kodus reads them, enforces them in every pull request, and keeps a versioned audit trail. Per repo, per folder, per branch. No DSL, no plugin SDK.
+            Open source AI code review without vendor lock-in. Write your team's review rules as markdown files with a YAML frontmatter. Kodus reads them, scopes them by path or PR shape, and enforces them on every pull request. Same files your IDE already reads (Cursor, Claude Code, Copilot, Windsurf) get picked up automatically.
           </p>
 
           <div class="lp-shp__hero-ctas">
@@ -3233,37 +3282,44 @@
         <div class="lp-pol__split" role="presentation" aria-hidden="true">
           <div class="lp-pol__split-bar">
             <span class="lp-pol__split-bar-title">policy &rarr; pull request</span>
-            <span class="lp-pol__split-bar-meta">// rule.yml then PR</span>
+            <span class="lp-pol__split-bar-meta">// 2 steps</span>
           </div>
 
           <div class="lp-pol__split-body">
 
             <div class="lp-pol__split-pane">
-              <div class="lp-pol__split-tag">
-                <span>policies/architecture.yml</span>
-                <strong>rule</strong>
+              <div class="lp-pol__split-step">
+                <span class="lp-pol__split-step-num">01</span>
+                <span class="lp-pol__split-step-label">Write this rule</span>
+                <span class="lp-pol__split-step-meta">.kody/rules/no-console-in-prod.md</span>
               </div>
-<pre class="lp-pol__split-code"><span class="k">rule</span>: domain-import-guard
-  <span class="k">when</span>:
-    <span class="k">path</span>: <span class="s">src/domain/**</span>
-    <span class="k">imports</span>: <span class="s">src/infra/**</span>
-  <span class="k">action</span>: block
-  <span class="k">message</span>: |
-    <span class="c">// domain layer cannot</span>
-    <span class="c">// import from infra layer</span></pre>
+<pre class="lp-pol__split-code"><span class="c">---</span>
+<span class="k">title</span>: <span class="s">"No console.log in production code"</span>
+<span class="k">scope</span>: <span class="s">"file"</span>
+<span class="k">path</span>: [<span class="s">"src/**/*.ts"</span>, <span class="s">"src/**/*.tsx"</span>]
+<span class="k">severity_min</span>: <span class="s">"medium"</span>
+<span class="k">languages</span>: [<span class="s">"jsts"</span>]
+<span class="k">enabled</span>: <span class="s">true</span>
+<span class="c">---</span>
+<span class="c">## Instructions</span>
+Flag any console.log left in production
+files. Use the logger module instead.</pre>
             </div>
 
+            <div class="lp-pol__split-arrow" aria-hidden="true"></div>
+
             <div class="lp-pol__split-pane">
-              <div class="lp-pol__split-tag">
-                <span>PR #1284 &middot; kody review</span>
-                <strong>enforced</strong>
+              <div class="lp-pol__split-step">
+                <span class="lp-pol__split-step-num">02</span>
+                <span class="lp-pol__split-step-label">Kody enforces on PR</span>
+                <span class="lp-pol__split-step-meta">PR #1284 &middot; kody review</span>
               </div>
-              <div class="lp-pol__split-loc">src/domain/User.ts:14</div>
+              <div class="lp-pol__split-loc">src/api/users.ts:42</div>
               <div class="lp-pol__split-pr">
-                <div class="lp-pol__split-pr-head">kody &middot; blocked by policy</div>
-                Domain layer cannot import from infrastructure layer. Move the dependency behind a port, or refactor the call into the application layer.
+                <div class="lp-pol__split-pr-head">kody &middot; severity: medium</div>
+                Console.log statement found in production code. Replace with the project logger, or remove if no longer needed.
                 <div class="lp-pol__split-pr-foot">
-                  rule: <code>domain-import-guard</code> &middot; <a href="#">policies/architecture.yml</a>
+                  rule: <code>no-console-in-prod</code> &middot; <a href="#">.kody/rules/</a>
                 </div>
               </div>
             </div>
@@ -3280,7 +3336,7 @@
       <div class="lp-shp__def-inner">
         <span class="lp-shp__def-tag">What it is</span>
         <p class="lp-shp__def-text">
-          <strong>Policy as code review</strong> is when a team writes its review rules as text the AI reviewer reads on every pull request. The rules live in a file, not in a reviewer's head. Architecture constraints, security patterns, naming conventions, and compliance checks all become version-controlled policies that run automatically.
+          <strong>Policy as code review</strong> is when a team writes its review rules as files the AI reviewer reads on every pull request. The rules live in markdown files (or the dashboard), with a YAML frontmatter for scope and a plain-English instructions section. Architecture constraints, security patterns, naming conventions, and compliance checks become version-controlled rules that run automatically.
         </p>
       </div>
     </div>
@@ -3328,26 +3384,26 @@
         <div class="lp-shp__bnd-card">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-poeta.webp" alt="" class="lp-shp__bnd-kody" loading="lazy">
           <span class="lp-shp__bnd-num">01 ━</span>
-          <h3>Write rules in plain English</h3>
-          <p>No DSL, no plugin SDK, no AST queries. Describe the rule the way you would in a PR comment. Kodus reads it and applies it on every diff that matches.</p>
+          <h3>Markdown files plus instructions</h3>
+          <p>YAML frontmatter for scope (title, path globs, severity, language). A <code>## Instructions</code> section for the rule body in plain English. No plugin SDK, no AST queries, no XPath.</p>
         </div>
         <div class="lp-shp__bnd-card">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-painel.webp" alt="" class="lp-shp__bnd-kody" loading="lazy">
           <span class="lp-shp__bnd-num">02 ━</span>
-          <h3>Per repo, per folder, per branch</h3>
-          <p>Drop a <code>.kodus/policy.yml</code> in any folder and it scopes there. Monorepo with five teams, five different rule sets, zero conflict. Branch-specific overrides for hotfixes.</p>
+          <h3>Reuses your IDE rule files</h3>
+          <p>Kodus auto-detects <code>.cursorrules</code>, <code>CLAUDE.md</code>, <code>.windsurfrules</code>, <code>.github/copilot-instructions.md</code>, and a few more. Whatever your team wrote for their IDE works for the AI reviewer too.</p>
         </div>
         <div class="lp-shp__bnd-card">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-doctor.webp" alt="" class="lp-shp__bnd-kody" loading="lazy">
           <span class="lp-shp__bnd-num">03 ━</span>
-          <h3>Versioned audit trail</h3>
-          <p>Every policy change is a commit. Every enforcement decision is logged with the rule id, the file, the verdict. Export the audit log for compliance reviews. Show your auditor a real artifact.</p>
+          <h3>Inherits Global to Directory</h3>
+          <p>One rule set across the org, repository-level overrides, directory-level via path globs. Five teams in one monorepo run five overlapping rule sets without conflict.</p>
         </div>
         <div class="lp-shp__bnd-card">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-mage.webp" alt="" class="lp-shp__bnd-kody" loading="lazy">
           <span class="lp-shp__bnd-num">04 ━</span>
-          <h3>Learns from past PRs</h3>
-          <p>Kodus reads your historic review comments and suggests policies for patterns your team already enforces by hand. Turn tribal knowledge into a versioned rule in two clicks.</p>
+          <h3>Generates rules from PR history</h3>
+          <p>Automatic Rules Generation reads three plus months of your review history, clusters the patterns your team already enforces by hand, and proposes them as draft rules. You review and import the ones you want active.</p>
         </div>
       </div>
     </div>
@@ -3357,47 +3413,52 @@
   <section class="lp-shp__section">
     <div class="container">
       <span class="lp-shp__eyebrow">How it works</span>
-      <h2 class="lp-shp__title">From a sentence to <span class="highlight">enforcement.</span></h2>
+      <h2 class="lp-shp__title">Three places rules can live. <span class="highlight">Same engine reads all of them.</span></h2>
       <p class="lp-shp__lede" style="margin-bottom: 36px;">
-        Policies in Kodus are plain text first, structured config second. Write the rule the way you would in a PR comment. The agent reads it on every diff that matches the scope. No DSL training, no plugin SDK to learn.
+        Kodus reads rules from <code>.kody/rules/</code>, from the IDE rule files your team already maintains, and from the Kodus dashboard. All three converge into one rule set on every pull request.
       </p>
 
       <div class="lp-pol__how">
 
         <div class="lp-pol__how-step">
-          <span class="lp-pol__how-num">step 01</span>
-          <h3 class="lp-pol__how-h">Write the rule in English</h3>
-          <p class="lp-pol__how-p">Drop a <code>.kodus/policy.yml</code> in the repo (or the folder, or the service). State the rule the way you would describe it in standup.</p>
-<pre class="lp-pol__how-snippet"><span class="k">name</span>: <span class="s">audit-log-on-pii</span>
-<span class="k">scope</span>: <span class="s">src/api/users/**</span>
-<span class="k">rule</span>: |
-  <span class="c">// every endpoint that</span>
-  <span class="c">// touches PII must have</span>
-  <span class="c">// the @AuditLog decorator</span></pre>
+          <span class="lp-pol__how-num">option 01</span>
+          <h3 class="lp-pol__how-h">Markdown files in the repo</h3>
+          <p class="lp-pol__how-p">Drop a markdown file under <code>.kody/rules/</code> (or <code>rules/</code> at the repo root). YAML frontmatter for scope, a <code>## Instructions</code> section for the rule body.</p>
+<pre class="lp-pol__how-snippet"><span class="c">---</span>
+<span class="k">title</span>: <span class="s">"PII endpoints need @AuditLog"</span>
+<span class="k">scope</span>: <span class="s">"file"</span>
+<span class="k">path</span>: [<span class="s">"src/api/users/**"</span>]
+<span class="k">severity_min</span>: <span class="s">"high"</span>
+<span class="c">---</span>
+<span class="c">## Instructions</span>
+Block endpoints touching personal
+data without the @AuditLog decorator.</pre>
         </div>
 
         <div class="lp-pol__how-step">
-          <span class="lp-pol__how-num">step 02</span>
-          <h3 class="lp-pol__how-h">Kodus reads it on every PR</h3>
-          <p class="lp-pol__how-p">When a pull request opens, the agent loads policies in scope, runs them against the diff, and only comments on the rules that actually apply to the changed lines. No noise on files the rule does not touch.</p>
-<pre class="lp-pol__how-snippet"><span class="c">// PR #1284 opened</span>
-<span class="k">scope</span>: src/api/users/profile.ts
-<span class="k">policies</span>: 4 loaded
-<span class="k">checks</span>: 2 hit, 2 skipped
-<span class="k">verdict</span>: <span class="s">block (missing @AuditLog)</span></pre>
+          <span class="lp-pol__how-num">option 02</span>
+          <h3 class="lp-pol__how-h">Your existing IDE rule files</h3>
+          <p class="lp-pol__how-p">Kodus auto-detects rule files your team already keeps for IDEs and agentic coding tools. Same content, two consumers (the IDE and the AI reviewer).</p>
+<pre class="lp-pol__how-snippet"><span class="c"># Auto-detected:</span>
+.cursorrules
+CLAUDE.md
+.windsurfrules
+.github/copilot-instructions.md
+.sourcegraph/**/*.rule.md
+.aider.conf.yml</pre>
         </div>
 
         <div class="lp-pol__how-step">
-          <span class="lp-pol__how-num">step 03</span>
-          <h3 class="lp-pol__how-h">Enforce, log, audit</h3>
-          <p class="lp-pol__how-p">Kody posts an inline comment on the offending line with the rule id. The decision (rule, file, verdict, author, timestamp) lands in the audit log. Exportable for compliance, queryable for retros.</p>
-<pre class="lp-pol__how-snippet">{
-  <span class="k">"rule"</span>: <span class="s">"audit-log-on-pii"</span>,
-  <span class="k">"file"</span>: <span class="s">"src/api/users/profile.ts"</span>,
-  <span class="k">"line"</span>: 42,
-  <span class="k">"verdict"</span>: <span class="s">"block"</span>,
-  <span class="k">"author"</span>: <span class="s">"@ana"</span>
-}</pre>
+          <span class="lp-pol__how-num">option 03</span>
+          <h3 class="lp-pol__how-h">Dashboard at app.kodus.io</h3>
+          <p class="lp-pol__how-p">Author rules in the web UI under Code Review Settings &rarr; Repository &rarr; Kody Rules. Browse the Discovery Rules library and import presets (Security, Maintainability, Testing) with one click.</p>
+<pre class="lp-pol__how-snippet"><span class="c"># Discovery Rules categories</span>
+Security
+Maintainability
+Style conventions
+Testing
+Performance
+Custom (your own)</pre>
         </div>
 
       </div>
@@ -3410,7 +3471,7 @@
       <span class="lp-shp__eyebrow">Policy categories</span>
       <h2 class="lp-shp__title">Six kinds of rules, <span class="highlight">all the same syntax.</span></h2>
       <p class="lp-shp__lede" style="margin-bottom: 36px;">
-        Architecture boundaries, security patterns, API contracts, performance traps, naming conventions, compliance checks. Each one is a plain-English rule scoped to a path. Real examples below, all running in production on Kodus today.
+        Architecture boundaries, security patterns, API contracts, performance traps, naming conventions, compliance checks. Each one is a markdown file with a path glob and a severity floor. Real shapes below, all valid Kody Rule frontmatter.
       </p>
 
       <div class="lp-pol__cats">
@@ -3419,80 +3480,73 @@
           <span class="lp-pol__cat-tag">architecture</span>
           <h3 class="lp-pol__cat-h">Layer boundaries</h3>
           <p class="lp-pol__cat-rule">Domain layer cannot import from infrastructure layer. Anything that crosses must go through a port.</p>
-          <span class="lp-pol__cat-meta">scope: <strong>src/domain/**</strong> &middot; action: <strong>block</strong></span>
+          <span class="lp-pol__cat-meta">path: <strong>src/domain/**</strong> &middot; severity_min: <strong>high</strong></span>
         </div>
 
         <div class="lp-pol__cat">
           <span class="lp-pol__cat-tag">security</span>
           <h3 class="lp-pol__cat-h">Required decorators on PII</h3>
-          <p class="lp-pol__cat-rule">All endpoints handling personal data must use the @AuditLog decorator. Block the PR if the decorator is missing.</p>
-          <span class="lp-pol__cat-meta">scope: <strong>src/api/users/**</strong> &middot; action: <strong>block</strong></span>
+          <p class="lp-pol__cat-rule">All endpoints handling personal data must use the @AuditLog decorator. Flag the PR with a critical severity finding.</p>
+          <span class="lp-pol__cat-meta">path: <strong>src/api/users/**</strong> &middot; severity_min: <strong>critical</strong></span>
         </div>
 
         <div class="lp-pol__cat">
           <span class="lp-pol__cat-tag">api contracts</span>
           <h3 class="lp-pol__cat-h">Public surface, public contract</h3>
-          <p class="lp-pol__cat-rule">Public methods in services must have OpenAPI annotations. Comment with a fix suggestion when missing.</p>
-          <span class="lp-pol__cat-meta">scope: <strong>src/services/**</strong> &middot; action: <strong>warn</strong></span>
+          <p class="lp-pol__cat-rule">Public methods in services must have OpenAPI annotations. Surface as a medium-severity suggestion when missing.</p>
+          <span class="lp-pol__cat-meta">path: <strong>src/services/**</strong> &middot; severity_min: <strong>medium</strong></span>
         </div>
 
         <div class="lp-pol__cat">
           <span class="lp-pol__cat-tag">performance</span>
           <h3 class="lp-pol__cat-h">No N+1 in hot paths</h3>
           <p class="lp-pol__cat-rule">No N+1 query patterns in route handlers. Flag any loop that issues a query inside another iteration.</p>
-          <span class="lp-pol__cat-meta">scope: <strong>routes/api/**</strong> &middot; action: <strong>warn</strong></span>
+          <span class="lp-pol__cat-meta">path: <strong>routes/api/**</strong> &middot; severity_min: <strong>high</strong></span>
         </div>
 
         <div class="lp-pol__cat">
-          <span class="lp-pol__cat-tag">naming</span>
+          <span class="lp-pol__cat-tag">style conventions</span>
           <h3 class="lp-pol__cat-h">Repository method prefixes</h3>
-          <p class="lp-pol__cat-rule">Repository methods must follow findBy, getBy, or listBy prefixes. Suggest a rename, do not block.</p>
-          <span class="lp-pol__cat-meta">scope: <strong>**/repositories/**</strong> &middot; action: <strong>suggest</strong></span>
+          <p class="lp-pol__cat-rule">Repository methods must follow findBy, getBy, or listBy prefixes. Surface as a low-severity rename suggestion.</p>
+          <span class="lp-pol__cat-meta">path: <strong>**/repositories/**</strong> &middot; severity_min: <strong>low</strong></span>
         </div>
 
         <div class="lp-pol__cat">
-          <span class="lp-pol__cat-tag">compliance</span>
-          <h3 class="lp-pol__cat-h">No console.log in production</h3>
-          <p class="lp-pol__cat-rule">No console.log statements in production code paths. Block the PR and point to the logger module.</p>
-          <span class="lp-pol__cat-meta">scope: <strong>src/**</strong> (excl. tests) &middot; action: <strong>block</strong></span>
+          <span class="lp-pol__cat-tag">testing</span>
+          <h3 class="lp-pol__cat-h">New endpoints need tests</h3>
+          <p class="lp-pol__cat-rule">When a new API route is added, ensure corresponding tests are included in the PR.</p>
+          <span class="lp-pol__cat-meta">scope: <strong>pull_request</strong> &middot; severity_min: <strong>high</strong></span>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ========== PER-FOLDER GRANULARITY ========== -->
+  <!-- ========== INHERITANCE + SCOPING ========== -->
   <section class="lp-shp__section">
     <div class="container">
-      <span class="lp-shp__eyebrow">Granularity</span>
-      <h2 class="lp-shp__title">One monorepo. <span class="highlight">Five rule sets.</span></h2>
+      <span class="lp-shp__eyebrow">Inheritance</span>
+      <h2 class="lp-shp__title">Global to Repository to Directory. <span class="highlight">Same engine.</span></h2>
       <p class="lp-shp__lede" style="margin-bottom: 36px;">
-        Policies stack by folder. Drop a <code style="background: rgba(248,183,109,.1); color: var(--color-primary); padding: 1px 6px; font-family: var(--font-mono); font-size: .9em;">.kodus/policy.yml</code> in any directory and the rules apply there and below. A global policy lives at the root. A team policy lives in their service folder. A branch policy can override either for a hotfix.
+        Rules inherit down three levels. A global rule covers every repo. A repository rule overrides for that repo. A directory-scoped rule (via <code>path</code> globs) overrides for that folder. One markdown file per rule, one engine reading all of them.
       </p>
 
       <div class="lp-pol__tree">
         <div class="lp-pol__tree-bar">
-          <span>monorepo/ &middot; policies stack by scope</span>
+          <span>monorepo/ &middot; rule files scoped by path globs</span>
         </div>
 <pre class="lp-pol__tree-body">monorepo/
-<span class="d">├── policies/</span>
-<span class="d">│   └── </span><span class="pol">global.yml</span>             <span class="note">applies to every repo, every branch</span>
-<span class="d">├── services/</span>
-<span class="d">│   ├── payments/</span>
-<span class="d">│   │   └── </span><span class="pol">.kodus/policy.yml</span>     <span class="note">PCI-DSS rules, on top of global</span>
-<span class="d">│   └── notifications/</span>
-<span class="d">│       └── </span><span class="pol">.kodus/policy.yml</span>     <span class="note">rate-limit + retry rules</span>
-<span class="d">├── packages/</span>
-<span class="d">│   └── shared/</span>
-<span class="d">│       └── </span><span class="pol">.kodus/policy.yml</span>     <span class="note">API contracts, backward compat</span>
-<span class="d">└── apps/</span>
-<span class="d">    ├── web/</span>                       <span class="note">inherits global only</span>
-<span class="d">    └── admin/</span>
-<span class="d">        └── </span><span class="pol">.kodus/policy.yml</span>     <span class="note">audit-log enforcement</span></pre>
+<span class="d">└── .kody/rules/</span>
+<span class="d">    ├── </span><span class="pol">no-console-in-prod.md</span>      <span class="note">path: src/**/*.ts</span>
+<span class="d">    ├── </span><span class="pol">domain-import-guard.md</span>     <span class="note">path: src/domain/**</span>
+<span class="d">    ├── </span><span class="pol">audit-log-on-pii.md</span>        <span class="note">path: src/api/users/**</span>
+<span class="d">    ├── </span><span class="pol">api-needs-openapi.md</span>       <span class="note">path: services/**/*.ts</span>
+<span class="d">    ├── </span><span class="pol">new-endpoint-needs-tests.md</span><span class="note">scope: pull_request</span>
+<span class="d">    └── </span><span class="pol">no-direct-db-in-routes.md</span>  <span class="note">path: routes/api/**</span></pre>
       </div>
 
       <p class="lp-shp__lede" style="margin-top: 28px; font-size: .95rem;">
-        Each team owns the rules in their folder. Platform owns the global ones. Compliance owns the audit policies. Pull request hits the union of every policy whose scope matches the changed file.
+        Path globs do the per-team scoping. A rule with <code>path: services/payments/**</code> only fires on diffs that touch that folder. A rule with <code>scope: "pull_request"</code> looks at PR-level metadata (title, files changed, author) instead of file diffs.
       </p>
     </div>
   </section>
@@ -4323,34 +4377,34 @@
         <div class="lp-shp__cmp-verdict-head">
           <span class="lp-shp__cmp-verdict-tag">Verdict</span>
           <h3 class="lp-shp__cmp-verdict-title">
-            Only tool that lets your team write rules in English <span class="highlight">and learns from past PRs.</span>
+            Only tool that reuses your IDE rule files <span class="highlight">and generates rules from past PRs.</span>
           </h3>
         </div>
         <div class="lp-shp__cmp-verdict-bars">
           <div class="lp-shp__cmp-verdict-row lp-shp__cmp-verdict-row--kodus">
             <span class="lp-shp__cmp-verdict-name">Kodus</span>
-            <span class="lp-shp__cmp-verdict-bar" style="--filled: 8;"></span>
-            <span class="lp-shp__cmp-verdict-score">8 / 8</span>
+            <span class="lp-shp__cmp-verdict-bar" style="--filled: 9;"></span>
+            <span class="lp-shp__cmp-verdict-score">9 / 9</span>
           </div>
           <div class="lp-shp__cmp-verdict-row">
             <span class="lp-shp__cmp-verdict-name">CodeRabbit</span>
             <span class="lp-shp__cmp-verdict-bar" style="--filled: 5;"></span>
-            <span class="lp-shp__cmp-verdict-score">5 / 8</span>
+            <span class="lp-shp__cmp-verdict-score">5 / 9</span>
           </div>
           <div class="lp-shp__cmp-verdict-row">
             <span class="lp-shp__cmp-verdict-name">SonarQube</span>
             <span class="lp-shp__cmp-verdict-bar" style="--filled: 4;"></span>
-            <span class="lp-shp__cmp-verdict-score">4 / 8</span>
+            <span class="lp-shp__cmp-verdict-score">4 / 9</span>
           </div>
           <div class="lp-shp__cmp-verdict-row">
             <span class="lp-shp__cmp-verdict-name">Codacy</span>
             <span class="lp-shp__cmp-verdict-bar" style="--filled: 3;"></span>
-            <span class="lp-shp__cmp-verdict-score">3 / 8</span>
+            <span class="lp-shp__cmp-verdict-score">3 / 9</span>
           </div>
           <div class="lp-shp__cmp-verdict-row">
             <span class="lp-shp__cmp-verdict-name">Sourcery</span>
             <span class="lp-shp__cmp-verdict-bar" style="--filled: 3;"></span>
-            <span class="lp-shp__cmp-verdict-score">3 / 8</span>
+            <span class="lp-shp__cmp-verdict-score">3 / 9</span>
           </div>
         </div>
       </div>
@@ -4402,20 +4456,28 @@
               <td><span class="lp-shp__mk lp-shp__mk--part">Path instructions</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">Java + XPath</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">Pattern config</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">YAML presets</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--no">Pattern + replacement</span></td>
             </tr>
             <tr>
               <td>Policy lives in the repo</td>
-              <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">.kodus/policy.yml</span></td>
+              <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">.kody/rules/*.md</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--yes">.coderabbit.yaml</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--part">sonar-project.properties</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--yes">.codacy.yml</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--yes">.sourcery.yaml</span></td>
             </tr>
             <tr>
-              <td>Learns from past PRs</td>
-              <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">Kody Rules suggest</span></td>
+              <td>Reuses IDE rule files (Cursor, Claude, Copilot)</td>
+              <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">Auto-detected</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--part">Manual pointer</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
+            </tr>
+            <tr>
+              <td>Generates versioned rules from past PRs</td>
+              <td class="kodus"><span class="lp-shp__mk lp-shp__mk--yes">Auto Rules Generation</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--part">Learnings (vector DB)</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">No</span></td>
@@ -4430,7 +4492,7 @@
               <td><span class="lp-shp__mk lp-shp__mk--part">Path filters</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">Project-level</span></td>
               <td><span class="lp-shp__mk lp-shp__mk--no">Project-level</span></td>
-              <td><span class="lp-shp__mk lp-shp__mk--no">Project-level</span></td>
+              <td><span class="lp-shp__mk lp-shp__mk--part">Per-rule paths</span></td>
             </tr>
             <tr>
               <td>Multi-team policies in one repo</td>
@@ -4472,8 +4534,8 @@
         </table>
       </div>
 
-      <p class="lp-shp__lede" style="margin-top: 24px; font-size: .88rem;">
-        Notes. CodeRabbit ships <code>path_instructions</code> in <code>.coderabbit.yaml</code> that take natural language per path glob, which is the closest equivalent to Kodus policies. SonarQube custom rules require a Java plugin or XPath expressions and apply at the project level. Codacy and Sourcery use YAML config with preset rules, with limited support for custom natural-language policies. Open source agent column counts whether the review agent itself is OSS, not whether the company has any OSS components.
+      <p style="margin-top: 24px; font-family: var(--font-sans); font-size: .9rem; line-height: 1.55; color: var(--color-text-muted); max-width: 78ch;">
+        <strong style="color: var(--color-text);">Notes.</strong> CodeRabbit Learnings remembers past PR feedback in their vector DB; Kodus Automatic Rules Generation surfaces drafts you import as markdown in <code>.kody/rules/</code>, so the audit trail is git. IDE rule auto-detection (Cursor, Claude Code, Copilot, Windsurf) is a Kodus exclusive on this peer set. Open source column counts the review agent itself, not the company.
       </p>
     </div>
   </section>
@@ -4492,37 +4554,37 @@
         <div class="lp-pol__use">
           <span class="lp-pol__use-tag">fintech &middot; pci-dss</span>
           <h3 class="lp-pol__use-h">PCI-DSS code review patterns</h3>
-          <p class="lp-pol__use-p">Payment processing code carries explicit compliance constraints (no logging of full PAN, tokenization on entry, audit on every read). Encode them as policies once, enforce them on every PR.</p>
-<pre class="lp-pol__use-snippet"><span class="k">rule</span>: <span class="s">no-pan-in-logs</span>
-<span class="k">scope</span>: <span class="s">src/payments/**</span>
-<span class="k">block</span>: <span class="s">logger.*\(.*card_number</span></pre>
+          <p class="lp-pol__use-p">Payment processing code carries explicit compliance constraints (no logging of full PAN, tokenization on entry, audit on every read). Each one is a markdown rule with a path glob and a critical severity floor.</p>
+<pre class="lp-pol__use-snippet"><span class="k">title</span>: <span class="s">"No card numbers in logs"</span>
+<span class="k">path</span>: [<span class="s">"src/payments/**"</span>]
+<span class="k">severity_min</span>: <span class="s">"critical"</span></pre>
         </div>
 
         <div class="lp-pol__use">
           <span class="lp-pol__use-tag">healthcare &middot; hipaa</span>
           <h3 class="lp-pol__use-h">HIPAA-aware patterns</h3>
-          <p class="lp-pol__use-p">PHI handling requires explicit access checks and audit logging on every read path. Generic AI review will not know that. A policy file will.</p>
-<pre class="lp-pol__use-snippet"><span class="k">rule</span>: <span class="s">phi-access-audit</span>
-<span class="k">scope</span>: <span class="s">src/patient/**</span>
-<span class="k">require</span>: <span class="s">@AuditAccess decorator</span></pre>
+          <p class="lp-pol__use-p">PHI handling requires explicit access checks and audit logging on every read path. Generic AI review will not know that. A rule file will.</p>
+<pre class="lp-pol__use-snippet"><span class="k">title</span>: <span class="s">"PHI reads need @AuditAccess"</span>
+<span class="k">path</span>: [<span class="s">"src/patient/**"</span>]
+<span class="k">severity_min</span>: <span class="s">"critical"</span></pre>
         </div>
 
         <div class="lp-pol__use">
           <span class="lp-pol__use-tag">government &middot; zero-trust</span>
           <h3 class="lp-pol__use-h">Zero-trust enforcement</h3>
-          <p class="lp-pol__use-p">Every cross-service call has to carry an identity token. No service-to-service trust by IP, no fallthrough auth. Block the PR if the call site does not pass an authenticated context.</p>
-<pre class="lp-pol__use-snippet"><span class="k">rule</span>: <span class="s">no-implicit-trust</span>
-<span class="k">scope</span>: <span class="s">src/services/**/client.ts</span>
-<span class="k">require</span>: <span class="s">authContext arg</span></pre>
+          <p class="lp-pol__use-p">Every cross-service call has to carry an identity token. No service-to-service trust by IP, no fallthrough auth. Flag the PR if a client call drops the authenticated context.</p>
+<pre class="lp-pol__use-snippet"><span class="k">title</span>: <span class="s">"Service clients need auth"</span>
+<span class="k">path</span>: [<span class="s">"src/services/**/client.ts"</span>]
+<span class="k">severity_min</span>: <span class="s">"high"</span></pre>
         </div>
 
         <div class="lp-pol__use">
           <span class="lp-pol__use-tag">multi-team saas &middot; ownership</span>
           <h3 class="lp-pol__use-h">Ownership and boundary enforcement</h3>
-          <p class="lp-pol__use-p">Five teams in one monorepo. Each owns a service folder. Each enforces its own rules. The platform team enforces shared API contracts across the boundary. Policies stack, no overrides needed.</p>
-<pre class="lp-pol__use-snippet"><span class="k">rule</span>: <span class="s">no-cross-team-import</span>
-<span class="k">scope</span>: <span class="s">services/team-a/**</span>
-<span class="k">block</span>: <span class="s">services/team-b/internal</span></pre>
+          <p class="lp-pol__use-p">Five teams in one monorepo. Each owns a service folder. Each ships rules scoped to their path. The platform team owns the shared API contract rules across the boundary.</p>
+<pre class="lp-pol__use-snippet"><span class="k">title</span>: <span class="s">"No cross-team imports"</span>
+<span class="k">path</span>: [<span class="s">"services/team-a/**"</span>]
+<span class="k">severity_min</span>: <span class="s">"high"</span></pre>
         </div>
 
       </div>
@@ -4559,84 +4621,84 @@
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>It means your team's review rules live in a file the AI reviewer reads on every pull request. Architecture boundaries, security patterns, naming conventions, compliance checks all become version-controlled policies that run automatically. The rules stop being tribal knowledge in senior engineers' heads. They become a real artifact, in the repo, alongside the code.</p>
+                <p>It means your team's review rules live in files the AI reviewer reads on every pull request. Each rule is a markdown file with a YAML frontmatter for scope (path globs, severity, language) and a <code>## Instructions</code> section in plain English. Architecture boundaries, security patterns, naming conventions, compliance checks all become version-controlled rules. The rules stop being tribal knowledge in senior engineers' heads. They become a real artifact, in the repo, alongside the code.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "How are policies different from generic AI code review feedback?"</span>
+                <span class="faq__question-text">kodus --help "How are Kody Rules different from generic AI feedback?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Generic feedback applies the same checks to every codebase. Policies are specific to your team. Generic AI will suggest extracting a function. A policy will block a PR because the domain layer imported from infrastructure, which violates your architecture rule. Both run, both add value, but only one knows your team's actual standards.</p>
+                <p>Generic AI feedback applies the same checks to every codebase. Kody Rules are specific to your team. Generic AI will suggest extracting a function. A Kody Rule will flag a PR with a critical severity finding because the domain layer imported from infrastructure, which violates your architecture rule. Both run, both add value, but only one knows your team's actual standards.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "Can I write rules in English or do I need a DSL?"</span>
+                <span class="faq__question-text">kodus --help "Where do I put rule files in the repo?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Plain English. Drop a <code>.kodus/policy.yml</code> in the repo and describe the rule the way you would in a PR comment. The agent reads it on every diff that matches the scope. No DSL, no plugin SDK, no AST queries. If your senior engineers can describe the rule in standup, Kodus can enforce it.</p>
+                <p>Two locations work out of the box: <code>.kody/rules/**/*.md</code> or <code>rules/**/*.md</code>. Each file is one rule. Kodus also auto-detects rule files your team already keeps for IDEs and agentic tools (<code>.cursorrules</code>, <code>CLAUDE.md</code>, <code>.windsurfrules</code>, <code>.github/copilot-instructions.md</code>, <code>.sourcegraph/**/*.rule.md</code>, <code>.aider.conf.yml</code>). If you do not want files in the repo at all, author rules in the dashboard at app.kodus.io. All three sources merge into one rule set per pull request.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "Can different repos or folders have different policies?"</span>
+                <span class="faq__question-text">kodus --help "What does a rule file look like?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Yes. Policies are scoped by path. A global policy at the root applies everywhere. A team policy in <code>services/payments/.kodus/policy.yml</code> stacks on top inside that folder. A branch override can relax a rule for a hotfix branch and tighten it back on merge. Monorepos with five teams run five different rule sets without conflicts.</p>
+                <p>YAML frontmatter plus a markdown instructions section. Required frontmatter fields: <code>title</code>, <code>scope</code> (<code>"file"</code> or <code>"pull_request"</code>), <code>path</code> (array of globs), <code>severity_min</code> (low, medium, high, critical). Optional: <code>languages</code>, <code>buckets</code>, <code>enabled</code>. The body after the frontmatter is a <code>## Instructions</code> heading followed by free-form English describing the rule. No DSL to learn.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "How does Kodus learn from past PR comments?"</span>
+                <span class="faq__question-text">kodus --help "Can I scope a rule to a specific folder?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Kodus reads your historic review comments and clusters the patterns your team enforces by hand. If three senior engineers have been writing &ldquo;please add the audit decorator&rdquo; on PII endpoints, Kody Rules will surface that as a candidate policy. You accept it with a click and it becomes a versioned file in the repo. Tribal knowledge turns into enforcement.</p>
+                <p>Yes, through the <code>path</code> field. A rule with <code>path: ["services/payments/**"]</code> only fires on diffs that touch that folder. Rules inherit Global &rarr; Repository &rarr; Directory, with directory scoping done via path globs in single rule files. Monorepos with five teams run five overlapping rule sets without conflict. Branch-level scoping is not supported today.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "Are policies versioned and auditable?"</span>
+                <span class="faq__question-text">kodus --help "Does Kodus learn from past PR comments?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Yes, twice over. The policy files live in git, so every change is a commit with author, reviewer, diff, and timestamp. Every enforcement decision (rule id, file, verdict, PR author, timestamp) is logged in the dashboard and exportable as CSV or JSON. Auditors get a real artifact instead of a slide deck.</p>
+                <p>Yes, through Automatic Rules Generation. Kodus reads three plus months of historic review comments, clusters the patterns your team enforces by hand, and surfaces them as draft rules in the dashboard. Generated rules are <em>not</em> active by default. You review the drafts, edit if needed, and import the ones you want enabled. Updates run weekly after the initial generation.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "Can I enforce architecture boundaries in a monorepo?"</span>
+                <span class="faq__question-text">kodus --help "Are rules versioned and auditable?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Yes, this is one of the most common Kodus use cases. Write a rule like &ldquo;domain layer cannot import from infrastructure layer&rdquo; with scope <code>src/domain/**</code> and Kodus blocks any PR that breaks the boundary. Add another rule for &ldquo;public methods in services must have OpenAPI annotations&rdquo; scoped to <code>src/services/**</code>. Both run on every PR that touches those paths.</p>
+                <p>Yes, twice over. Rule files live in git, so every change is a commit with author, reviewer, diff, and timestamp. Every finding generated by a rule is logged in the dashboard with the rule id, file, severity, PR author, and timestamp. The audit log is exportable as CSV or JSON for compliance reviews.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "What actions can a policy take?"</span>
+                <span class="faq__question-text">kodus --help "What can a rule actually do on a PR?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>Three: block, warn, suggest. <code>block</code> sets the PR status to request-changes and posts a comment on the offending line. <code>warn</code> posts the comment but leaves the PR mergeable. <code>suggest</code> proposes a rewrite as an inline GitHub suggestion the author can apply in one click. Most teams start with <code>warn</code>, watch the signal for a week, then flip rules that produce actionable hits to <code>block</code>.</p>
+                <p>A rule emits a finding with a severity level (low, medium, high, critical). What happens with the finding depends on the Policy layer: by default Kody posts non-blocking suggestion comments. Optionally, you can turn on Request Changes so high or critical findings mark the review as changes-requested. Or Auto-approve when no findings hit the configured severity floor. Severity comes from the rule, action comes from the policy.</p>
               </div>
             </div>
 
@@ -4647,18 +4709,18 @@
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>SonarQube custom rules require a Java plugin or XPath expressions, apply at the project level, and stop at syntactic patterns. Kodus policies take natural language, scope by folder, and run semantic checks (an AI reviewer enforcing the rule, not a regex). You can run both: SonarQube for static analysis, Kodus for the rules your team actually argues about in code review.</p>
+                <p>SonarQube custom rules require a Java plugin or XPath expressions, apply at the project level, and stop at syntactic patterns. Kody Rules are markdown files with plain-English instructions, scope by path glob, and run semantic checks (an AI reviewer reading the rule, not a regex). You can run both: SonarQube for static analysis, Kodus for the rules your team actually argues about in code review.</p>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question">
                 <span class="faq__prompt">$</span>
-                <span class="faq__question-text">kodus --help "Where do I see the sample policy library?"</span>
+                <span class="faq__question-text">kodus --help "Is there a preset rule library?"</span>
                 <span class="faq__toggle">+</span>
               </button>
               <div class="faq__answer">
-                <p>The Kodus repo ships with a <code>policies/</code> folder of ready-to-use examples for architecture boundaries, security patterns (PII, audit logs, no PAN in logs), API contracts, performance anti-patterns, and naming conventions. Copy the ones that match your stack into your <code>.kodus/policy.yml</code>, tweak the scopes, ship it. Docs at <a href="https://docs.kodus.io/">docs.kodus.io</a> have the full reference.</p>
+                <p>Yes. Discovery Rules is a curated library inside the Kodus dashboard. Filter presets by severity, language, or tag (Security, Maintainability, Style conventions, Testing, Performance). Import the ones you want with one click and edit them like any other rule. Examples shipped today include &ldquo;disallow MD5 hashing&rdquo; and &ldquo;React components under 150 lines.&rdquo; Docs at <a href="https://docs.kodus.io/">docs.kodus.io</a> have the full reference for Kody Rules.</p>
               </div>
             </div>
 
@@ -4685,14 +4747,14 @@
             Write the rule. <span class="highlight">Ship the enforcement.</span>
           </h2>
           <p class="lp-shp__final-sub">
-            Drop a <code>.kodus/policy.yml</code> in your repo. Describe the rule in plain English. Kodus reads it on every PR and posts inline comments where the diff violates the scope.
+            Drop a markdown file under <code>.kody/rules/</code> in your repo. YAML frontmatter for scope, plain-English instructions for the rule body. Kodus reads it on every PR.
           </p>
           <div class="lp-shp__final-ctas">
             <a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="btn btn--primary" id="lpPolFinalPricingBtn">See pricing</a>
             <a href="#policy-categories" class="btn btn--outline-light" id="lpPolFinalCatBtn">See policy examples</a>
           </div>
           <div class="lp-shp__final-aside">
-            <a href="https://docs.kodus.io/" target="_blank" rel="noopener" id="lpPolFinalDocsBtn">Read the docs</a>
+            <a href="https://docs.kodus.io/how_to_use/en/code_review/configs/kody_rules" target="_blank" rel="noopener" id="lpPolFinalDocsBtn">Read the Kody Rules docs</a>
             <a href="https://github.com/kodustech/kodus-ai" target="_blank" rel="noopener" id="lpPolFinalGithubBtn">Star kodus-ai on GitHub</a>
           </div>
         </div>
@@ -4700,14 +4762,15 @@
         <div class="lp-shp__final-terminal" aria-hidden="true">
           <div class="lp-shp__final-terminal-bar">
             <i></i><i></i><i></i>
-            <span>your-repo &middot; .kodus/policy.yml</span>
+            <span>your-repo &middot; .kody/rules/no-console-in-prod.md</span>
           </div>
           <div class="lp-shp__final-terminal-body">
-<span class="lp-shp__final-terminal-line">name: domain-import-guard</span>
-<span class="lp-shp__final-terminal-line">scope: src/domain/**</span>
-<span class="lp-shp__final-terminal-line">rule: domain layer cannot import from infra layer</span>
-<span class="lp-shp__final-terminal-line">action: block</span>
-<span class="lp-shp__final-terminal-line lp-shp__final-terminal-line--ok">kody enforced 4 policies on PR #42</span>
+<span class="lp-shp__final-terminal-line">---</span>
+<span class="lp-shp__final-terminal-line">title: "No console.log in production"</span>
+<span class="lp-shp__final-terminal-line">path: ["src/**/*.ts"]</span>
+<span class="lp-shp__final-terminal-line">severity_min: "medium"</span>
+<span class="lp-shp__final-terminal-line">---</span>
+<span class="lp-shp__final-terminal-line lp-shp__final-terminal-line--ok">kody read 7 rules on PR #42, surfaced 3 findings</span>
           </div>
         </div>
 
@@ -4737,17 +4800,17 @@
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Web, Linux, Docker",
   "url": "https://kodus.io/policy-as-code-review/",
-  "description": "Open source AI code review without vendor lock-in. Write your team's review rules in plain English in .kodus/policy.yml. Kodus reads them on every PR and enforces them with inline comments. Per repo, per folder, per branch. Versioned audit trail. AGPLv3 self-hosted edition.",
+  "description": "Open source AI code review without vendor lock-in. Kody Rules are markdown files with YAML frontmatter (.kody/rules/*.md) that the AI reviewer reads on every pull request. Rules inherit Global to Repository to Directory via path globs. Auto-detects existing IDE rule files (Cursor, Claude Code, Copilot, Windsurf). Generates rules from 3+ months of PR history. AGPLv3 self-hosted edition.",
   "license": "https://www.gnu.org/licenses/agpl-3.0.html",
   "softwareVersion": "2.0",
   "downloadUrl": "https://github.com/kodustech/kodus-ai",
   "featureList": [
-    "Write review rules in plain English",
-    "Per-repo, per-folder, per-branch policy scoping",
+    "Markdown rule files with YAML frontmatter (.kody/rules/*.md)",
+    "Path-glob scoping with Global/Repository/Directory inheritance",
+    "Auto-detects IDE rule files (.cursorrules, CLAUDE.md, .windsurfrules, .github/copilot-instructions.md)",
     "Versioned audit trail (CSV/JSON export)",
-    "Learning from historic PR comments (Kody Rules)",
-    "Six policy categories (architecture, security, API contracts, performance, naming, compliance)",
-    "Industry templates (PCI-DSS, HIPAA, zero-trust, multi-team SaaS)"
+    "Automatic Rules Generation from 3+ months of PR history",
+    "Discovery Rules preset library (security, maintainability, style, testing, performance)"
   ],
   "offers": {
     "@type": "Offer",
@@ -4776,9 +4839,10 @@
   },
   "mainEntity": [
     {"@type": "PropertyValue", "name": "Write rules in plain English", "value": "Kodus: Yes; CodeRabbit: Path instructions; SonarQube: Java + XPath; Codacy: Pattern config; Sourcery: YAML presets"},
-    {"@type": "PropertyValue", "name": "Policy lives in the repo", "value": "Kodus: .kodus/policy.yml; CodeRabbit: .coderabbit.yaml; SonarQube: sonar-project.properties; Codacy: .codacy.yml; Sourcery: .sourcery.yaml"},
-    {"@type": "PropertyValue", "name": "Learns from past PRs", "value": "Kodus: Yes (Kody Rules suggest); CodeRabbit: No; SonarQube: No; Codacy: No; Sourcery: No"},
-    {"@type": "PropertyValue", "name": "Per-folder granularity", "value": "Kodus: Yes, stacked; CodeRabbit: Path filters; SonarQube: Project-level; Codacy: Project-level; Sourcery: Project-level"},
+    {"@type": "PropertyValue", "name": "Policy lives in the repo", "value": "Kodus: .kody/rules/*.md; CodeRabbit: .coderabbit.yaml; SonarQube: sonar-project.properties; Codacy: .codacy.yml; Sourcery: .sourcery.yaml"},
+    {"@type": "PropertyValue", "name": "Reuses IDE rule files (Cursor, Claude, Copilot)", "value": "Kodus: Auto-detected; CodeRabbit: No; SonarQube: No; Codacy: No; Sourcery: No"},
+    {"@type": "PropertyValue", "name": "Generates rules from past PRs", "value": "Kodus: Auto Rules Generation; CodeRabbit: No; SonarQube: No; Codacy: No; Sourcery: No"},
+    {"@type": "PropertyValue", "name": "Per-folder granularity", "value": "Kodus: Yes, path globs; CodeRabbit: Path filters; SonarQube: Project-level; Codacy: Project-level; Sourcery: Project-level"},
     {"@type": "PropertyValue", "name": "Multi-team policies in one repo", "value": "Kodus: Yes; CodeRabbit: Single ruleset; SonarQube: Single ruleset; Codacy: Single ruleset; Sourcery: Single ruleset"},
     {"@type": "PropertyValue", "name": "Versioned audit trail", "value": "Kodus: Exportable log; CodeRabbit: Dashboard log; SonarQube: Server log; Codacy: Partial; Sourcery: Partial"},
     {"@type": "PropertyValue", "name": "Open source agent", "value": "Kodus: AGPLv3; CodeRabbit: No; SonarQube: Community Edition; Codacy: No; Sourcery: No"},
@@ -4849,16 +4913,16 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "What does policy as code review actually mean?", "acceptedAnswer": {"@type": "Answer", "text": "It means your team's review rules live in a file the AI reviewer reads on every pull request. Architecture boundaries, security patterns, naming conventions, compliance checks all become version-controlled policies that run automatically. The rules stop being tribal knowledge in senior engineers' heads. They become a real artifact, in the repo, alongside the code."}},
-    {"@type": "Question", "name": "How are policies different from generic AI code review feedback?", "acceptedAnswer": {"@type": "Answer", "text": "Generic feedback applies the same checks to every codebase. Policies are specific to your team. Generic AI will suggest extracting a function. A policy will block a PR because the domain layer imported from infrastructure, which violates your architecture rule. Both run, both add value, but only one knows your team's actual standards."}},
-    {"@type": "Question", "name": "Can I write rules in English or do I need a DSL?", "acceptedAnswer": {"@type": "Answer", "text": "Plain English. Drop a .kodus/policy.yml in the repo and describe the rule the way you would in a PR comment. The agent reads it on every diff that matches the scope. No DSL, no plugin SDK, no AST queries."}},
-    {"@type": "Question", "name": "Can different repos or folders have different policies?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Policies are scoped by path. A global policy at the root applies everywhere. A team policy in services/payments/.kodus/policy.yml stacks on top inside that folder. A branch override can relax a rule for a hotfix and tighten it back on merge. Monorepos with five teams run five different rule sets without conflicts."}},
-    {"@type": "Question", "name": "How does Kodus learn from past PR comments?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus reads your historic review comments and clusters the patterns your team enforces by hand. If three senior engineers have been writing add the audit decorator on PII endpoints, Kody Rules will surface that as a candidate policy. You accept it with a click and it becomes a versioned file in the repo."}},
-    {"@type": "Question", "name": "Are policies versioned and auditable?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, twice over. The policy files live in git, so every change is a commit with author, reviewer, diff, and timestamp. Every enforcement decision (rule id, file, verdict, PR author, timestamp) is logged in the dashboard and exportable as CSV or JSON."}},
-    {"@type": "Question", "name": "Can I enforce architecture boundaries in a monorepo?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, this is one of the most common Kodus use cases. Write a rule like domain layer cannot import from infrastructure layer with scope src/domain/** and Kodus blocks any PR that breaks the boundary."}},
-    {"@type": "Question", "name": "What actions can a policy take?", "acceptedAnswer": {"@type": "Answer", "text": "Three: block, warn, suggest. block sets the PR status to request-changes and posts a comment on the offending line. warn posts the comment but leaves the PR mergeable. suggest proposes a rewrite as an inline GitHub suggestion."}},
-    {"@type": "Question", "name": "How does this compare to SonarQube custom rules?", "acceptedAnswer": {"@type": "Answer", "text": "SonarQube custom rules require a Java plugin or XPath expressions, apply at the project level, and stop at syntactic patterns. Kodus policies take natural language, scope by folder, and run semantic checks (an AI reviewer enforcing the rule, not a regex)."}},
-    {"@type": "Question", "name": "Where do I see the sample policy library?", "acceptedAnswer": {"@type": "Answer", "text": "The Kodus repo ships with a policies/ folder of ready-to-use examples for architecture boundaries, security patterns, API contracts, performance anti-patterns, and naming conventions. Copy the ones that match your stack into your .kodus/policy.yml, tweak the scopes, ship it."}}
+    {"@type": "Question", "name": "What does policy as code review actually mean?", "acceptedAnswer": {"@type": "Answer", "text": "It means your team's review rules live in files the AI reviewer reads on every pull request. Each rule is a markdown file with a YAML frontmatter for scope (path globs, severity, language) and an Instructions section in plain English. Architecture boundaries, security patterns, naming conventions, compliance checks all become version-controlled rules."}},
+    {"@type": "Question", "name": "How are Kody Rules different from generic AI feedback?", "acceptedAnswer": {"@type": "Answer", "text": "Generic AI feedback applies the same checks to every codebase. Kody Rules are specific to your team. A Kody Rule will flag a PR with a critical severity finding because the domain layer imported from infrastructure, which violates your architecture rule."}},
+    {"@type": "Question", "name": "Where do I put rule files in the repo?", "acceptedAnswer": {"@type": "Answer", "text": "Two locations work out of the box: .kody/rules/**/*.md or rules/**/*.md. Kodus also auto-detects rule files your team already keeps for IDEs (.cursorrules, CLAUDE.md, .windsurfrules, .github/copilot-instructions.md, .sourcegraph/**/*.rule.md, .aider.conf.yml). You can also author rules in the dashboard at app.kodus.io. All three sources merge into one rule set per pull request."}},
+    {"@type": "Question", "name": "What does a rule file look like?", "acceptedAnswer": {"@type": "Answer", "text": "YAML frontmatter plus a markdown Instructions section. Required fields: title, scope (file or pull_request), path (array of globs), severity_min (low, medium, high, critical). Optional: languages, buckets, enabled. The body is free-form English describing the rule."}},
+    {"@type": "Question", "name": "Can I scope a rule to a specific folder?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, through the path field. A rule with path: services/payments/** only fires on diffs that touch that folder. Rules inherit Global to Repository to Directory, with directory scoping via path globs. Branch-level scoping is not supported today."}},
+    {"@type": "Question", "name": "Does Kodus learn from past PR comments?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, through Automatic Rules Generation. Kodus reads 3+ months of historic review comments, clusters the patterns your team enforces by hand, and surfaces them as draft rules. Generated rules are not active by default. You review them and import the ones you want enabled. Updates run weekly after the initial generation."}},
+    {"@type": "Question", "name": "Are rules versioned and auditable?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, twice over. Rule files live in git, so every change is a commit with author, diff, and timestamp. Every finding generated by a rule is logged in the dashboard with rule id, file, severity, PR author, and timestamp. The audit log is exportable as CSV or JSON."}},
+    {"@type": "Question", "name": "What can a rule actually do on a PR?", "acceptedAnswer": {"@type": "Answer", "text": "A rule emits a finding with a severity level (low, medium, high, critical). The Policy layer decides what to do with it: by default, Kody posts non-blocking suggestion comments. Optionally, Request Changes makes high or critical findings mark the review as changes-requested. Or Auto-approve when no findings hit the configured floor."}},
+    {"@type": "Question", "name": "How does this compare to SonarQube custom rules?", "acceptedAnswer": {"@type": "Answer", "text": "SonarQube custom rules require a Java plugin or XPath expressions, apply at the project level, and stop at syntactic patterns. Kody Rules are markdown files with plain-English instructions, scope by path glob, and run semantic checks (an AI reviewer reading the rule, not a regex)."}},
+    {"@type": "Question", "name": "Is there a preset rule library?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Discovery Rules is a curated library inside the Kodus dashboard. Filter presets by severity, language, or tag (Security, Maintainability, Style conventions, Testing, Performance). Import the ones you want with one click."}}
   ]
 }
 </script>
