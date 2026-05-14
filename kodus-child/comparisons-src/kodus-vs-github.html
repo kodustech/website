@@ -1948,6 +1948,117 @@
       </div>
     </section>
 
+    <section class="faq" id="faq" style="border-top: 1px solid var(--color-card-lv2);">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq__terminal">
+          <div class="faq__bar">
+            <div class="faq__bar-dots">
+              <span class="faq__dot faq__dot--red"></span>
+              <span class="faq__dot faq__dot--yellow"></span>
+              <span class="faq__dot faq__dot--green"></span>
+            </div>
+            <span class="faq__bar-title">kodus-vs-github-copilot-faq(1)</span>
+            <span class="faq__bar-status">bash</span>
+          </div>
+          <div class="faq__body">
+            <div class="faq__man-header">
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+              <span class="faq__man-center">Kodus vs GitHub Copilot</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+
+            <div class="faq__list">
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Is GitHub Copilot code review the same as the inline code completions?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>No, they are two features inside the same Copilot subscription. Inline completions ship in your IDE as you type. Code review is a separate PR-time feature that GitHub runs against pull requests on demand or automatically. Both are bundled with the Copilot Pro, Pro Plus, Business, and Enterprise plans. The Copilot Free plan does not include code review.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "How does pricing compare?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus Teams is $10 per developer per month monthly or $8 annual prepay, plus your own model bill (BYO LLM). GitHub Copilot Business is $19 per user per month with code review bundled in; Copilot Enterprise is $39 per user per month. Both Copilot tiers include code review across all repos that the org has activated. Kodus self-hosted is free under AGPLv3 if you want zero per-seat cost. Starting June 2026, Copilot code review runs consume GitHub Actions minutes.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Can I bring my own LLM?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus yes, full BYO LLM. Point three env vars at OpenAI, Anthropic, Gemini, Groq, Cerebras, vLLM, Ollama, or any OpenAI-compatible endpoint. GitHub Copilot routes through their internal model selection (default GPT-5 family, with Anthropic Claude as an option on some plans). You cannot route Copilot at your own provider key.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Does either tool support custom review rules?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Both do. Kodus uses markdown files in <code>.kody/rules/</code> with YAML frontmatter (scope, path globs, severity) plus plain-English instructions. Kodus also auto-detects <code>.cursorrules</code>, <code>CLAUDE.md</code>, <code>.windsurfrules</code>, and <code>.github/copilot-instructions.md</code> as rule sources. GitHub Copilot reads custom instructions from <code>.github/copilot-instructions.md</code> directly and supports Copilot Memory on Pro and Pro Plus for repository-specific learned context.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Does Copilot work on GitLab, Bitbucket, or Azure DevOps?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>GitHub Copilot code review only reviews pull requests on GitHub.com and GitHub Enterprise Server / Enterprise Cloud. It does not work on GitLab, Bitbucket, or Azure DevOps. Kodus runs on all four (GitHub, GitLab, Bitbucket, Azure DevOps) plus the self-managed variants of each.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "Is there a self-hosted option?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>Kodus self-hosted is free under AGPLv3 and runs with Docker Compose. Source code, LLM calls, and review history stay on your infrastructure. GitHub Copilot is a SaaS-only product. You can use it inside GitHub Enterprise Server, but the model calls still leave your perimeter to GitHub-managed infrastructure.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">kodus --help "When does it make sense to use both?"</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>When you already have Copilot for inline IDE completions and want PR review as a separate signal. Copilot review acts on PRs you assign to it; Kodus runs automatically on every PR with your policy rules enforced. Many teams use Copilot for the IDE loop and Kodus for the PR loop because the latter ships customizable rules, metrics dashboard, technical-debt backlog, and self-host. They are not mutually exclusive.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="faq__man-footer">
+              <span class="faq__man-section">Kodus v2.0</span>
+              <span class="faq__man-center">2026-05-14</span>
+              <span class="faq__man-section">KODUS-FAQ(1)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="roi-cta">
       <div class="container">
         <div class="pixel-cta">
@@ -2547,6 +2658,100 @@
 
     buildBugComparison();
     animateSeverityBars();
+  </script>
+
+  <!-- ========== SCHEMAS (JSON-LD) ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Kodus", "item": "https://kodus.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Kodus vs GitHub Copilot", "item": "https://kodus.io/kodus-vs-github/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kodus",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web, Linux, Docker",
+    "url": "https://kodus.io/",
+    "description": "Open source AI code review without vendor lock-in. Bring your own LLM, self-host under AGPLv3, write custom rules as markdown files. Runs on GitHub, GitLab, Bitbucket, and Azure DevOps including self-managed variants.",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "downloadUrl": "https://github.com/kodustech/kodus-ai",
+    "offers": {
+      "@type": "Offer",
+      "price": "10",
+      "priceCurrency": "USD",
+      "description": "Teams plan at $10 per developer per month monthly ($8 per developer per month annual prepay). Self-hosted edition free under AGPLv3."
+    },
+    "publisher": {"@type": "Organization", "name": "Kodus", "url": "https://kodus.io/"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://kodus.io/kodus-vs-github/#copilot",
+    "name": "GitHub Copilot Code Review",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://docs.github.com/en/copilot/concepts/code-review/code-review",
+    "description": "Code review feature bundled inside Copilot Pro, Pro Plus, Business, and Enterprise plans. Reviews pull requests on GitHub.com and GitHub Enterprise. Supports custom instructions via .github/copilot-instructions.md and Copilot Memory on Pro tiers. Not available on Copilot Free or non-GitHub Git hosts.",
+    "offers": {
+      "@type": "Offer",
+      "price": "19",
+      "priceCurrency": "USD",
+      "description": "Bundled with Copilot Business at $19 per user per month and Copilot Enterprise at $39 per user per month. Pro tier also includes code review."
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Table",
+    "about": "Feature comparison between Kodus and GitHub Copilot code review",
+    "name": "Kodus vs GitHub Copilot at-a-glance comparison",
+    "url": "https://kodus.io/kodus-vs-github/#at-a-glance",
+    "isPartOf": {"@type": "WebPage", "url": "https://kodus.io/kodus-vs-github/"},
+    "mainEntity": [
+      {"@type": "PropertyValue", "name": "Supported platforms", "value": "Kodus: GitHub, GitLab, Bitbucket, Azure DevOps (+ self-managed); GitHub Copilot: GitHub only"},
+      {"@type": "PropertyValue", "name": "Support for any LLM provider", "value": "Kodus: Yes (BYO LLM, 14+ providers); GitHub Copilot: No (internal routing)"},
+      {"@type": "PropertyValue", "name": "AI-generated code summaries", "value": "Kodus: Yes; GitHub Copilot: Yes"},
+      {"@type": "PropertyValue", "name": "Inline comments", "value": "Kodus: Yes; GitHub Copilot: Yes"},
+      {"@type": "PropertyValue", "name": "PR bot chat", "value": "Kodus: Yes; GitHub Copilot: Yes"},
+      {"@type": "PropertyValue", "name": "Rules by repository, folder, file, or PR", "value": "Kodus: Yes; GitHub Copilot: Limited (repository-level instructions)"},
+      {"@type": "PropertyValue", "name": "External context (MCP and Plugins)", "value": "Kodus: Yes; GitHub Copilot: Yes"},
+      {"@type": "PropertyValue", "name": "Native IDE plugin", "value": "Kodus: No; GitHub Copilot: Yes"},
+      {"@type": "PropertyValue", "name": "Metrics dashboard", "value": "Kodus: Yes; GitHub Copilot: No"},
+      {"@type": "PropertyValue", "name": "Tech debt backlog", "value": "Kodus: Yes; GitHub Copilot: No"},
+      {"@type": "PropertyValue", "name": "Noise filters", "value": "Kodus: Yes; GitHub Copilot: No"},
+      {"@type": "PropertyValue", "name": "Self-host option", "value": "Kodus: Yes (free, AGPLv3); GitHub Copilot: No (SaaS only)"},
+      {"@type": "PropertyValue", "name": "Pricing", "value": "Kodus: $10/user/month + BYOK ($8 annual); GitHub Copilot: Business $19/user/month, Enterprise $39/user/month (review bundled in Pro and above)"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is GitHub Copilot code review the same as inline code completions?", "acceptedAnswer": {"@type": "Answer", "text": "No, they are two features inside the same Copilot subscription. Inline completions ship in your IDE as you type; code review is a separate PR-time feature that GitHub runs against pull requests on demand or automatically. Both are bundled with Copilot Pro, Pro Plus, Business, and Enterprise. The Free plan does not include code review."}},
+      {"@type": "Question", "name": "How does pricing compare?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus Teams is $10 per developer per month monthly or $8 annual prepay, plus your own model bill. GitHub Copilot Business is $19 per user per month with code review bundled. Copilot Enterprise is $39 per user per month. Kodus self-hosted is free under AGPLv3."}},
+      {"@type": "Question", "name": "Can I bring my own LLM?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus yes, full BYO LLM. Point three env vars at OpenAI, Anthropic, Gemini, Groq, Cerebras, vLLM, Ollama, or any OpenAI-compatible endpoint. GitHub Copilot routes through their internal model selection. You cannot route Copilot at your own provider key."}},
+      {"@type": "Question", "name": "Does either tool support custom review rules?", "acceptedAnswer": {"@type": "Answer", "text": "Both do. Kodus uses markdown files in .kody/rules/ with YAML frontmatter plus instructions, and auto-detects .cursorrules, CLAUDE.md, .windsurfrules, and .github/copilot-instructions.md. GitHub Copilot reads .github/copilot-instructions.md directly and supports Copilot Memory on Pro tiers."}},
+      {"@type": "Question", "name": "Does Copilot work on GitLab, Bitbucket, or Azure DevOps?", "acceptedAnswer": {"@type": "Answer", "text": "GitHub Copilot code review only reviews pull requests on GitHub.com and GitHub Enterprise Server / Enterprise Cloud. It does not work on GitLab, Bitbucket, or Azure DevOps. Kodus runs on all four."}},
+      {"@type": "Question", "name": "Is there a self-hosted option?", "acceptedAnswer": {"@type": "Answer", "text": "Kodus self-hosted is free under AGPLv3 and runs with Docker Compose. GitHub Copilot is a SaaS-only product."}},
+      {"@type": "Question", "name": "When does it make sense to use both?", "acceptedAnswer": {"@type": "Answer", "text": "When you have Copilot for inline IDE completions and want PR review as a separate signal. Copilot review acts on PRs you assign; Kodus runs automatically on every PR with policy rules enforced. Many teams use Copilot for the IDE loop and Kodus for the PR loop."}}
+    ]
+  }
   </script>
 </body>
 </html>
