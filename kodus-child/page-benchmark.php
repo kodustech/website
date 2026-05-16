@@ -8,6 +8,116 @@
 
 <main>
 
+    <!-- ========== JSON-LD SCHEMAS (P42/P0.10 schema sweep — FAQ + Product + Review) ========== -->
+    <script type="application/ld+json" class="kodus-schema-faq">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is the AI code review benchmark conducted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We select pull requests from large, actively maintained open-source repositories. Each PR contains at least one real, documented issue (bug, security vulnerability, or performance concern) confirmed by the project maintainers. We then run multiple AI code review tools on each PR under identical conditions: same diff, same context window, default configuration, no hints or custom rules. A finding counts as a hit only if the tool flags the specific issue the PR is known to contain. Generic style or formatting comments are ignored."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What metrics are measured in the benchmark?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We measure detection rate across three severity levels: Critical (security vulnerabilities, data loss, breaking changes), High (race conditions, logic errors, performance issues affecting users), and Medium (correctness issues that don't immediately break production). For each tool we report hits divided by total known issues per severity, plus an overall detection rate across all 38 PRs analyzed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI code review tools were tested?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The benchmark covers Kodus, Cursor, GitHub Copilot, and CodeRabbit. All tools ran with default configurations and the same input. Overall detection rates: Kodus 79% (30/38), Cursor 58% (22/38), GitHub Copilot 53% (20/38), CodeRabbit 39% (15/38)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which open-source repositories were used?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pull requests were selected from five repositories representing different languages and domains: Sentry (Python), Cal.com (TypeScript), Grafana (Go), Discourse (Ruby), and Keycloak (Java). All PRs and per-tool review outputs are public and reproducible via the benchmark GitHub repositories linked from each result row."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I reproduce or contribute to the benchmark?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The full methodology, PR list, and per-PR review outputs are available at codereviewbench.com. Each cell in the results table links to the actual PR comment thread for inspection. Contributions of new repositories, new tools, or methodology improvements are welcome via pull request to the benchmark repository."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json" class="kodus-schema-product">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Kodus",
+      "description": "Open source AI code review without vendor lock-in. Bring your own LLM (Claude, GPT, Gemini, Llama, GLM, Kimi, any OpenAI-compatible endpoint), pay the model provider directly, and self-host for full data sovereignty.",
+      "brand": { "@type": "Brand", "name": "Kodus" },
+      "url": "https://kodus.io/",
+      "image": "https://kodus.io/wp-content/uploads/2023/11/Kodus-ColoredBackground.png",
+      "category": "DeveloperApplication",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web, Self-hosted",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://kodus.io/pricing/",
+        "priceCurrency": "USD",
+        "price": "0",
+        "availability": "https://schema.org/InStock",
+        "description": "Free Community edition (self-hosted). Paid Cloud plans available."
+      }
+    }
+    </script>
+
+    <script type="application/ld+json" class="kodus-schema-review">
+    {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "name": "AI Code Review Benchmark: detection rate across 38 real-world pull requests",
+      "datePublished": "2026-02-23",
+      "url": "https://kodus.io/benchmark-ai-code-review/",
+      "author": {
+        "@type": "Organization",
+        "name": "Kodus",
+        "url": "https://kodus.io/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kodus",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kodus.io/wp-content/uploads/2023/11/Kodus-ColoredBackground.png"
+        }
+      },
+      "itemReviewed": {
+        "@type": "SoftwareApplication",
+        "name": "Kodus",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web, Self-hosted",
+        "url": "https://kodus.io/"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "reviewBody": "Tested on 38 real-world pull requests from 5 large open-source repositories (Sentry, Cal.com, Grafana, Discourse, Keycloak), Kodus detected 79% of known issues (30/38) and ranked first among the tools evaluated. It led every severity level: 69% on critical (9/13), 81% on high (13/16), 89% on medium (8/9). All tools ran under identical conditions (same diff, same context window, default configuration, no custom rules). Compared against Cursor (58% overall detection), GitHub Copilot (53%), and CodeRabbit (39%)."
+    }
+    </script>
+
     <!-- ========== HERO ========== -->
     <section class="bench__hero">
       <div class="container">
