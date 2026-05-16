@@ -27,7 +27,7 @@
           "name": "What metrics are measured in the benchmark?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We measure detection rate across three severity levels: Critical (security vulnerabilities, data loss, breaking changes), High (race conditions, logic errors, performance issues affecting users), and Medium (correctness issues that don't immediately break production). For each tool we report hits divided by total known issues per severity, plus an overall detection rate across all 38 PRs analyzed."
+            "text": "We measure detection rate across three severity levels labeled Critical, High, and Medium. For each tool we report hits divided by total known issues per severity, plus an overall detection rate across all 38 PRs analyzed."
           }
         },
         {
@@ -48,10 +48,10 @@
         },
         {
           "@type": "Question",
-          "name": "How can I reproduce or contribute to the benchmark?",
+          "name": "How can I verify the benchmark results independently?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The full methodology, PR list, and per-PR review outputs are available at codereviewbench.com. Each cell in the results table links to the actual PR comment thread for inspection. Contributions of new repositories, new tools, or methodology improvements are welcome via pull request to the benchmark repository."
+            "text": "Every cell in the detailed results table links directly to the actual pull request comment thread on GitHub where each tool's review output was posted. The PRs themselves come from public open-source repositories (Sentry, Cal.com, Grafana, Discourse, Keycloak), and the underlying issue each PR contained is documented either in the PR description or by the project maintainers. Anyone can independently confirm whether a tool's flag matches the known issue."
           }
         }
       ]
@@ -76,7 +76,7 @@
         "priceCurrency": "USD",
         "price": "0",
         "availability": "https://schema.org/InStock",
-        "description": "Free Community edition (self-hosted). Paid Cloud plans available."
+        "description": "Community edition free (self-hosted or Kodus-managed, no credit card required). Teams plan from $10 per developer per month. Enterprise pricing on request."
       }
     }
     </script>
