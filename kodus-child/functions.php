@@ -1134,6 +1134,77 @@ function kodus_enqueue_blog_assets() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 13b. PR REVIEW LIVE DEMO — assets + public API config (home section)
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Base URL of the public PR Review API the front-end talks to directly.
+ *
+ * Override per-environment (in order of precedence):
+ *   1. define('KODUS_PUBLIC_API_URL', 'https://api.kodus.io') in wp-config.php
+ *   2. env var KODUS_PUBLIC_API_URL
+ *   3. the 'kodus_public_api_url' filter
+ * Defaults to http://localhost:3001 for local Docker dev.
+ */
+function kodus_public_api_url() {
+    if (defined('KODUS_PUBLIC_API_URL') && KODUS_PUBLIC_API_URL) {
+        $url = KODUS_PUBLIC_API_URL;
+    } elseif (getenv('KODUS_PUBLIC_API_URL')) {
+        $url = getenv('KODUS_PUBLIC_API_URL');
+    } else {
+        $url = 'http://localhost:3001';
+    }
+    return untrailingslashit(apply_filters('kodus_public_api_url', $url));
+}
+
+/**
+ * Base URL of the "try" front-end that owns the PR review-result screen.
+ * After enqueuing a live review we redirect the visitor to {try}/r/{jobId}
+ * instead of rendering the result on the marketing site.
+ *
+ * Override via define('KODUS_TRY_URL', ...), env var, or the filter.
+ * Defaults to http://localhost:3002 for local Docker dev.
+ */
+function kodus_try_url() {
+    if (defined('KODUS_TRY_URL') && KODUS_TRY_URL) {
+        $url = KODUS_TRY_URL;
+    } elseif (getenv('KODUS_TRY_URL')) {
+        $url = getenv('KODUS_TRY_URL');
+    } else {
+        $url = 'http://localhost:3002';
+    }
+    return untrailingslashit(apply_filters('kodus_try_url', $url));
+}
+
+add_action('wp_enqueue_scripts', 'kodus_enqueue_pr_review_assets', 1001);
+function kodus_enqueue_pr_review_assets() {
+    // Only on the home template (front page uses page-home.php).
+    if (!is_page() && !is_front_page()) return;
+    $post_id = is_front_page() ? get_option('page_on_front') : get_queried_object_id();
+    if (get_post_meta($post_id, '_wp_page_template', true) !== 'page-home.php') return;
+
+    wp_enqueue_style(
+        'kodus-pr-review',
+        get_stylesheet_directory_uri() . '/assets/css/kodus-pr-review.css',
+        ['kodus-retro'],
+        filemtime(get_stylesheet_directory() . '/assets/css/kodus-pr-review.css')
+    );
+
+    wp_enqueue_script(
+        'kodus-pr-review',
+        get_stylesheet_directory_uri() . '/assets/js/kodus-pr-review.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/js/kodus-pr-review.js'),
+        true
+    );
+
+    wp_localize_script('kodus-pr-review', 'kodusPrReview', [
+        'apiUrl' => kodus_public_api_url(),
+        'tryUrl' => kodus_try_url(),
+    ]);
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 14. COMPARISON PAGES — 301 redirects from old URLs to final slugs
 // ═══════════════════════════════════════════════════════════════
 add_action('template_redirect', 'kodus_comparison_redirects', 1);
