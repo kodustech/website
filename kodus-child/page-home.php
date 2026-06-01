@@ -421,7 +421,6 @@
         <h2 class="section-title">The basics done <span class="highlight">Right</span></h2>
 
         <div class="basics__showcase">
-          <span class="kody-site-pet kody-site-pet--basics" data-kody-animation="bug-hunting" aria-hidden="true"></span>
           <div class="basics__window">
             <div class="window-bar">
               <span class="window-dot"></span>
@@ -894,7 +893,6 @@
         <h2 class="section-title">Calculate your ROI</h2>
 
         <div class="roi-calc">
-          <span class="kody-site-pet kody-site-pet--roi" data-kody-animation="celebrating" aria-hidden="true"></span>
           <!-- LCD Display -->
           <div class="roi-calc__display">
             <div class="roi-calc__display-inner">
