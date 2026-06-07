@@ -1,0 +1,242 @@
+/* ════════════════════════════════════════════════════════════════
+   PR REVIEW LIVE DEMO
+   "Paste a public PR → watch Kodus review it" section on the home page.
+   Inherits the retro design tokens from kodus-retro.css (--color-*, fonts).
+   ════════════════════════════════════════════════════════════════ */
+
+.pr-review {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+/* Same treatment as .ask-llm__subtitle ("Still have questions?" section) */
+.pr-review__subtitle {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: -40px;
+  margin-bottom: 48px;
+  text-wrap: balance; /* avoid a short orphan second line on mobile */
+}
+
+/* ── Console / input ─────────────────────────────────────────── */
+.pr-review__console {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--color-card-lv1);
+  border: 1px solid var(--color-card-lv3);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.pr-review__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--color-card-lv2);
+  border-bottom: 1px solid var(--color-card-lv3);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.pr-review__bar-dots { display: flex; gap: 6px; }
+.pr-review__dot { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.pr-review__dot--red    { background: var(--color-danger); }
+.pr-review__dot--yellow { background: var(--color-alert); }
+.pr-review__dot--green  { background: var(--color-success); }
+
+.pr-review__bar-title { color: var(--color-text-muted); }
+.pr-review__bar-status {
+  margin-left: auto;
+  color: var(--color-success);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.pr-review__bar-status[data-state="working"] { color: var(--color-alert); }
+.pr-review__bar-status[data-state="error"]   { color: var(--color-danger); }
+.pr-review__bar-status[data-state="done"]    { color: var(--color-success); }
+
+.pr-review__body { padding: 22px 22px 18px; position: relative; z-index: 2; }
+
+.pr-review__form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-card-lv3);
+  border-radius: var(--border-radius-sm);
+  padding: 6px 6px 6px 16px;
+}
+.pr-review__form:focus-within { border-color: var(--color-primary); }
+
+.pr-review__prompt-symbol {
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+  font-weight: 700;
+  user-select: none;
+}
+
+.pr-review__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  padding: 10px 0;
+}
+.pr-review__input::placeholder { color: var(--color-text-dim); }
+
+.pr-review__submit { flex: 0 0 auto; }
+.pr-review__submit[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.pr-review__error {
+  margin-top: 12px;
+  color: var(--color-danger);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.pr-review__error a { color: var(--color-primary); text-decoration: underline; }
+
+.pr-review__hint {
+  margin-top: 14px;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.pr-review__scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── Featured cards ──────────────────────────────────────────── */
+.pr-review__featured { max-width: 980px; margin: 40px auto 0; }
+
+.pr-review__featured-label {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.pr-review__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* Card shell = .retro-window (same component as trusted_by.exe in the hero);
+   here we only handle layout, hover and the loading skeleton. */
+.pr-review__card {
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.pr-review__card:hover {
+  transform: translateY(-4px);
+  border-color: #50506A;
+}
+.pr-review__card:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+.pr-review__card .retro-window__bar { width: 100%; }
+.pr-review__card .retro-window__bar-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.pr-review__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px 18px;
+  flex: 1 1 auto;
+}
+
+.pr-review__card-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pr-review__card-meta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pr-review__badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--border-radius-xs);
+  background: var(--color-secondary-dark);
+  color: var(--color-secondary);
+  white-space: nowrap;
+}
+.pr-review__badge--issues { background: var(--color-primary-dark); color: var(--color-primary); }
+
+.pr-review__card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pr-review__tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-text-dim);
+}
+.pr-review__tag::before { content: "#"; opacity: 0.6; }
+
+/* Skeleton loading state (plain box — the retro-window shell only wraps real cards) */
+.pr-review__card--skeleton {
+  cursor: default;
+  pointer-events: none;
+  border: 2px solid var(--color-card-lv3);
+  background: linear-gradient(90deg, var(--color-card-lv1) 25%, var(--color-card-lv2) 50%, var(--color-card-lv1) 75%);
+  background-size: 200% 100%;
+  animation: pr-shimmer 1.4s ease infinite;
+}
+@keyframes pr-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .pr-review__form { flex-wrap: wrap; padding: 12px; }
+  .pr-review__input { width: 100%; padding: 6px 0; }
+  .pr-review__submit { width: 100%; justify-content: center; }
+  .pr-review__cards { grid-template-columns: 1fr; }
+}

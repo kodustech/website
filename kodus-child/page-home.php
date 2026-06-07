@@ -340,6 +340,9 @@
       </div>
     </div>
 
+    <!-- ========== TEST KODUS ON A REAL PR (live demo) ========== -->
+    <?php get_template_part('template-parts/pr-review-demo'); ?>
+
     <!-- ========== YOU'LL HATE US IF (VCR) ========== -->
     <section class="vcr-section" id="hate-us">
       <div class="container">
