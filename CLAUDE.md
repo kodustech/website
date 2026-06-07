@@ -2,7 +2,7 @@
 
 ## Server & Deploy
 
-- **SSH**: `ssh ezdevs@134.209.210.171`
+- **SSH**: `ssh ezdevs@167.99.229.121`
 - **WP root**: `/home/ezdevs/kodus-files`
 - **Theme**: `kodus-child` (parent: `twentytwentythree`)
 - **WP-CLI**: `/usr/local/bin/wp`
@@ -13,7 +13,7 @@
 ### Cache Flush (full sequence)
 
 ```bash
-ssh ezdevs@134.209.210.171 "cd /home/ezdevs/kodus-files && \
+ssh ezdevs@167.99.229.121 "cd /home/ezdevs/kodus-files && \
   rm -rf wp-content/cache/min/* wp-content/cache/wp-rocket/* wp-content/cache/critical-css/* && \
   wp cache flush && \
   wp eval 'rocket_clean_domain();rocket_clean_minify();echo \"Done\";'"
