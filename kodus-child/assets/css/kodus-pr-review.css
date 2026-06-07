@@ -143,32 +143,38 @@
   gap: 16px;
 }
 
+/* Card shell = .retro-window (same component as trusted_by.exe in the hero);
+   here we only handle layout, hover and the loading skeleton. */
 .pr-review__card {
   text-align: left;
-  background: var(--color-card-lv1);
-  border: 1px solid var(--color-card-lv3);
-  border-radius: var(--border-radius-sm);
-  padding: 18px;
+  padding: 0;
   cursor: pointer;
-  transition: transform 0.12s ease, border-color 0.12s ease;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   min-height: 150px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 .pr-review__card:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  border-color: #50506A;
 }
 .pr-review__card:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 
-.pr-review__card-repo {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--color-text-muted);
-  word-break: break-all;
+.pr-review__card .retro-window__bar { width: 100%; }
+.pr-review__card .retro-window__bar-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
-.pr-review__card-repo b { color: var(--color-text); font-weight: 600; }
+
+.pr-review__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px 18px;
+  flex: 1 1 auto;
+}
 
 .pr-review__card-title {
   font-size: 0.98rem;
@@ -213,10 +219,11 @@
 }
 .pr-review__tag::before { content: "#"; opacity: 0.6; }
 
-/* Skeleton loading state */
+/* Skeleton loading state (plain box — the retro-window shell only wraps real cards) */
 .pr-review__card--skeleton {
   cursor: default;
   pointer-events: none;
+  border: 2px solid var(--color-card-lv3);
   background: linear-gradient(90deg, var(--color-card-lv1) 25%, var(--color-card-lv2) 50%, var(--color-card-lv1) 75%);
   background-size: 200% 100%;
   animation: pr-shimmer 1.4s ease infinite;

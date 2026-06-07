@@ -109,13 +109,24 @@
     var tags = (item.tags || []).slice(0, 4)
       .map(function (t) { return '<span class="pr-review__tag">' + esc(t) + '</span>'; }).join('');
     var title = item.highlight || pr.title || (pr.owner + '/' + pr.repo);
+    // Each card is a mini retro-window (same shell as trusted_by.exe in the
+    // hero): the repo is the window title, the review teaser is the body.
     return '' +
-      '<button type="button" class="pr-review__card" data-slug="' + esc(item.slug) + '">' +
-        '<span class="pr-review__card-repo"><b>' + esc(pr.owner) + '/' + esc(pr.repo) + '</b> #' + esc(pr.prNumber) + '</span>' +
-        '<span class="pr-review__card-title">' + esc(title) + '</span>' +
-        '<span class="pr-review__card-meta">' +
-          '<span class="pr-review__badge pr-review__badge--issues">' + esc(item.issuesCount || 0) + ' findings</span>' +
-          '<span class="pr-review__card-tags">' + tags + '</span>' +
+      '<button type="button" class="pr-review__card retro-window" data-slug="' + esc(item.slug) + '">' +
+        '<span class="retro-window__bar">' +
+          '<span class="retro-window__bar-title">' + esc(pr.owner) + '/' + esc(pr.repo) + ' #' + esc(pr.prNumber) + '</span>' +
+          '<span class="retro-window__bar-btns">' +
+            '<span class="retro-window__bar-btn">&#9472;</span>' +
+            '<span class="retro-window__bar-btn">&#9633;</span>' +
+            '<span class="retro-window__bar-btn">&times;</span>' +
+          '</span>' +
+        '</span>' +
+        '<span class="pr-review__card-body">' +
+          '<span class="pr-review__card-title">' + esc(title) + '</span>' +
+          '<span class="pr-review__card-meta">' +
+            '<span class="pr-review__badge pr-review__badge--issues">' + esc(item.issuesCount || 0) + ' findings</span>' +
+            '<span class="pr-review__card-tags">' + tags + '</span>' +
+          '</span>' +
         '</span>' +
       '</button>';
   }
