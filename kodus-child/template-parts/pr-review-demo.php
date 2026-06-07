@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 <section class="pr-review" id="pr-review">
   <div class="container">
     <h2 class="section-title">Test Kodus on a real PR</h2>
-    <p class="pr-review__subtitle">Paste any public GitHub PR and watch Kodus review it live. <strong>No signup needed.</strong></p>
+    <p class="pr-review__subtitle">Paste any public GitHub PR &mdash; watch Kodus review it live, no signup</p>
 
     <!-- ── Input console ─────────────────────────────────────────── -->
     <div class="pr-review__console" data-pr-console>

@@ -9,16 +9,16 @@
   position: relative;
 }
 
+/* Same treatment as .ask-llm__subtitle ("Still have questions?" section) */
 .pr-review__subtitle {
   text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
   color: var(--color-text-muted);
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  margin: -40px auto 48px;
-  max-width: 640px;
-  text-wrap: balance; /* avoid a short orphan second line */
+  margin-top: -40px;
+  margin-bottom: 48px;
+  text-wrap: balance; /* avoid a short orphan second line on mobile */
 }
-
-.pr-review__subtitle strong { color: var(--color-text); }
 
 /* ── Console / input ─────────────────────────────────────────── */
 .pr-review__console {
