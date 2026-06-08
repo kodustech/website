@@ -65,6 +65,15 @@
     window.location.href = TRY + '/r/' + encodeURIComponent(id);
   }
 
+  // Analytics: push a GTM dataLayer event (GTM-KN2J57G, loaded lazily in
+  // functions.php). Safe no-op if the dataLayer isn't ready yet.
+  function track(event, props) {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: event }, props || {}));
+    } catch (e) { /* never let analytics break the flow */ }
+  }
+
   function setStatus(text, state) {
     if (!statusEl) return;
     statusEl.innerHTML = '&#9679; ' + esc(text);
@@ -93,7 +102,11 @@
         });
         featuredWrap.innerHTML = items.map(featuredCard).join('');
         Array.prototype.forEach.call(featuredWrap.querySelectorAll('[data-slug]'), function (el) {
-          el.addEventListener('click', function () { gotoReview(el.getAttribute('data-slug')); });
+          el.addEventListener('click', function () {
+            var slug = el.getAttribute('data-slug');
+            track('pr_review_featured_clicked', { pr_slug: slug });
+            gotoReview(slug);
+          });
         });
       })
       .catch(function () { hideFeatured(); });
@@ -145,6 +158,7 @@
     var d = unwrap(body) || {};
     var code = d.code;
     if (status === 429 || code === 'rate_limited') {
+      track('pr_review_error', { error_code: 'rate_limited' });
       var when = d.resetAt ? new Date(d.resetAt) : null;
       var whenTxt = when && !isNaN(when.getTime())
         ? ' Try again after ' + when.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + '.'
@@ -153,6 +167,7 @@
         ' <a href="' + SIGNUP + '" target="_blank" rel="noopener noreferrer">Sign up</a> for unlimited reviews.');
       return;
     }
+    track('pr_review_error', { error_code: code || 'unknown' });
     showError(ERROR_COPY[code] || (d.message ? esc(d.message) : 'Something went wrong. Please try again.'));
   }
 
@@ -178,15 +193,18 @@
         }
         var d = unwrap(res.body) || {};
         if (!d.jobId) {
+          track('pr_review_error', { error_code: 'no_job_id' });
           setStatus('ERROR', 'error');
           setBusy(false);
           showError('Something went wrong starting the review. Please try again.');
           return;
         }
+        track('pr_review_submitted', { source: 'paste_url' });
         setStatus('OPENING REVIEW', 'working');
         gotoReview(d.jobId);
       })
       .catch(function () {
+        track('pr_review_error', { error_code: 'network' });
         setStatus('ERROR', 'error');
         setBusy(false);
         showError('Network error reaching the review service. Please try again.');
@@ -204,7 +222,11 @@
     var v = input.value.trim();
     clearError();
     if (!v) { showError('Paste a public GitHub PR URL first.'); return; }
-    if (!looksLikePrUrl(v)) { showError(ERROR_COPY.invalid_url); return; }
+    if (!looksLikePrUrl(v)) {
+      track('pr_review_error', { error_code: 'invalid_url' });
+      showError(ERROR_COPY.invalid_url);
+      return;
+    }
     submitLive(v);
   });
 
