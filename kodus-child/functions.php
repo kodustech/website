@@ -238,25 +238,10 @@ add_filter('wpseo_twitter_description', function ($desc) {
     return $desc;
 }, 20);
 
-function kodus_register_ai_robots_rules($robots_txt_helper) {
-    if (!is_object($robots_txt_helper) || !method_exists($robots_txt_helper, 'add_allow')) {
-        return;
-    }
-
-    $allowed_ai_bots = [
-        'GPTBot',
-        'ClaudeBot',
-        'Google-Extended',
-        'Amazonbot',
-        'ChatGPT-User',
-        'PerplexityBot',
-    ];
-
-    foreach ($allowed_ai_bots as $bot_name) {
-        $robots_txt_helper->add_allow($bot_name, '/');
-    }
+function kodus_render_robots_txt($output, $public) {
+    return "User-agent: *\nAllow: /\n\nSitemap: https://kodus.io/sitemap.xml\n";
 }
-add_action('Yoast\WP\SEO\register_robots_rules', 'kodus_register_ai_robots_rules', 10, 1);
+add_filter('robots_txt', 'kodus_render_robots_txt', 999, 2);
 
 // Add x-default hreflang for single blog posts, preferring the EN translation.
 add_action('wp_head', 'kodus_add_post_x_default_hreflang', 20);
