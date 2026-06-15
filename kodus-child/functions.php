@@ -55,6 +55,7 @@ function kodus_get_english_product_templates() {
         'page-self-hosted-ai-code-review.php',
         'page-byo-llm-code-review.php',
         'page-policy-as-code-review.php',
+        'page-data.php',
     ];
 }
 
@@ -109,6 +110,7 @@ function kodus_get_product_meta_titles() {
         'page-self-hosted-ai-code-review.php' => 'Self-Hosted AI Code Review | Kodus (Open Source, AGPLv3)',
         'page-byo-llm-code-review.php' => 'BYO LLM Code Review | Kodus (Bring Any Model, Zero Markup)',
         'page-policy-as-code-review.php' => 'Policy as Code Review | Kodus (Plain-English Rules, Per-Folder)',
+        'page-data.php' => 'State of AI Code Review 2026 | Kodus Research',
     ];
 }
 
@@ -141,6 +143,7 @@ function kodus_get_product_meta_descriptions() {
         'page-self-hosted-ai-code-review.php' => 'Open source AI code review without vendor lock-in. Runs on your infrastructure, deploys with Docker Compose, brings any OpenAI-compatible LLM. AGPLv3.',
         'page-byo-llm-code-review.php' => 'Bring your own LLM to AI code review. Pay the model provider directly with zero markup on inference. Open source, supports any OpenAI-compatible model.',
         'page-policy-as-code-review.php' => 'Write your team review rules in plain English. Kodus enforces them in every PR with inline comments. Per repo, per folder, versioned audit trail. Open source, AGPLv3.',
+        'page-data.php' => '180,739 AI code-review suggestions across 530 organizations: what happens after an AI leaves a review comment. 33.2% become code. Kodus production data, Sep 2025 to Jun 2026.',
     ];
 }
 
@@ -309,6 +312,7 @@ function kodus_get_retro_templates() {
         'page-self-hosted-ai-code-review.php',
         'page-byo-llm-code-review.php',
         'page-policy-as-code-review.php',
+        'page-data.php',
     ];
 }
 
@@ -548,6 +552,7 @@ function kodus_register_page_templates($templates) {
     $templates['page-self-hosted-ai-code-review.php'] = 'Kodus Self-Hosted AI Code Review';
     $templates['page-byo-llm-code-review.php']        = 'Kodus BYO LLM Code Review';
     $templates['page-policy-as-code-review.php']      = 'Kodus Policy as Code Review';
+    $templates['page-data.php']                       = 'Kodus Data Report';
     return $templates;
 }
 
