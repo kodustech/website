@@ -163,7 +163,7 @@
           </div>
         </div>
 
-        <p class="hero__disclaimer">No credit card required &bull; 14-day free trial</p>
+        <p class="hero__disclaimer">14-day free trial &bull; up to 35 PR reviews included &bull; no credit card required</p>
 
         <!-- Retro OS window — client logos -->
         <div class="hero__clients">
