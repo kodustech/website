@@ -97,7 +97,7 @@
               <p class="pricing__price-detail">Tokens included during the free trial. No API key required.</p>
 
               <a href="https://app.kodus.io/sign-up" class="btn btn--primary pricing__cta" id="pricingTeamsStartFreeTrialBtn">Start Free Trial</a>
-              <p class="pricing__trial-note">14-day free trial &bull; no credit card required</p>
+              <p class="pricing__trial-note">14-day trial &bull; up to 35 PR reviews</p>
 
               <div class="pricing__divider"></div>
 
