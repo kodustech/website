@@ -59,7 +59,7 @@
               </a>
             </li>
             <li>
-              <a href="https://kodus.io/changelog-en/">
+              <a href="https://docs.kodus.io/changelog">
                 <span class="nav__item-title">Changelog</span>
                 <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
               </a>
