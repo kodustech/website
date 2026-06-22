@@ -17,28 +17,34 @@
   --good: #6FBF73;
   --bad: #E07A7A;
   --peach: var(--color-tertiary, #FDBFBF);
+  --color-text-dim: #9AA0B6; /* lift faint text on the report (was 50%-alpha white) */
   overflow-x: clip;
 }
 
 /* ===================== HERO — Stat-Led "the climb" ===================== */
-.soc__hero { padding: 86px 0 60px; }
+.soc__hero { padding: 104px 0 96px; }
 .soc__hero-tag {
   display: inline-flex; align-items: center; gap: 9px;
-  font-family: var(--font-mono); font-size: .68rem; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--color-secondary);
-  border: 1px solid var(--color-card-lv2); padding: 6px 12px; border-radius: 2px; margin-bottom: 22px;
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: 1.8px; font-weight: 500;
+  text-transform: uppercase; color: var(--color-text-muted);
+  background: var(--color-card-lv1);
+  border: 1px solid var(--color-card-lv3); padding: 7px 14px; border-radius: 999px; margin-bottom: 40px;
 }
 .soc__hero-tag i { width: 7px; height: 7px; background: var(--good); border-radius: 50%; display: inline-block; }
 .soc__hero-title {
-  font-family: var(--font-pixel); font-size: clamp(1.4rem, 2.8vw, 2.3rem);
-  line-height: 1.2; margin: 0 0 18px; color: var(--color-text); letter-spacing: -0.5px;
+  font-family: var(--font-pixel); font-size: clamp(1.6rem, 4vw, 2.9rem);
+  line-height: 1.32; margin: 0 0 28px; color: var(--color-text); letter-spacing: 0;
+  max-width: 17ch; text-wrap: balance;
 }
 .soc__hero-title .highlight { color: var(--color-primary); }
 .soc__hero-lede {
-  font-family: var(--font-mono); font-size: clamp(1.05rem, 1.9vw, 1.45rem);
-  line-height: 1.5; color: var(--color-text-muted); margin: 0; max-width: 32ch;
+  font-family: var(--font-mono); font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+  line-height: 1.85; color: var(--color-text-muted); margin: 0; max-width: 50ch;
 }
 .soc__hero-lede strong { color: var(--color-primary); font-weight: 700; }
+.soc__hero-kicker { font-family: var(--font-mono); font-size: .82rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-secondary); margin: 0 0 20px; }
+.soc__hero-proof { font-family: var(--font-mono); font-size: .82rem; color: var(--color-text-dim); margin: 20px 0 0; }
+.soc__hero-proof b { color: var(--color-text-muted); font-weight: 700; }
 
 /* The climb — signature centerpiece: line rises toward the big number */
 .soc__climb { display: flex; align-items: stretch; gap: 28px; margin: 28px 0 26px; }
@@ -65,7 +71,8 @@
 .soc__score-item:last-child { border-right: none; }
 .soc__score-n { display: block; font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--color-primary); line-height: 1; margin-bottom: 4px; }
 .soc__score-l { font-family: var(--font-mono); font-size: .56rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-dim); }
-.soc__hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.soc__hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+.soc__hero-meta { font-family: var(--font-mono); font-size: .76rem; color: var(--color-text-dim); letter-spacing: .3px; margin: 28px 0 0; }
 .soc__hero-pull { width: 100%; margin: 2px 0 0; font-family: var(--font-mono); font-size: .76rem; color: var(--color-text-dim); letter-spacing: .3px; }
 .soc__hero-pull b { color: var(--color-secondary); font-weight: 700; }
 @media (max-width: 520px) { .soc__score { width: 100%; } .soc__score-item { flex: 1; text-align: center; } }
@@ -146,6 +153,9 @@
 .soc__chart-h { font-family: var(--font-mono); font-size: .98rem; font-weight: 700; color: var(--color-text); margin: 0; line-height: 1.3; }
 .soc__chart-take { font-family: var(--font-sans); font-size: .88rem; line-height: 1.45; color: var(--color-text-muted); margin: 0 0 18px; }
 .soc__chart-take strong { color: var(--color-primary); font-weight: 600; }
+.soc__bottomline { margin: 44px 0 0; padding: 20px 24px; border-left: 3px solid var(--color-primary); background: var(--color-card-lv1); border-radius: 0 6px 6px 0; }
+.soc__bottomline-label { display: block; font-family: var(--font-mono); font-size: .6rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-primary); margin: 0 0 8px; }
+.soc__bottomline-text { font-family: var(--font-sans); font-size: 1.02rem; line-height: 1.55; color: var(--color-text); margin: 0; max-width: 66ch; }
 .soc__chart-body { flex: 1; min-width: 0; }
 .soc__chart-foot { font-family: var(--font-mono); font-size: .64rem; color: var(--color-text-dim); margin-top: 16px; }
 
@@ -301,30 +311,15 @@
   <!-- ===================== HERO ===================== -->
   <section class="soc__hero">
     <div class="container">
-      <span class="soc__hero-tag"><i></i> Kodus Research &middot; State of AI Code Review 2026</span>
-      <h1 class="soc__hero-title">State of <span class="highlight">AI Code Review</span> 2026</h1>
-      <p class="soc__hero-lede">Eight months ago, 1 in 4 AI suggestions became code. <strong>Today it's nearly 1 in 2.</strong></p>
+      <span class="soc__hero-tag"><i></i> State of AI Code Review 2026 &middot; Kodus Research</span>
+      <h1 class="soc__hero-title">AI writes <span class="highlight">1.6&times; more bugs</span> than humans.</h1>
+      <p class="soc__hero-lede">Per pull request, AI-authored code draws 1.6&times; more review findings &mdash; and breaks <strong>2.1&times; more of the team's own rules</strong>.</p>
 
-      <div class="soc__climb">
-        <div class="soc__climb-chartwrap">
-          <div class="soc__climb-chart" id="ch-hero-climb"></div>
-          <div class="soc__climb-start"><b>25%</b><br>Sep '25</div>
-        </div>
-        <div class="soc__climb-end"><b>47.5%<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>of suggestions became code &middot; May 2026</span></div>
+      <div class="soc__hero-ctas">
+        <a href="#toc" class="btn btn--primary">Read the findings</a>
+        <a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="btn btn--outline-light">Try Kodus</a>
       </div>
-
-      <div class="soc__hero-foot">
-        <div class="soc__score">
-          <div class="soc__score-item"><span class="soc__score-n" data-soc-count="180739" data-soc-format="int">180,739</span><span class="soc__score-l">suggestions</span></div>
-          <div class="soc__score-item"><span class="soc__score-n" data-soc-count="530" data-soc-format="int">530</span><span class="soc__score-l">organizations</span></div>
-          <div class="soc__score-item"><span class="soc__score-n" data-soc-count="140662" data-soc-format="int">140,662</span><span class="soc__score-l">PRs reviewed</span></div>
-        </div>
-        <div class="soc__hero-ctas">
-          <a href="#toc" class="btn btn--primary">Read the findings</a>
-          <a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="btn btn--outline-light">Try Kodus</a>
-        </div>
-        <p class="soc__hero-pull"><b>1.6&times;</b> more findings on AI-written code &middot; <b>71.8%</b> of critical flags ship unaddressed</p>
-      </div>
+      <p class="soc__hero-meta">Across 22,743 AI PRs &middot; measured from the diff, not benchmarks</p>
     </div>
   </section>
 
@@ -409,6 +404,7 @@
         </figure>
 
       </div>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">What becomes code depends more on context &mdash; language and PR size &mdash; than on what the finding is. And the rate isn't static: it nearly doubled in eight months.</p></div>
     </div>
   </section>
 
@@ -443,6 +439,7 @@
         </div>
         <figcaption class="soc__chart-foot">n = 100,014 across 497 orgs &middot; 34.5% fixed</figcaption>
       </figure>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">The same ten classes recur everywhere &mdash; and about a third get fixed. Catching bugs is pattern-matching, not detective work.</p></div>
     </div>
   </section>
 
@@ -480,6 +477,7 @@
         </div>
         <figcaption class="soc__chart-foot">n = 7,409 across 352 orgs &middot; 31.2% fixed</figcaption>
       </figure>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">The classics &mdash; SQL injection, leaked secrets &mdash; still dominate, but AI pushed a brand-new class into the top tier: prompt injection.</p></div>
     </div>
   </section>
 
@@ -539,6 +537,7 @@
           <figcaption class="soc__chart-foot">68,603 rule-driven suggestions</figcaption>
         </figure>
       </div>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">Beyond bugs, teams codify their own standards &mdash; nearly 10,000 rules &mdash; and those land at the same rate bug fixes do.</p></div>
     </div>
   </section>
 
@@ -556,6 +555,7 @@
         <div class="soc__chart-body"><div id="ch-models" class="soc__apex"></div></div>
         <figcaption class="soc__chart-foot">By the model that ran the review &middot; Gemini 44,324, others 358&ndash;980</figcaption>
       </figure>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">Switching the reviewer model barely moves the outcome &mdash; what drives acceptance is the team, not the model.</p></div>
     </div>
   </section>
 
@@ -605,6 +605,7 @@
           <figcaption class="soc__chart-foot">Balanced panel: orgs with ≥ 10 PRs/quarter at both ends &middot; Q3 2025 vs Q2 2026</figcaption>
         </figure>
       </div>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">PRs doubled and merge time fell from 18.9h to 1.7h &mdash; but not because existing teams changed. A new generation is arriving that already ships small and fast by default. The shift is generational, not behavioral.</p></div>
     </div>
   </section>
 
@@ -697,6 +698,7 @@
         </figure>
 
       </div>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">AI already writes a third of the code we see &mdash; in bigger PRs that draw more of every kind of finding, broken team rules most of all.</p></div>
     </div>
   </section>
 
@@ -721,6 +723,7 @@
         </div>
         <figcaption class="soc__chart-foot">n = 13,609 flagged merged PRs &middot; folds in false positives &amp; accepted risk</figcaption>
       </figure>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">Flagging isn't a gate: 7 in 10 critical flags get merged anyway. Without something that blocks the merge, review is just advice.</p></div>
     </div>
   </section>
 
@@ -763,6 +766,7 @@
           <figcaption class="soc__chart-foot">Same May-2026 workload (14.3B in / 1.0B out) at each model's list price, sourced Jun 2026 &middot; ~2.75&times; for a landed fix</figcaption>
         </figure>
       </div>
+      <div class="soc__bottomline"><span class="soc__bottomline-label">Bottom line</span><p class="soc__bottomline-text">Reviewing a PR is cheap and input-bound &mdash; but model choice swings the bill ~38&times;. The lever is which model, not whether to review.</p></div>
     </div>
   </section>
 

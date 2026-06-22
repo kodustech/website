@@ -197,6 +197,7 @@
           <div class="hero__cta-tabs">
             <button class="hero__tab hero__tab--active" data-tab="git">Start with Git</button>
             <button class="hero__tab" data-tab="terminal">Start with Terminal</button>
+            <button class="hero__tab" data-tab="try-pr">Try on any PR</button>
           </div>
 
           <div class="hero__cta-content">
@@ -227,6 +228,23 @@
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
                 </button>
               </div>
+            </div>
+
+            <!-- Try-on-any-PR tab -->
+            <div class="hero__tab-panel" id="tab-try-pr">
+              <form action="https://try.kodus.io/" method="GET" class="hero__try-form" data-event="hero-try-pr-submit">
+                <input
+                  type="url"
+                  name="pr"
+                  class="hero__try-input"
+                  placeholder="https://github.com/owner/repo/pull/123"
+                  pattern="https?://(www\.)?github\.com/[^/]+/[^/]+/pull/\d+.*"
+                  required
+                  aria-label="GitHub PR URL"
+                >
+                <button type="submit" class="btn btn--primary hero__try-btn">Review →</button>
+              </form>
+              <p class="hero__try-hint">Paste any public PR — no signup needed.</p>
             </div>
           </div>
         </div>

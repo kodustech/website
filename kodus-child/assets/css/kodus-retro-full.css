@@ -12695,3 +12695,123 @@ body.admin-bar {
     display: none;
   }
 }
+
+/* ========================================
+   KODY ANIMATED SITE PETS
+   ======================================== */
+.kody-site-pet {
+  --kody-width: 115.2px;
+  --kody-height: 124.8px;
+  --kody-strip-width: 921.6px;
+  --kody-strip-end: -921.6px;
+
+  display: block;
+  width: var(--kody-width);
+  height: var(--kody-height);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: var(--kody-strip-width) var(--kody-height);
+  image-rendering: pixelated;
+  animation: kody-site-pet-play 1.05s steps(8) infinite;
+  contain: layout paint;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.35));
+}
+
+.kody-site-pet[data-kody-animation="bug-hunting"] {
+  background-image: url('../img/kody-animations/bug-hunting-strip.webp');
+}
+
+.kody-site-pet[data-kody-animation="celebrating"] {
+  background-image: url('../img/kody-animations/celebrating-strip.webp');
+}
+
+.kody-site-pet[data-kody-animation="playing-ball"] {
+  background-image: url('../img/kody-animations/playing-ball-strip.webp');
+}
+
+.kody-site-pet[data-kody-animation="reviewing-pr"] {
+  background-image: url('../img/kody-animations/reviewing-pr-strip.webp');
+}
+
+.kody-site-pet[data-kody-animation="searching"] {
+  background-image: url('../img/kody-animations/searching-strip.webp');
+}
+
+.kody-site-pet[data-kody-animation="security-scan"] {
+  background-image: url('../img/kody-animations/security-scan-strip.webp');
+}
+
+.kody-site-pet[data-kody-animation="sleeping"] {
+  background-image: url('../img/kody-animations/sleeping-strip.webp');
+}
+
+.kody-site-pet[data-kody-animation="typing"] {
+  background-image: url('../img/kody-animations/typing-strip.webp');
+}
+
+@keyframes kody-site-pet-play {
+  to {
+    background-position: var(--kody-strip-end) 0;
+  }
+}
+
+.hero__ctas,
+.basics__showcase,
+.roi-calc {
+  position: relative;
+}
+
+.hero__ctas {
+  overflow: visible;
+}
+
+.kody-site-pet--hero {
+  --kody-width: 119.04px;
+  --kody-height: 128.96px;
+  --kody-strip-width: 952.32px;
+  --kody-strip-end: -952.32px;
+
+  position: absolute;
+  left: calc(100% + 18px);
+  top: -18px;
+  z-index: 3;
+}
+
+.kody-site-pet--basics {
+  --kody-width: 111.36px;
+  --kody-height: 120.64px;
+  --kody-strip-width: 890.88px;
+  --kody-strip-end: -890.88px;
+
+  position: absolute;
+  right: -108px;
+  top: -86px;
+  z-index: 3;
+}
+
+.kody-site-pet--roi {
+  --kody-width: 107.52px;
+  --kody-height: 116.48px;
+  --kody-strip-width: 860.16px;
+  --kody-strip-end: -860.16px;
+
+  position: absolute;
+  right: -82px;
+  top: -82px;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .kody-site-pet--hero,
+  .kody-site-pet--basics,
+  .kody-site-pet--roi {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kody-site-pet {
+    animation: none;
+  }
+}
