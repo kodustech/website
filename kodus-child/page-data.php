@@ -795,6 +795,13 @@
   <!-- ===================== FINAL ===================== -->
   <section class="soc__final">
     <div class="container">
+      <span class="soc__divider-num" style="display:block;text-align:left;">The takeaways</span>
+      <div class="soc__stats" style="margin:18px 0 56px;">
+        <div class="soc__stat soc__stat--accent"><span class="soc__stat-n">1.6&times;</span><span class="soc__stat-l">more review findings on AI-authored code</span></div>
+        <div class="soc__stat soc__stat--accent"><span class="soc__stat-n">48%</span><span class="soc__stat-l">of suggestions get fixed &mdash; up from 25%</span></div>
+        <div class="soc__stat soc__stat--accent"><span class="soc__stat-n">71.8%</span><span class="soc__stat-l">of flagged PRs merge with a flag still open</span></div>
+        <div class="soc__stat soc__stat--accent"><span class="soc__stat-n">30%</span><span class="soc__stat-l">of PRs now declare AI authorship</span></div>
+      </div>
       <span class="soc__divider-num" style="display:block;text-align:left;">Run it on your PRs</span>
       <h2 class="soc__final-title">See what gets caught <span class="highlight">in your code.</span></h2>
       <p class="soc__final-sub">Open source AI code review that learns your team's rules. This is what it does in production.</p>
