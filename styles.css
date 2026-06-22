@@ -587,6 +587,48 @@ body::before {
   border-color: var(--color-success);
 }
 
+/* Try-on-any-PR tab */
+.hero__try-form {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--color-card-lv2);
+  border: 1px solid var(--color-card-lv3);
+  border-radius: 6px;
+  padding: 4px;
+  margin-bottom: 12px;
+  max-width: 100%;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.hero__try-form:focus-within {
+  border-color: var(--color-primary);
+}
+.hero__try-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+.hero__try-input::placeholder {
+  color: var(--color-text-dim);
+}
+.hero__try-btn {
+  flex-shrink: 0;
+  padding: 10px 22px;
+  font-size: 0.85rem;
+}
+.hero__try-hint {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+  margin: 0;
+}
 
 .hero__disclaimer {
   font-family: var(--font-mono);
