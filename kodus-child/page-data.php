@@ -647,7 +647,7 @@
                 <span class="soc__asst-val">3.6%</span>
               </div>
               <div class="soc__asst-row">
-                <span class="soc__asst-name"><span style="width:16px;flex-shrink:0;display:inline-block"></span><span>Devin / Codex</span></span>
+                <span class="soc__asst-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 8 4 12 8 16"/><polyline points="16 8 20 12 16 16"/></svg><span>Devin / Codex</span></span>
                 <span class="soc__asst-track"><span class="soc__asst-fill" style="--w:0.3%"></span></span>
                 <span class="soc__asst-val">0.3%</span>
               </div>
