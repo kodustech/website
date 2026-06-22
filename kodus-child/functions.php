@@ -244,6 +244,32 @@ add_filter('wpseo_twitter_description', function ($desc) {
     return $desc;
 }, 20);
 
+// Per-template social share image (overrides the site default og:image / twitter:image).
+function kodus_get_product_meta_images() {
+    return [
+        'page-data.php' => get_stylesheet_directory_uri() . '/assets/img/og-data.png',
+    ];
+}
+
+function kodus_get_current_page_meta_image() {
+    $template = kodus_get_current_page_template();
+    $images = kodus_get_product_meta_images();
+    if (isset($images[$template])) {
+        return $images[$template];
+    }
+    return '';
+}
+
+add_filter('wpseo_opengraph_image', function ($image) {
+    $custom = kodus_get_current_page_meta_image();
+    return $custom !== '' ? $custom : $image;
+}, 20);
+
+add_filter('wpseo_twitter_image', function ($image) {
+    $custom = kodus_get_current_page_meta_image();
+    return $custom !== '' ? $custom : $image;
+}, 20);
+
 // Add x-default hreflang for single blog posts, preferring the EN translation.
 add_action('wp_head', 'kodus_add_post_x_default_hreflang', 20);
 function kodus_add_post_x_default_hreflang() {
