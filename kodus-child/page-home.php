@@ -341,7 +341,10 @@
     </div>
 
     <!-- ========== TEST KODUS ON A REAL PR (live demo) ========== -->
-    <?php get_template_part('template-parts/pr-review-demo'); ?>
+    <!-- Temporarily hidden while we figure out attribution / measurement.
+         Code kept intact — re-enable by uncommenting the line below
+         AND removing the early-return guard in kodus_enqueue_pr_review_assets() (functions.php). -->
+    <?php // get_template_part('template-parts/pr-review-demo'); ?>
 
     <!-- ========== YOU'LL HATE US IF (VCR) ========== -->
     <section class="vcr-section" id="hate-us">

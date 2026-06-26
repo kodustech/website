@@ -1203,6 +1203,12 @@ function kodus_try_url() {
 
 add_action('wp_enqueue_scripts', 'kodus_enqueue_pr_review_assets', 1001);
 function kodus_enqueue_pr_review_assets() {
+    // Temporarily disabled — the "Test Kodus on a real PR" section is hidden
+    // (see page-home.php) while we sort out attribution/measurement. This skips
+    // loading the CSS/JS (and its featured-reviews API ping). Remove this line
+    // to re-enable. Code below kept intact.
+    return;
+
     // Only on the home template (front page uses page-home.php).
     if (!is_page() && !is_front_page()) return;
     $post_id = is_front_page() ? get_option('page_on_front') : get_queried_object_id();
