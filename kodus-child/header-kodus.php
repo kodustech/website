@@ -81,7 +81,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">State of AI Code Review 2026</span>
-                  <span class="nav__item-desc">Research report on 180k+ AI review suggestions across 530 organizations.</span>
+                  <span class="nav__item-desc">180k AI review suggestions, analyzed.</span>
                 </span>
               </a>
             </li>
@@ -92,7 +92,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">Blog</span>
-                  <span class="nav__item-desc">Deep dives on AI code review, engineering quality and dev workflows.</span>
+                  <span class="nav__item-desc">Notes on AI review and eng quality.</span>
                 </span>
               </a>
             </li>
@@ -103,7 +103,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">Kody Rules</span>
-                  <span class="nav__item-desc">Library of production tested review rules for real world codebases.</span>
+                  <span class="nav__item-desc">Review rules from real codebases.</span>
                 </span>
               </a>
             </li>
@@ -114,7 +114,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">Changelog</span>
-                  <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
+                  <span class="nav__item-desc">What shipped, release by release.</span>
                 </span>
               </a>
             </li>
@@ -125,7 +125,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">Customers</span>
-                  <span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span>
+                  <span class="nav__item-desc">Teams running Kody every day.</span>
                 </span>
               </a>
             </li>
@@ -136,7 +136,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">Security</span>
-                  <span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span>
+                  <span class="nav__item-desc">How we handle your code and keys.</span>
                 </span>
               </a>
             </li>
@@ -147,7 +147,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
-                  <span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span>
+                  <span class="nav__item-desc">AI review tools, compared on real PRs.</span>
                 </span>
               </a>
             </li>
@@ -158,7 +158,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">LLMs Performance Benchmark</span>
-                  <span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span>
+                  <span class="nav__item-desc">LLMs scored on real PR diffs.</span>
                 </span>
               </a>
             </li>
@@ -169,7 +169,7 @@
                 </span>
                 <span class="nav__item-text">
                   <span class="nav__item-title">Agent Skills Library</span>
-                  <span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span>
+                  <span class="nav__item-desc">Skills for coding agents.</span>
                 </span>
               </a>
             </li>
