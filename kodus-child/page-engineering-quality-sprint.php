@@ -303,7 +303,7 @@
         <p class="eqs__hero-sub">AI coding tools help teams produce code faster. The harder part is keeping standards, validation, ownership, metrics and rollout consistent as usage spreads across teams.</p>
         <p class="eqs__hero-sub eqs__hero-sub--tight">Kodus works hands-on with your engineering team for 4 weeks to find where quality breaks down, improve one or two concrete bottlenecks, and leave you with a model you can reuse across more repos.</p>
         <div class="eqs__cta-row">
-          <button type="button" class="btn btn--primary" data-cal-link="gabrielmalinosqui/30min" data-cal-config='{"layout":"month_view"}'>Talk to a founder</button>
+          <button type="button" class="btn btn--primary" data-cal-link="gabrielmalinosqui/quality-sprint" data-cal-config='{"layout":"month_view"}'>Talk to a founder</button>
           <a href="#how" class="btn btn--outline-light">See how the sprint works</a>
         </div>
         <p class="eqs__proof">
@@ -617,7 +617,7 @@
         <p class="eqs__lede">Bring one team or 3 to 5 repositories. We will help you diagnose where quality breaks down, improve one or two concrete bottlenecks, and leave with a model you can reuse.</p>
         <div class="eqs__cta-row">
           <span class="eqs__cta-glow" aria-hidden="true"></span>
-          <button type="button" class="btn btn--primary eqs__cta-btn" data-cal-link="gabrielmalinosqui/30min" data-cal-config='{"layout":"month_view"}'>
+          <button type="button" class="btn btn--primary eqs__cta-btn" data-cal-link="gabrielmalinosqui/quality-sprint" data-cal-config='{"layout":"month_view"}'>
             <svg class="eqs__cta-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
             Talk to a founder
             <svg class="eqs__cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
