@@ -175,8 +175,8 @@
             </li>
           </ul>
         </li>
-        <li><a href="<?php echo esc_url(home_url('/engineering-quality-sprint/')); ?>" class="nav__link">Quality Sprint</a></li>
         <li><a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="nav__link">Pricing</a></li>
+        <li><a href="<?php echo esc_url(home_url('/engineering-quality-sprint/')); ?>" class="nav__link">Quality Sprint</a></li>
       </ul>
 
       <div class="nav__actions">
