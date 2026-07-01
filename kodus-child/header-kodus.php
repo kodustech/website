@@ -75,11 +75,12 @@
           <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
           <ul class="nav__dropdown-menu">
             <li>
-              <a href="<?php echo esc_url(home_url('/data/')); ?>">
+              <a href="<?php echo esc_url(home_url('/data/')); ?>" class="nav__item--featured">
                 <span class="nav__item-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg>
                 </span>
                 <span class="nav__item-text">
+                  <span class="nav__item-tag">New research</span>
                   <span class="nav__item-title">State of AI Code Review 2026</span>
                   <span class="nav__item-desc">180k AI review suggestions, analyzed.</span>
                 </span>
@@ -170,6 +171,17 @@
                 <span class="nav__item-text">
                   <span class="nav__item-title">Agent Skills Library</span>
                   <span class="nav__item-desc">Skills for coding agents.</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo esc_url(home_url('/self-hosted-ai-code-review/')); ?>">
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Self-Hosted AI Code Review</span>
+                  <span class="nav__item-desc">Run Kodus on your own infrastructure.</span>
                 </span>
               </a>
             </li>
