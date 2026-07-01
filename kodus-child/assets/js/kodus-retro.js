@@ -16,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   hamburger?.addEventListener('click', () => {
     nav.classList.toggle('nav--open');
-    // Position actions below links
-    if (nav.classList.contains('nav--open')) {
-      requestAnimationFrame(() => {
-        const links = nav.querySelector('.nav__links');
-        const actions = nav.querySelector('.nav__actions');
-        if (links && actions) {
-          actions.style.top = (links.offsetTop + links.offsetHeight) + 'px';
-        }
-      });
+  });
+
+  /* --- Mobile Resources accordion (expand the dropdown inside the drawer) --- */
+  const navDrop = nav?.querySelector('.nav__dropdown');
+  const navDropLink = navDrop?.querySelector('.nav__link');
+  navDropLink?.addEventListener('click', (e) => {
+    if (window.matchMedia('(max-width: 1080px)').matches) {
+      e.preventDefault();
+      navDrop.classList.toggle('active');
     }
   });
 

@@ -39,6 +39,7 @@ function kodus_get_current_page_template() {
 
 function kodus_get_english_product_templates() {
     return [
+        'page-engineering-quality-sprint.php',
         'page-home.php',
         'page-pricing.php',
         'page-customers.php',
@@ -97,6 +98,7 @@ function kodus_home_meta_description() {
 
 function kodus_get_product_meta_titles() {
     return [
+        'page-engineering-quality-sprint.php' => 'Kodus engineering quality sprint for AI-assisted development',
         'page-home.php' => 'Kodus | Open Source AI Code Review',
         'page-pricing.php' => 'Kodus Pricing | AI Code Review | Try for free',
         'page-customers.php' => 'Kodus Customers | AI Code Review',
@@ -129,6 +131,7 @@ function kodus_get_current_page_meta_title() {
 
 function kodus_get_product_meta_descriptions() {
     return [
+        'page-engineering-quality-sprint.php' => 'A 4-week sprint for engineering teams adopting AI coding tools. Diagnose where quality breaks down, improve one or two workflow bottlenecks, and create a repeatable operating model.',
         'page-home.php' => 'Open source AI code review — reviews that adapt to your team. Catch issues early, keep delivery moving, and improve quality without slowing things down.',
         'page-pricing.php' => 'Choose the right plan for your engineering team and get AI-powered code reviews that feel like your senior dev wrote them — with context, quality, and consistency.',
         'page-customers.php' => 'See how engineering teams use Kodus to speed up code review, improve pull request quality, and enforce custom standards across repositories.',
@@ -304,6 +307,7 @@ function kodus_add_post_x_default_hreflang() {
 // ═══════════════════════════════════════════════════════════════
 function kodus_get_retro_templates() {
     return [
+        'page-engineering-quality-sprint.php',
         'page-home.php',
         'page-pricing.php',
         'page-customers.php',
@@ -554,6 +558,7 @@ add_filter('upload_size_limit', function() {
 // ═══════════════════════════════════════════════════════════════
 add_filter('theme_page_templates', 'kodus_register_page_templates');
 function kodus_register_page_templates($templates) {
+    $templates['page-engineering-quality-sprint.php'] = 'Kodus Engineering Quality Sprint';
     $templates['page-home.php']              = 'Kodus Home';
     $templates['page-pricing.php']           = 'Kodus Pricing';
     $templates['page-customers.php']         = 'Kodus Customers';

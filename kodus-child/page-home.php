@@ -418,197 +418,345 @@
       </div>
     </section>
 
-    <!-- ========== THE BASICS DONE RIGHT ========== -->
-    <section class="basics" id="basics">
+    <!-- ========== FEATURES (assembled grid) ========== -->
+    <section class="feat-grid" id="basics">
       <div class="container">
         <h2 class="section-title">The basics done <span class="highlight">Right</span></h2>
-
-        <div class="basics__showcase">
-          <div class="basics__window">
-            <div class="window-bar">
-              <span class="window-dot"></span>
-              <span class="window-dot"></span>
-              <span class="window-dot"></span>
-              <span class="window-bar__url">kodus://features</span>
-            </div>
-            <!-- Mobile feature selector (hidden on desktop) -->
-            <div class="basics__mobile-nav">
-              <button class="basics__mobile-tab basics__mobile-tab--active" data-feature="0">Context</button>
-              <button class="basics__mobile-tab" data-feature="1">Rules</button>
-              <button class="basics__mobile-tab" data-feature="2">Sync</button>
-              <button class="basics__mobile-tab" data-feature="3">Plugins</button>
-              <button class="basics__mobile-tab" data-feature="4">Tech Debt</button>
-              <button class="basics__mobile-tab" data-feature="5">Cockpit</button>
-              <button class="basics__mobile-tab" data-feature="6">Security</button>
-            </div>
-
-            <div class="basics__body">
-              <!-- File tree sidebar -->
-              <div class="basics__sidebar">
-                <div class="basics__sidebar-header">
-                  <span class="basics__folder-icon">&#128193;</span> Explorer
-                </div>
-                <ul class="basics__tree">
-                  <li class="basics__tree-folder">
-                    <span class="basics__tree-toggle">&#9660;</span> features/
-                  </li>
-                  <li class="basics__tree-file basics__tree-file--active" data-feature="0">
-                    <span class="basics__file-icon"></span> codebase_context.mod
-                  </li>
-                  <li class="basics__tree-file" data-feature="1">
-                    <span class="basics__file-icon"></span> set_rules.mod
-                  </li>
-                  <li class="basics__tree-file" data-feature="2">
-                    <span class="basics__file-icon"></span> rule_sync.mod
-                  </li>
-                  <li class="basics__tree-file" data-feature="3">
-                    <span class="basics__file-icon"></span> plugins_mcps.mod
-                  </li>
-                  <li class="basics__tree-file" data-feature="4">
-                    <span class="basics__file-icon"></span> technical_debt.mod
-                  </li>
-                  <li class="basics__tree-file" data-feature="5">
-                    <span class="basics__file-icon"></span> cockpit.mod
-                  </li>
-                  <li class="basics__tree-file" data-feature="6">
-                    <span class="basics__file-icon"></span> privacy_security.mod
-                  </li>
-                </ul>
+        <div class="feat-grid__grid">
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <svg class="sgraph" viewBox="0 0 240 200" fill="none" aria-hidden="true">
+              <circle class="sg-halo" cx="120" cy="100" r="46"/>
+              <circle class="sg-ring" cx="120" cy="100" r="16"/>
+              <g class="sgraph__edges">
+                <path class="sg-e sg-e1" d="M120 100 L44 46" pathLength="1"/>
+                <path class="sg-e sg-e2" d="M120 100 L196 50" pathLength="1"/>
+                <path class="sg-e sg-e3" d="M120 100 L206 146" pathLength="1"/>
+                <path class="sg-e sg-e4" d="M120 100 L52 152" pathLength="1"/>
+                <path class="sg-e sg-e5" d="M120 100 L120 176" pathLength="1"/>
+                <path class="sg-e sg-e6" d="M44 46 L196 50" pathLength="1"/>
+                <path class="sg-e sg-e7" d="M52 152 L120 176" pathLength="1"/>
+              </g>
+              <g class="sgraph__packets">
+                <circle class="sg-pkt" r="2.2"><animateMotion dur="2.2s" repeatCount="indefinite" path="M44 46 L120 100"/></circle>
+                <circle class="sg-pkt" r="2.2"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite" path="M206 146 L120 100"/></circle>
+                <circle class="sg-pkt" r="2.2"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M120 176 L120 100"/></circle>
+                <circle class="sg-pkt" r="2.2"><animateMotion dur="2.4s" begin="0.3s" repeatCount="indefinite" path="M196 50 L120 100"/></circle>
+              </g>
+              <g class="sgraph__nodes">
+                <circle class="sg-n sg-n1" cx="44" cy="46" r="4.5"/>
+                <text class="sg-flabel sg-l1" x="44" y="32" text-anchor="middle">api.ts</text>
+                <circle class="sg-n sg-n2 sg-n--p" cx="196" cy="50" r="4"/>
+                <text class="sg-flabel sg-l2" x="196" y="36" text-anchor="middle">auth.ts</text>
+                <circle class="sg-n sg-n3" cx="206" cy="146" r="4"/>
+                <text class="sg-flabel sg-l3" x="208" y="163" text-anchor="end">db.ts</text>
+                <circle class="sg-n sg-n4 sg-n--p" cx="52" cy="152" r="4"/>
+                <text class="sg-flabel sg-l4" x="52" y="168" text-anchor="middle">ui.tsx</text>
+                <circle class="sg-n sg-n5" cx="120" cy="176" r="4.5"/>
+                <text class="sg-flabel sg-l5" x="120" y="193" text-anchor="middle">utils.ts</text>
+                <circle class="sgraph__core-glow" cx="120" cy="100" r="20"/>
+                <image class="sg-kody" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody_profile.webp" x="92" y="72" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
+              </g>
+            </svg>
               </div>
-
-              <!-- Detail panel -->
-              <div class="basics__content">
-                <div class="basics__content-header">
-                  <span class="basics__tab basics__tab--active" id="basicsTab">codebase_context.mod</span>
+              <h3 class="feat-cell__title">Learns from your context</h3>
+              <p class="feat-cell__desc">Deep understanding of your entire project structure and logic.</p>
+            </div>
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <div class="srules">
+              <div class="srules__file">
+                <div class="srules__filebar">
+                  <span class="srules__filedot"></span>review_rules.md
                 </div>
-                <div class="basics__content-body" id="basicsDetail">
-                  <!-- Panel 0: Learns from your context -->
-                  <div class="basics__panel" id="basics-panel-0">
-                    <p class="basics__feature-title">Learns from your context</p>
-                    <div class="basics__video">
-                      <video src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/context.webm" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;"></video>
-                    </div>
-                    <p class="basics__feature-desc">Deep understanding of your entire project structure and logic.</p>
-                    <p class="basics__feature-detail">Kody analyzes your team’s workflows, coding standards and Architecture to understand your unique needs and provide tailored reviews.</p>
+                <div class="srules__rows">
+                  <div class="srules__row">
+                    <span class="srules__check srules__check--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
+                    <span class="srules__bar" style="width:78%"></span>
                   </div>
-
-                  <!-- Panel 1: You set the rules -->
-                  <div class="basics__panel" id="basics-panel-1" style="display: none;">
-                    <p class="basics__feature-title">You set the rules</p>
-                    <div class="basics__video">
-                      <video data-src="https://kodus.io/wp-content/uploads/2026/02/1111.mp4" preload="none" autoplay loop muted playsinline class="basics__deferred-video" style="width: 100%; height: auto; display: block;"></video>
-                    </div>
-                    <p class="basics__feature-desc">Teams define their own review standards.</p>
-                    <p class="basics__feature-detail">Create custom review guidelines in plain language or use rules from the built-in library. Reviews consistently follow the standards defined by your team.</p>
+                  <div class="srules__row">
+                    <span class="srules__check srules__check--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
+                    <span class="srules__bar" style="width:62%"></span>
                   </div>
-
-                  <!-- Panel 2: Rule Sync -->
-                  <div class="basics__panel" id="basics-panel-2" style="display: none;">
-                    <p class="basics__feature-title">Sync Your Existing Rules</p>
-                    <div class="basics__video">
-                      <div class="rule-sync-animation" style="position: relative; width: 100%; height: 320px; display: flex; justify-content: center; align-items: center; background: transparent; overflow: hidden; opacity: 0; animation: fade-in-anim 0.3s forwards;">
-                        <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
-                          <g class="circuit-lines">
-                            <path d="M28 20 H 38 V 45 H 44" class="flow-path" />
-                            <path d="M28 50 H 44" class="flow-path" />
-                            <path d="M28 80 H 38 V 55 H 44" class="flow-path" />
-                            <path d="M72 20 H 62 V 45 H 56" class="flow-path" />
-                            <path d="M72 50 H 56" class="flow-path" />
-                            <path d="M72 80 H 62 V 55 H 56" class="flow-path" />
-                          </g>
-                          <g class="data-packets">
-                            <rect width="3" height="3" class="data-packet">
-                              <animateMotion dur="2s" repeatCount="indefinite" path="M28 20 H 38 V 45 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
-                            </rect>
-                            <rect width="3" height="3" class="data-packet">
-                              <animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M28 50 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
-                            </rect>
-                            <rect width="3" height="3" class="data-packet">
-                              <animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M28 80 H 38 V 55 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
-                            </rect>
-                            <rect width="3" height="3" class="data-packet">
-                              <animateMotion dur="2s" begin="0.2s" repeatCount="indefinite" path="M72 20 H 62 V 45 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
-                            </rect>
-                            <rect width="3" height="3" class="data-packet">
-                              <animateMotion dur="2s" begin="0.7s" repeatCount="indefinite" path="M72 50 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
-                            </rect>
-                            <rect width="3" height="3" class="data-packet">
-                              <animateMotion dur="2s" begin="1.2s" repeatCount="indefinite" path="M72 80 H 62 V 55 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1" />
-                            </rect>
-                          </g>
-                        </svg>
-                        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1.1); z-index: 10;">
-                          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-box.webp" alt="Kody Box" class="kody-box" style="width: 140px; height: auto;">
-                        </div>
-                        <div style="position: absolute; left: 22%; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 30px 0; z-index: 5; width: 50px; align-items: center; transform: scale(1.1);">
-                          <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kilo.webp" alt="Kiln"></div>
-                          <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/copilot.webp" alt="Copilot"></div>
-                          <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cursor.webp" alt="Cursor"></div>
-                        </div>
-                        <div style="position: absolute; right: 22%; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 30px 0; z-index: 5; width: 50px; align-items: center; transform: scale(1.1);">
-                          <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude.webp" alt="Claude"></div>
-                          <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/openai.webp" alt="OpenAI"></div>
-                          <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cline.webp" alt="Cline"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="basics__feature-desc">Keep the standards you already use. No rework.</p>
-                    <p class="basics__feature-detail">Kody automatically detects rule files from tools like Cursor, Copilot, Claude, and Windsurf — so your reviews stay consistent.</p>
+                  <div class="srules__row">
+                    <span class="srules__check srules__check--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
+                    <span class="srules__bar" style="width:88%"></span>
                   </div>
-
-                  <!-- Panel 3: Bring your business context -->
-                  <div class="basics__panel" id="basics-panel-3" style="display: none;">
-                    <p class="basics__feature-title">Bring your business context</p>
-                    <div class="basics__video">
-                      <video data-src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/plugins.webm" preload="none" autoplay loop muted playsinline class="basics__deferred-video" style="width: 100%; height: auto; display: block;"></video>
-                    </div>
-                    <p class="basics__feature-desc">Extend functionality with Model Context Protocol servers.</p>
-                    <p class="basics__feature-detail">Connect tools like Jira, Notion, or Linear so Kody can understand specs, tasks, and requirements while reviewing your code.</p>
-                  </div>
-
-                  <!-- Panel 4: Track technical debt -->
-                  <div class="basics__panel" id="basics-panel-4" style="display: none;">
-                    <p class="basics__feature-title">Track technical debt</p>
-                    <div class="basics__video">
-                      <video data-src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/issues.webm" preload="none" autoplay loop muted playsinline class="basics__deferred-video" style="width: 100%; height: auto; display: block;"></video>
-                    </div>
-                    <p class="basics__feature-desc">Monitor and manage technical debt over time.</p>
-                    <p class="basics__feature-detail">Kodus automatically turns unimplemented suggestions into issues, helping your team visualize and reduce technical debt over time.</p>
-                  </div>
-
-                  <!-- Panel 5: Accelerate your delivery -->
-                  <div class="basics__panel" id="basics-panel-5" style="display: none;">
-                    <p class="basics__feature-title">Accelerate your delivery</p>
-                    <div class="basics__video">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cockpit.webp" alt="Accelerate your delivery" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <p class="basics__feature-desc">A centralized dashboard for your engineering insights.</p>
-                    <p class="basics__feature-detail">Monitor deploy frequency, cycle time, bug ratio and PR sizes to keep your team shipping fast — and safely.</p>
-                  </div>
-
-                  <!-- Panel 6: Privacy & Security -->
-                  <div class="basics__panel" id="basics-panel-6" style="display: none;">
-                    <p class="basics__feature-title">Privacy & Security</p>
-                    <div class="basics__video">
-                      <div class="security-anim" style="width: 100%; height: 320px; position: relative; overflow: hidden; background: transparent;">
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
-                          <div class="pixel-cloud" style="top: 15%; left: 15%; --s: 1.5; animation: float-cloud 30s linear infinite;"></div>
-                          <div class="pixel-cloud" style="top: 30%; left: 75%; --s: 1.2; opacity: 0.5; animation: float-cloud 45s linear infinite reverse;"></div>
-                          <div class="pixel-cloud" style="top: 10%; left: 55%; --s: 1; opacity: 0.4; animation: float-cloud 60s linear infinite;"></div>
-                        </div>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/castle.webp" alt="Castle" style="width: 280px; height: auto; image-rendering: pixelated; position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); z-index: 1; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-guard.webp" alt="Kody Guard" style="width: 130px; height: auto; image-rendering: pixelated; position: absolute; z-index: 2; bottom: 20px; left: 50%; transform: translateX(-50%); filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));">
-                      </div>
-                    </div>
-                    <p class="basics__feature-desc">Enterprise-grade security ensuring your code stays safe.</p>
-                    <p class="basics__feature-detail">Source code is never stored and is never used to train models. All data is encrypted in transit and at rest. Kodus supports SOC 2 compliance and offers self-hosted runners, so your IP can remain entirely within your own infrastructure.</p>
+                  <div class="srules__row">
+                    <span class="srules__check srules__check--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
+                    <span class="srules__bar" style="width:70%"></span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+              </div>
+              <h3 class="feat-cell__title">You set the rules</h3>
+              <p class="feat-cell__desc">Teams define their own review standards in plain language.</p>
+            </div>
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <div class="rsync">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="rsync__circuit">
+                  <g class="circuit-lines">
+                    <path d="M28 20 H 38 V 45 H 44" class="flow-path"/>
+                    <path d="M28 50 H 44" class="flow-path"/>
+                    <path d="M28 80 H 38 V 55 H 44" class="flow-path"/>
+                    <path d="M72 20 H 62 V 45 H 56" class="flow-path"/>
+                    <path d="M72 50 H 56" class="flow-path"/>
+                    <path d="M72 80 H 62 V 55 H 56" class="flow-path"/>
+                  </g>
+                  <g class="data-packets">
+                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" repeatCount="indefinite" path="M28 20 H 38 V 45 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
+                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M28 50 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
+                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M28 80 H 38 V 55 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
+                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="0.2s" repeatCount="indefinite" path="M72 20 H 62 V 45 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
+                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="0.7s" repeatCount="indefinite" path="M72 50 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
+                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="1.2s" repeatCount="indefinite" path="M72 80 H 62 V 55 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
+                  </g>
+                </svg>
+                <div class="rsync__core"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-box.webp" alt="Kody Box" class="kody-box"></div>
+                <div class="rsync__tools rsync__tools--l">
+                  <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kilo.webp" alt="Kiln"></div>
+                  <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/copilot.webp" alt="Copilot"></div>
+                  <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cursor.webp" alt="Cursor"></div>
+                </div>
+                <div class="rsync__tools rsync__tools--r">
+                  <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude.webp" alt="Claude"></div>
+                  <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/openai.webp" alt="OpenAI"></div>
+                  <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cline.webp" alt="Cline"></div>
+                </div>
+              </div>
+              </div>
+              <h3 class="feat-cell__title">Sync your existing rules</h3>
+              <p class="feat-cell__desc">Keep the standards you already use — Kody detects rule files from Cursor, Copilot, Claude and more.</p>
+            </div>
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <div class="bval">
+              <div class="bval__bar">
+                <span class="bval__bardot"></span>validate &middot; rules from your tools
+              </div>
+              <div class="bval__rows">
+                <div class="bval__row bval__row--1">
+                  <span class="bval__tag bval__tag--jira">JIRA</span>
+                  <span class="bval__rule">refund needs a reason</span>
+                  <span class="bval__verdict bval__pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
+                </div>
+                <div class="bval__row bval__row--2">
+                  <span class="bval__tag bval__tag--linear">LINEAR</span>
+                  <span class="bval__rule">amount within limit</span>
+                  <span class="bval__verdict bval__pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
+                </div>
+                <div class="bval__row bval__row--3">
+                  <span class="bval__tag bval__tag--notion">NOTION</span>
+                  <span class="bval__rule">audit log required</span>
+                  <span class="bval__verdict bval__fail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+                </div>
+              </div>
+              <div class="bval__status"><span class="bval__status-dot"></span>1 rule violated &middot; from your specs</div>
+            </div>
+              </div>
+              <h3 class="feat-cell__title">Validates your business rules</h3>
+              <p class="feat-cell__desc">Kody pulls requirements from Jira, Linear and Notion, then checks every PR against them — and flags what breaks.</p>
+            </div>
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <div class="tdebt">
+              <div class="tdebt__bar"><span class="tdebt__bardot"></span>technical_debt &middot; last 6 weeks</div>
+              <div class="tdebt__chart">
+                <svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="tdgrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#F8B76D" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#F8B76D" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <line class="td-grid" x1="14" y1="40" x2="226" y2="40"/>
+                  <line class="td-grid" x1="14" y1="74" x2="226" y2="74"/>
+                  <line class="td-grid" x1="14" y1="108" x2="226" y2="108"/>
+                  <path class="td-area" d="M24 38 L76 58 L128 72 L176 102 L216 118 L216 140 L24 140 Z"/>
+                  <path class="td-line" d="M24 38 L76 58 L128 72 L176 102 L216 118" pathLength="1"/>
+                  <circle class="td-dot td-dot--1" cx="24" cy="38" r="3.5"/>
+                  <circle class="td-dot td-dot--2" cx="76" cy="58" r="3.5"/>
+                  <circle class="td-dot td-dot--3" cx="128" cy="72" r="3.5"/>
+                  <circle class="td-dot td-dot--4" cx="176" cy="102" r="3.5"/>
+                  <circle class="td-dot td-dot--5" cx="216" cy="118" r="4"/>
+                </svg>
+              </div>
+              <div class="tdebt__foot">
+                <span class="tdebt__foot-label">open debt</span>
+                <span class="tdebt__delta">&#9660; 38%</span>
+                <span class="tdebt__foot-note">auto-tracked as issues</span>
+              </div>
+            </div>
+              </div>
+              <h3 class="feat-cell__title">Track technical debt</h3>
+              <p class="feat-cell__desc">Unimplemented suggestions become issues automatically — so debt stays visible and shrinks over time.</p>
+            </div>
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <div class="cock">
+              <div class="cock__bar"><span class="cock__bardot"></span>engineering_cockpit &middot; live</div>
+              <div class="cock__grid">
+                <div class="cock__tile cock__tile--1">
+                  <span class="cock__label">Deploy freq</span>
+                  <div class="cock__valrow"><span class="cock__val">20</span><span class="cock__unit">/wk</span><span class="cock__delta">&#9650; 12%</span></div>
+                  <div class="cock__spark"><i style="--h:30%"></i><i style="--h:42%"></i><i style="--h:38%"></i><i style="--h:55%"></i><i style="--h:60%"></i><i style="--h:74%"></i></div>
+                </div>
+                <div class="cock__tile cock__tile--2">
+                  <span class="cock__label">Cycle time</span>
+                  <div class="cock__valrow"><span class="cock__val">17h</span><span class="cock__unit">44m</span><span class="cock__delta">&#9660; 14%</span></div>
+                  <div class="cock__spark"><i style="--h:72%"></i><i style="--h:64%"></i><i style="--h:58%"></i><i style="--h:48%"></i><i style="--h:42%"></i><i style="--h:34%"></i></div>
+                </div>
+                <div class="cock__tile cock__tile--3">
+                  <span class="cock__label">Bug ratio</span>
+                  <div class="cock__valrow"><span class="cock__val">2.0</span><span class="cock__unit">%</span><span class="cock__delta">&#9660; 9%</span></div>
+                  <div class="cock__spark"><i style="--h:60%"></i><i style="--h:54%"></i><i style="--h:56%"></i><i style="--h:44%"></i><i style="--h:38%"></i><i style="--h:30%"></i></div>
+                </div>
+                <div class="cock__tile cock__tile--4">
+                  <span class="cock__label">PR size</span>
+                  <div class="cock__valrow"><span class="cock__val">220</span><span class="cock__unit">loc</span><span class="cock__delta">&#9660; 7%</span></div>
+                  <div class="cock__spark"><i style="--h:64%"></i><i style="--h:58%"></i><i style="--h:52%"></i><i style="--h:50%"></i><i style="--h:44%"></i><i style="--h:40%"></i></div>
+                </div>
+              </div>
+            </div>
+              </div>
+              <h3 class="feat-cell__title">Accelerate your delivery</h3>
+              <p class="feat-cell__desc">Deploy frequency, cycle time, bug ratio and PR size — one dashboard, all trending the right way.</p>
+            </div>
         </div>
       </div>
+      <style>
+.anim-test{padding:60px 0}
+      .anim-test__flag{text-align:center;font-family:var(--font-mono);font-size:0.72rem;color:var(--color-text-dim);letter-spacing:0.5px;margin-bottom:24px}
+      .anim-test__cell{max-width:440px;margin:0 auto;padding:48px 40px}
+      .anim-test__art{height:300px;display:flex;align-items:center;justify-content:center;margin-bottom:36px}
+      .anim-test__title{font-family:var(--font-mono);font-size:1.5rem;color:var(--color-text);margin-bottom:10px;line-height:1.2}
+      .anim-test__desc{font-size:0.95rem;color:var(--color-text-muted);line-height:1.65;max-width:360px}
+      .srules{width:260px;font-family:var(--font-mono)}
+      .srules__file{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:var(--border-radius-xs);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+      .srules__filebar{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid var(--color-card-lv3);font-size:0.72rem;color:var(--color-secondary)}
+      .srules__filedot{width:7px;height:7px;border-radius:50%;background:var(--color-secondary);box-shadow:0 0 6px var(--color-secondary)}
+      .srules__rows{padding:18px 16px;display:flex;flex-direction:column;gap:16px}
+      .srules__row{display:flex;align-items:center;gap:12px}
+      .srules__check{flex-shrink:0;width:18px;height:18px;border:1.5px solid var(--color-secondary-dark);border-radius:3px;display:flex;align-items:center;justify-content:center}
+      .srules__check svg{width:12px;height:12px;color:var(--color-secondary);opacity:0;transform:scale(0.4);transform-origin:center}
+      .srules__check--1 svg{animation:srules-c1 5s infinite}
+      .srules__check--2 svg{animation:srules-c2 5s infinite}
+      .srules__check--3 svg{animation:srules-c3 5s infinite}
+      .srules__check--4 svg{animation:srules-c4 5s infinite}
+      .srules__bar{height:8px;border-radius:2px;background:var(--color-card-lv3)}
+      @keyframes srules-c1{0%,12%{opacity:0;transform:scale(0.4)}18%{opacity:1;transform:scale(1.25)}24%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
+      @keyframes srules-c2{0%,24%{opacity:0;transform:scale(0.4)}30%{opacity:1;transform:scale(1.25)}36%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
+      @keyframes srules-c3{0%,36%{opacity:0;transform:scale(0.4)}42%{opacity:1;transform:scale(1.25)}48%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
+      @keyframes srules-c4{0%,48%{opacity:0;transform:scale(0.4)}54%{opacity:1;transform:scale(1.25)}60%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
+      @media(prefers-reduced-motion:reduce){.srules__check svg{opacity:1;transform:none;animation:none}}
+.sgraph{width:260px;height:auto;overflow:visible}
+      .sg-halo{fill:var(--color-primary);opacity:0.07;filter:blur(8px);transform-box:fill-box;transform-origin:center;animation:sg-halo 4s ease-in-out infinite}
+      .sg-ring{fill:none;stroke:var(--color-primary);stroke-width:1.2;transform-box:fill-box;transform-origin:center;opacity:0;animation:sg-ring 3.6s ease-out infinite}
+      .sg-e{stroke:var(--color-primary);stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:sg-draw 0.8s ease forwards}
+      .sg-e1{animation-delay:0.1s}.sg-e2{animation-delay:0.25s}.sg-e3{animation-delay:0.4s}.sg-e4{animation-delay:0.55s}.sg-e5{animation-delay:0.7s}.sg-e6{animation-delay:0.85s}.sg-e7{animation-delay:1s}
+      .sg-pkt{fill:var(--color-primary);filter:drop-shadow(0 0 4px var(--color-primary))}
+      .sg-n{--node:var(--color-primary);fill:var(--color-card-lv3);animation:sg-light 0.6s ease forwards}
+      .sg-n--p{--node:var(--color-secondary)}
+      .sg-n1{animation-delay:0.5s}.sg-n2{animation-delay:0.65s}.sg-n3{animation-delay:0.8s}.sg-n4{animation-delay:0.95s}.sg-n5{animation-delay:1.1s}
+      .sgraph__core-glow{fill:var(--color-primary);opacity:0.25;filter:blur(4px);transform-box:fill-box;transform-origin:center;animation:sg-coreglow 3s ease-in-out infinite}
+      .sgraph__core{fill:var(--color-primary);filter:drop-shadow(0 0 6px var(--color-primary));transform-box:fill-box;transform-origin:center;animation:sg-core 3s ease-in-out infinite}
+      .sgraph__core-hi{fill:#fff;opacity:0.6}
+      .sg-kody{filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5)) drop-shadow(0 0 6px rgba(248,183,109,0.35))}
+      .sg-flabel{font-family:var(--font-mono);font-size:7px;fill:var(--color-text-muted);opacity:0;animation:sg-fade 0.6s ease forwards}
+      .sg-l1{animation-delay:0.5s}.sg-l2{animation-delay:0.65s}.sg-l3{animation-delay:0.8s}.sg-l4{animation-delay:0.95s}.sg-l5{animation-delay:1.1s}
+      .sg-corelabel{font-family:var(--font-mono);font-size:6.5px;font-weight:700;fill:var(--color-bg)}
+      @keyframes sg-fade{to{opacity:0.85}}
+      @keyframes sg-draw{from{stroke-dashoffset:1;opacity:0}to{stroke-dashoffset:0;opacity:0.5}}
+      @keyframes sg-light{to{fill:var(--node);filter:drop-shadow(0 0 5px var(--node))}}
+      @keyframes sg-core{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+      @keyframes sg-coreglow{0%,100%{opacity:0.2;transform:scale(1)}50%{opacity:0.4;transform:scale(1.25)}}
+      @keyframes sg-halo{0%,100%{opacity:0.05}50%{opacity:0.12}}
+      @keyframes sg-ring{0%{opacity:0.5;transform:scale(0.3)}70%{opacity:0}100%{opacity:0;transform:scale(2.6)}}
+      @media(prefers-reduced-motion:reduce){.sg-e{animation:none;stroke-dashoffset:0;opacity:0.5}.sg-n{animation:none;fill:var(--node)}.sg-flabel{animation:none;opacity:0.85}.sg-ring,.sg-halo,.sgraph__core,.sgraph__core-glow,.sg-pkt{animation:none}}
+.bval{width:300px;font-family:var(--font-mono)}
+      .bval__bar{display:flex;align-items:center;gap:8px;padding:10px 13px;background:var(--color-card-lv2);border:1px solid var(--color-card-lv3);border-bottom:none;border-radius:var(--border-radius-xs) var(--border-radius-xs) 0 0;font-size:0.72rem;color:var(--color-secondary)}
+      .bval__bardot{width:7px;height:7px;border-radius:50%;background:var(--color-secondary);box-shadow:0 0 6px var(--color-secondary)}
+      .bval__rows{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:0 0 var(--border-radius-xs) var(--border-radius-xs);padding:6px 0;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+      .bval__row{display:flex;align-items:center;gap:12px;padding:9px 14px;border-left:2px solid transparent}
+      .bval__rule{flex:1;font-size:0.76rem;color:var(--color-text-muted);min-width:0}
+      .bval__tag{flex-shrink:0;font-size:0.6rem;font-weight:700;letter-spacing:0.4px;padding:2px 6px;border-radius:3px;background:var(--color-card-lv3);color:var(--color-text-muted)}
+      .bval__tag--jira{color:var(--color-info)}
+      .bval__tag--linear{color:var(--color-secondary)}
+      .bval__tag--notion{color:var(--color-tertiary)}
+      .bval__verdict{flex-shrink:0;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.4);transform-origin:center}
+      .bval__verdict svg{width:11px;height:11px;color:#0d0d14}
+      .bval__pass{background:var(--color-success)}
+      .bval__fail{background:var(--color-danger)}
+      .bval__row--1 .bval__verdict{animation:bval-v1 5s infinite}
+      .bval__row--2 .bval__verdict{animation:bval-v2 5s infinite}
+      .bval__row--3 .bval__verdict{animation:bval-v3 5s infinite}
+      .bval__row--3{animation:bval-fail 5s infinite}
+      .bval__status{display:flex;align-items:center;gap:7px;padding:12px 14px 4px;font-size:0.72rem;color:var(--color-danger);opacity:0;animation:bval-status 5s infinite}
+      .bval__status-dot{width:6px;height:6px;border-radius:50%;background:var(--color-danger);box-shadow:0 0 6px var(--color-danger)}
+      @keyframes bval-v1{0%,12%{opacity:0;transform:scale(0.4)}18%{opacity:1;transform:scale(1.25)}24%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
+      @keyframes bval-v2{0%,24%{opacity:0;transform:scale(0.4)}30%{opacity:1;transform:scale(1.25)}36%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
+      @keyframes bval-v3{0%,36%{opacity:0;transform:scale(0.4)}42%{opacity:1;transform:scale(1.25)}48%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
+      @keyframes bval-fail{0%,38%{background:transparent;border-left-color:transparent}44%,90%{background:rgba(250,88,103,0.10);border-left-color:var(--color-danger)}100%{background:transparent;border-left-color:transparent}}
+      @keyframes bval-status{0%,48%{opacity:0}56%,88%{opacity:1}100%{opacity:0}}
+      @media(prefers-reduced-motion:reduce){.bval__verdict{animation:none;opacity:1;transform:none}.bval__row--3{animation:none;background:rgba(250,88,103,0.10);border-left-color:var(--color-danger)}.bval__status{animation:none;opacity:1}}
+.tdebt{width:244px;font-family:var(--font-mono)}
+      .tdebt__bar{display:flex;align-items:center;gap:8px;padding:10px 13px;background:var(--color-card-lv2);border:1px solid var(--color-card-lv3);border-bottom:none;border-radius:var(--border-radius-xs) var(--border-radius-xs) 0 0;font-size:0.72rem;color:var(--color-primary)}
+      .tdebt__bardot{width:7px;height:7px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 6px var(--color-primary)}
+      .tdebt__chart{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-bottom:none;padding:10px 12px 2px;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+      .tdebt__chart svg{width:100%;height:auto;display:block;overflow:visible}
+      .td-grid{stroke:var(--color-card-lv3);stroke-width:0.6;opacity:0.5}
+      .td-area{fill:url(#tdgrad);opacity:0;animation:td-area 0.8s ease forwards;animation-delay:0.7s}
+      .td-line{stroke:var(--color-primary);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(248,183,109,0.5));animation:td-draw 1.4s ease forwards}
+      .td-dot{fill:var(--color-primary);opacity:0;animation:td-pop 0.4s ease forwards}
+      .td-dot--1{animation-delay:0.3s}.td-dot--2{animation-delay:0.55s}.td-dot--3{animation-delay:0.8s}.td-dot--4{animation-delay:1.05s}.td-dot--5{animation-delay:1.3s}
+      .td-dot--5{filter:drop-shadow(0 0 5px var(--color-primary));animation:td-pop 0.4s ease forwards, td-pulse 2.4s ease-in-out 1.7s infinite;transform-box:fill-box;transform-origin:center}
+      .tdebt__foot{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:0 0 var(--border-radius-xs) var(--border-radius-xs);font-size:0.7rem;color:var(--color-text-dim)}
+      .tdebt__foot-label{color:var(--color-text-muted)}
+      .tdebt__delta{display:inline-flex;align-items:center;gap:3px;font-weight:700;color:var(--color-success)}
+      .tdebt__foot-note{margin-left:auto;color:var(--color-text-dim)}
+      @keyframes td-draw{to{stroke-dashoffset:0}}
+      @keyframes td-area{to{opacity:1}}
+      @keyframes td-pop{from{opacity:0;transform:scale(0.3)}to{opacity:1;transform:scale(1)}}
+      @keyframes td-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+      @media(prefers-reduced-motion:reduce){.td-line{animation:none;stroke-dashoffset:0}.td-area{animation:none;opacity:1}.td-dot{animation:none;opacity:1}}
+.cock{width:320px;font-family:var(--font-mono)}
+      .cock__bar{display:flex;align-items:center;gap:8px;padding:10px 13px;background:var(--color-card-lv2);border:1px solid var(--color-card-lv3);border-bottom:none;border-radius:var(--border-radius-xs) var(--border-radius-xs) 0 0;font-size:0.72rem;color:var(--color-info)}
+      .cock__bardot{width:7px;height:7px;border-radius:50%;background:var(--color-info);box-shadow:0 0 6px var(--color-info);animation:cock-live 2s ease-in-out infinite}
+      .cock__grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-card-lv3);border:1px solid var(--color-card-lv3);border-radius:0 0 var(--border-radius-xs) var(--border-radius-xs);overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+      .cock__tile{background:var(--color-card-lv1);padding:14px 15px;display:flex;flex-direction:column;gap:7px;opacity:0;animation:cock-in 0.5s ease forwards}
+      .cock__tile--1{animation-delay:0.15s}.cock__tile--2{animation-delay:0.3s}.cock__tile--3{animation-delay:0.45s}.cock__tile--4{animation-delay:0.6s}
+      .cock__label{font-size:0.64rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.4px}
+      .cock__valrow{display:flex;align-items:baseline;gap:5px}
+      .cock__val{font-size:1.4rem;font-weight:700;color:var(--color-text);line-height:1}
+      .cock__unit{font-size:0.7rem;color:var(--color-text-dim)}
+      .cock__delta{margin-left:auto;font-size:0.62rem;font-weight:700;color:var(--color-success)}
+      .cock__spark{display:flex;align-items:flex-end;gap:3px;height:20px}
+      .cock__spark i{width:4px;height:var(--h);background:var(--color-info);border-radius:1px;transform:scaleY(0);transform-origin:bottom;animation:cock-bar 0.5s ease forwards}
+      .cock__spark i:nth-child(1){animation-delay:0.7s}.cock__spark i:nth-child(2){animation-delay:0.78s}.cock__spark i:nth-child(3){animation-delay:0.86s}.cock__spark i:nth-child(4){animation-delay:0.94s}.cock__spark i:nth-child(5){animation-delay:1.02s}.cock__spark i:nth-child(6){animation-delay:1.1s}
+      @keyframes cock-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+      @keyframes cock-bar{to{transform:scaleY(1)}}
+      @keyframes cock-live{0%,100%{opacity:1}50%{opacity:0.4}}
+      @media(prefers-reduced-motion:reduce){.cock__tile{animation:none;opacity:1}.cock__spark i{animation:none;transform:scaleY(1)}.cock__bardot{animation:none}}
+
+      .feat-grid{padding:var(--section-padding) 0;position:relative;z-index:1}
+      .feat-grid__grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:1180px;margin:0 auto;border-top:1px solid var(--color-card-lv2);border-left:1px solid var(--color-card-lv2)}
+      .feat-cell{border-right:1px solid var(--color-card-lv2);border-bottom:1px solid var(--color-card-lv2);padding:38px 34px 34px;display:flex;flex-direction:column}
+      .feat-cell__art{height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+      .feat-cell__art > *{max-width:100%}
+      .feat-cell__title{font-family:var(--font-mono);font-size:1.3rem;color:var(--color-text);margin-bottom:14px;line-height:1.3}
+      .feat-cell__desc{font-size:0.85rem;color:var(--color-text-muted);line-height:1.7}
+      .rsync{position:relative;width:230px;height:200px;display:flex;justify-content:center;align-items:center;overflow:hidden}
+      .rsync__circuit{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+      .rsync__core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10}
+      .rsync__core .kody-box{width:84px;height:auto}
+      .rsync__tools{position:absolute;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-between;padding:26px 0;z-index:5;width:32px;align-items:center}
+      .rsync__tools--l{left:12%}
+      .rsync__tools--r{right:12%}
+      @media(max-width:980px){.feat-grid__grid{grid-template-columns:1fr 1fr}}
+      @media(max-width:640px){.feat-grid__grid{grid-template-columns:1fr}}
+      </style>
     </section>
 
     <!-- ========== TESTIMONIALS (VHS Tapes) ========== -->
@@ -1103,6 +1251,47 @@
     </section>
 
     <!-- ========== ASK YOUR LLM ========== -->
+    <!-- ========== SECURITY / TRUST BAND ========== -->
+    <section class="home-security" id="security">
+      <div class="container">
+        <div class="home-security__inner">
+          <div class="home-security__art">
+            <div class="pixel-cloud" style="top:15%;left:12%;--s:1.5;animation:float-cloud 30s linear infinite"></div>
+            <div class="pixel-cloud" style="top:30%;left:72%;--s:1.2;opacity:0.5;animation:float-cloud 45s linear infinite reverse"></div>
+            <div class="pixel-cloud" style="top:8%;left:50%;--s:1;opacity:0.4;animation:float-cloud 60s linear infinite"></div>
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/castle.webp" alt="Castle" class="home-security__castle">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-guard.webp" alt="Kody Guard" class="home-security__guard">
+          </div>
+          <div class="home-security__copy">
+            <span class="home-security__eyebrow">// privacy_security.mod</span>
+            <h2 class="home-security__title">Private by default</h2>
+            <p class="home-security__desc">Your source code is never stored and never used to train models. All data is encrypted in transit and at rest, and self-hosted runners keep your IP entirely inside your own infrastructure.</p>
+            <ul class="home-security__chips">
+              <li>SOC 2</li>
+              <li>Self-hosted runners</li>
+              <li>Encrypted in transit &amp; at rest</li>
+              <li>Never trained on your code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <style>
+      .home-security{padding:60px 0}
+      .home-security__inner{position:relative;display:grid;grid-template-columns:0.85fr 1.15fr;gap:40px;align-items:center;background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-left:3px solid var(--color-success);border-radius:var(--border-radius);padding:40px 44px;overflow:hidden}
+      .home-security__art{position:relative;min-height:260px;display:flex;justify-content:center;align-items:flex-end}
+      .home-security__castle{width:240px;height:auto;image-rendering:pixelated;position:relative;z-index:1;filter:drop-shadow(0 10px 20px rgba(0,0,0,0.6))}
+      .home-security__guard{width:110px;height:auto;image-rendering:pixelated;position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);z-index:2;filter:drop-shadow(0 5px 15px rgba(0,0,0,0.8))}
+      .home-security__eyebrow{display:block;font-family:var(--font-mono);font-size:0.78rem;color:var(--color-success);letter-spacing:0.5px;margin-bottom:12px}
+      .home-security__title{font-family:var(--font-mono);font-size:1.9rem;color:var(--color-text);margin-bottom:14px;line-height:1.2}
+      .home-security__desc{font-size:0.95rem;color:var(--color-text-muted);line-height:1.7;max-width:560px}
+      .home-security__chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+      .home-security__chips li{display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-text);background:var(--color-card-lv2);border:1px solid var(--color-card-lv3);border-radius:var(--border-radius-xs);padding:7px 13px}
+      .home-security__chips li::before{content:"\2713";color:var(--color-success);font-weight:700}
+      @media(max-width:880px){.home-security__inner{grid-template-columns:1fr;gap:24px;padding:32px 24px}.home-security__art{min-height:220px;order:2}.home-security__title{font-size:1.6rem}}
+      </style>
+    </section>
+
     <section class="ask-llm" id="ask-llm">
       <div class="container">
         <h2 class="section-title">Still have questions?</h2>

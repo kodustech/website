@@ -39,6 +39,28 @@
     </symbol>
   </svg>
 
+<?php if (is_front_page()) : ?>
+  <!-- ========== ANNOUNCEMENT BAR (home only) ========== -->
+  <div class="announce-bar" id="dataAnnounce">
+    <a class="announce-bar__link" href="<?php echo esc_url(home_url('/data/')); ?>">
+      <svg class="announce-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      <span class="announce-bar__label">New research</span>
+      <span class="announce-bar__text">State of AI Code Review 2026 &mdash; what happens after an AI leaves 180k+ review comments.</span>
+      <span class="announce-bar__cta">Read the report &rarr;</span>
+    </a>
+    <button class="announce-bar__close" id="dataAnnounceClose" aria-label="Dismiss announcement">&times;</button>
+  </div>
+  <script>
+  (function(){
+    var bar=document.getElementById('dataAnnounce');
+    if(!bar)return;
+    try{if(localStorage.getItem('kodusDataAnnounceDismissed')==='1'){bar.hidden=true;return;}}catch(e){}
+    var btn=document.getElementById('dataAnnounceClose');
+    if(btn)btn.addEventListener('click',function(){bar.hidden=true;try{localStorage.setItem('kodusDataAnnounceDismissed','1');}catch(e){}});
+  })();
+  </script>
+<?php endif; ?>
+
   <!-- ========== HEADER / NAV ========== -->
   <header class="header" id="header">
     <nav class="nav container">
@@ -53,51 +75,120 @@
           <a href="#" class="nav__link">Resources <span class="nav__chevron">&#9662;</span></a>
           <ul class="nav__dropdown-menu">
             <li>
+              <a href="<?php echo esc_url(home_url('/data/')); ?>" class="nav__item--featured">
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-tag">New research</span>
+                  <span class="nav__item-title">State of AI Code Review 2026</span>
+                  <span class="nav__item-desc">180k AI review suggestions, analyzed.</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo esc_url(home_url('/en/insights-en/')); ?>">
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Blog</span>
+                  <span class="nav__item-desc">Notes on AI review and eng quality.</span>
+                </span>
+              </a>
+            </li>
+            <li>
               <a href="https://kodus.io/code-review-rules/">
-                <span class="nav__item-title">Kody Rules</span>
-                <span class="nav__item-desc">Library of production tested review rules for real world codebases.</span>
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Kody Rules</span>
+                  <span class="nav__item-desc">Review rules from real codebases.</span>
+                </span>
               </a>
             </li>
             <li>
               <a href="https://docs.kodus.io/changelog">
-                <span class="nav__item-title">Changelog</span>
-                <span class="nav__item-desc">Detailed release notes for every Kodus update.</span>
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Changelog</span>
+                  <span class="nav__item-desc">What shipped, release by release.</span>
+                </span>
               </a>
             </li>
             <li>
               <a href="<?php echo esc_url(home_url('/customers/')); ?>">
-                <span class="nav__item-title">Customers</span>
-                <span class="nav__item-desc">Engineering teams using Kody in their day-to-day code review process.</span>
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Customers</span>
+                  <span class="nav__item-desc">Teams running Kody every day.</span>
+                </span>
               </a>
             </li>
             <li>
               <a href="https://docs.kodus.io/how_to_use/en/security/data_usage">
-                <span class="nav__item-title">Security</span>
-                <span class="nav__item-desc">Technical overview of how Kodus handles code, models and credentials.</span>
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Security</span>
+                  <span class="nav__item-desc">How we handle your code and keys.</span>
+                </span>
               </a>
             </li>
             <li>
               <a href="<?php echo esc_url(home_url('/benchmark-ai-code-review/')); ?>">
-                <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
-                <span class="nav__item-desc">Practical comparison of AI code review tools using real pull requests.</span>
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">AI Code Review Tools Benchmarks</span>
+                  <span class="nav__item-desc">AI review tools, compared on real PRs.</span>
+                </span>
               </a>
             </li>
             <li>
               <a href="https://codereviewbench.com/">
-                <span class="nav__item-title">LLMs Performance Benchmark</span>
-                <span class="nav__item-desc">Evaluation of LLMs on real pull request diffs, not toy snippets.</span>
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">LLMs Performance Benchmark</span>
+                  <span class="nav__item-desc">LLMs scored on real PR diffs.</span>
+                </span>
               </a>
             </li>
             <li>
               <a href="https://ai-skills.io/">
-                <span class="nav__item-title">Agent Skills Library</span>
-                <span class="nav__item-desc">Curated collection of agent skills and capabilities for AI agents.</span>
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5V6h1.5a2.5 2.5 0 1 1 0 5H12v3.5a2.5 2.5 0 1 1-5 0V11H5.5a2.5 2.5 0 1 1 0-5H7V4.5A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14 8h5.5a2.5 2.5 0 1 1 0 5H18v3.5a2.5 2.5 0 1 1-5 0"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Agent Skills Library</span>
+                  <span class="nav__item-desc">Skills for coding agents.</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo esc_url(home_url('/self-hosted-ai-code-review/')); ?>">
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Self-Hosted AI Code Review</span>
+                  <span class="nav__item-desc">Run Kodus on your own infrastructure.</span>
+                </span>
               </a>
             </li>
           </ul>
         </li>
-        <li><a href="<?php echo esc_url(home_url('/en/insights-en/')); ?>" class="nav__link">Blog</a></li>
         <li><a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="nav__link">Pricing</a></li>
+        <li><a href="<?php echo esc_url(home_url('/engineering-quality-sprint/')); ?>" class="nav__link">Quality Sprint</a></li>
       </ul>
 
       <div class="nav__actions">
