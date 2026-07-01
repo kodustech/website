@@ -95,6 +95,9 @@
 .eqs__cta-row{ display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 26px; }
 .eqs__proof{ display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: .78rem; color: var(--color-text-dim); line-height: 1.5; }
 .eqs__proof svg{ width: 15px; height: 15px; color: var(--color-primary); flex-shrink: 0; }
+/* ---- trust logos ---- */
+.eqs__logos{ padding: 40px 0 48px; }
+.eqs__logos-label{ text-align: center; font-family: var(--font-mono); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-dim); margin: 0 0 28px; }
 
 /* ---- pipeline band ---- */
 .eqs__flow{
@@ -334,6 +337,14 @@
         </div>
       </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRUST LOGOS ===================== -->
+  <section class="eqs__section eqs__logos">
+    <div class="container">
+      <p class="eqs__logos-label">Engineering teams that trust Kodus</p>
+      <?php kodus_render_trusted_logo_carousel(); ?>
     </div>
   </section>
 
@@ -769,6 +780,12 @@
     new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? start() : stop(); }); }, { threshold: 0 }).observe(fig);
   } else { start(); }
 })();
+</script>
+
+<!-- Cal.com embed loader (self-contained; guarded so it's safe if a global loader also exists) -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", {origin:"https://cal.com"});
 </script>
 
 <?php get_footer('kodus'); ?>
