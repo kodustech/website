@@ -207,6 +207,10 @@
 .eqs__week-card ul{ list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
 .eqs__week-card li{ font-family: var(--font-mono); font-size: .8rem; color: var(--color-text-muted); padding-left: 15px; position: relative; }
 .eqs__week-card li::before{ content: '→'; position: absolute; left: 0; color: var(--color-primary); }
+.eqs__weeks-progress{ position: absolute; top: 17px; left: 12.5%; height: 2px; width: 75%; background: var(--color-primary); z-index: 1; box-shadow: 0 0 8px var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform .55s cubic-bezier(.16,1,.3,1); }
+.eqs__week-node{ transition: background .3s ease, color .3s ease, box-shadow .3s ease; }
+.eqs__week.is-active .eqs__week-node{ background: var(--color-primary); color: var(--color-bg); box-shadow: 0 0 0 7px var(--color-bg), 0 0 18px rgba(248,183,109,.55); }
+.eqs__week.is-active .eqs__week-card{ border-color: var(--color-primary); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.42); }
 
 /* ========== FIT ========== */
 .eqs__fit{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -225,12 +229,20 @@
 .eqs__statement{ border-left: 3px solid var(--sec); padding-left: 30px; max-width: 70ch; }
 .eqs__statement .eqs__lede{ font-size: 1.12rem; color: var(--color-text); }
 .eqs__statement .eqs__lede + .eqs__lede{ color: var(--color-text-muted); }
+.eqs__why{ display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 46px; align-items: start; }
+.eqs__why .eqs__statement{ max-width: none; }
+.eqs__why-panel{ display: grid; gap: 14px; align-content: start; }
+.eqs__why-card{ border: 1px solid var(--color-card-lv3); border-left: 3px solid var(--sec); border-radius: var(--border-radius-sm); background: var(--color-card-lv1); padding: 20px 22px; }
+.eqs__why-card h3{ font-family: var(--font-mono); font-size: .98rem; color: var(--color-text); margin: 0 0 6px; line-height: 1.3; }
+.eqs__why-card h3 .k{ color: var(--sec); }
+.eqs__why-card p{ font-size: .9rem; line-height: 1.55; color: var(--color-text-muted); margin: 0; }
+@media (max-width: 860px){ .eqs__why{ grid-template-columns: 1fr; gap: 30px; } }
 
 /* ========== CTA ========== */
 .eqs__cta-block{ text-align: center; max-width: 800px; margin: 0 auto; padding: 56px 46px; background: var(--color-card-lv1); border: 1px solid var(--color-card-lv3); border-top: 2px solid var(--color-primary); border-radius: var(--border-radius); box-shadow: 0 28px 66px rgba(0,0,0,.55); position: relative; overflow: hidden; }
 .eqs__cta-block::before{ content: ''; position: absolute; inset: -40% 30% auto; height: 200px; background: radial-gradient(closest-side, rgba(248,183,109,.16), transparent); pointer-events: none; }
 .eqs__cta-block > *{ position: relative; }
-.eqs__cta-block .eqs__h2{ margin: 0 auto 18px; max-width: 28ch; }
+.eqs__cta-block .eqs__h2{ margin: 0 auto 18px; max-width: 28ch; overflow-wrap: anywhere; }
 .eqs__cta-block .eqs__lede{ margin: 0 auto; }
 .eqs__cta-block .eqs__cta-row{ justify-content: center; margin-top: 34px; margin-bottom: 0; position: relative; }
 .eqs__cta-glow{ position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 260px; height: 110px; background: radial-gradient(closest-side, rgba(248,183,109,.4), transparent 75%); filter: blur(20px); pointer-events: none; z-index: 0; animation: eqs-cta-glow 2.8s ease-in-out infinite; }
@@ -242,6 +254,11 @@
 .eqs__cta-btn:hover .eqs__cta-arrow{ transform: translateX(5px); }
 @media (prefers-reduced-motion: reduce){ .eqs__cta-glow{ animation: none; } .eqs__cta-arrow{ transition: none; } }
 .eqs__form-note{ font-family: var(--font-mono); font-size: .78rem; color: var(--color-text-dim); text-align: center; margin-top: 20px; }
+.eqs__founder{ display: inline-flex; align-items: center; gap: 12px; margin: 6px auto 0; text-align: left; }
+.eqs__founder-avatar{ width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--color-card-lv3); object-fit: cover; flex-shrink: 0; }
+.eqs__founder-meta{ display: flex; flex-direction: column; }
+.eqs__founder-name{ font-family: var(--font-mono); font-size: .9rem; color: var(--color-text); }
+.eqs__founder-role{ font-family: var(--font-mono); font-size: .72rem; color: var(--color-text-dim); margin-top: 2px; }
 
 /* ========== FAQ ========== */
 .eqs__faq-title{ font-family: var(--font-mono); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.1rem); letter-spacing: -.5px; color: var(--color-text); margin: 0 0 36px; }
@@ -258,6 +275,7 @@
   .eqs__cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .eqs__weeks{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .eqs__weeks::before{ display: none; }
+  .eqs__weeks-progress{ display: none; }
   .eqs__week-node{ margin-left: 0; }
 }
 @media (max-width: 760px){
@@ -280,7 +298,7 @@
 }
 
 /* ========== SCROLL REVEAL (only active when JS adds .eqs--anim) ========== */
-.eqs--anim :is(.eqs__kicker,.eqs__hero-h1,.eqs__hero-sub,.eqs__cta-row,.eqs__proof,.eqs__rule,.eqs__head,.eqs__xform,.eqs__card,.eqs__manifest li,.eqs__model-item,.eqs__tag,.eqs__role,.eqs__week,.eqs__fit-col,.eqs__log li,.eqs__statement,.eqs__cta-block){
+.eqs--anim :is(.eqs__kicker,.eqs__hero-h1,.eqs__hero-sub,.eqs__cta-row,.eqs__proof,.eqs__rule,.eqs__head,.eqs__xform,.eqs__card,.eqs__manifest li,.eqs__model-item,.eqs__tag,.eqs__role,.eqs__week,.eqs__fit-col,.eqs__log li,.eqs__statement,.eqs__cta-block,.eqs__why-card){
   opacity: 0; transform: translateY(20px);
   transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
 }
@@ -288,7 +306,7 @@
 .eqs--anim .eqs__weeks::before{ transform: scaleX(0); transform-origin: left; transition: transform .9s cubic-bezier(.16,1,.3,1) .15s; }
 .eqs--anim .eqs__weeks.is-in::before{ transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce){
-  .eqs--anim :is(.eqs__kicker,.eqs__hero-h1,.eqs__hero-sub,.eqs__cta-row,.eqs__proof,.eqs__rule,.eqs__head,.eqs__xform,.eqs__card,.eqs__manifest li,.eqs__model-item,.eqs__tag,.eqs__role,.eqs__week,.eqs__fit-col,.eqs__log li,.eqs__statement,.eqs__cta-block){ opacity: 1; transform: none; }
+  .eqs--anim :is(.eqs__kicker,.eqs__hero-h1,.eqs__hero-sub,.eqs__cta-row,.eqs__proof,.eqs__rule,.eqs__head,.eqs__xform,.eqs__card,.eqs__manifest li,.eqs__model-item,.eqs__tag,.eqs__role,.eqs__week,.eqs__fit-col,.eqs__log li,.eqs__statement,.eqs__cta-block,.eqs__why-card){ opacity: 1; transform: none; }
   .eqs--anim .eqs__weeks::before{ transform: scaleX(1); }
 }
 </style>
@@ -311,7 +329,7 @@
         </div>
         <p class="eqs__proof">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V5z"/></svg>
-          Founder-led, one company per segment &mdash; from the team behind open source AI code review without vendor lock-in.
+          Founder-led, one company per segment. From the team behind open source AI code review without vendor lock-in.
         </p>
       </div>
       <div class="eqs__xform" aria-hidden="true">
@@ -347,6 +365,160 @@
       <?php kodus_render_trusted_logo_carousel(); ?>
     </div>
   </section>
+
+  <!-- ===================== FALSE SUMMIT (scroll curve) ===================== -->
+  <style>
+  /* body overflow-x:hidden (theme) makes body a scroll container and breaks
+     position:sticky; clip prevents horizontal scroll without that side effect.
+     Scoped to this page via :has so the global rule is untouched. */
+  body:has(.eqs){ overflow-x: clip; }
+  .eqs__climb-track{ position: relative; height: 300vh; }
+  .eqs__climb-stage{ position: sticky; top: 0; height: 100vh; min-height: 680px; display: flex; align-items: center; overflow: hidden; }
+  .eqs__climb-inner{ position: relative; width: 100%; }
+  .eqs__climb-copy{ position: relative; z-index: 3; max-width: 34ch; }
+  .eqs__h2--left{ margin: 0 0 18px; text-align: left; max-width: 15ch; }
+  .eqs__climb-punch{ color: var(--color-text); font-weight: 600; }
+  .eqs__climb-viz{ position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .eqs__climb-plot{ position: absolute; right: 1%; bottom: 5%; width: 60%; height: 84%; }
+  .eqs__climb-svg{ position: absolute; inset: 0; width: 100%; height: 100%; }
+  .eqs__climb-base{ fill: none; stroke: var(--color-card-lv3); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .eqs__climb-fill{ fill: none; stroke: url(#eqsClimbGrad); stroke-width: 3; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 7px rgba(248,183,109,.45)); }
+  .eqs__climb-dot{ position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--color-primary); box-shadow: 0 0 13px var(--color-primary); transform: translate(-50%,-50%); }
+  .eqs__climb-step{ position: absolute; display: flex; flex-direction: column; align-items: center; transform: translate(-50%,-100%); opacity: .32; transition: opacity .5s ease; }
+  .eqs__climb-step.is-reached{ opacity: 1; }
+  .eqs__climb-label{ display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; }
+  .eqs__climb-pin{ width: 1px; height: 42px; background: var(--color-card-lv3); margin-top: 10px; }
+  .eqs__climb-mk{ width: 9px; height: 9px; border-radius: 50%; background: var(--color-text-dim); box-shadow: 0 0 0 4px var(--color-bg); }
+  .eqs__climb-step.is-reached .eqs__climb-pin{ background: var(--color-primary); }
+  .eqs__climb-step.is-reached .eqs__climb-mk{ background: var(--color-primary); box-shadow: 0 0 0 4px var(--color-bg), 0 0 9px rgba(248,183,109,.7); }
+  .eqs__climb-chip{ font-family: var(--font-mono); font-size: .62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary); background: rgba(248,183,109,.12); border: 1px solid rgba(248,183,109,.4); padding: 3px 9px; border-radius: 100px; }
+  .eqs__climb-name{ font-family: var(--font-mono); font-size: .92rem; color: var(--color-text); white-space: nowrap; }
+  .eqs__climb-step--summit .eqs__climb-eyebrow{ display: block; font-family: var(--font-mono); font-size: .58rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-dim); margin-bottom: 6px; }
+  .eqs__climb-step--summit .eqs__climb-name{ color: var(--color-text-muted); }
+  .eqs__climb-step--summit .eqs__climb-mk{ background: var(--color-text-dim); }
+  .eqs__climb-step.align-r .eqs__climb-label{ transform: translateX(-38%); text-align: right; align-items: flex-end; }
+  .eqs__climb-step.align-l .eqs__climb-label{ transform: translateX(38%); text-align: left; align-items: flex-start; }
+  .eqs__climb-pct{ position: absolute; display: flex; flex-direction: column; font-family: var(--font-mono); }
+  .eqs__climb-pct b{ font-size: 1.5rem; font-weight: 700; color: var(--color-primary); line-height: 1; }
+  .eqs__climb-pct span{ font-size: .6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-dim); margin-top: 4px; }
+  @media (max-width: 900px){
+    .eqs__climb-track{ height: auto; }
+    .eqs__climb-stage{ position: static; height: auto; min-height: 0; padding: 68px 0; }
+    .eqs__climb-viz{ position: static; margin-top: 34px; }
+    .eqs__climb-plot{ position: static; width: auto; height: auto; }
+    .eqs__climb-svg, .eqs__climb-pct, .eqs__climb-dot, .eqs__climb-pin, .eqs__climb-mk, .eqs__climb-step--summit{ display: none; }
+    .eqs__climb-steps-m{ display: grid; gap: 12px; }
+    .eqs__climb-step{ position: static; transform: none; align-items: stretch; opacity: 1; }
+    .eqs__climb-label{ flex-direction: row; align-items: center; gap: 12px; text-align: left; transform: none; }
+    .eqs__climb-name{ white-space: normal; }
+  }
+  @media (min-width: 901px){ .eqs__climb-steps-m{ display: contents; } }
+  @media (prefers-reduced-motion: reduce){
+    .eqs__climb-track{ height: auto; }
+    .eqs__climb-stage{ position: static; height: auto; min-height: 0; padding: 80px 0; }
+  }
+  </style>
+  <section class="eqs__climb" aria-label="Why individual speed is not organizational velocity">
+    <div class="eqs__climb-track" data-climb>
+      <div class="eqs__climb-stage">
+        <div class="container eqs__climb-inner">
+          <div class="eqs__climb-copy">
+            <span class="eqs__kicker">The velocity trap</span>
+            <h2 class="eqs__h2 eqs__h2--left">Your engineers got faster. Your delivery did not.</h2>
+            <p class="eqs__lede">You rolled out AI coding agents. Individual output jumped and pull requests multiplied.</p>
+            <p class="eqs__lede">Cycle time stayed flat. Review, testing and standards turned into the real constraint.</p>
+            <p class="eqs__lede eqs__climb-punch">The gains compounded on the engineer, not the organization. Getting past that plateau is the real climb.</p>
+          </div>
+          <div class="eqs__climb-viz">
+           <div class="eqs__climb-plot">
+            <svg class="eqs__climb-svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="eqsClimbGrad" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0" stop-color="var(--color-primary)"></stop>
+                  <stop offset="1" stop-color="var(--color-secondary)"></stop>
+                </linearGradient>
+              </defs>
+              <path class="eqs__climb-base" d="M45 545 C 175 512 225 335 300 335 C 375 335 415 458 470 468 C 615 492 690 330 955 70"></path>
+              <path class="eqs__climb-fill" d="M45 545 C 175 512 225 335 300 335 C 375 335 415 458 470 468 C 615 492 690 330 955 70"></path>
+            </svg>
+            <span class="eqs__climb-dot"></span>
+            <div class="eqs__climb-pct" style="left:3%;top:84%"><b><span data-climb-pct>0</span>%</b><span>the real climb</span></div>
+            <div class="eqs__climb-steps-m">
+              <div class="eqs__climb-step eqs__climb-step--summit" data-at="0.27">
+                <span class="eqs__climb-label"><span class="eqs__climb-eyebrow">AI on developer machines</span><span class="eqs__climb-name">The false summit</span></span>
+                <span class="eqs__climb-pin"></span>
+                <span class="eqs__climb-mk"></span>
+              </div>
+              <div class="eqs__climb-step" data-at="0.56">
+                <span class="eqs__climb-label"><span class="eqs__climb-name">Quality that holds under load</span></span>
+                <span class="eqs__climb-pin"></span>
+                <span class="eqs__climb-mk"></span>
+              </div>
+              <div class="eqs__climb-step" data-at="0.77">
+                <span class="eqs__climb-label"><span class="eqs__climb-name">Standards that live in the workflow</span></span>
+                <span class="eqs__climb-pin"></span>
+                <span class="eqs__climb-mk"></span>
+              </div>
+              <div class="eqs__climb-step" data-at="0.94">
+                <span class="eqs__climb-label"><span class="eqs__climb-name">Velocity that compounds</span></span>
+                <span class="eqs__climb-pin"></span>
+                <span class="eqs__climb-mk"></span>
+              </div>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var track = document.querySelector('[data-climb]');
+    if(!track) return;
+    var fill = track.querySelector('.eqs__climb-fill');
+    var dotEl = track.querySelector('.eqs__climb-dot');
+    var pctEl = track.querySelector('[data-climb-pct]');
+    var steps = Array.prototype.slice.call(track.querySelectorAll('.eqs__climb-step'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var stacked = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+    var VBW = 1000, VBH = 600;
+    var len = fill.getTotalLength();
+    fill.style.strokeDasharray = len;
+    if(!stacked){
+      steps.forEach(function(s){
+        var pt = fill.getPointAtLength(len * parseFloat(s.getAttribute('data-at')));
+        var xr = pt.x / VBW;
+        s.style.left = (xr * 100) + '%';
+        s.style.top = (pt.y / VBH * 100) + '%';
+        if(xr > 0.8) s.classList.add('align-r');
+        else if(xr < 0.14) s.classList.add('align-l');
+      });
+    }
+    function place(p){
+      p = Math.max(0, Math.min(1, p));
+      fill.style.strokeDashoffset = len * (1 - p);
+      var pt = fill.getPointAtLength(len * p);
+      dotEl.style.left = (pt.x / VBW * 100) + '%';
+      dotEl.style.top = (pt.y / VBH * 100) + '%';
+      if(pctEl) pctEl.textContent = Math.round(p * 100);
+      steps.forEach(function(s){ s.classList.toggle('is-reached', p >= parseFloat(s.getAttribute('data-at'))); });
+    }
+    if(reduce || stacked){ steps.forEach(function(s){ s.classList.add('is-reached'); }); place(1); return; }
+    var ticking = false;
+    function onScroll(){
+      if(ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        var r = track.getBoundingClientRect();
+        var total = r.height - window.innerHeight;
+        place(total > 0 ? (-r.top) / total : 0);
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    place(0); onScroll();
+  })();
+  </script>
 
   <!-- ===================== PROBLEM ===================== -->
   <section class="eqs__section eqs__section--tint eqs__section--danger">
@@ -530,23 +702,24 @@
     <div class="container">
       <div class="eqs__rule"><span class="eqs__rule-id">06</span><span class="eqs__rule-label">How the sprint works</span><span class="eqs__rule-line"></span></div>
       <div class="eqs__head">
-        <h2 class="eqs__h2 eqs__h2--wide">Four weeks, fixed scope, real repos</h2>
+        <h2 class="eqs__h2 eqs__h2--wide">Four weeks to turn one quality bottleneck into a repeatable operating model</h2>
       </div>
       <div class="eqs__weeks">
+        <span class="eqs__weeks-progress" aria-hidden="true"></span>
         <div class="eqs__week">
           <div class="eqs__week-node">1</div>
           <div class="eqs__week-card">
             <div class="eqs__week-name">Diagnose</div>
-            <p>We inspect selected repos, recent changes, review behavior, current rules, CI signals, tooling and AI usage.</p>
+            <p>We inspect the selected team or repos, recent bugs, test signal, CI behavior, standards, ownership, tooling and AI usage.</p>
             <div class="eqs__week-out">Output</div>
-            <ul><li>Baseline diagnosis</li><li>Top bottlenecks</li><li>Agreed sprint focus</li></ul>
+            <ul><li>Quality baseline</li><li>Top validation gaps</li><li>Agreed sprint focus</li></ul>
           </div>
         </div>
         <div class="eqs__week">
           <div class="eqs__week-node">2</div>
           <div class="eqs__week-card">
             <div class="eqs__week-name">Design</div>
-            <p>We define the target operating model for the selected scope.</p>
+            <p>We define the target operating model for the selected quality problem.</p>
             <div class="eqs__week-out">Output</div>
             <ul><li>Workflow proposal</li><li>Measurement plan</li><li>Owner responsibilities</li><li>Rollout plan</li></ul>
           </div>
@@ -555,16 +728,16 @@
           <div class="eqs__week-node">3</div>
           <div class="eqs__week-card">
             <div class="eqs__week-name">Improve</div>
-            <p>We help change one or two concrete parts of the workflow: rules, review policy, reports, CI signal, AI usage guidelines or Kodus configuration.</p>
+            <p>We help change one or two concrete parts of the workflow: test strategy, CI signal, ownership rules, AI usage guidelines, standards or quality gates.</p>
             <div class="eqs__week-out">Output</div>
-            <ul><li>Implemented changes</li><li>First usage readout</li><li>Repo-owner feedback</li></ul>
+            <ul><li>Implemented workflow changes</li><li>First signal readout</li><li>Team-owner feedback</li></ul>
           </div>
         </div>
         <div class="eqs__week">
           <div class="eqs__week-node">4</div>
           <div class="eqs__week-card">
             <div class="eqs__week-name">Package</div>
-            <p>We measure early signal, review feedback, classify what should become product or process, and prepare the expansion plan.</p>
+            <p>We document what worked, what still needs product, process or policy work, and how to expand the model.</p>
             <div class="eqs__week-out">Output</div>
             <ul><li>Final report</li><li>Rollout recommendation</li><li>Next-step plan</li></ul>
           </div>
@@ -611,10 +784,26 @@
   <section class="eqs__section eqs__section--purple">
     <div class="container">
       <div class="eqs__rule"><span class="eqs__rule-id">08</span><span class="eqs__rule-label">Why Kodus</span><span class="eqs__rule-line"></span></div>
-      <div class="eqs__statement">
-        <h2 class="eqs__h2 eqs__h2--wide">Kodus works close to where quality decisions happen.</h2>
-        <p class="eqs__lede">Kodus is open source AI code review without vendor lock-in. That matters here because the pull request is one of the places where AI adoption becomes visible. Code has changed. Reviewers need to decide what is safe. CI either gives confidence or it does not. Standards either show up in the workflow or stay in someone's head.</p>
-        <p class="eqs__lede">The sprint uses that practical signal to help your team improve the broader engineering quality workflow. Treat it as field work around real repositories, real review behavior and the quality systems your engineers already use.</p>
+      <div class="eqs__why">
+        <div class="eqs__statement">
+          <h2 class="eqs__h2 eqs__h2--wide">Kodus works close to where quality decisions happen.</h2>
+          <p class="eqs__lede">Kodus is open source AI code review without vendor lock-in. That matters here because the pull request is one of the places where AI adoption becomes visible. Code has changed. Reviewers need to decide what is safe. CI either gives confidence or it does not. Standards either show up in the workflow or stay in someone's head.</p>
+          <p class="eqs__lede">The sprint uses that practical signal to help your team improve the broader engineering quality workflow. Treat it as field work around real repositories, real review behavior and the quality systems your engineers already use.</p>
+        </div>
+        <div class="eqs__why-panel">
+          <div class="eqs__why-card">
+            <h3>Open source, no lock-in</h3>
+            <p>Inspect it, self-host it, point it at any model. The review pipeline stays yours.</p>
+          </div>
+          <div class="eqs__why-card">
+            <h3><span class="k">15+ years</span> in the room</h3>
+            <p>Building software and advising engineering teams, combined across the founders.</p>
+          </div>
+          <div class="eqs__why-card">
+            <h3>Benchmark-grade agents</h3>
+            <p>The agent systems we build rank near the top of public code-review benchmarks.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -626,6 +815,13 @@
         <span class="eqs__kicker" style="justify-content:center;">Get started</span>
         <h2 class="eqs__h2">Want to understand where AI is stressing your engineering workflow?</h2>
         <p class="eqs__lede">Bring one team or 3 to 5 repositories. We will help you diagnose where quality breaks down, improve one or two concrete bottlenecks, and leave with a model you can reuse.</p>
+        <div class="eqs__founder">
+          <img class="eqs__founder-avatar" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/gabriel.png" alt="Gabriel Malinosqui" width="52" height="52" loading="lazy">
+          <span class="eqs__founder-meta">
+            <span class="eqs__founder-name">Gabriel Malinosqui</span>
+            <span class="eqs__founder-role">Co-founder, Kodus</span>
+          </span>
+        </div>
         <div class="eqs__cta-row">
           <span class="eqs__cta-glow" aria-hidden="true"></span>
           <button type="button" class="btn btn--primary eqs__cta-btn" data-cal-link="gabrielmalinosqui/quality-sprint" data-cal-config='{"layout":"month_view"}'>
@@ -678,7 +874,7 @@
 (function(){
   var root = document.querySelector('.eqs');
   if(!root) return;
-  var sel = '.eqs__kicker,.eqs__hero-h1,.eqs__hero-sub,.eqs__cta-row,.eqs__proof,.eqs__rule,.eqs__head,.eqs__xform,.eqs__card,.eqs__manifest li,.eqs__model-item,.eqs__tag,.eqs__role,.eqs__week,.eqs__fit-col,.eqs__log li,.eqs__statement,.eqs__cta-block';
+  var sel = '.eqs__kicker,.eqs__hero-h1,.eqs__hero-sub,.eqs__cta-row,.eqs__proof,.eqs__rule,.eqs__head,.eqs__xform,.eqs__card,.eqs__manifest li,.eqs__model-item,.eqs__tag,.eqs__role,.eqs__week,.eqs__fit-col,.eqs__log li,.eqs__statement,.eqs__cta-block,.eqs__why-card';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els = Array.prototype.slice.call(root.querySelectorAll(sel));
   var weeks = root.querySelector('.eqs__weeks');
@@ -779,6 +975,37 @@
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? start() : stop(); }); }, { threshold: 0 }).observe(fig);
   } else { start(); }
+})();
+</script>
+
+<script>
+(function(){
+  var wrap = document.querySelector('.eqs__weeks');
+  if(!wrap) return;
+  var weeks = Array.prototype.slice.call(wrap.querySelectorAll('.eqs__week'));
+  var prog = wrap.querySelector('.eqs__weeks-progress');
+  if(!weeks.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var i = 0, timer = null;
+  function setActive(n){
+    i = n;
+    weeks.forEach(function(w, idx){ w.classList.toggle('is-active', idx === n); });
+    if(prog) prog.style.transform = 'scaleX(' + (n / (weeks.length - 1)) + ')';
+  }
+  function next(){ setActive((i + 1) % weeks.length); }
+  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+  function start(){ if(reduce) return; stop(); timer = setInterval(next, 2200); }
+  weeks.forEach(function(w, idx){
+    w.addEventListener('mouseenter', function(){ stop(); setActive(idx); });
+    w.addEventListener('mouseleave', start);
+  });
+  setActive(0);
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ start(); } else { stop(); } });
+    }, { threshold: 0.3 });
+    io.observe(wrap);
+  } else if(!reduce){ start(); }
 })();
 </script>
 
