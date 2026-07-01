@@ -86,6 +86,17 @@
               </a>
             </li>
             <li>
+              <a href="<?php echo esc_url(home_url('/en/insights-en/')); ?>">
+                <span class="nav__item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                </span>
+                <span class="nav__item-text">
+                  <span class="nav__item-title">Blog</span>
+                  <span class="nav__item-desc">Deep dives on AI code review, engineering quality and dev workflows.</span>
+                </span>
+              </a>
+            </li>
+            <li>
               <a href="https://kodus.io/code-review-rules/">
                 <span class="nav__item-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg>
@@ -164,7 +175,7 @@
             </li>
           </ul>
         </li>
-        <li><a href="<?php echo esc_url(home_url('/en/insights-en/')); ?>" class="nav__link">Blog</a></li>
+        <li><a href="<?php echo esc_url(home_url('/engineering-quality-sprint/')); ?>" class="nav__link">Quality Sprint</a></li>
         <li><a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="nav__link">Pricing</a></li>
       </ul>
 
