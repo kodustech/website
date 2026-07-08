@@ -98,7 +98,7 @@ function kodus_home_meta_description() {
 
 function kodus_get_product_meta_titles() {
     return [
-        'page-engineering-quality-sprint.php' => 'Kodus engineering quality sprint for AI-assisted development',
+        'page-engineering-quality-sprint.php' => 'Stop AI bugs reaching production | Kodus sprint',
         'page-home.php' => 'Kodus | Open Source AI Code Review',
         'page-pricing.php' => 'Kodus Pricing | AI Code Review | Try for free',
         'page-customers.php' => 'Kodus Customers | AI Code Review',
@@ -131,7 +131,7 @@ function kodus_get_current_page_meta_title() {
 
 function kodus_get_product_meta_descriptions() {
     return [
-        'page-engineering-quality-sprint.php' => 'A 4-week sprint for engineering teams adopting AI coding tools. Diagnose where quality breaks down, improve one or two workflow bottlenecks, and create a repeatable operating model.',
+        'page-engineering-quality-sprint.php' => 'A founder-led 4-week embedded sprint for teams shipping fast with AI. We build the safety net that stops AI bugs from reaching production — measured before and after.',
         'page-home.php' => 'Open source AI code review — reviews that adapt to your team. Catch issues early, keep delivery moving, and improve quality without slowing things down.',
         'page-pricing.php' => 'Choose the right plan for your engineering team and get AI-powered code reviews that feel like your senior dev wrote them — with context, quality, and consistency.',
         'page-customers.php' => 'See how engineering teams use Kodus to speed up code review, improve pull request quality, and enforce custom standards across repositories.',

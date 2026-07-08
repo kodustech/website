@@ -49,8 +49,8 @@
 .eqs__head{ margin-bottom: 44px; }
 
 /* ========== HERO ========== */
-.eqs__hero{ padding: 122px 0 76px; }
-.eqs__hero-grid2{ display: grid; grid-template-columns: minmax(0, 1fr) 264px; gap: 52px; align-items: center; }
+.eqs__hero{ min-height: 100vh; display: flex; align-items: center; padding: 104px 0 64px; }
+.eqs__hero-grid2{ display: grid; grid-template-columns: minmax(0, 1fr) 264px; gap: 52px; align-items: center; width: 100%; }
 .eqs__hero-lead{ max-width: none; }
 /* ---- hero transformation (problem → sprint → operating model) ---- */
 .eqs__xform{ display: flex; flex-direction: column; gap: 6px; }
@@ -87,10 +87,10 @@
 .eqs__kicker::before{ content: ''; width: 26px; height: 1px; background: var(--color-primary); }
 .eqs__hero-h1{
   font-family: var(--font-mono); font-weight: 700; font-size: clamp(2.3rem, 4.7vw, 3.7rem);
-  line-height: 1.08; letter-spacing: -1px; color: var(--color-text); margin: 0 0 26px; overflow-wrap: anywhere; text-wrap: balance;
+  line-height: 1.08; letter-spacing: -1px; color: var(--color-text); margin: 0 0 32px; overflow-wrap: anywhere; text-wrap: balance;
 }
 .eqs__hero-h1 .highlight{ color: var(--color-primary); }
-.eqs__hero-sub{ font-size: 1.05rem; line-height: 1.72; color: var(--color-text-muted); margin: 0 0 16px; max-width: 58ch; }
+.eqs__hero-sub{ font-size: 1.05rem; line-height: 1.72; color: var(--color-text-muted); margin: 0 0 34px; max-width: 58ch; }
 .eqs__hero-sub--tight{ margin-bottom: 30px; }
 .eqs__cta-row{ display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 26px; }
 .eqs__proof{ display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: .78rem; color: var(--color-text-dim); line-height: 1.5; }
@@ -144,26 +144,44 @@
 .eqs__head--tight{ margin-bottom: 22px; }
 .eqs__prob-split{ display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.05fr); gap: 48px; align-items: start; margin-top: 8px; }
 .eqs__prob-lead .eqs__note{ margin-top: 24px; }
+.eqs__note--center{ max-width: none; text-align: center; border-left: none; border-top: 1px solid var(--color-card-lv3); background: transparent; border-radius: 0; padding: 22px 0 0; font-size: .92rem; color: var(--color-text-muted); }
 .eqs__log--single{ grid-template-columns: 1fr; gap: 0; }
 .eqs__log--single li{ border-bottom: none; }
 
-/* ---- bottleneck funnel ---- */
-.eqs__funnel{ margin: 4px 0 44px; cursor: ew-resize; }
+/* ========== PROBLEM — self-check ========== */
+.eqs__check-prompt{ font-family: var(--font-mono); font-size: .74rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-text-dim); margin: 0 0 4px; }
+.eqs__check{ list-style: none; margin: 0; padding: 0; }
+.eqs__check li{ border-top: 1px solid var(--color-card-lv2); }
+.eqs__check label{ display: flex; gap: 12px; align-items: baseline; font-family: var(--font-mono); font-size: .9rem; line-height: 1.5; color: var(--color-text-muted); padding: 13px 6px; cursor: pointer; transition: background .15s ease, color .15s ease; }
+.eqs__check label:hover{ background: var(--color-card-lv1); }
+.eqs__check input{ position: absolute; opacity: 0; pointer-events: none; }
+.eqs__check .cb{ flex: 0 0 auto; color: var(--color-text-dim); }
+.eqs__check .cb::before{ content: '[ ]'; }
+.eqs__check input:checked ~ .cb{ color: var(--color-danger); }
+.eqs__check input:checked ~ .cb::before{ content: '[x]'; }
+.eqs__check input:checked ~ .ct{ color: var(--color-text); }
+.eqs__check input:focus-visible ~ .cb{ outline: 1px solid var(--color-primary); outline-offset: 3px; }
+.eqs__check-result{ display: flex; gap: 12px; align-items: baseline; border-top: 1px solid var(--color-card-lv2); padding: 15px 6px 0; font-family: var(--font-mono); font-size: .9rem; margin: 0; }
+.eqs__check-result b{ color: var(--color-text-dim); font-weight: 700; white-space: nowrap; }
+.eqs__check-result span{ color: var(--color-text-muted); }
+.eqs__check-result.lvl1 b{ color: var(--color-primary); }
+.eqs__check-result.lvl2 b{ color: var(--color-danger); }
+
+/* ---- leaky-checkpoint flow ---- */
+.eqs__funnel{ margin: 4px 0 44px; }
 .eqs__funnel svg{ width: 100%; height: auto; display: block; overflow: visible; }
-.ef-pipe, .ef-gate, .ef-caption{ transition: none; }
-.ef-hint{ font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; fill: var(--color-text-dim); }
-.ef-pipe{ fill: none; stroke: var(--color-card-lv3); stroke-width: 1.5; }
+.ef-pipe{ fill: none; stroke: var(--color-card-lv2); stroke-width: 1.5; }
 .ef-tick{ stroke: var(--color-card-lv3); stroke-width: 1; stroke-dasharray: 2 4; }
 .ef-label{ font-family: var(--font-mono); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; fill: var(--color-text-dim); }
 .ef-label--hot{ fill: var(--color-danger); }
-.ef-gate{ stroke: var(--color-danger); stroke-width: 1.5; stroke-dasharray: 4 5; animation: ef-pulse 2.6s ease-in-out infinite; }
-@keyframes ef-pulse{ 0%,100%{ opacity: .35; } 50%{ opacity: .85; } }
-.ef-caption{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 1px; fill: var(--color-danger); }
-.ef-dots circle{ opacity: .92; }
-.ef-dots .d1{ fill: var(--color-primary); }
-.ef-dots .d2{ fill: var(--color-secondary); }
-.ef-dots .d3{ fill: var(--color-tertiary); }
-.ef-dots .d4{ fill: var(--color-danger); }
+.ef-gate{ stroke: var(--color-text-muted); stroke-width: 1.5; stroke-dasharray: 5 5; opacity: .5; animation: ef-pulse 2.6s ease-in-out infinite; }
+.ef-gate-cap{ font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; fill: var(--color-text-dim); }
+@keyframes ef-pulse{ 0%,100%{ opacity: .35; } 50%{ opacity: .7; } }
+.ef-dot{ opacity: .9; }
+.ef-dot.d1{ fill: var(--color-primary); }
+.ef-dot.d2{ fill: var(--color-secondary); }
+.ef-dot.d3{ fill: var(--color-tertiary); }
+.ef-dot.d4{ fill: var(--color-danger); }
 @media (prefers-reduced-motion: reduce){ .ef-gate{ animation: none; } }
 
 /* ========== OFFER ========== */
@@ -188,6 +206,35 @@
 .eqs__manifest li::before{ content: counter(man, decimal-leading-zero); font-family: var(--font-mono); font-size: .8rem; font-weight: 700; color: var(--sec); }
 .eqs__manifest li:hover{ background: var(--color-card-lv1); }
 
+/* ========== DELIVERABLES — artifact previews ========== */
+.eqs__artifacts{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 0 0 36px; }
+.eqs__artifact{ background: var(--color-card-lv1); border: 1px solid var(--color-card-lv3); border-radius: var(--border-radius-sm); overflow: hidden; }
+.eqs__artifact-bar{ display: flex; align-items: center; gap: 6px; padding: 9px 13px; background: var(--color-card-lv2); border-bottom: 1px solid var(--color-card-lv3); font-family: var(--font-mono); font-size: .68rem; color: var(--color-text-dim); }
+.eqs__artifact-bar i{ width: 7px; height: 7px; border-radius: 50%; background: var(--color-card-lv3); }
+.eqs__artifact-bar i:first-child{ margin-right: -2px; }
+.eqs__artifact-bar span{ margin-left: 6px; }
+.eqs__artifact-body{ padding: 16px 14px; display: grid; gap: 9px; align-content: start; min-height: 122px; }
+.eqs__artifact-caption{ font-size: .84rem; line-height: 1.5; color: var(--color-text-muted); padding: 0 14px 16px; margin: 0; }
+.eqs__artifact-caption em{ display: block; font-family: var(--font-mono); font-size: .62rem; font-style: normal; letter-spacing: 1px; text-transform: uppercase; color: var(--color-text-dim); margin-bottom: 5px; }
+.eqs__artifact-caption em .anchor{ color: var(--color-primary); }
+.eqs__artifact-caption b{ display: block; font-family: var(--font-mono); font-size: .9rem; font-weight: 600; color: var(--color-text); margin-bottom: 3px; }
+.eqs__artifact .df{ display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: .72rem; line-height: 1; }
+.eqs__artifact .df::before{ content: '·'; color: var(--color-text-dim); width: 8px; }
+.eqs__artifact .df--add::before{ content: '+'; color: var(--color-success); }
+.eqs__artifact .df--del::before{ content: '-'; color: var(--color-danger); }
+.eqs__artifact .ln{ height: 8px; border-radius: 3px; background: var(--color-card-lv3); }
+.eqs__artifact .df--add .ln{ background: var(--color-success); opacity: .45; }
+.eqs__artifact .df--del .ln{ background: var(--color-danger); opacity: .4; }
+.eqs__artifact .mt{ display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: center; }
+.eqs__artifact .mt .ln{ height: 7px; }
+.eqs__artifact .mt-track{ height: 9px; border-radius: 3px; background: var(--color-card-lv2); overflow: hidden; }
+.eqs__artifact .mt-fill{ display: block; height: 100%; border-radius: 3px; background: var(--color-primary); opacity: .75; }
+.eqs__artifact .mt-fill--sec{ background: var(--color-secondary); }
+.eqs__artifact .mt-fill--danger{ background: var(--color-danger); opacity: .55; }
+.eqs__artifact .doc-h{ height: 11px; border-radius: 3px; background: var(--color-card-lv3); width: 62%; }
+.eqs__artifact .doc-b{ display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: .72rem; line-height: 1; }
+.eqs__artifact .doc-b::before{ content: '→'; color: var(--color-primary); }
+
 /* ========== OUTCOMES — operating-model catalog ========== */
 .eqs__model{ display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
 .eqs__model-item{ display: grid; grid-template-columns: 116px 1fr; gap: 18px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--color-card-lv2); }
@@ -201,7 +248,8 @@
 .eqs__week-node{ width: 36px; height: 36px; border-radius: 50%; margin: 0 auto 22px; background: var(--color-bg); border: 2px solid var(--color-primary); color: var(--color-primary); font-family: var(--font-mono); font-weight: 700; font-size: .84rem; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; box-shadow: 0 0 0 7px var(--color-bg); }
 .eqs__week-card{ background: var(--color-card-lv1); border: 1px solid var(--color-card-lv3); border-radius: var(--border-radius-sm); padding: 22px 20px; height: calc(100% - 58px); transition: transform .15s ease, box-shadow .15s ease; }
 .eqs__week:hover .eqs__week-card{ transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.42); }
-.eqs__week-name{ font-family: var(--font-mono); font-size: 1.08rem; color: var(--color-primary); margin-bottom: 12px; }
+.eqs__week-name{ font-family: var(--font-mono); font-size: 1.08rem; color: var(--color-primary); margin-bottom: 4px; }
+.eqs__week-meta{ font-family: var(--font-mono); font-size: .7rem; letter-spacing: .5px; color: var(--color-secondary); margin: 0 0 12px; }
 .eqs__week-card > p{ font-size: .88rem; line-height: 1.6; color: var(--color-text-muted); margin: 0 0 16px; }
 .eqs__week-out{ font-family: var(--font-mono); font-size: .64rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-text-dim); margin-bottom: 9px; padding-top: 14px; border-top: 1px solid var(--color-card-lv2); }
 .eqs__week-card ul{ list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
@@ -265,6 +313,7 @@
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 980px){
+  .eqs__hero{ min-height: auto; display: block; padding: 96px 0 56px; }
   .eqs__hero-grid2{ grid-template-columns: 1fr; gap: 44px; }
   .eqs__flow--v{ flex-direction: row; padding-top: 22px; }
   .eqs__flow--v .eqs__flow-arrow{ transform: none; }
@@ -281,6 +330,7 @@
 @media (max-width: 760px){
   .eqs__section{ padding: 68px 0; }
   .eqs__log{ grid-template-columns: 1fr; }
+  .eqs__artifacts{ grid-template-columns: 1fr; }
   .eqs__prob-split{ grid-template-columns: 1fr; gap: 28px; }
   .eqs__model{ grid-template-columns: 1fr; }
   .eqs__fit{ grid-template-columns: 1fr; }
@@ -319,23 +369,22 @@
     <div class="container">
       <div class="eqs__hero-grid2">
       <div class="eqs__hero-lead">
-        <span class="eqs__kicker">4-Week Engineering Sprint</span>
-        <h1 class="eqs__hero-h1">Scale AI-assisted development without losing control of engineering <span class="highlight">quality</span>.</h1>
-        <p class="eqs__hero-sub">AI coding tools help teams produce code faster. The harder part is keeping standards, validation, ownership, metrics and rollout consistent as usage spreads across teams.</p>
-        <p class="eqs__hero-sub eqs__hero-sub--tight">Kodus works hands-on with your engineering team for 4 weeks to find where quality breaks down, improve one or two concrete bottlenecks, and leave you with a model you can reuse across more repos.</p>
+        <span class="eqs__kicker">4-Week Embedded Sprint</span>
+        <h1 class="eqs__hero-h1">AI is shipping bugs straight to <span class="highlight">production</span>.</h1>
+        <p class="eqs__hero-sub">A 4-week embedded sprint. We work in your repos, find why the bugs get through, and build the safety net that stops them. All measured.</p>
         <div class="eqs__cta-row">
           <button type="button" class="btn btn--primary" data-cal-link="gabrielmalinosqui/quality-sprint" data-cal-config='{"layout":"month_view"}'>Talk to a founder</button>
           <a href="#how" class="btn btn--outline-light">See how the sprint works</a>
         </div>
         <p class="eqs__proof">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V5z"/></svg>
-          Founder-led, one company per segment. From the team behind open source AI code review without vendor lock-in.
+          Founder-led &middot; one company per segment &middot; by the team behind Kodus open source
         </p>
       </div>
       <div class="eqs__xform" aria-hidden="true">
         <div class="eqs__xform-node eqs__xform-node--in">
           <span class="eqs__xform-lbl">You bring</span>
-          <strong>One messy quality problem</strong>
+          <strong>AI bugs reaching production</strong>
           <div class="eqs__xform-dots eqs__xform-dots--scatter">
             <i style="--y:6px"></i><i class="d-red" style="--y:-4px"></i><i style="--y:9px"></i><i style="--y:-2px"></i><i class="d-red" style="--y:5px"></i><i style="--y:-6px"></i><i style="--y:2px"></i>
           </div>
@@ -343,12 +392,12 @@
         <div class="eqs__xform-arrow">&#8595;</div>
         <div class="eqs__xform-node eqs__xform-node--sprint">
           <span class="eqs__xform-lbl">4-week sprint</span>
-          <strong>Diagnose &rarr; Design &rarr; Improve &rarr; Package</strong>
+          <strong>Diagnose &rarr; Build the net &rarr; Ship &rarr; Prove</strong>
         </div>
         <div class="eqs__xform-arrow">&#8595;</div>
         <div class="eqs__xform-node eqs__xform-node--out">
           <span class="eqs__xform-lbl">You leave with</span>
-          <strong>A reusable operating model</strong>
+          <strong>Fewer bugs in production</strong>
           <div class="eqs__xform-dots eqs__xform-dots--aligned">
             <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
@@ -366,228 +415,72 @@
     </div>
   </section>
 
-  <!-- ===================== FALSE SUMMIT (scroll curve) ===================== -->
-  <style>
-  /* body overflow-x:hidden (theme) makes body a scroll container and breaks
-     position:sticky; clip prevents horizontal scroll without that side effect.
-     Scoped to this page via :has so the global rule is untouched. */
-  body:has(.eqs){ overflow-x: clip; }
-  .eqs__climb-track{ position: relative; height: 300vh; }
-  .eqs__climb-stage{ position: sticky; top: 0; height: 100vh; min-height: 680px; display: flex; align-items: center; overflow: hidden; }
-  .eqs__climb-inner{ position: relative; width: 100%; }
-  .eqs__climb-copy{ position: relative; z-index: 3; max-width: 34ch; }
-  .eqs__h2--left{ margin: 0 0 18px; text-align: left; max-width: 15ch; }
-  .eqs__climb-punch{ color: var(--color-text); font-weight: 600; }
-  .eqs__climb-viz{ position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-  .eqs__climb-plot{ position: absolute; right: 1%; bottom: 5%; width: 60%; height: 84%; }
-  .eqs__climb-svg{ position: absolute; inset: 0; width: 100%; height: 100%; }
-  .eqs__climb-base{ fill: none; stroke: var(--color-card-lv3); stroke-width: 2; vector-effect: non-scaling-stroke; }
-  .eqs__climb-fill{ fill: none; stroke: url(#eqsClimbGrad); stroke-width: 3; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 7px rgba(248,183,109,.45)); }
-  .eqs__climb-dot{ position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--color-primary); box-shadow: 0 0 13px var(--color-primary); transform: translate(-50%,-50%); }
-  .eqs__climb-step{ position: absolute; display: flex; flex-direction: column; align-items: center; transform: translate(-50%,-100%); opacity: .32; transition: opacity .5s ease; }
-  .eqs__climb-step.is-reached{ opacity: 1; }
-  .eqs__climb-label{ display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; }
-  .eqs__climb-pin{ width: 1px; height: 42px; background: var(--color-card-lv3); margin-top: 10px; }
-  .eqs__climb-mk{ width: 9px; height: 9px; border-radius: 50%; background: var(--color-text-dim); box-shadow: 0 0 0 4px var(--color-bg); }
-  .eqs__climb-step.is-reached .eqs__climb-pin{ background: var(--color-primary); }
-  .eqs__climb-step.is-reached .eqs__climb-mk{ background: var(--color-primary); box-shadow: 0 0 0 4px var(--color-bg), 0 0 9px rgba(248,183,109,.7); }
-  .eqs__climb-chip{ font-family: var(--font-mono); font-size: .62rem; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary); background: rgba(248,183,109,.12); border: 1px solid rgba(248,183,109,.4); padding: 3px 9px; border-radius: 100px; }
-  .eqs__climb-name{ font-family: var(--font-mono); font-size: .92rem; color: var(--color-text); white-space: nowrap; }
-  .eqs__climb-step--summit .eqs__climb-eyebrow{ display: block; font-family: var(--font-mono); font-size: .58rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-dim); margin-bottom: 6px; }
-  .eqs__climb-step--summit .eqs__climb-name{ color: var(--color-text-muted); }
-  .eqs__climb-step--summit .eqs__climb-mk{ background: var(--color-text-dim); }
-  .eqs__climb-step.align-r .eqs__climb-label{ transform: translateX(-38%); text-align: right; align-items: flex-end; }
-  .eqs__climb-step.align-l .eqs__climb-label{ transform: translateX(38%); text-align: left; align-items: flex-start; }
-  .eqs__climb-pct{ position: absolute; display: flex; flex-direction: column; font-family: var(--font-mono); }
-  .eqs__climb-pct b{ font-size: 1.5rem; font-weight: 700; color: var(--color-primary); line-height: 1; }
-  .eqs__climb-pct span{ font-size: .6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-dim); margin-top: 4px; }
-  @media (max-width: 900px){
-    .eqs__climb-track{ height: auto; }
-    .eqs__climb-stage{ position: static; height: auto; min-height: 0; padding: 68px 0; }
-    .eqs__climb-viz{ position: static; margin-top: 34px; }
-    .eqs__climb-plot{ position: static; width: auto; height: auto; }
-    .eqs__climb-svg, .eqs__climb-pct, .eqs__climb-dot, .eqs__climb-pin, .eqs__climb-mk, .eqs__climb-step--summit{ display: none; }
-    .eqs__climb-steps-m{ display: grid; gap: 12px; }
-    .eqs__climb-step{ position: static; transform: none; align-items: stretch; opacity: 1; }
-    .eqs__climb-label{ flex-direction: row; align-items: center; gap: 12px; text-align: left; transform: none; }
-    .eqs__climb-name{ white-space: normal; }
-  }
-  @media (min-width: 901px){ .eqs__climb-steps-m{ display: contents; } }
-  @media (prefers-reduced-motion: reduce){
-    .eqs__climb-track{ height: auto; }
-    .eqs__climb-stage{ position: static; height: auto; min-height: 0; padding: 80px 0; }
-  }
-  </style>
-  <section class="eqs__climb" aria-label="Why individual speed is not organizational velocity">
-    <div class="eqs__climb-track" data-climb>
-      <div class="eqs__climb-stage">
-        <div class="container eqs__climb-inner">
-          <div class="eqs__climb-copy">
-            <span class="eqs__kicker">The velocity trap</span>
-            <h2 class="eqs__h2 eqs__h2--left">Your engineers got faster. Your delivery did not.</h2>
-            <p class="eqs__lede">You rolled out AI coding agents. Individual output jumped and pull requests multiplied.</p>
-            <p class="eqs__lede">Cycle time stayed flat. Review, testing and standards turned into the real constraint.</p>
-            <p class="eqs__lede eqs__climb-punch">The gains compounded on the engineer, not the organization. Getting past that plateau is the real climb.</p>
-          </div>
-          <div class="eqs__climb-viz">
-           <div class="eqs__climb-plot">
-            <svg class="eqs__climb-svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="eqsClimbGrad" x1="0" y1="1" x2="1" y2="0">
-                  <stop offset="0" stop-color="var(--color-primary)"></stop>
-                  <stop offset="1" stop-color="var(--color-secondary)"></stop>
-                </linearGradient>
-              </defs>
-              <path class="eqs__climb-base" d="M45 545 C 175 512 225 335 300 335 C 375 335 415 458 470 468 C 615 492 690 330 955 70"></path>
-              <path class="eqs__climb-fill" d="M45 545 C 175 512 225 335 300 335 C 375 335 415 458 470 468 C 615 492 690 330 955 70"></path>
-            </svg>
-            <span class="eqs__climb-dot"></span>
-            <div class="eqs__climb-pct" style="left:3%;top:84%"><b><span data-climb-pct>0</span>%</b><span>the real climb</span></div>
-            <div class="eqs__climb-steps-m">
-              <div class="eqs__climb-step eqs__climb-step--summit" data-at="0.27">
-                <span class="eqs__climb-label"><span class="eqs__climb-eyebrow">AI on developer machines</span><span class="eqs__climb-name">The false summit</span></span>
-                <span class="eqs__climb-pin"></span>
-                <span class="eqs__climb-mk"></span>
-              </div>
-              <div class="eqs__climb-step" data-at="0.56">
-                <span class="eqs__climb-label"><span class="eqs__climb-name">Quality that holds under load</span></span>
-                <span class="eqs__climb-pin"></span>
-                <span class="eqs__climb-mk"></span>
-              </div>
-              <div class="eqs__climb-step" data-at="0.77">
-                <span class="eqs__climb-label"><span class="eqs__climb-name">Standards that live in the workflow</span></span>
-                <span class="eqs__climb-pin"></span>
-                <span class="eqs__climb-mk"></span>
-              </div>
-              <div class="eqs__climb-step" data-at="0.94">
-                <span class="eqs__climb-label"><span class="eqs__climb-name">Velocity that compounds</span></span>
-                <span class="eqs__climb-pin"></span>
-                <span class="eqs__climb-mk"></span>
-              </div>
-            </div>
-           </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <script>
-  (function(){
-    var track = document.querySelector('[data-climb]');
-    if(!track) return;
-    var fill = track.querySelector('.eqs__climb-fill');
-    var dotEl = track.querySelector('.eqs__climb-dot');
-    var pctEl = track.querySelector('[data-climb-pct]');
-    var steps = Array.prototype.slice.call(track.querySelectorAll('.eqs__climb-step'));
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var stacked = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
-    var VBW = 1000, VBH = 600;
-    var len = fill.getTotalLength();
-    fill.style.strokeDasharray = len;
-    if(!stacked){
-      steps.forEach(function(s){
-        var pt = fill.getPointAtLength(len * parseFloat(s.getAttribute('data-at')));
-        var xr = pt.x / VBW;
-        s.style.left = (xr * 100) + '%';
-        s.style.top = (pt.y / VBH * 100) + '%';
-        if(xr > 0.8) s.classList.add('align-r');
-        else if(xr < 0.14) s.classList.add('align-l');
-      });
-    }
-    function place(p){
-      p = Math.max(0, Math.min(1, p));
-      fill.style.strokeDashoffset = len * (1 - p);
-      var pt = fill.getPointAtLength(len * p);
-      dotEl.style.left = (pt.x / VBW * 100) + '%';
-      dotEl.style.top = (pt.y / VBH * 100) + '%';
-      if(pctEl) pctEl.textContent = Math.round(p * 100);
-      steps.forEach(function(s){ s.classList.toggle('is-reached', p >= parseFloat(s.getAttribute('data-at'))); });
-    }
-    if(reduce || stacked){ steps.forEach(function(s){ s.classList.add('is-reached'); }); place(1); return; }
-    var ticking = false;
-    function onScroll(){
-      if(ticking) return; ticking = true;
-      requestAnimationFrame(function(){
-        var r = track.getBoundingClientRect();
-        var total = r.height - window.innerHeight;
-        place(total > 0 ? (-r.top) / total : 0);
-        ticking = false;
-      });
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    place(0); onScroll();
-  })();
-  </script>
-
   <!-- ===================== PROBLEM ===================== -->
   <section class="eqs__section eqs__section--tint eqs__section--danger">
     <div class="container">
       <div class="eqs__rule"><span class="eqs__rule-id">01</span><span class="eqs__rule-label">The problem</span><span class="eqs__rule-line"></span></div>
       <div class="eqs__head eqs__head--tight">
-        <h2 class="eqs__h2 eqs__h2--wide">AI adoption puts pressure on the whole engineering workflow.</h2>
+        <h2 class="eqs__h2 eqs__h2--wide">The bugs are getting past your checks.</h2>
       </div>
 
       <figure class="eqs__funnel" aria-hidden="true">
         <svg viewBox="0 0 1000 240" preserveAspectRatio="xMidYMid meet">
-          <!-- stage labels + ticks -->
           <g class="ef-labels">
-            <text class="ef-label" x="160" y="26" text-anchor="middle">Code</text>
-            <line class="ef-tick" x1="160" y1="36" x2="160" y2="58"/>
-            <text class="ef-label ef-label--hot" x="400" y="26" text-anchor="middle">Review · CI</text>
-            <text class="ef-label" x="660" y="26" text-anchor="middle">Test</text>
-            <line class="ef-tick" x1="660" y1="36" x2="660" y2="70"/>
-            <text class="ef-label" x="880" y="26" text-anchor="middle">Merge</text>
-            <line class="ef-tick" x1="880" y1="36" x2="880" y2="58"/>
+            <text class="ef-label" x="110" y="26" text-anchor="middle">Prompt</text>
+            <line class="ef-tick" x1="110" y1="36" x2="110" y2="70"/>
+            <text class="ef-label" x="370" y="26" text-anchor="middle">Generate</text>
+            <line class="ef-tick" x1="370" y1="36" x2="370" y2="70"/>
+            <text class="ef-label ef-label--hot" x="660" y="26" text-anchor="middle">Merge</text>
+            <line class="ef-tick" x1="660" y1="36" x2="660" y2="66"/>
+            <text class="ef-label" x="905" y="26" text-anchor="middle">Production</text>
+            <line class="ef-tick" x1="905" y1="36" x2="905" y2="70"/>
           </g>
-          <!-- pipe -->
-          <path class="ef-pipe" d="M0 60 C 280 60, 320 104, 400 104 C 480 104, 520 60, 1000 60"/>
-          <path class="ef-pipe" d="M0 180 C 280 180, 320 136, 400 136 C 480 136, 520 180, 1000 180"/>
-          <!-- bottleneck gate -->
-          <line class="ef-gate" x1="400" y1="40" x2="400" y2="200"/>
-          <!-- flowing work items -->
-          <g class="ef-dots">
-            <circle class="d1" cx="60"  cy="118" r="8"/>
-            <circle class="d3" cx="92"  cy="140" r="8"/>
-            <circle class="d2" cx="112" cy="100" r="8"/>
-            <circle class="d1" cx="142" cy="132" r="8"/>
-            <circle class="d4" cx="152" cy="110" r="8"/>
-            <circle class="d2" cx="178" cy="126" r="8"/>
-            <circle class="d1" cx="202" cy="116" r="8"/>
-            <circle class="d3" cx="214" cy="142" r="8"/>
-            <circle class="d2" cx="236" cy="106" r="8"/>
-            <circle class="d1" cx="258" cy="128" r="8"/>
-            <circle class="d4" cx="282" cy="120" r="8"/>
-            <circle class="d2" cx="302" cy="110" r="8"/>
-            <circle class="d3" cx="322" cy="132" r="8"/>
-            <circle class="d1" cx="346" cy="122" r="8"/>
-            <circle class="d2" cx="366" cy="114" r="8"/>
-            <circle class="d1" cx="474" cy="120" r="8"/>
-            <circle class="d3" cx="566" cy="110" r="8"/>
-            <circle class="d2" cx="648" cy="128" r="8"/>
-            <circle class="d4" cx="726" cy="118" r="8"/>
-            <circle class="d1" cx="806" cy="122" r="8"/>
-            <circle class="d2" cx="884" cy="114" r="8"/>
-            <circle class="d3" cx="946" cy="124" r="8"/>
-          </g>
+          <!-- straight channel -->
+          <line class="ef-pipe" x1="0" y1="82" x2="1000" y2="82"/>
+          <line class="ef-pipe" x1="0" y1="198" x2="1000" y2="198"/>
+          <!-- the checkpoint that leaks -->
+          <line class="ef-gate" x1="660" y1="72" x2="660" y2="208"/>
+          <text class="ef-gate-cap" x="660" y="228" text-anchor="middle">checks</text>
+          <!-- dots injected by JS -->
+          <g class="ef-dots"></g>
         </svg>
       </figure>
 
       <div class="eqs__prob-split">
         <div class="eqs__prob-lead">
-          <p class="eqs__lede">Most AI coding adoption starts with individual developers. Someone uses Cursor. Someone else uses Copilot. A team experiments with Claude Code, Codex, Devin or an internal agent. The early win is obvious: code gets produced faster. The operational problems show up after that:</p>
-          <p class="eqs__note">Buying another tool does not fix the workflow by itself. The team needs to understand where quality breaks down in practice, then turn that into a repeatable way of working.</p>
+          <p class="eqs__lede">Code ships faster. Then it breaks in prod. 81% of engineering leaders report more production incidents from AI code, even after it passed every check.</p>
+          <p class="eqs__note">The bug doesn't show up in review. It shows up in prod.</p>
         </div>
-        <ul class="eqs__log eqs__log--single">
-          <li>Standards become harder to enforce across repos.</li>
-          <li>AI-generated code has unclear ownership.</li>
-          <li>CI and tests carry more risk than before.</li>
-          <li>Review expectations stay tribal.</li>
-          <li>Automation creates noise developers stop trusting.</li>
-          <li>Leadership cannot tell whether AI adoption is improving quality.</li>
-          <li>Rollout depends on one internal champion.</li>
-        </ul>
+        <div>
+          <p class="eqs__check-prompt">// is AI breaking prod? check what's true</p>
+          <ul class="eqs__check" data-check>
+            <li><label><input type="checkbox"><span class="cb" aria-hidden="true"></span><span class="ct">Bugs that used to get caught now reach production.</span></label></li>
+            <li><label><input type="checkbox"><span class="cb" aria-hidden="true"></span><span class="ct">"It passed CI," and it still broke.</span></label></li>
+            <li><label><input type="checkbox"><span class="cb" aria-hidden="true"></span><span class="ct">Incidents are up since AI usage grew.</span></label></li>
+            <li><label><input type="checkbox"><span class="cb" aria-hidden="true"></span><span class="ct">You're not sure the tests cover the risky paths.</span></label></li>
+            <li><label><input type="checkbox"><span class="cb" aria-hidden="true"></span><span class="ct">The same class of bug keeps coming back.</span></label></li>
+            <li><label><input type="checkbox"><span class="cb" aria-hidden="true"></span><span class="ct">Rollbacks and hotfixes got more frequent.</span></label></li>
+            <li><label><input type="checkbox"><span class="cb" aria-hidden="true"></span><span class="ct">You can't tell which AI changes are safe to ship.</span></label></li>
+          </ul>
+          <p class="eqs__check-result" data-check-result aria-live="polite"><b>0/7</b><span>&mdash;</span></p>
+        </div>
       </div>
+      <script>
+      (function(){
+        var box = document.querySelector('[data-check]');
+        var res = document.querySelector('[data-check-result]');
+        if(!box || !res) return;
+        var cnt = res.querySelector('b'), msg = res.querySelector('span');
+        box.addEventListener('change', function(){
+          var n = box.querySelectorAll('input:checked').length;
+          cnt.textContent = n + '/7';
+          res.classList.remove('lvl1','lvl2');
+          if(n === 0){ msg.textContent = '—'; }
+          else if(n < 3){ res.classList.add('lvl1'); msg.textContent = 'A few cracks. Cheaper to seal now than after an incident.'; }
+          else { res.classList.add('lvl2'); msg.textContent = 'Your safety net is not keeping up. That is exactly the sprint.'; }
+        });
+      })();
+      </script>
     </div>
   </section>
 
@@ -597,59 +490,15 @@
       <div class="eqs__rule"><span class="eqs__rule-id">02</span><span class="eqs__rule-label">The offer</span><span class="eqs__rule-line"></span></div>
       <div class="eqs__split">
         <div>
-          <h2 class="eqs__h2 eqs__h2--wide">A 4-week sprint to find and fix the quality bottlenecks created by AI adoption.</h2>
-          <p class="eqs__lede">We work with engineering leadership, Platform or DevEx owners, repo owners and developers to inspect the real workflow: code changes, standards, review, CI, tests, ownership, metrics and AI usage.</p>
-          <p class="eqs__lede">Then we choose one or two bottlenecks to improve during the sprint. You leave with a diagnosis, implemented changes in the selected scope and a rollout model for the next teams or repos.</p>
+          <h2 class="eqs__h2 eqs__h2--wide">A 4-week embedded sprint to stop AI bugs reaching production.</h2>
+          <p class="eqs__lede">We embed in the repos where AI writes most, find what breaks, and build the safety net that stops it, with your team. Shipped and measured.</p>
         </div>
         <div class="eqs__roles">
           <div class="eqs__roles-label">Who we work with</div>
           <div class="eqs__role">Engineering <span>leadership</span></div>
-          <div class="eqs__role">Platform / <span>DevEx</span> owners</div>
+          <div class="eqs__role">QA / <span>SRE</span> owners</div>
           <div class="eqs__role">Repo <span>owners</span></div>
           <div class="eqs__role">Developers <span>in the loop</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== WHAT WE LOOK AT ===================== -->
-  <section class="eqs__section eqs__section--tint eqs__section--purple">
-    <div class="container">
-      <div class="eqs__rule"><span class="eqs__rule-id">03</span><span class="eqs__rule-label">What we look at</span><span class="eqs__rule-line"></span></div>
-      <div class="eqs__head">
-        <h2 class="eqs__h2 eqs__h2--wide">We inspect the engineering quality system AI now depends on.</h2>
-        <p class="eqs__lede">AI adoption touches standards, ownership, validation, metrics, and rollout. The sprint shows where those pieces are clear, where they are implicit, and what needs to change before AI scales across the team.</p>
-      </div>
-      <div class="eqs__cards">
-        <div class="eqs__card">
-          <div class="eqs__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></div>
-          <h3>AI-assisted development</h3>
-          <p>How engineers use AI coding tools today, where usage is official or informal, and which kinds of AI-generated changes need clearer rules.</p>
-        </div>
-        <div class="eqs__card">
-          <div class="eqs__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></div>
-          <h3>Engineering standards</h3>
-          <p>Which expectations are documented, which live in senior engineers' heads, and where standards differ by team, repo or folder.</p>
-        </div>
-        <div class="eqs__card">
-          <div class="eqs__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
-          <h3>Ownership and decision rights</h3>
-          <p>Who owns AI-generated changes, who decides what is safe to merge, and where accountability gets blurry as more code is machine-written.</p>
-        </div>
-        <div class="eqs__card">
-          <div class="eqs__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v6.5a2 2 0 0 0 .3 1.05l4.4 7.35A2 2 0 0 1 17 20H7a2 2 0 0 1-1.7-3.1l4.4-7.35A2 2 0 0 0 10 8.5V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></div>
-          <h3>Validation system</h3>
-          <p>Which checks give engineers confidence, which ones are ignored, and where AI-generated changes need stronger validation.</p>
-        </div>
-        <div class="eqs__card">
-          <div class="eqs__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
-          <h3>Quality metrics</h3>
-          <p>What leadership wants to understand, what the team can measure today, and which metrics would create better decisions.</p>
-        </div>
-        <div class="eqs__card">
-          <div class="eqs__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <h3>Rollout governance</h3>
-          <p>Which repos should go first, who needs to buy in, how exceptions work, and how the model expands without relying on one champion.</p>
         </div>
       </div>
     </div>
@@ -658,51 +507,56 @@
   <!-- ===================== WHAT YOU GET ===================== -->
   <section class="eqs__section eqs__section--orange">
     <div class="container">
-      <div class="eqs__rule"><span class="eqs__rule-id">04</span><span class="eqs__rule-label">What you get</span><span class="eqs__rule-line"></span></div>
+      <div class="eqs__rule"><span class="eqs__rule-id">03</span><span class="eqs__rule-label">What you get</span><span class="eqs__rule-line"></span></div>
       <div class="eqs__head">
-        <h2 class="eqs__h2 eqs__h2--wide">What comes out of the sprint</h2>
-        <p class="eqs__lede">The sprint is scoped around one or two concrete improvements. The exact focus depends on what we find during diagnosis.</p>
+        <h2 class="eqs__h2 eqs__h2--wide">Fewer bugs in production, shipped and measured.</h2>
+        <p class="eqs__lede">One outcome: fewer AI bugs reaching prod. Whatever gets there ships in your repos, measured. Every engagement leaves the same three proofs.</p>
       </div>
-      <ul class="eqs__manifest">
-        <li>Engineering quality diagnosis for the selected scope.</li>
-        <li>Bottleneck map across standards, review, CI, tests, ownership, tools, metrics and AI usage.</li>
-        <li>AI adoption risk map.</li>
-        <li>Baseline quality metrics.</li>
-        <li>Recommended operating model for the selected team or repos.</li>
-        <li>One or two implemented workflow improvements.</li>
-        <li>Rollout recommendation for more repos or teams.</li>
-        <li>Final leadership report with what should become product, process or policy.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ===================== EXAMPLE OUTCOMES ===================== -->
-  <section class="eqs__section eqs__section--tint eqs__section--purple">
-    <div class="container">
-      <div class="eqs__rule"><span class="eqs__rule-id">05</span><span class="eqs__rule-label">Example outcomes</span><span class="eqs__rule-line"></span></div>
-      <div class="eqs__head">
-        <h2 class="eqs__h2 eqs__h2--wide">The operating model you walk away with</h2>
-        <p class="eqs__lede">Each sprint turns one messy engineering quality problem into a concrete operating model your team can use.</p>
+      <div class="eqs__artifacts">
+        <div class="eqs__artifact">
+          <div class="eqs__artifact-bar" aria-hidden="true"><i></i><i></i><i></i><span>fix/safety-net &middot; merged</span></div>
+          <div class="eqs__artifact-body" aria-hidden="true">
+            <div class="df"><span class="ln" style="width:52%"></span></div>
+            <div class="df df--add"><span class="ln" style="width:78%"></span></div>
+            <div class="df df--add"><span class="ln" style="width:64%"></span></div>
+            <div class="df df--del"><span class="ln" style="width:40%"></span></div>
+            <div class="df df--add"><span class="ln" style="width:70%"></span></div>
+            <div class="df"><span class="ln" style="width:34%"></span></div>
+          </div>
+          <p class="eqs__artifact-caption"><em>It ships as code</em><b>The gap is closed</b>Whatever the diagnosis finds, we build it with your team and merge it into your repos.</p>
+        </div>
+        <div class="eqs__artifact">
+          <div class="eqs__artifact-bar" aria-hidden="true"><i></i><i></i><i></i><span>escaped-defects &middot; week 1 &rarr; week 4</span></div>
+          <div class="eqs__artifact-body" aria-hidden="true">
+            <div class="mt"><span class="ln" style="width:80%"></span><span class="mt-track"><span class="mt-fill" style="width:72%"></span></span></div>
+            <div class="mt"><span class="ln" style="width:60%"></span><span class="mt-track"><span class="mt-fill mt-fill--sec" style="width:46%"></span></span></div>
+            <div class="mt"><span class="ln" style="width:88%"></span><span class="mt-track"><span class="mt-fill mt-fill--danger" style="width:28%"></span></span></div>
+            <div class="mt"><span class="ln" style="width:68%"></span><span class="mt-track"><span class="mt-fill" style="width:58%"></span></span></div>
+          </div>
+          <p class="eqs__artifact-caption"><em>It's measured</em><b>The number that moved</b>A baseline in week 1 and the delta in week 4: escaped bugs, change-failure, incident rate.</p>
+        </div>
+        <div class="eqs__artifact">
+          <div class="eqs__artifact-bar" aria-hidden="true"><i></i><i></i><i></i><span>handoff &middot; exec readout &amp; next scope</span></div>
+          <div class="eqs__artifact-body" aria-hidden="true">
+            <div class="doc-h"></div>
+            <div class="df"><span class="ln" style="width:86%"></span></div>
+            <div class="df"><span class="ln" style="width:74%"></span></div>
+            <div class="doc-b"><span class="ln" style="width:56%"></span></div>
+            <div class="doc-b"><span class="ln" style="width:44%"></span></div>
+          </div>
+          <p class="eqs__artifact-caption"><em>It outlives us</em><b>Your team runs it</b>The safety net is theirs to keep catching bugs, with a leadership readout and the plan for the next team or repos.</p>
+        </div>
       </div>
-      <div class="eqs__model">
-        <div class="eqs__model-item"><span class="eqs__model-tag">Baseline</span><p>A clear quality baseline across repos, teams, and AI workflows.</p></div>
-        <div class="eqs__model-item"><span class="eqs__model-tag">Risk map</span><p>A map of where AI-generated code creates risk in your delivery process.</p></div>
-        <div class="eqs__model-item"><span class="eqs__model-tag">Standards</span><p>Written engineering standards that humans and tools can both enforce.</p></div>
-        <div class="eqs__model-item"><span class="eqs__model-tag">Ownership</span><p>An ownership model for AI-assisted changes before and after merge.</p></div>
-        <div class="eqs__model-item"><span class="eqs__model-tag">Rollout</span><p>A rollout plan for which teams, repos, and workflows are ready for AI adoption.</p></div>
-        <div class="eqs__model-item"><span class="eqs__model-tag">Backlog</span><p>A prioritized backlog separating tooling gaps, process gaps, and product work.</p></div>
-        <div class="eqs__model-item"><span class="eqs__model-tag">Governance</span><p>A governance model for when AI can assist, when humans must decide, and who signs off.</p></div>
-        <div class="eqs__model-item"><span class="eqs__model-tag">Metrics</span><p>Metrics to tell whether AI is improving engineering quality or just moving review work around.</p></div>
-      </div>
+      <p class="eqs__note eqs__note--center">What we build is set in week 1. It's usually one or two of: tests on the risky paths &middot; e2e on critical flows &middot; CI gates that catch real defects &middot; review tuned to real bugs &middot; ownership of AI changes. One or two, done deep.</p>
     </div>
   </section>
 
   <!-- ===================== HOW IT WORKS ===================== -->
   <section class="eqs__section eqs__section--orange" id="how">
     <div class="container">
-      <div class="eqs__rule"><span class="eqs__rule-id">06</span><span class="eqs__rule-label">How the sprint works</span><span class="eqs__rule-line"></span></div>
+      <div class="eqs__rule"><span class="eqs__rule-id">04</span><span class="eqs__rule-label">How the sprint works</span><span class="eqs__rule-line"></span></div>
       <div class="eqs__head">
-        <h2 class="eqs__h2 eqs__h2--wide">Four weeks to turn one quality bottleneck into a repeatable operating model</h2>
+        <h2 class="eqs__h2 eqs__h2--wide">Exactly what the 4 weeks look like</h2>
       </div>
       <div class="eqs__weeks">
         <span class="eqs__weeks-progress" aria-hidden="true"></span>
@@ -710,36 +564,40 @@
           <div class="eqs__week-node">1</div>
           <div class="eqs__week-card">
             <div class="eqs__week-name">Diagnose</div>
-            <p>We inspect the selected team or repos, recent bugs, test signal, CI behavior, standards, ownership, tooling and AI usage.</p>
+            <p class="eqs__week-meta">kickoff &middot; repo access &middot; incident review</p>
+            <p>We read the selected repos (recent PRs, incidents, bugs, test signal, CI behavior) and interview the team on what keeps breaking.</p>
             <div class="eqs__week-out">Output</div>
-            <ul><li>Quality baseline</li><li>Top validation gaps</li><li>Agreed sprint focus</li></ul>
+            <ul><li>Escaped-bug baseline</li><li>Top safety-net gaps</li><li>Agreed sprint focus</li></ul>
           </div>
         </div>
         <div class="eqs__week">
           <div class="eqs__week-node">2</div>
           <div class="eqs__week-card">
             <div class="eqs__week-name">Design</div>
-            <p>We define the target operating model for the selected quality problem.</p>
+            <p class="eqs__week-meta">2 working sessions &middot; your owners in the room</p>
+            <p>Together we design the safety net for the chosen gap: what to add, who owns it, how it gets measured.</p>
             <div class="eqs__week-out">Output</div>
-            <ul><li>Workflow proposal</li><li>Measurement plan</li><li>Owner responsibilities</li><li>Rollout plan</li></ul>
+            <ul><li>Safety-net proposal</li><li>Measurement plan</li><li>Owner responsibilities</li><li>Rollout plan</li></ul>
           </div>
         </div>
         <div class="eqs__week">
           <div class="eqs__week-node">3</div>
           <div class="eqs__week-card">
-            <div class="eqs__week-name">Improve</div>
-            <p>We help change one or two concrete parts of the workflow: test strategy, CI signal, ownership rules, AI usage guidelines, standards or quality gates.</p>
+            <div class="eqs__week-name">Build</div>
+            <p class="eqs__week-meta">hands-on &middot; shipped in your repos</p>
+            <p>We build it with the team (tests, e2e, CI gates, review, ownership), whatever the diagnosis called for.</p>
             <div class="eqs__week-out">Output</div>
-            <ul><li>Implemented workflow changes</li><li>First signal readout</li><li>Team-owner feedback</li></ul>
+            <ul><li>Safety net shipped</li><li>First signal readout</li><li>Team-owner feedback</li></ul>
           </div>
         </div>
         <div class="eqs__week">
           <div class="eqs__week-node">4</div>
           <div class="eqs__week-card">
-            <div class="eqs__week-name">Package</div>
-            <p>We document what worked, what still needs product, process or policy work, and how to expand the model.</p>
+            <div class="eqs__week-name">Prove</div>
+            <p class="eqs__week-meta">exec readout &middot; rollout plan</p>
+            <p>We measure the delta and present the leadership readout: what moved, what becomes product or process, where to roll out next.</p>
             <div class="eqs__week-out">Output</div>
-            <ul><li>Final report</li><li>Rollout recommendation</li><li>Next-step plan</li></ul>
+            <ul><li>Before/after readout</li><li>Rollout recommendation</li><li>Next-step plan</li></ul>
           </div>
         </div>
       </div>
@@ -749,20 +607,19 @@
   <!-- ===================== WHO IT'S FOR ===================== -->
   <section class="eqs__section eqs__section--tint eqs__section--green">
     <div class="container">
-      <div class="eqs__rule"><span class="eqs__rule-id">07</span><span class="eqs__rule-label">Who it is for</span><span class="eqs__rule-line"></span></div>
+      <div class="eqs__rule"><span class="eqs__rule-id">05</span><span class="eqs__rule-label">Who it is for</span><span class="eqs__rule-line"></span></div>
       <div class="eqs__head">
-        <h2 class="eqs__h2 eqs__h2--wide">Built for engineering teams where AI usage is becoming an operating question.</h2>
+        <h2 class="eqs__h2 eqs__h2--wide">Built for teams where AI is starting to break production.</h2>
       </div>
       <div class="eqs__fit">
         <div class="eqs__fit-col eqs__fit-col--good">
           <h3>Good fit</h3>
           <ul>
-            <li>50+ engineers.</li>
+            <li>30+ engineers, or a high-throughput product team.</li>
             <li>Multiple teams or repositories.</li>
-            <li>Active use or evaluation of Cursor, Copilot, Claude Code, Codex, Devin or internal agents.</li>
-            <li>Platform, DevEx or Engineering Excellence owner.</li>
-            <li>Visible quality, CI, standards or rollout problems.</li>
-            <li>Leadership wants to scale AI usage with more control.</li>
+            <li>Active use of Cursor, Copilot, Claude Code, Codex, Devin or internal agents.</li>
+            <li>More incidents, escaped bugs or hotfixes since AI usage grew.</li>
+            <li>An engineering leader who owns delivery quality.</li>
           </ul>
         </div>
         <div class="eqs__fit-col eqs__fit-col--poor">
@@ -771,9 +628,8 @@
             <li>Very small teams.</li>
             <li>Teams with no engineering leadership sponsor.</li>
             <li>Companies looking for cheap implementation labor.</li>
-            <li>Buyers who only want Kodus onboarding.</li>
-            <li>Teams expecting AI adoption to be solved by buying one more tool.</li>
-            <li>Organizations that want fully autonomous merge decisions.</li>
+            <li>Buyers who only want a tool installed.</li>
+            <li>Teams wanting fully autonomous merge with no humans.</li>
           </ul>
         </div>
       </div>
@@ -783,17 +639,16 @@
   <!-- ===================== WHY KODUS ===================== -->
   <section class="eqs__section eqs__section--purple">
     <div class="container">
-      <div class="eqs__rule"><span class="eqs__rule-id">08</span><span class="eqs__rule-label">Why Kodus</span><span class="eqs__rule-line"></span></div>
+      <div class="eqs__rule"><span class="eqs__rule-id">06</span><span class="eqs__rule-label">Why Kodus</span><span class="eqs__rule-line"></span></div>
       <div class="eqs__why">
         <div class="eqs__statement">
-          <h2 class="eqs__h2 eqs__h2--wide">Kodus works close to where quality decisions happen.</h2>
-          <p class="eqs__lede">Kodus is open source AI code review without vendor lock-in. That matters here because the pull request is one of the places where AI adoption becomes visible. Code has changed. Reviewers need to decide what is safe. CI either gives confidence or it does not. Standards either show up in the workflow or stay in someone's head.</p>
-          <p class="eqs__lede">The sprint uses that practical signal to help your team improve the broader engineering quality workflow. Treat it as field work around real repositories, real review behavior and the quality systems your engineers already use.</p>
+          <h2 class="eqs__h2 eqs__h2--wide">We work where AI bugs slip through.</h2>
+          <p class="eqs__lede">We build Kodus, open source AI code review, so we see where bad AI code slips past teams every day. The sprint puts that on your safety net. No workshop, no product to buy.</p>
         </div>
         <div class="eqs__why-panel">
           <div class="eqs__why-card">
-            <h3>Open source, no lock-in</h3>
-            <p>Inspect it, self-host it, point it at any model. The review pipeline stays yours.</p>
+            <h3>No tool to buy</h3>
+            <p>The outcome is fewer bugs in prod, not a license. If our review layer helps, good. It's one lever, never the pitch.</p>
           </div>
           <div class="eqs__why-card">
             <h3><span class="k">15+ years</span> in the room</h3>
@@ -801,7 +656,7 @@
           </div>
           <div class="eqs__why-card">
             <h3>Benchmark-grade agents</h3>
-            <p>The agent systems we build rank near the top of public code-review benchmarks.</p>
+            <p>The review agents we build rank near the top of public code-quality benchmarks.</p>
           </div>
         </div>
       </div>
@@ -813,8 +668,8 @@
     <div class="container">
       <div class="eqs__cta-block">
         <span class="eqs__kicker" style="justify-content:center;">Get started</span>
-        <h2 class="eqs__h2">Want to understand where AI is stressing your engineering workflow?</h2>
-        <p class="eqs__lede">Bring one team or 3 to 5 repositories. We will help you diagnose where quality breaks down, improve one or two concrete bottlenecks, and leave with a model you can reuse.</p>
+        <h2 class="eqs__h2">Bring the repos where AI keeps breaking things.</h2>
+        <p class="eqs__lede">One team or 3 to 5 repositories. We'll find why the bugs get through, build the safety net that stops them, and leave you the before-and-after.</p>
         <div class="eqs__founder">
           <img class="eqs__founder-avatar" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/gabriel.png" alt="Gabriel Malinosqui" width="52" height="52" loading="lazy">
           <span class="eqs__founder-meta">
@@ -838,32 +693,32 @@
   <!-- ===================== FAQ ===================== -->
   <section class="eqs__section faq" id="faq">
     <div class="container">
-      <div class="eqs__rule"><span class="eqs__rule-id">09</span><span class="eqs__rule-label">FAQ</span><span class="eqs__rule-line"></span></div>
+      <div class="eqs__rule"><span class="eqs__rule-id">07</span><span class="eqs__rule-label">FAQ</span><span class="eqs__rule-line"></span></div>
       <h2 class="eqs__faq-title">Questions before you bring a team in</h2>
 
       <div class="faq__item">
-        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">Is this only for teams already using Kodus?</span><span class="faq__toggle">+</span></button>
-        <div class="faq__answer"><p>No. Kodus may be part of the solution, but the sprint starts with the workflow. We look at how quality works today across standards, review, CI, tests, ownership, metrics and AI usage.</p></div>
+        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">Do you just install a tool?</span><span class="faq__toggle">+</span></button>
+        <div class="faq__answer"><p>No. The sprint starts from your repos and your incidents. The fix might be tests, CI gates, e2e, review or ownership. Whatever week 1 shows is letting bugs through. A tool is at most one lever.</p></div>
       </div>
       <div class="faq__item">
-        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">Is this a code review audit?</span><span class="faq__toggle">+</span></button>
-        <div class="faq__answer"><p>No. Review is one area we may inspect, but the sprint is broader than review comments. The goal is to understand and improve the engineering quality workflow around AI-assisted development.</p></div>
+        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">Is this a Kodus product in disguise?</span><span class="faq__toggle">+</span></button>
+        <div class="faq__answer"><p>No. We build Kodus, but the sprint sells an outcome (fewer bugs in production), not a product. Sometimes our review layer is one of the levers; often it isn't the main one. Nothing here locks you into buying anything.</p></div>
       </div>
       <div class="faq__item">
         <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">How many repos are included?</span><span class="faq__toggle">+</span></button>
         <div class="faq__answer"><p>The recommended scope is one engineering team, one business unit or 3 to 5 repositories.</p></div>
       </div>
       <div class="faq__item">
-        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">What happens after the sprint?</span><span class="faq__toggle">+</span></button>
-        <div class="faq__answer"><p>You leave with the final report, implemented changes in the selected scope and a recommendation for the next rollout. If there is a strong fit, the sprint can lead into a broader Kodus rollout or a managed engineering quality program.</p></div>
+        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">What can you really move in 4 weeks?</span><span class="faq__toggle">+</span></button>
+        <div class="faq__answer"><p>A real before/after on escaped defects, change-failure or incident rate in the selected scope, plus the safety net shipped and owned by your team. We agree the exact metric in week 1.</p></div>
       </div>
       <div class="faq__item">
-        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">Do you build custom software during the sprint?</span><span class="faq__toggle">+</span></button>
-        <div class="faq__answer"><p>No open-ended custom development. If a need repeats across customers, we classify it as product, playbook, configuration, integration, customer-specific customization or not worth doing.</p></div>
+        <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">What happens after the sprint?</span><span class="faq__toggle">+</span></button>
+        <div class="faq__answer"><p>You keep the safety net and the measurement, running in your repos. If it's a fit, we scope the next team or repositories.</p></div>
       </div>
       <div class="faq__item">
         <button class="faq__question"><span class="faq__prompt">$</span><span class="faq__question-text">What does it cost?</span><span class="faq__toggle">+</span></button>
-        <div class="faq__answer"><p>Initial pricing hypothesis: Brazil R$40k–R$80k for 4 weeks; US &amp; EU US$10k–US$25k for 4 weeks. Recommended starting anchors: R$50k (Brazil) and US$15k (US &amp; EU).</p></div>
+        <div class="faq__answer"><p>It's a fixed-price sprint, scoped to one team or up to 5 repositories. We share the number on the first call, once we know what you are dealing with.</p></div>
       </div>
     </div>
   </section>
@@ -927,51 +782,46 @@
 (function(){
   var fig = document.querySelector('.eqs__funnel');
   if(!fig) return;
-  var svg = fig.querySelector('svg');
-  var pipes = fig.querySelectorAll('.ef-pipe');
-  var gate = fig.querySelector('.ef-gate');
-  var cap = fig.querySelector('.ef-caption');
-  var dots = fig.querySelectorAll('.ef-dots circle');
-  var labels = fig.querySelectorAll('.ef-label');
-  if(pipes.length < 2 || !gate || !dots.length) return;
-  var CY = 120, H0 = 60, PIN = 16, DEF = 400;
+  var g = fig.querySelector('.ef-dots');
+  var NS = 'http://www.w3.org/2000/svg';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var lx = []; for(var j=0;j<labels.length;j++){ lx.push(+labels[j].getAttribute('x')); }
-  function halfAt(x, px){ var t = 1 - Math.abs(x-px)/175; if(t<0) t=0; t = t*t*(3-2*t); return H0 - (H0-PIN)*t; }
-  function chrome(px){
-    pipes[0].setAttribute('d', 'M0 60 C '+(px-120)+' 60, '+(px-80)+' 104, '+px+' 104 C '+(px+80)+' 104, '+(px+120)+' 60, 1000 60');
-    pipes[1].setAttribute('d', 'M0 180 C '+(px-120)+' 180, '+(px-80)+' 136, '+px+' 136 C '+(px+80)+' 136, '+(px+120)+' 180, 1000 180');
-    gate.setAttribute('x1', px); gate.setAttribute('x2', px);
-    if(cap) cap.setAttribute('x', px);
-    var best=0, bd=1e9;
-    for(var j=0;j<lx.length;j++){ var d=Math.abs(lx[j]-px); if(d<bd){ bd=d; best=j; } }
-    for(var j=0;j<labels.length;j++){ labels[j].classList.toggle('ef-label--hot', j===best); }
+  var GATE = 660, END = 952, GOOD = ['d1','d2','d3'];
+  var dots = [];
+  function make(bug){
+    var c = document.createElementNS(NS,'circle');
+    c.setAttribute('r', bug ? 7 : 6);
+    c.setAttribute('class', 'ef-dot ' + (bug ? 'd4' : GOOD[(Math.random()*GOOD.length)|0]));
+    var y = 96 + Math.random()*88;
+    c.setAttribute('cx', -12); c.setAttribute('cy', y.toFixed(1));
+    g.appendChild(c);
+    return { el:c, x:-12, sp:0.9+Math.random()*0.9, bug:bug, state:'flow', fade:1 };
   }
-  var st = [];
-  for(var i=0;i<dots.length;i++){ st.push({ el:dots[i], x:+dots[i].getAttribute('cx'), o:(+dots[i].getAttribute('cy'))-CY, sp:0.55+Math.random()*0.75 }); }
-  function place(d, px){ d.el.setAttribute('cx', d.x.toFixed(1)); d.el.setAttribute('cy', (CY + d.o*(halfAt(d.x, px)/H0)).toFixed(1)); }
-  var target = DEF, px = DEF;
-  function toX(clientX){ var r = svg.getBoundingClientRect(); var x = (clientX-r.left)/r.width*1000; return Math.max(150, Math.min(850, x)); }
-  function paintAll(p){ chrome(p); for(var i=0;i<st.length;i++) place(st[i], p); }
-  fig.addEventListener('pointermove', function(e){ target = toX(e.clientX); if(reduce){ px = target; paintAll(px); } });
-  fig.addEventListener('pointerleave', function(){ target = DEF; if(reduce){ px = DEF; paintAll(px); } });
-  paintAll(DEF);
-  if(reduce) return;
-  var raf = null, running = false;
-  function frame(){
-    px += (target - px) * 0.14;
-    for(var i=0;i<st.length;i++){
-      var d = st[i];
-      var slow = (d.x > px-95 && d.x < px+12) ? 0.16 : 1;   // congest before / crawl through the gate
-      d.x += d.sp * slow;
-      if(d.x > 1016){ d.x = -16 - Math.random()*46; d.sp = 0.55 + Math.random()*0.75; }
-      place(d, px);
+  if(reduce){
+    for(var i=0;i<12;i++){ var bug=Math.random()<0.3; var d=make(bug); d.x = bug ? (690+Math.random()*230) : (90+Math.random()*500); d.el.setAttribute('cx', d.x.toFixed(1)); }
+    return;
+  }
+  var raf=null, running=false, last=0, acc=0;
+  function step(t){
+    if(!last) last=t; var dt=Math.min(50, t-last); last=t;
+    acc += dt;
+    if(acc > 360){ acc=0; if(dots.length < 30) dots.push(make(Math.random()<0.28)); }
+    for(var i=dots.length-1;i>=0;i--){
+      var d=dots[i];
+      if(d.state==='flow'){
+        d.x += d.sp * dt/16;
+        if(!d.bug && d.x >= GATE){ d.state='caught'; d.x=GATE; }
+        else if(d.x >= END){ d.state='land'; d.x=END; }
+        d.el.setAttribute('cx', d.x.toFixed(1));
+      } else {
+        d.fade -= dt/(d.state==='caught' ? 620 : 1300);
+        if(d.fade <= 0){ if(d.el.parentNode) g.removeChild(d.el); dots.splice(i,1); continue; }
+        d.el.setAttribute('opacity', Math.max(0,d.fade).toFixed(2));
+      }
     }
-    chrome(px);
-    raf = requestAnimationFrame(frame);
+    raf = requestAnimationFrame(step);
   }
-  function start(){ if(running) return; running = true; frame(); }
-  function stop(){ running = false; if(raf) cancelAnimationFrame(raf); raf = null; }
+  function start(){ if(running) return; running=true; last=0; raf=requestAnimationFrame(step); }
+  function stop(){ running=false; if(raf) cancelAnimationFrame(raf); raf=null; }
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? start() : stop(); }); }, { threshold: 0 }).observe(fig);
   } else { start(); }
