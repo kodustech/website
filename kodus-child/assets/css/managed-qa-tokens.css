@@ -1,0 +1,31 @@
+/* Managed QA tokens — aliases onto the Kodus brand system.
+ * Source of truth for brand values: kodus-retro.css :root */
+
+.managed-qa-page {
+  --mqa-paper: var(--color-bg, #101019);
+  --mqa-paper-strong: var(--color-card-lv1, #181825);
+  --mqa-ink: var(--color-text, #f3f3f7);
+  --mqa-muted: var(--color-text-muted, #cdcddf);
+  --mqa-rule: var(--color-card-lv3, #30304b);
+  --mqa-soft-rule: rgba(243, 243, 247, 0.1);
+  --mqa-accent: var(--color-primary, #f8b76d);
+  --mqa-accent-hover: #ffca8a;
+  --mqa-accent-ink: var(--color-bg, #101019);
+  --mqa-danger: var(--color-danger, #fa5867);
+  --mqa-success: var(--color-success, #42be65);
+  --mqa-focus: var(--color-secondary, #c9bbf2);
+  --mqa-ink-soft: var(--color-card-lv2, #202032);
+  --mqa-ink-muted: var(--color-text-dim, rgba(243, 243, 247, 0.5));
+  --mqa-ink-subtle: rgba(243, 243, 247, 0.18);
+  --mqa-on-ink: var(--color-text, #f3f3f7);
+  --mqa-on-ink-muted: var(--color-text-muted, #cdcddf);
+  --mqa-on-ink-dim: var(--color-text-dim, rgba(243, 243, 247, 0.5));
+  /* Match kodus-retro .container exactly */
+  --mqa-page: 1200px;
+  --mqa-gutter: 24px;
+  --mqa-radius: var(--border-radius-sm, 8px);
+  --mqa-shadow-offset: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --mqa-font: var(--font-sans, Inter, -apple-system, BlinkMacSystemFont, sans-serif);
+  --mqa-mono: var(--font-mono, "JetBrains Mono", "Fira Code", monospace);
+  --mqa-pixel: var(--font-pixel, "Press Start 2P", monospace);
+}

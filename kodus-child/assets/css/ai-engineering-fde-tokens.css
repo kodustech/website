@@ -1,0 +1,24 @@
+/* AI Engineering Assessment tokens — aliases onto the Kodus brand system.
+ * Source of truth for brand values: kodus-retro.css :root */
+
+.ai-fde-page {
+  --aif-paper: var(--color-bg, #101019);
+  --aif-paper-strong: var(--color-card-lv1, #181825);
+  --aif-ink: var(--color-text, #f3f3f7);
+  --aif-muted: var(--color-text-muted, #cdcddf);
+  --aif-rule: var(--color-card-lv3, #30304b);
+  --aif-soft-rule: rgba(243, 243, 247, 0.1);
+  --aif-accent: var(--color-primary, #f8b76d);
+  --aif-accent-hover: #ffca8a;
+  --aif-accent-ink: var(--color-bg, #101019);
+  --aif-danger: var(--color-danger, #fa5867);
+  --aif-success: var(--color-success, #42be65);
+  --aif-focus: var(--color-secondary, #c9bbf2);
+  --aif-ink-soft: var(--color-card-lv2, #202032);
+  --aif-ink-muted: var(--color-text-dim, rgba(243, 243, 247, 0.5));
+  --aif-page: 1200px;
+  --aif-gutter: 24px;
+  --aif-radius: var(--border-radius-sm, 8px);
+  --aif-font: var(--font-sans, Inter, -apple-system, BlinkMacSystemFont, sans-serif);
+  --aif-mono: var(--font-mono, "JetBrains Mono", "Fira Code", monospace);
+}
