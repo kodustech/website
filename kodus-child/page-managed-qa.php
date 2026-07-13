@@ -411,11 +411,11 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
         </div>
         <div class="mqa-math__row" role="row">
           <span role="cell">QA automation engineer, fully loaded <small data-mqa-market-label>US-based estimate</small></span>
-          <strong role="cell" data-mqa-cost="qa">~$120K+/yr</strong>
+          <strong role="cell" data-mqa-cost="qa">~$145K+/yr</strong>
         </div>
         <div class="mqa-math__row" role="row">
           <span role="cell">Test tooling and environment infrastructure</span>
-          <strong role="cell" data-mqa-cost="tooling">~$10K+/yr</strong>
+          <strong role="cell" data-mqa-cost="tooling">~$5K–15K/yr</strong>
         </div>
         <div class="mqa-math__row" role="row">
           <span role="cell">Flaky-test maintenance and failure triage</span>
@@ -423,7 +423,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
         </div>
         <div class="mqa-math__row mqa-math__row--total" role="row">
           <span role="cell">In-house QA motion</span>
-          <strong role="cell" data-mqa-cost="total">$130K+/yr</strong>
+          <strong role="cell" data-mqa-cost="total">~$150K+/yr</strong>
         </div>
         <div class="mqa-math__row mqa-math__row--kodus" role="row">
           <span role="cell">Kodus Managed QA</span>

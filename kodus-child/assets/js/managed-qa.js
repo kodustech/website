@@ -36,15 +36,15 @@
       ];
 
       if (brazilTimezones.indexOf(timezone) !== -1) {
-        return { label: 'Brazil-based estimate', qa: '~$45K+/yr', tooling: '~$6K+/yr', total: '$51K+/yr' };
+        return { label: 'Brazil-based estimate', qa: '~$20K–25K/yr', tooling: '~$3K–8K/yr', total: '~$23K–33K/yr' };
       }
       if (latamTimezones.indexOf(timezone) !== -1) {
-        return { label: 'Latin America estimate', qa: '~$55K+/yr', tooling: '~$7K+/yr', total: '$62K+/yr' };
+        return { label: 'Latin America estimate', qa: '~$30K–60K/yr', tooling: '~$3K–8K/yr', total: '~$33K–68K/yr' };
       }
       if (timezone.indexOf('Europe/') === 0) {
-        return { label: 'Europe-based estimate', qa: '~$90K+/yr', tooling: '~$10K+/yr', total: '$100K+/yr' };
+        return { label: 'Europe-based estimate', qa: '~$75K–125K/yr', tooling: '~$5K–15K/yr', total: '~$80K–140K/yr' };
       }
-      return { label: 'US-based estimate', qa: '~$120K+/yr', tooling: '~$10K+/yr', total: '$130K+/yr' };
+      return { label: 'US-based estimate', qa: '~$145K+/yr', tooling: '~$5K–15K/yr', total: '~$150K+/yr' };
     };
 
     var market = marketByTimezone();
