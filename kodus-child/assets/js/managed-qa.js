@@ -36,7 +36,7 @@
       ];
 
       if (brazilTimezones.indexOf(timezone) !== -1) {
-        return { label: 'Brazil-based estimate', qa: '~$20K–25K/yr', tooling: '~$3K–8K/yr', total: '~$23K–33K/yr' };
+        return { label: 'Brazil-based estimate', qa: '~$25K–30K/yr', tooling: '~$3K–8K/yr', total: '~$28K–38K/yr' };
       }
       if (latamTimezones.indexOf(timezone) !== -1) {
         return { label: 'Latin America estimate', qa: '~$30K–60K/yr', tooling: '~$3K–8K/yr', total: '~$33K–68K/yr' };
