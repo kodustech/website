@@ -66,6 +66,7 @@
     var inputs = Array.prototype.slice.call(checklist.querySelectorAll('input[type="checkbox"]'));
     var countEl = checklist.querySelector('[data-mqa-count]');
     var resultEl = checklist.querySelector('[data-mqa-result]');
+    var fitCta = checklist.querySelector('[data-mqa-fit-cta]');
 
     function updateChecklist() {
       var selected = inputs.filter(function (input) { return input.checked; }).length;
@@ -81,10 +82,24 @@
       } else {
         resultEl.textContent = 'Your release process is probably carrying more QA work than the team can absorb.';
       }
+
+      if (fitCta) fitCta.hidden = selected < 3;
     }
 
     inputs.forEach(function (input) {
       input.addEventListener('change', updateChecklist);
+    });
+
+    updateChecklist();
+  }
+
+  /* ---------- QA risk check shortcut ---------- */
+  var fitShortcut = document.querySelector('[data-mqa-fit-fab]');
+  var fitSection = document.querySelector('#fit');
+  if (fitShortcut && fitSection) {
+    fitShortcut.addEventListener('click', function (event) {
+      event.preventDefault();
+      fitSection.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     });
   }
 
