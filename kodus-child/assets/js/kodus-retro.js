@@ -267,8 +267,9 @@ document.addEventListener('DOMContentLoaded', () => {
       header.style.borderBottomColor = 'transparent';
     }
 
-    // Parallax bugs
+    // Parallax bugs (skip bugs mid-squash / removed)
     bugs.forEach((bug, i) => {
+      if (bug.classList.contains('is-squashed') || bug.classList.contains('is-gone')) return;
       const speed = parseFloat(bug.dataset.speed) || 0.3;
       const y = scrollY * speed;
       bug.style.transform = `${bugBaseTransforms[i]} translateY(${y}px)`;

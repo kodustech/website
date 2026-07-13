@@ -39,6 +39,8 @@ function kodus_get_current_page_template() {
 
 function kodus_get_english_product_templates() {
     return [
+        'page-ai-engineering-fde.php',
+        'page-managed-qa.php',
         'page-engineering-quality-sprint.php',
         'page-home.php',
         'page-pricing.php',
@@ -98,6 +100,8 @@ function kodus_home_meta_description() {
 
 function kodus_get_product_meta_titles() {
     return [
+        'page-ai-engineering-fde.php' => 'AI Engineering Assessment | Kodus',
+        'page-managed-qa.php' => 'Managed QA for critical user flows | Kodus',
         'page-engineering-quality-sprint.php' => 'Stop AI bugs reaching production | Kodus sprint',
         'page-home.php' => 'Kodus | Open Source AI Code Review',
         'page-pricing.php' => 'Kodus Pricing | AI Code Review | Try for free',
@@ -131,6 +135,8 @@ function kodus_get_current_page_meta_title() {
 
 function kodus_get_product_meta_descriptions() {
     return [
+        'page-ai-engineering-fde.php' => 'A three-week assessment of how AI-generated changes move through context, review, tests and delivery, with evidence and a prioritized 30/90-day action plan.',
+        'page-managed-qa.php' => 'Kodus protects critical user journeys with browser tests, API checks or AI evals in your repository, plus ongoing maintenance and human failure triage.',
         'page-engineering-quality-sprint.php' => 'A founder-led 4-week embedded sprint for teams shipping fast with AI. We build the safety net that stops AI bugs from reaching production — measured before and after.',
         'page-home.php' => 'Open source AI code review — reviews that adapt to your team. Catch issues early, keep delivery moving, and improve quality without slowing things down.',
         'page-pricing.php' => 'Choose the right plan for your engineering team and get AI-powered code reviews that feel like your senior dev wrote them — with context, quality, and consistency.',
@@ -307,6 +313,8 @@ function kodus_add_post_x_default_hreflang() {
 // ═══════════════════════════════════════════════════════════════
 function kodus_get_retro_templates() {
     return [
+        'page-ai-engineering-fde.php',
+        'page-managed-qa.php',
         'page-engineering-quality-sprint.php',
         'page-home.php',
         'page-pricing.php',
@@ -449,6 +457,54 @@ function kodus_enqueue_retro_assets() {
         filemtime(get_stylesheet_directory() . '/assets/css/kodus-retro.css')
     );
 
+    if (kodus_get_current_page_template() === 'page-managed-qa.php') {
+        wp_enqueue_style(
+            'kodus-managed-qa-tokens',
+            get_stylesheet_directory_uri() . '/assets/css/managed-qa-tokens.css',
+            ['kodus-retro'],
+            filemtime(get_stylesheet_directory() . '/assets/css/managed-qa-tokens.css')
+        );
+
+        wp_enqueue_style(
+            'kodus-managed-qa',
+            get_stylesheet_directory_uri() . '/assets/css/managed-qa.css',
+            ['kodus-managed-qa-tokens'],
+            filemtime(get_stylesheet_directory() . '/assets/css/managed-qa.css')
+        );
+
+        wp_enqueue_script(
+            'kodus-managed-qa',
+            get_stylesheet_directory_uri() . '/assets/js/managed-qa.js',
+            [],
+            filemtime(get_stylesheet_directory() . '/assets/js/managed-qa.js'),
+            true
+        );
+    }
+
+    if (kodus_get_current_page_template() === 'page-ai-engineering-fde.php') {
+        wp_enqueue_style(
+            'kodus-ai-engineering-fde-tokens',
+            get_stylesheet_directory_uri() . '/assets/css/ai-engineering-fde-tokens.css',
+            ['kodus-retro'],
+            filemtime(get_stylesheet_directory() . '/assets/css/ai-engineering-fde-tokens.css')
+        );
+
+        wp_enqueue_style(
+            'kodus-ai-engineering-fde',
+            get_stylesheet_directory_uri() . '/assets/css/ai-engineering-fde.css',
+            ['kodus-ai-engineering-fde-tokens'],
+            filemtime(get_stylesheet_directory() . '/assets/css/ai-engineering-fde.css')
+        );
+
+        wp_enqueue_script(
+            'kodus-ai-engineering-fde',
+            get_stylesheet_directory_uri() . '/assets/js/ai-engineering-fde.js',
+            [],
+            filemtime(get_stylesheet_directory() . '/assets/js/ai-engineering-fde.js'),
+            true
+        );
+    }
+
     if (kodus_get_current_page_template() === 'page-manifesto.php') {
         wp_enqueue_style(
             'kodus-manifesto',
@@ -558,6 +614,8 @@ add_filter('upload_size_limit', function() {
 // ═══════════════════════════════════════════════════════════════
 add_filter('theme_page_templates', 'kodus_register_page_templates');
 function kodus_register_page_templates($templates) {
+    $templates['page-ai-engineering-fde.php'] = 'Kodus AI Engineering Assessment';
+    $templates['page-managed-qa.php'] = 'Kodus Managed QA';
     $templates['page-engineering-quality-sprint.php'] = 'Kodus Engineering Quality Sprint';
     $templates['page-home.php']              = 'Kodus Home';
     $templates['page-pricing.php']           = 'Kodus Pricing';
