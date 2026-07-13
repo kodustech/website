@@ -31,7 +31,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
 
     <div class="mqa-header__actions">
       <button class="btn btn--primary mqa-header__cta" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-        See if Managed QA fits
+        Protect your critical flows
       </button>
     </div>
   </nav>
@@ -78,7 +78,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
         <p class="mqa-hero__copy">We map the flows your product depends on. The right tests and evals live in your repository and run in CI. A QA engineer investigates failures before your developers spend time on them.</p>
         <div class="mqa-actions">
           <button class="btn btn--primary" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-            See if Managed QA fits
+            Protect your critical flows
           </button>
           <a class="btn btn--outline-light" href="#pilot">See pricing</a>
         </div>
@@ -387,7 +387,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
             <li>Human triage and maintenance</li>
           </ul>
           <button class="btn btn--primary mqa-price-card__cta" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-            See if Managed QA fits
+            Protect your critical flows
           </button>
           <small>15-minute call. We will tell you if the scope is a bad fit.</small>
         </div>
@@ -410,12 +410,12 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
           <span role="columnheader">Annual cost</span>
         </div>
         <div class="mqa-math__row" role="row">
-          <span role="cell">QA automation engineer, fully loaded <small>US-based estimate</small></span>
-          <strong role="cell">~$120K+/yr</strong>
+          <span role="cell">QA automation engineer, fully loaded <small data-mqa-market-label>US-based estimate</small></span>
+          <strong role="cell" data-mqa-cost="qa">~$120K+/yr</strong>
         </div>
         <div class="mqa-math__row" role="row">
           <span role="cell">Test tooling and environment infrastructure</span>
-          <strong role="cell">~$10K+/yr</strong>
+          <strong role="cell" data-mqa-cost="tooling">~$10K+/yr</strong>
         </div>
         <div class="mqa-math__row" role="row">
           <span role="cell">Flaky-test maintenance and failure triage</span>
@@ -423,14 +423,14 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
         </div>
         <div class="mqa-math__row mqa-math__row--total" role="row">
           <span role="cell">In-house QA motion</span>
-          <strong role="cell">$130K+/yr</strong>
+          <strong role="cell" data-mqa-cost="total">$130K+/yr</strong>
         </div>
         <div class="mqa-math__row mqa-math__row--kodus" role="row">
           <span role="cell">Kodus Managed QA</span>
           <strong role="cell">$24K/yr</strong>
         </div>
       </div>
-      <p class="mqa-math__note">US-market estimate. Actual costs vary by location, tooling and the coverage your team needs.</p>
+      <p class="mqa-math__note" data-mqa-market-note>Estimate based on your region. Actual costs vary by market, tooling and the coverage your team needs.</p>
     </div>
   </section>
 
@@ -524,7 +524,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
         <h2>Which five user journeys would hurt the most if they broke tomorrow?</h2>
         <p class="mqa-close__copy">Map them with the founders. Fixed scope. Clear ownership. Tests that stay in your repo.</p>
         <button class="btn btn--primary" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-          See if Managed QA fits
+          Protect your critical flows
         </button>
       </div>
     </div>

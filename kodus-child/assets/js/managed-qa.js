@@ -13,6 +13,53 @@
     window.addEventListener('scroll', onHeaderScroll, { passive: true });
   }
 
+  /* ---------- Regional build-vs-buy estimate ----------
+   * The browser timezone stays on-device. It only selects a broad market
+   * estimate for the comparison and is never stored or sent anywhere.
+   */
+  var mathTable = document.querySelector('[data-mqa-cost="qa"]');
+  if (mathTable && window.Intl && window.Intl.DateTimeFormat) {
+    var marketByTimezone = function () {
+      var timezone = window.Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      var brazilTimezones = [
+        'America/Araguaina', 'America/Bahia', 'America/Belem', 'America/Boa_Vista',
+        'America/Campo_Grande', 'America/Cuiaba', 'America/Eirunepe', 'America/Fortaleza',
+        'America/Maceio', 'America/Manaus', 'America/Noronha', 'America/Porto_Velho',
+        'America/Recife', 'America/Rio_Branco', 'America/Santarem', 'America/Sao_Paulo'
+      ];
+      var latamTimezones = [
+        'America/Argentina/Buenos_Aires', 'America/Asuncion', 'America/Bogota',
+        'America/Caracas', 'America/Costa_Rica', 'America/El_Salvador', 'America/Guatemala',
+        'America/Guayaquil', 'America/Havana', 'America/La_Paz', 'America/Lima',
+        'America/Mexico_City', 'America/Monterrey', 'America/Montevideo', 'America/Panama',
+        'America/Santiago', 'America/Santo_Domingo', 'Pacific/Easter'
+      ];
+
+      if (brazilTimezones.indexOf(timezone) !== -1) {
+        return { label: 'Brazil-based estimate', qa: '~$45K+/yr', tooling: '~$6K+/yr', total: '$51K+/yr' };
+      }
+      if (latamTimezones.indexOf(timezone) !== -1) {
+        return { label: 'Latin America estimate', qa: '~$55K+/yr', tooling: '~$7K+/yr', total: '$62K+/yr' };
+      }
+      if (timezone.indexOf('Europe/') === 0) {
+        return { label: 'Europe-based estimate', qa: '~$90K+/yr', tooling: '~$10K+/yr', total: '$100K+/yr' };
+      }
+      return { label: 'US-based estimate', qa: '~$120K+/yr', tooling: '~$10K+/yr', total: '$130K+/yr' };
+    };
+
+    var market = marketByTimezone();
+    var marketLabel = document.querySelector('[data-mqa-market-label]');
+    var marketNote = document.querySelector('[data-mqa-market-note]');
+    var costFields = document.querySelectorAll('[data-mqa-cost]');
+
+    if (marketLabel) marketLabel.textContent = market.label;
+    if (marketNote) marketNote.textContent = 'Estimate based on your region. Actual costs vary by market, tooling and the coverage your team needs.';
+    Array.prototype.forEach.call(costFields, function (field) {
+      var cost = field.getAttribute('data-mqa-cost');
+      if (market[cost]) field.textContent = market[cost];
+    });
+  }
+
   /* ---------- Checklist ---------- */
   var checklist = document.querySelector('[data-mqa-checklist]');
   if (checklist) {
