@@ -31,7 +31,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
 
     <div class="mqa-header__actions">
       <button class="btn btn--primary mqa-header__cta" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-        See if Managed QA fits
+        Protect your critical flows
       </button>
     </div>
   </nav>
@@ -78,7 +78,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
         <p class="mqa-hero__copy">We map the flows your product depends on. The right tests and evals live in your repository and run in CI. A QA engineer investigates failures before your developers spend time on them.</p>
         <div class="mqa-actions">
           <button class="btn btn--primary" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-            See if Managed QA fits
+            Protect your critical flows
           </button>
           <a class="btn btn--outline-light" href="#pilot">See pricing</a>
         </div>
@@ -387,11 +387,50 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
             <li>Human triage and maintenance</li>
           </ul>
           <button class="btn btn--primary mqa-price-card__cta" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-            See if Managed QA fits
+            Protect your critical flows
           </button>
           <small>15-minute call. We will tell you if the scope is a bad fit.</small>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- BUILD VS BUY -->
+  <section class="mqa-section mqa-math" id="math">
+    <div class="mqa-shell">
+      <div class="mqa-math__intro">
+        <p class="mqa-kicker">The math</p>
+        <h2>The math versus building QA in-house.</h2>
+        <p>Managed QA replaces the work of building, operating and maintaining critical-flow coverage yourself. Start with the flows that carry the most risk, without turning QA operations into another full-time engineering responsibility.</p>
+      </div>
+
+      <div class="mqa-math__table" role="table" aria-label="Managed QA compared with building QA in-house">
+        <div class="mqa-math__row mqa-math__row--head" role="row">
+          <span role="columnheader">What an in-house QA motion requires</span>
+          <span role="columnheader">Annual cost</span>
+        </div>
+        <div class="mqa-math__row" role="row">
+          <span role="cell">QA automation engineer, fully loaded <small data-mqa-market-label>US-based estimate</small></span>
+          <strong role="cell" data-mqa-cost="qa">~$120K+/yr</strong>
+        </div>
+        <div class="mqa-math__row" role="row">
+          <span role="cell">Test tooling and environment infrastructure</span>
+          <strong role="cell" data-mqa-cost="tooling">~$10K+/yr</strong>
+        </div>
+        <div class="mqa-math__row" role="row">
+          <span role="cell">Flaky-test maintenance and failure triage</span>
+          <strong class="mqa-math__opportunity" role="cell">Developer time</strong>
+        </div>
+        <div class="mqa-math__row mqa-math__row--total" role="row">
+          <span role="cell">In-house QA motion</span>
+          <strong role="cell" data-mqa-cost="total">$130K+/yr</strong>
+        </div>
+        <div class="mqa-math__row mqa-math__row--kodus" role="row">
+          <span role="cell">Kodus Managed QA</span>
+          <strong role="cell">$24K/yr</strong>
+        </div>
+      </div>
+      <p class="mqa-math__note" data-mqa-market-note>Estimate based on your region. Actual costs vary by market, tooling and the coverage your team needs.</p>
     </div>
   </section>
 
@@ -422,6 +461,22 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
       </div>
       <div class="mqa-faq">
         <details>
+          <summary>What is included in $2,000 per month?</summary>
+          <p>One product, one staging environment and one CI pipeline. We build coverage for up to five critical journeys, then maintain the suite and add or update up to five scenarios each month. Human failure triage is included.</p>
+        </details>
+        <details>
+          <summary>How fast can we get coverage live?</summary>
+          <p>The first coverage for up to five critical journeys runs within 14 days, provided the agreed staging, repository and CI access are ready.</p>
+        </details>
+        <details>
+          <summary>How does billing work?</summary>
+          <p>The first engagement is monthly. We agree the scope in the fit call, then begin once access and a technical contact are ready. There is no annual lock-in on the first engagement.</p>
+        </details>
+        <details>
+          <summary>What access do you need?</summary>
+          <p>We agree the repository, CI and staging access required for the scope. The tests and evals stay in your repository, and the access needed is documented during onboarding.</p>
+        </details>
+        <details>
           <summary>Do the tests stay with us?</summary>
           <p>Yes. The tests and evals live in your repository. Your team can inspect, run and change them at any time.</p>
         </details>
@@ -434,8 +489,16 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
           <p>We start with up to five high-risk user journeys. A journey can contain several browser, API or AI evaluation scenarios. After launch, we maintain that coverage and add or update up to five scenarios each month.</p>
         </details>
         <details>
+          <summary>What happens when our scope grows?</summary>
+          <p>We review the risk and the new coverage needed together. Additional capacity is scoped explicitly, so the service expands with the product without quietly diluting coverage on the flows already protected.</p>
+        </details>
+        <details>
           <summary>What happens when a test fails?</summary>
           <p>A QA engineer reviews the failure first. We classify it as a product bug, test issue or environment problem. Confirmed product bugs reach your team with evidence and reproduction steps.</p>
+        </details>
+        <details>
+          <summary>Do you provide a release SLA?</summary>
+          <p>No. Managed QA is not 24/7 release certification. Tests run on the agreed triggers, and failures receive first-pass investigation within the operating model defined for the engagement.</p>
         </details>
         <details>
           <summary>How much work does our team need to do?</summary>
@@ -461,7 +524,7 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
         <h2>Which five user journeys would hurt the most if they broke tomorrow?</h2>
         <p class="mqa-close__copy">Map them with the founders. Fixed scope. Clear ownership. Tests that stay in your repo.</p>
         <button class="btn btn--primary" type="button" data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}'>
-          See if Managed QA fits
+          Protect your critical flows
         </button>
       </div>
     </div>
