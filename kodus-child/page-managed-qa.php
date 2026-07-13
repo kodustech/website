@@ -196,6 +196,9 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
           <div>
             <p class="mqa-checklist__label">signals selected</p>
             <p data-mqa-result>Select the problems your team is dealing with.</p>
+            <button class="mqa-checklist__cta btn btn--primary" type="button" data-mqa-fit-cta data-cal-link="gabrielmalinosqui/managed-qa" data-cal-config='{"layout":"month_view"}' hidden>
+              Protect your critical flows
+            </button>
           </div>
         </div>
       </div>
@@ -530,6 +533,12 @@ $mqa_logo = get_stylesheet_directory_uri() . '/assets/img/kodus_dark.webp';
     </div>
   </section>
 </main>
+
+<a class="mqa-fit-fab" href="#fit" data-mqa-fit-fab>
+  <span>Run your QA</span>
+  <strong>risk check</strong>
+  <i aria-hidden="true">↓</i>
+</a>
 
 <!-- Outside main so fixed positioning is never overridden by section stacking -->
 <div class="mqa-bug-toast" data-mqa-bug-toast hidden role="status" aria-live="polite">

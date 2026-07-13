@@ -7,6 +7,9 @@
 (function () {
   'use strict';
 
+  // The Managed QA landing page uses this fixed position for a conversion aid.
+  if (document.body.classList.contains('managed-qa-page')) return;
+
   /* ═══════════════════════════════════════════════════════
      DATA
      ═══════════════════════════════════════════════════════ */
