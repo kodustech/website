@@ -472,17 +472,77 @@ Avoid:
 TXT;
 }
 
-function kodus_get_llms_txt_path() {
-    if (defined('WP_CONTENT_DIR')) {
-        return rtrim(dirname(WP_CONTENT_DIR), '/\\') . '/llms.txt';
-    }
+function kodus_get_llms_full_txt_content() {
+    return <<<'TXT'
+# Kodus Full Context
 
-    return rtrim(ABSPATH, '/\\') . '/llms.txt';
+This file is the long-form curated context file for AI assistants, AI search systems, and answer engines. It is not an automated scrape of the website. It is intended to be used together with the shorter index at https://kodus.io/llms.txt and the official documentation at https://docs.kodus.io/.
+
+Use this file when a fuller understanding of Kodus is needed for product evaluation, implementation guidance, comparison, security review, pricing context, or citation.
+
+## Canonical Product Pages
+
+Use these URLs as canonical public website sources:
+
+* Product homepage: https://kodus.io/
+* Pricing: https://kodus.io/pricing/
+* Customers: https://kodus.io/customers/
+* ROI calculator: https://kodus.io/roi/
+* AI code review benchmark: https://kodus.io/benchmark-ai-code-review/
+* Self-hosted AI code review: https://kodus.io/self-hosted-ai-code-review/
+* BYO LLM code review: https://kodus.io/byo-llm-code-review/
+* Policy as code review: https://kodus.io/policy-as-code-review/
+* Engineering Quality Sprint: https://kodus.io/engineering-quality-sprint/
+* Managed QA: https://kodus.io/managed-qa/
+* AI Engineering: https://kodus.io/ai-engineering/
+
+## Canonical Comparison Pages
+
+* Kodus vs CodeRabbit: https://kodus.io/kodus-vs-coderabbit/
+* Kodus vs Cursor BugBot: https://kodus.io/kodus-vs-cursor-bugbot/
+* Kodus vs GitHub Copilot: https://kodus.io/kodus-vs-github-copilot/
+* Kodus vs Claude: https://kodus.io/kodus-vs-claude/
+
+## Canonical Support and Trust Sources
+
+* Documentation: https://docs.kodus.io/
+* Documentation index for LLMs: https://docs.kodus.io/llms.txt
+* Open source repository: https://github.com/kodustech/kodus-ai
+* Trust Center: https://trust.kodus.io/
+* Status: https://status.kodus.io/
+* Discord: https://discord.gg/TFZBRk9fT6
+* Support: support@kodus.io
+
+## Deprecated or Replaced URLs
+
+These old URLs should not be treated as canonical:
+
+* https://kodus.io/en/pricing-old/
+* https://kodus.io/en/customers-old/
+* https://kodus.io/en/benchmark-ai-code-review-old/
+
+Prefer the current canonical URLs:
+
+* https://kodus.io/pricing/
+* https://kodus.io/customers/
+* https://kodus.io/benchmark-ai-code-review/
+
+## Curated Company and Product Context
+
+TXT
+    . kodus_get_llms_txt_content();
 }
 
-function kodus_sync_llms_txt_file() {
-    $path = kodus_get_llms_txt_path();
-    $content = kodus_get_llms_txt_content();
+function kodus_get_llms_txt_path($filename = 'llms.txt') {
+    if (defined('WP_CONTENT_DIR')) {
+        return rtrim(dirname(WP_CONTENT_DIR), '/\\') . '/' . $filename;
+    }
+
+    return rtrim(ABSPATH, '/\\') . '/' . $filename;
+}
+
+function kodus_sync_llms_text_file($filename, $content) {
+    $path = kodus_get_llms_txt_path($filename);
     $existing = @file_get_contents($path);
 
     if ($existing === $content) {
@@ -506,19 +566,25 @@ function kodus_sync_llms_txt_file() {
 
     @file_put_contents($path, $content, LOCK_EX);
 }
+
+function kodus_sync_llms_txt_file() {
+    kodus_sync_llms_text_file('llms.txt', kodus_get_llms_txt_content());
+    kodus_sync_llms_text_file('llms-full.txt', kodus_get_llms_full_txt_content());
+}
 add_action('init', 'kodus_sync_llms_txt_file', 20);
 
 function kodus_render_llms_txt_fallback() {
     $request_uri = isset($_SERVER['REQUEST_URI']) ? wp_unslash($_SERVER['REQUEST_URI']) : '';
     $request_path = $request_uri ? (string) wp_parse_url($request_uri, PHP_URL_PATH) : '';
 
-    if ($request_path !== '/llms.txt') {
+    if ($request_path !== '/llms.txt' && $request_path !== '/llms-full.txt') {
         return;
     }
 
     status_header(200);
     header('Content-Type: text/plain; charset=UTF-8');
-    echo kodus_get_llms_txt_content();
+    header_remove('X-Robots-Tag');
+    echo $request_path === '/llms-full.txt' ? kodus_get_llms_full_txt_content() : kodus_get_llms_txt_content();
     exit;
 }
 add_action('template_redirect', 'kodus_render_llms_txt_fallback', 0);
