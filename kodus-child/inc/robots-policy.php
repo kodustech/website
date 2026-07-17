@@ -51,4 +51,4 @@ function kodus_filter_robots_txt($output, $public) {
 
     return kodus_get_robots_txt_content();
 }
-add_filter('robots_txt', 'kodus_filter_robots_txt', 100, 2);
+add_filter('robots_txt', 'kodus_filter_robots_txt', 100000, 2);
