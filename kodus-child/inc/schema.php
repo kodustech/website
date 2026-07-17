@@ -13,6 +13,22 @@ function kodus_get_schema_publisher_reference() {
     ];
 }
 
+function kodus_get_organization_same_as_urls() {
+    return [
+        'https://www.linkedin.com/company/kodustech/',
+        'https://twitter.com/kodustech',
+        'https://github.com/kodustech',
+        'https://discord.gg/TFZBRk9fT6',
+    ];
+}
+
+function kodus_add_same_as_to_yoast_organization($data) {
+    $data['sameAs'] = kodus_get_organization_same_as_urls();
+
+    return $data;
+}
+add_filter('wpseo_schema_organization', 'kodus_add_same_as_to_yoast_organization', 20);
+
 function kodus_get_schema_page_post_id() {
     if (is_front_page()) {
         return (int) get_option('page_on_front');
