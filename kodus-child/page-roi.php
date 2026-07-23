@@ -366,6 +366,33 @@
                 </div>
               </div>
 
+              <!-- VHS 2: Oleksandr Kuchma -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-info);">
+                  <span class="vhs__spine-title">SAASJET_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-info);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/Oleksandr Kuchma.jpeg'); ?>" alt="Oleksandr Kuchma" class="vhs__avatar-img">
+                    </div>
+                    <h4 class="vhs__name">Oleksandr Kuchma</h4>
+                    <p class="vhs__role">@SaaSJet</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">We love what Kodus does. It has dramatically reduced our PR review time, and <span style="color: #339966;"><b>our developers no longer want to review a PR without Kodus running first.</b></span> The accuracy is very good: it catches many of the small issues that are easy to miss, allowing our developers to focus on the architectural decisions that truly require human judgment.</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
               <!-- VHS 2: André Diogo -->
               <div class="vhs">
                 <div class="vhs__spine" style="--vhs-accent: var(--color-secondary);">
