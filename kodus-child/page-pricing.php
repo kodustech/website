@@ -149,7 +149,7 @@
               <ul class="pricing__features">
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Self Hosted or Hosted by Kodus</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> SSO</li>
-                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> Unlimited PRs using our AI Tokens API key</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited PRs using your own API key</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Unlimited users</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Use unlimited Kody Rules</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Use unlimited active plugins</li>
