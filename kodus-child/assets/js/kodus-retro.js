@@ -154,21 +154,21 @@ document.addEventListener('DOMContentLoaded', () => {
       image: '/wp-content/themes/kodus-child/assets/img/kody-poeta.webp',
     },
     {
-      icon: '&#36;',
-      type: 'Financial',
-      text: 'You prefer bundled pricing and don\'t care what drives your AI bill.',
-      status: 'Opaque',
+      icon: '&#128274;',
+      type: 'Vendor',
+      text: 'You want one vendor picking your models and marking up every token.',
+      status: 'Limiting',
       file: 'FILE_02.DAT',
-      iconColor: '#42BE65',
+      iconColor: '#FA5867',
       image: '/wp-content/themes/kodus-child/assets/img/kody-money.webp',
     },
     {
-      icon: '&#128274;',
-      type: 'Vendor',
-      text: 'You want to be locked into a single model provider forever.',
-      status: 'Limiting',
+      icon: '&#128203;',
+      type: 'Governance',
+      text: 'You think every team should review by its own rules.',
+      status: 'Inconsistent',
       file: 'FILE_03.DAT',
-      iconColor: '#FA5867',
+      iconColor: '#42BE65',
       image: '/wp-content/themes/kodus-child/assets/img/kody-good-vibes.webp',
     },
     {
@@ -644,24 +644,24 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --- Cartridge modals --- */
   const modalData = {
     'modal-free-tier': {
-      title: 'Generous Free Tier',
+      title: 'Open source core',
       led: 'green',
-      desc: 'Even on the free plan, we deliver complete and reliable reviews.\n\nYou use Kody with your own API key and get access to the full review experience.\n\nYou get:\n• The same deep analysis\n• The same understanding of context\n• The same quality standards\n• No PR limits\n• No user limits\n\nOn the free plan, Kody reviews your PRs at the highest level we know how to deliver.<div style="display: flex; gap: 12px; margin-top: 24px; justify-content: center;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"></div>',
+      desc: 'The Kodus core is open source under the AGPL license.\n\nYou can read the review logic, audit what touches your code, and run it on your own infrastructure with Docker Compose or Helm.\n\n\u2022 Public repository on GitHub\n\u2022 Community plan self-hosts for free\n\u2022 Commercial license available for enterprise needs\n\nNo black box between your code and production.<div style="display: flex; gap: 12px; margin-top: 24px; justify-content: center;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"></div>',
     },
     'modal-agnostic': {
-      title: 'Model-Agnostic',
+      title: 'Reviews with your context',
       led: 'blue',
-      desc: 'Run Kody with your own API keys and choose the model that makes the most sense for your team (OpenAI, Gemini, Claude, etc.).\n\nYou can set a primary model and a fallback to avoid interruptions in your review workflow.\n\nWe believe model control should be yours. Every team is different, and AI should adapt to your process — not the other way around.<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; justify-items: center;"><img src="/wp-content/themes/kodus-child/assets/img/anthropic.webp" style="width: 50px; height: 50px; object-fit: contain;"><img src="/wp-content/themes/kodus-child/assets/img/claude-ai.webp" style="width: 50px; height: 50px; object-fit: contain;"><img src="/wp-content/themes/kodus-child/assets/img/deepsek.webp" style="width: 50px; height: 50px; object-fit: contain;"><img src="/wp-content/themes/kodus-child/assets/img/gemini.webp" style="width: 50px; height: 50px; object-fit: contain;"><img src="/wp-content/themes/kodus-child/assets/img/glm.webp" style="width: 50px; height: 50px; object-fit: contain;"><img src="/wp-content/themes/kodus-child/assets/img/meta.webp" style="width: 50px; height: 50px; object-fit: contain;"><img src="/wp-content/themes/kodus-child/assets/img/open-ai.webp" style="width: 50px; height: 50px; object-fit: contain;"><img src="/wp-content/themes/kodus-child/assets/img/grok.webp" style="width: 50px; height: 50px; object-fit: contain;"></div>',
+      desc: 'Kody adapts to how your team works.\n\nYou define the rules, severity levels, and where they apply: globally, per repository, or per directory.\n\nKody also syncs the rule files you already keep for Cursor, Copilot and Claude, and checks PRs against requirements from Jira, Linear and Notion.\n\nCritical projects, legacy services and new initiatives can follow different policies, all within the same organization.<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; justify-items: center;"><img src="/wp-content/themes/kodus-child/assets/img/tool1.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool2.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool3.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool4.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool5.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool6.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool7.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool8.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"></div>',
     },
     'modal-zero-markup': {
-      title: 'Zero Markup',
+      title: 'Zero markup on tokens',
       led: 'red',
-      desc: 'We don’t add any margin on LLM calls. You pay for tokens directly to your provider.\n\n• No hidden fees\n• No token limits\n• No billing surprises\n\nOn the Team plan, the $10 per user is strictly for platform infrastructure.\n\nWe don’t interfere with your AI spending.\n\nYou stay within your provider’s limits — what you use is what you pay.<div style="display: flex; justify-content: center; margin-top: -8px;"><img src="/wp-content/themes/kodus-child/assets/img/plaquinha.webp" style="width: 140px; height: auto; image-rendering: pixelated;"></div>',
+      desc: 'Bring your own API keys on every plan, cloud included. You pay for tokens directly to your provider, at list price.\n\n\u2022 No hidden fees\n\u2022 No token limits\n\u2022 No billing surprises\n\nOn the Teams plan, the $10 per user is strictly for platform infrastructure. Your model spend stays on your own bill, with the provider you choose.<div style="display: flex; justify-content: center; margin-top: -8px;"><img src="/wp-content/themes/kodus-child/assets/img/plaquinha.webp" style="width: 140px; height: auto; image-rendering: pixelated;"></div>',
     },
     'modal-configs': {
-      title: 'Flexible Configuration',
+      title: 'Self-host, no sales call',
       led: 'blue',
-      desc: 'Kody adapts to how your team works.\n\nYou define the rules, severity levels, and where they apply — globally, per repository, or per directory.\n\nYou can also adjust the focus of reviews, the type of feedback Kody prioritizes, and how it communicates in pull requests.\n\nOn top of that, you can add more context to reviews using integrations and data from your own environment.\n\nThis way, critical projects, legacy services, and new initiatives can follow different policies, all within the same organization.<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; justify-items: center;"><img src="/wp-content/themes/kodus-child/assets/img/tool1.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool2.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool3.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool4.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool5.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool6.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool7.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool8.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"></div>',
+      desc: 'Run Kodus on your own infrastructure without an enterprise contract.\n\nClone the repository and deploy with Docker Compose on a VM, or with Helm on Kubernetes. Point it at your Git provider and your model keys, and reviews stay inside your network.\n\nSelf-hosting is available on the free Community plan. Enterprise adds SSO, RBAC, audit logs and dedicated support when you need them.',
     },
   };
 
