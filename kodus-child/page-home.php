@@ -7,75 +7,91 @@
 <?php get_header('kodus'); ?>
 
 <style>
+  /* Hallmark · component: hero-cta · genre: playful-retro (inherited) · theme: kodus-retro (project system)
+   * states: default · hover · focus-visible · active (disabled/loading/error/success n/a: nav links)
+   * contrast: pass */
   .hero__ctas {
-    max-width: 520px !important;
+    max-width: none !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    gap: 18px;
+    margin-bottom: 26px;
   }
 
-  .hero__cta-content {
-    padding: 0 !important;
-    min-height: 140px !important;
-    display: flex !important;
-    align-items: stretch !important;
-    justify-content: center !important;
+  .hero__cta-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
   }
 
-  #tab-git,
-  #tab-terminal {
-    width: 100%;
-    box-sizing: border-box !important;
+  .hero__cta-row .btn {
+    min-width: 190px;
+    justify-content: center;
+    padding: 13px 30px;
   }
 
-  #tab-git {
-    padding: 24px 40px !important;
+  .hero__ctas .btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
   }
 
-  #tab-terminal {
-    padding: 28px 12px 30px !important;
+  .hero__ctas .hero__disclaimer {
+    margin: 0;
   }
 
-  #tab-terminal .hero__terminal-cmd {
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 14px 18px !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-    border-radius: 6px !important;
+  .hero__providers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
   }
 
-  #tab-terminal .hero__terminal-code {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    display: block !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    text-align: left !important;
-    line-height: 1.35 !important;
+  .hero__providers .hero__git-providers {
+    margin-bottom: 0;
+    gap: 16px;
   }
 
-  #tab-terminal .hero__terminal-copy {
-    width: 38px !important;
-    height: 38px !important;
+  .hero__providers-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  .hero__clients {
+    margin-top: 130px !important;
   }
 
   @media (max-width: 768px) {
-    .hero__ctas {
-      max-width: 100% !important;
+    .hero__clients {
+      margin-top: 90px !important;
     }
+  }
 
-    #tab-git {
-      padding: 22px 26px !important;
+  .cartridge__desc {
+    display: block;
+    margin-top: 12px;
+    padding: 0 6px;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .hero__cta-row {
+      flex-direction: column;
+      align-items: stretch;
     }
-
-    #tab-terminal {
-      padding: 16px 10px 18px !important;
-    }
-
-    #tab-terminal .hero__terminal-cmd {
-      padding: 14px 16px !important;
+    .hero__cta-row .btn {
+      width: 100%;
+      min-width: 0;
     }
   }
 </style>
@@ -119,22 +135,21 @@
 
       <div class="container hero__container">
         <h1 class="hero__title">
-          The <span class="highlight">Open Source</span> Alternative to CodeRabbit
+          The <span class="highlight">open source</span> alternative to CodeRabbit
         </h1>
         <p class="hero__subtitle">
-          AI Code Review With Full Control Over<br>Model Choice and Costs
+          Self-host for free, or use our cloud with your own model keys.<br>You pay the model provider at list price, zero markup.
         </p>
 
         <div class="hero__ctas">
-          <div class="hero__cta-tabs">
-            <button class="hero__tab hero__tab--active" data-tab="git">Start with Git</button>
-            <button class="hero__tab" data-tab="terminal">Start with Terminal</button>
+          <div class="hero__cta-row">
+            <a href="https://app.kodus.io/sign-up" class="btn btn--primary hero__cta-btn" id="homeHeroStartFreeTrialBtn">Start free</a>
+            <a href="https://docs.kodus.io/how_to_deploy/en/deploy_kodus/generic_vm" class="btn btn--outline-light hero__cta-btn" id="homeHeroSelfHostBtn">Self-host setup</a>
           </div>
-
-          <div class="hero__cta-content">
-            <!-- Git tab -->
-            <div class="hero__tab-panel hero__tab-panel--active" id="tab-git">
-              <div class="hero__git-providers">
+          <p class="hero__disclaimer">14-day free trial &bull; up to 35 PR reviews included &bull; no credit card required</p>
+          <div class="hero__providers">
+            <span class="hero__providers-label">Works with</span>
+            <div class="hero__git-providers">
                 <span class="hero__provider" aria-label="GitHub">
                   <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                 </span>
@@ -147,23 +162,9 @@
                 <span class="hero__provider" aria-label="Azure DevOps">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M0 8.877L2.247 5.91l8.405-3.416V.022l7.37 5.393L2.966 8.338v8.225L0 15.707zm24-4.45v14.651l-5.753 4.9-9.303-3.057v3.056l-5.978-7.416 15.057 1.98V2.244z"/></svg>
                 </span>
-              </div>
-              <a href="https://app.kodus.io/sign-up" class="btn btn--primary hero__cta-btn" id="homeHeroStartFreeTrialBtn">Start Free Trial</a>
-            </div>
-
-            <!-- Terminal tab -->
-            <div class="hero__tab-panel" id="tab-terminal">
-              <div class="hero__terminal-cmd">
-                <code class="hero__terminal-code">curl -fsSL https://review-skill.com/install | bash</code>
-                <button class="hero__terminal-copy" aria-label="Copy command" id="copyCmd">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                </button>
-              </div>
             </div>
           </div>
         </div>
-
-        <p class="hero__disclaimer">14-day free trial &bull; up to 35 PR reviews included &bull; no credit card required</p>
 
         <!-- Retro OS window — client logos -->
         <div class="hero__clients">
@@ -210,13 +211,71 @@
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <p class="cartridge__title">Generous<br>Free Tier</p>
+                <p class="cartridge__title">Open source<br>core</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
                 <span class="cartridge__insert-text">Insert</span>
               </div>
             </div>
+            <span class="cartridge__desc">AGPL licensed. Read the code, run it on your own infra.</span>
+            <span class="cartridge__cta">Learn more</span>
+          </button>
+
+          <!-- Cartridge 4: Extensible Configs -->
+          <button class="cartridge" data-modal="modal-configs">
+            <div class="cartridge__shell">
+              <div class="cartridge__notch"></div>
+              <div class="cartridge__screen">
+                <div class="cartridge__screen-bar">
+                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
+                  <span class="cartridge__led cartridge__led--blue"></span>
+                </div>
+                <div class="cartridge__screen-body cartridge__screen-body--config">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-config.webp" alt="Kody Configs" class="kody-config">
+                  <svg class="pixel-gear gear-1" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                  <svg class="pixel-gear gear-2" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                  <svg class="pixel-gear gear-3" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                </div>
+              </div>
+              <div class="cartridge__title-area">
+                <p class="cartridge__title">Self-host,<br>no sales call</p>
+              </div>
+              <div class="cartridge__insert">
+                <span class="cartridge__arrow">&#9650;</span>
+                <span class="cartridge__insert-text">Insert</span>
+              </div>
+            </div>
+            <span class="cartridge__desc">No seat minimums. Deploy with Docker Compose or Helm.</span>
+            <span class="cartridge__cta">Learn more</span>
+          </button>
+
+          <!-- Cartridge 3: Zero Markup -->
+          <button class="cartridge" data-modal="modal-zero-markup">
+            <div class="cartridge__shell">
+              <div class="cartridge__notch"></div>
+              <div class="cartridge__screen">
+                <div class="cartridge__screen-bar">
+                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
+                  <span class="cartridge__led cartridge__led--red"></span>
+                </div>
+                <div class="cartridge__screen-body cartridge__screen-body--tax">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-taxa.webp" alt="Kody Zero Markup" class="kody-taxa">
+                  <div class="pixel-sign sign-1"></div>
+                  <div class="pixel-sign sign-2"></div>
+                  <div class="pixel-sign sign-3"></div>
+                  <div class="pixel-sign sign-4"></div>
+                </div>
+              </div>
+              <div class="cartridge__title-area">
+                <p class="cartridge__title">Zero markup<br>on tokens</p>
+              </div>
+              <div class="cartridge__insert">
+                <span class="cartridge__arrow">&#9650;</span>
+                <span class="cartridge__insert-text">Insert</span>
+              </div>
+            </div>
+            <span class="cartridge__desc">Your keys on every plan. You pay the provider at list price.</span>
             <span class="cartridge__cta">Learn more</span>
           </button>
 
@@ -260,68 +319,14 @@
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <p class="cartridge__title">Model<br>Agnostic</p>
+                <p class="cartridge__title">Reviews with<br>your context</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
                 <span class="cartridge__insert-text">Insert</span>
               </div>
             </div>
-            <span class="cartridge__cta">Learn more</span>
-          </button>
-
-          <!-- Cartridge 3: Zero Markup -->
-          <button class="cartridge" data-modal="modal-zero-markup">
-            <div class="cartridge__shell">
-              <div class="cartridge__notch"></div>
-              <div class="cartridge__screen">
-                <div class="cartridge__screen-bar">
-                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
-                  <span class="cartridge__led cartridge__led--red"></span>
-                </div>
-                <div class="cartridge__screen-body cartridge__screen-body--tax">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-taxa.webp" alt="Kody Zero Markup" class="kody-taxa">
-                  <div class="pixel-sign sign-1"></div>
-                  <div class="pixel-sign sign-2"></div>
-                  <div class="pixel-sign sign-3"></div>
-                  <div class="pixel-sign sign-4"></div>
-                </div>
-              </div>
-              <div class="cartridge__title-area">
-                <p class="cartridge__title">Zero<br>Markup</p>
-              </div>
-              <div class="cartridge__insert">
-                <span class="cartridge__arrow">&#9650;</span>
-                <span class="cartridge__insert-text">Insert</span>
-              </div>
-            </div>
-            <span class="cartridge__cta">Learn more</span>
-          </button>
-
-          <!-- Cartridge 4: Extensible Configs -->
-          <button class="cartridge" data-modal="modal-configs">
-            <div class="cartridge__shell">
-              <div class="cartridge__notch"></div>
-              <div class="cartridge__screen">
-                <div class="cartridge__screen-bar">
-                  <span class="cartridge__screen-label">DEV_MODULE_V2</span>
-                  <span class="cartridge__led cartridge__led--blue"></span>
-                </div>
-                <div class="cartridge__screen-body cartridge__screen-body--config">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-config.webp" alt="Kody Configs" class="kody-config">
-                  <svg class="pixel-gear gear-1" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                  <svg class="pixel-gear gear-2" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                  <svg class="pixel-gear gear-3" viewBox="0 0 24 24" fill="#30304B"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                </div>
-              </div>
-              <div class="cartridge__title-area">
-                <p class="cartridge__title">Flexible<br>Configuration</p>
-              </div>
-              <div class="cartridge__insert">
-                <span class="cartridge__arrow">&#9650;</span>
-                <span class="cartridge__insert-text">Insert</span>
-              </div>
-            </div>
+            <span class="cartridge__desc">Your rules, plus requirements from Jira, Linear and Notion.</span>
             <span class="cartridge__cta">Learn more</span>
           </button>
 
@@ -389,8 +394,8 @@
             <!-- Category bar -->
             <div class="vcr__categories">
               <button class="vcr__cat vcr__cat--active" data-slide="0">[1] Poetry</button>
-              <button class="vcr__cat" data-slide="1">[2] Billing</button>
-              <button class="vcr__cat" data-slide="2">[3] Vendor</button>
+              <button class="vcr__cat" data-slide="1">[2] Lock-in</button>
+              <button class="vcr__cat" data-slide="2">[3] Standards</button>
               <button class="vcr__cat" data-slide="3">[4] Noise</button>
             </div>
           </div>
@@ -400,8 +405,8 @@
             <div class="vcr__speaker"><span></span><span></span><span></span></div>
             <div class="vcr__buttons">
               <button class="vcr__btn" data-slide="0"><span class="vcr__btn-num">1</span><span class="vcr__btn-label">Poetry</span></button>
-              <button class="vcr__btn" data-slide="1"><span class="vcr__btn-num">2</span><span class="vcr__btn-label">Billing</span></button>
-              <button class="vcr__btn" data-slide="2"><span class="vcr__btn-num">3</span><span class="vcr__btn-label">Vendor</span></button>
+              <button class="vcr__btn" data-slide="1"><span class="vcr__btn-num">2</span><span class="vcr__btn-label">Lock-in</span></button>
+              <button class="vcr__btn" data-slide="2"><span class="vcr__btn-num">3</span><span class="vcr__btn-label">Standards</span></button>
               <button class="vcr__btn" data-slide="3"><span class="vcr__btn-num">4</span><span class="vcr__btn-label">Noise</span></button>
               <button class="vcr__btn vcr__btn--power"><span class="vcr__btn-num">I/O</span></button>
             </div>
@@ -421,7 +426,7 @@
     <!-- ========== FEATURES (assembled grid) ========== -->
     <section class="feat-grid" id="basics">
       <div class="container">
-        <h2 class="section-title">The basics done <span class="highlight">Right</span></h2>
+        <h2 class="section-title">The basics, done <span class="highlight">right</span></h2>
         <div class="feat-grid__grid">
             <div class="feat-cell">
               <div class="feat-cell__art">
@@ -528,7 +533,7 @@
               </div>
               </div>
               <h3 class="feat-cell__title">Sync your existing rules</h3>
-              <p class="feat-cell__desc">Keep the standards you already use — Kody detects rule files from Cursor, Copilot, Claude and more.</p>
+              <p class="feat-cell__desc">Keep the standards you already use. Kody detects rule files from Cursor, Copilot, Claude and more.</p>
             </div>
             <div class="feat-cell">
               <div class="feat-cell__art">
@@ -557,7 +562,7 @@
             </div>
               </div>
               <h3 class="feat-cell__title">Validates your business rules</h3>
-              <p class="feat-cell__desc">Kody pulls requirements from Jira, Linear and Notion, then checks every PR against them — and flags what breaks.</p>
+              <p class="feat-cell__desc">Kody pulls requirements from Jira, Linear and Notion, then checks every PR against them, and flags what breaks.</p>
             </div>
             <div class="feat-cell">
               <div class="feat-cell__art">
@@ -591,7 +596,7 @@
             </div>
               </div>
               <h3 class="feat-cell__title">Track technical debt</h3>
-              <p class="feat-cell__desc">Unimplemented suggestions become issues automatically — so debt stays visible and shrinks over time.</p>
+              <p class="feat-cell__desc">Unimplemented suggestions become issues automatically, so debt stays visible and shrinks over time.</p>
             </div>
             <div class="feat-cell">
               <div class="feat-cell__art">
@@ -622,7 +627,7 @@
             </div>
               </div>
               <h3 class="feat-cell__title">Accelerate your delivery</h3>
-              <p class="feat-cell__desc">Deploy frequency, cycle time, bug ratio and PR size — one dashboard, all trending the right way.</p>
+              <p class="feat-cell__desc">Deploy frequency, cycle time, bug ratio and PR size in one dashboard, all trending the right way.</p>
             </div>
         </div>
       </div>
@@ -775,141 +780,6 @@
           <div class="vhs__shelf-track" id="vhsTrack">
             <div class="vhs__shelf" id="vhsShelf">
 
-              <!-- VHS 1: David Barnett -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-primary);">
-                  <span class="vhs__spine-title">QUINTO_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-primary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/david-quinto-andar.png'); ?>" alt="David Barnett" class="vhs__avatar-img">
-                    </div>
-                    <p class="vhs__name">David Barnett</p>
-                    <p class="vhs__role">@QuintoAndar</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. <span style="color: #339966;"><b>Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review.</b></span> I appreciate the flexibility to configure custom rules and integrations.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 2: Oleksandr Kuchma -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-info);">
-                  <span class="vhs__spine-title">SAASJET_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-info);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/Oleksandr Kuchma.jpeg'); ?>" alt="Oleksandr Kuchma" class="vhs__avatar-img">
-                    </div>
-                    <p class="vhs__name">Oleksandr Kuchma</p>
-                    <p class="vhs__role">@SaaSJet</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">We love what Kodus does. It has dramatically reduced our PR review time, and <span style="color: #339966;"><b>our developers no longer want to review a PR without Kodus running first.</b></span> The accuracy is very good: it catches many of the small issues that are easy to miss, allowing our developers to focus on the architectural decisions that truly require human judgment.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 2: André Diogo -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-secondary);">
-                  <span class="vhs__spine-title">BRENDI_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-secondary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/04/andre.jpg" alt="André Diogo" class="vhs__avatar-img">
-                    </div>
-                    <p class="vhs__name">André Diogo</p>
-                    <p class="vhs__role">@Brendi</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus fit like a glove for me. Before, I was buried in slow code reviews. Now, <span style="color: #339966;"><b>feedback happens way faster</b></span>, and I can actually focus on other things.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 3: João H. Kersul -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-tertiary);">
-                  <span class="vhs__spine-title">DOJI_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-tertiary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/04/joao-doji.jpg" alt="João H. Kersul" class="vhs__avatar-img">
-                    </div>
-                    <p class="vhs__name">João H. Kersul</p>
-                    <p class="vhs__role">@Doji</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">These days, Kodus is part of our daily review routine. <span style="color: #339966;"><b>It helps a lot with error handling and brings up suggestions that would often go unnoticed</b></span>. This active listening and fast turnaround have made a real difference for our engineering team.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 4: Ricardo -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-success);">
-                  <span class="vhs__spine-title">ICATEC_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-success);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/10/ricardo-ikatec-150x150-1.jpg" alt="Ricardo" class="vhs__avatar-img">
-                    </div>
-                    <p class="vhs__name">Ricardo</p>
-                    <p class="vhs__role">@Ikatec</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Since we started using Kody, the dev experience has improved a lot. <span style="color: #339966;"><b>Time spent on code reviews dropped by around 30%</b></span>, and the AI brings valuable insights on performance, security, and code optimization. One of the best parts is that we can tailor how it works for each project.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
               <!-- VHS 5: Luiz Barrile -->
               <div class="vhs">
                 <div class="vhs__spine" style="--vhs-accent: var(--color-info);">
@@ -928,33 +798,6 @@
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">Kodus has become an essential part of our process at Lerian. By standardizing steps and automating checks, we’ve gained <span style="color: #339966;"><b>more speed and consistency</b></span>, while reducing rework and improving delivery quality.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 6: Raphael Sampaio -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-warning);">
-                  <span class="vhs__spine-title">PILAR_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-warning);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/10/raphael-pilar-300x300-1.jpeg" alt="Raphael Sampaio" class="vhs__avatar-img">
-                    </div>
-                    <p class="vhs__name">Raphael Sampaio</p>
-                    <p class="vhs__role">@Pilar</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus has been helping us save a lot of time on code reviews, while also providing key engineering productivity metrics. Since we started using the tool, <span style="color: #339966;"><b>our average review time has dropped from hours to minutes.</b></span></p>
                   </div>
                   <div class="vhs__cover-bottom">
                     <span class="vhs__tape-label">&#9654; PLAY</span>
@@ -991,6 +834,87 @@
                 </div>
               </div>
 
+              <!-- VHS 2: Oleksandr Kuchma -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-info);">
+                  <span class="vhs__spine-title">SAASJET_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-info);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/Oleksandr Kuchma.jpeg'); ?>" alt="Oleksandr Kuchma" class="vhs__avatar-img">
+                    </div>
+                    <p class="vhs__name">Oleksandr Kuchma</p>
+                    <p class="vhs__role">@SaaSJet</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">We love what Kodus does. It has dramatically reduced our PR review time, and <span style="color: #339966;"><b>our developers no longer want to review a PR without Kodus running first.</b></span> The accuracy is very good: it catches many of the small issues that are easy to miss, allowing our developers to focus on the architectural decisions that truly require human judgment.</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 4: Ricardo -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-success);">
+                  <span class="vhs__spine-title">ICATEC_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-success);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="https://kodus.io/wp-content/uploads/2025/10/ricardo-ikatec-150x150-1.jpg" alt="Ricardo" class="vhs__avatar-img">
+                    </div>
+                    <p class="vhs__name">Ricardo</p>
+                    <p class="vhs__role">@Ikatec</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">Since we started using Kody, the dev experience has improved a lot. <span style="color: #339966;"><b>Time spent on code reviews dropped by around 30%</b></span>, and the AI brings valuable insights on performance, security, and code optimization. One of the best parts is that we can tailor how it works for each project.</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 6: Raphael Sampaio -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-warning);">
+                  <span class="vhs__spine-title">PILAR_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-warning);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="https://kodus.io/wp-content/uploads/2025/10/raphael-pilar-300x300-1.jpeg" alt="Raphael Sampaio" class="vhs__avatar-img">
+                    </div>
+                    <p class="vhs__name">Raphael Sampaio</p>
+                    <p class="vhs__role">@Pilar</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">Kodus has been helping us save a lot of time on code reviews, while also providing key engineering productivity metrics. Since we started using the tool, <span style="color: #339966;"><b>our average review time has dropped from hours to minutes.</b></span></p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
               <!-- VHS 8: Jonathan Georgeu -->
               <div class="vhs">
                 <div class="vhs__spine" style="--vhs-accent: var(--color-primary);">
@@ -1009,6 +933,33 @@
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">Kodus has had a huge impact on our workflow by <span style="color: #339966;"><b>saving us valuable time during PR reviews.</b></span> It consistently catches the small details that are easy to miss, and the ability to set up custom rules means we can align automated reviews with our own standards.</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 3: João H. Kersul -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-tertiary);">
+                  <span class="vhs__spine-title">DOJI_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-tertiary);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="https://kodus.io/wp-content/uploads/2025/04/joao-doji.jpg" alt="João H. Kersul" class="vhs__avatar-img">
+                    </div>
+                    <p class="vhs__name">João H. Kersul</p>
+                    <p class="vhs__role">@Doji</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">These days, Kodus is part of our daily review routine. <span style="color: #339966;"><b>It helps a lot with error handling and brings up suggestions that would often go unnoticed</b></span>. This active listening and fast turnaround have made a real difference for our engineering team.</p>
                   </div>
                   <div class="vhs__cover-bottom">
                     <span class="vhs__tape-label">&#9654; PLAY</span>
@@ -1045,6 +996,59 @@
                 </div>
               </div>
 
+              <!-- VHS 2: André Diogo -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-secondary);">
+                  <span class="vhs__spine-title">BRENDI_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-secondary);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="https://kodus.io/wp-content/uploads/2025/04/andre.jpg" alt="André Diogo" class="vhs__avatar-img">
+                    </div>
+                    <p class="vhs__name">André Diogo</p>
+                    <p class="vhs__role">@Brendi</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">Kodus fit like a glove for me. Before, I was buried in slow code reviews. Now, <span style="color: #339966;"><b>feedback happens way faster</b></span>, and I can actually focus on other things.</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VHS 1: David Barnett -->
+              <div class="vhs">
+                <div class="vhs__spine" style="--vhs-accent: var(--color-primary);">
+                  <span class="vhs__spine-title">QUINTO_01</span>
+                </div>
+                <div class="vhs__cover">
+                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-primary);">
+                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  </div>
+                  <div class="vhs__cover-body">
+                    <div class="vhs__avatar">
+                      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/david-quinto-andar.png'); ?>" alt="David Barnett" class="vhs__avatar-img">
+                    </div>
+                    <p class="vhs__name">David Barnett</p>
+                    <p class="vhs__role">@QuintoAndar</p>
+                  </div>
+                  <div class="vhs__synopsis">
+                    <p class="vhs__quote">Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. <span style="color: #339966;"><b>Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review.</b></span> I appreciate the flexibility to configure custom rules and integrations.</p>
+                  </div>
+                  <div class="vhs__cover-bottom">
+                    <span class="vhs__tape-label">&#9654; PLAY</span>
+                    <span class="vhs__runtime">REC 2026</span>
+                    <span class="vhs__format">VHS Hi-Fi</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1174,7 +1178,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>Kodus is model agnostic. You can use Claude, GPT-4, Gemini, Llama, or any OpenAI-compatible endpoint.</p>
+                  <p>Kodus is model agnostic. You can use Claude, GPT, Gemini, Llama or any OpenAI-compatible endpoint, including self-hosted models.</p>
                 </div>
               </div>
 
@@ -1218,7 +1222,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>Both offer AI code review, but Kodus is open source, model agnostic, and charges zero markup on LLM costs. CodeRabbit locks you into their model choices and bundles AI costs into opaque pricing. With Kodus you control the model, the cost, and the rules.</p>
+                  <p>Both review pull requests with AI. Kodus is open source with an AGPL core, you can self-host it without an enterprise seat minimum, and bring-your-own-keys with zero token markup is the default on every plan.</p>
                 </div>
               </div>
 
@@ -1229,7 +1233,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>GitHub, GitLab, Bitbucket, and Azure DevOps. Kodus integrates at the pull request level — it reads diffs, posts inline comments, and respects your existing review workflows. Setup takes under 5 minutes.</p>
+                  <p>GitHub, GitLab, Bitbucket, and Azure DevOps. Kodus integrates at the pull request level: it reads diffs, posts inline comments, and respects your existing review workflows. Setup takes under 5 minutes.</p>
                 </div>
               </div>
 
@@ -1262,7 +1266,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>No, Kodus does not store your source code. All processing happens in real-time, and no part of your repository is saved on our servers.</p>
+                  <p>Kodus uses your selected Git provider integration and only accesses what is required to review pull requests. You can control and revoke access at any time.</p>
                 </div>
               </div>
 
