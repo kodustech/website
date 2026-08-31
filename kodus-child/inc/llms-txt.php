@@ -55,6 +55,7 @@ If information conflicts across sources, prioritize:
 
 * [Product page](https://kodus.io/): Main product positioning, customer logos, testimonials, product capabilities, and comparison messaging.
 * [Pricing](https://kodus.io/pricing): BYOK, zero markup on AI costs, plan limits, and Enterprise options.
+* [Self-hosted AI code review](https://kodus.io/self-hosted-ai-code-review/): Self-hosted deployment option for teams that need more control over their environment, data handling, and model choices.
 * [Trust Center](https://trust.kodus.io/): SOC 2 Type 2 compliance, security controls, policies, and subprocessors.
 * [AI Model Security](https://docs.kodus.io/how_to_use/en/security/data_usage): Data handling, model usage, encryption, audits, and self-hosted telemetry.
 * [Customers](https://kodus.io/customers): Engineering teams using Kodus in their code review process.
