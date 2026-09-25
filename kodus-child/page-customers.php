@@ -12,9 +12,9 @@
     <section class="cust-hero">
       <div class="container">
         <h1 class="cust-hero__title">
-          The startups shipping products<br><span class="highlight">with zero production bugs</span>
+          Engineering teams that <span class="highlight">review every PR with Kodus</span>
         </h1>
-        <p class="cust-hero__subtitle">Discover how engineering teams use Kody to keep quality high as they scale.</p>
+        <p class="cust-hero__subtitle">How teams at QuintoAndar, Pilar, Ikatec and others use Kody to catch issues before they reach production.</p>
         <div class="cust-hero__actions">
           <a href="https://app.kodus.io/sign-up" class="btn btn--primary" id="customersHeroTryCloudBtn">Try Cloud For Free &rarr;</a>
           <button
@@ -53,7 +53,7 @@
 
               <div class="cust-featured__meta-item">
                 <span class="cust-featured__meta-label">ROLE</span>
-                <span class="cust-featured__meta-value">Staff Software Engineer</span>
+                <span class="cust-featured__meta-value">Principal Engineer</span>
               </div>
 
               <div class="cust-featured__meta-item">
@@ -89,34 +89,56 @@
           </div>
 
           <div class="cust-logos__body">
-            <h2 class="cust-logos__title">PARTNERS_</h2>
+            <h2 class="cust-logos__title">CUSTOMERS_</h2>
             <p class="cust-logos__meta">ACCESSING_DATABASE...</p>
-            <p class="cust-logos__meta">CLIENT_LIST_LOADED</p>
+            <p class="cust-logos__meta">SHOWING 40 OF 5,000+ TEAMS</p>
 
             <div class="cust-logos__grid">
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/purple_metrics.webp" alt="Purple Metrics"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/r10.webp" alt="R10"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/clickbus.png" alt="ClickBus"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_7.webp" alt="Logo"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/ikatec.webp" alt="Ikatec"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/maino.webp" alt="Maino"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_10.webp" alt="Open Co"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_8.webp" alt="rocket.chat"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/vixt.webp" alt="Vixting"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_11.webp" alt="Seeds"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_12.webp" alt="Pilar"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_13.webp" alt="Asksuite"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_16.webp" alt="Mecanizou"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/quintoandar.png" alt="QuintoAndar"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_14.webp" alt="Lecom"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_17.webp" alt="Precisao"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_19.webp" alt="Up Estate"></div>
-              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/cred.webp" alt="Cred Aluga"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/quintoandar.png" alt="QuintoAndar" loading="lazy"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/covergenius.svg" alt="Cover Genius" loading="lazy" style="--h:21px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/insighttimer.svg" alt="Insight Timer" loading="lazy" style="--h:22px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/scorpion.svg" alt="Scorpion" loading="lazy" style="--h:19px"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/dsr.webp" alt="DSR" loading="lazy"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/capim.svg" alt="Capim" loading="lazy" style="--h:30px"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/clickbus.png" alt="ClickBus" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_7.webp" alt="Rocket.Chat" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_19.webp" alt="SaaSJet" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_10.webp" alt="Pilar" loading="lazy"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/lerian1.webp" alt="Lerian" loading="lazy" style="--h:25px"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/ikatec.webp" alt="Ikatec" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_9.webp" alt="Open Co" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/brendi_v2.webp" alt="Brendi" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/notificacoes.webp" alt="Notificações Inteligentes" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/doji.webp" alt="Doji" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/purple_metrics.webp" alt="Purple Metrics" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/r10.webp" alt="R10" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/maino.webp" alt="Maino" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/vixt.webp" alt="Vixting" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_12.webp" alt="Seeds" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_8.webp" alt="Asksuite" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_11.webp" alt="Mecanizou" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_13.webp" alt="Lecom" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_14.webp" alt="Precisão Sistemas" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_16.webp" alt="Sommus Sistemas" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/frame_17.webp" alt="Up Estate" loading="lazy"></div>
+              <div class="cust-logos__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/cred.webp" alt="Cred Aluga" loading="lazy"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/inhire.svg" alt="InHire" loading="lazy" style="--h:24px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/irrah.webp" alt="Irrah Tech" loading="lazy" style="--h:20px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/esolution.webp" alt="eSolution" loading="lazy" style="--h:23px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/prodata.webp" alt="Prodata" loading="lazy" style="--h:25px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/melhorplano.webp" alt="MelhorPlano" loading="lazy" style="--h:21px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/century.svg" alt="CENTURY Tech" loading="lazy" style="--h:22px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/botdesigner.webp" alt="Botdesigner" loading="lazy" style="--h:27px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/erpopen.webp" alt="erp&#124;open" loading="lazy" style="--h:24px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/dponet.webp" alt="DPOnet" loading="lazy" style="--h:28px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/humanizadas.svg" alt="Humanizadas" loading="lazy" style="--h:18px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/fpscloud.webp" alt="Full Potential Solutions (FPS Cloud)" loading="lazy" style="--h:28px"></div>
+              <div class="cust-logos__item cust-logos__item--tight"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/classcard.svg" alt="Classcard" loading="lazy" style="--h:21px"></div>
             </div>
 
             <div class="cust-logos__footer">
-              <span>[ SYSTEM_STABLE ]</span>
-              <span>LINK_ESTABLISHED</span>
+              <span>+ thousands more</span>
+              <span>5,000+ teams &middot; 66 countries</span>
             </div>
           </div>
         </div>
@@ -267,25 +289,39 @@
       </div>
     </section>
 
-    <!-- ========== WORLD MAP ========== -->
+    <!-- Customer dossiers: all three cases are server-rendered for crawlers and LLMs; the dossier UI above displays one at a time -->
+    <div class="dossier-data" hidden>
+      <article class="dossier-data__item" id="dossier-brendi" data-ref="BRN-01" data-image="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/brendi1.webp" data-image-class="" data-link="/case-brendi/">
+        <h3>BRENDI</h3>
+        <ul><li>Review Backlog</li><li>Manual Checks</li><li>Slow Feedback</li><li>Auto PR Prechecks</li></ul>
+        <p class="dossier-data__desc">At Brendi, reviews became a bottleneck. PRs stayed open. The queue grew early in the day. Senior engineers started their mornings clearing pending reviews instead of writing code. A big part of the time went into obvious fixes that showed up in almost every PR. Kody stepped into the flow to catch those issues early, running the team&#x27;s rules automatically.</p>
+        <p class="dossier-data__impact">About 70 percent less time spent on reviews per week. From 125 hours down to around 40. Less waiting. Less context switching. More time to focus on what actually moves the product.</p>
+        <a href="/case-brendi/">Read the full Brendi case study</a>
+      </article>
+      <article class="dossier-data__item" id="dossier-lerian" data-ref="LER-02" data-image="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/lerian1.webp" data-image-class="" data-link="/case-lerian/">
+        <h3>LERIAN</h3>
+        <ul><li>Review Queue</li><li>Repeated Comments</li><li>Manual Checks</li><li>Auto PR Feedback</li></ul>
+        <p class="dossier-data__desc">At Lerian, the problem was simple. Reviews were taking too much time because too much of the work was repetitive. The same adjustments showed up in PR after PR. Formatting. Team conventions. Basic rules. Kody stepped into the PR flow to catch those things early, applying the team&#x27;s own rules and giving feedback right away.</p>
+        <p class="dossier-data__impact">About 60 percent less time spent on reviews per week. From around 100 hours down to about 40. Less queue. Less rework. More time for work that actually matters.</p>
+        <a href="/case-lerian/">Read the full Lerian case study</a>
+      </article>
+      <article class="dossier-data__item" id="dossier-notificacoes" data-ref="NTF-03" data-image="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logos_new/notifica1.webp" data-image-class="dossier__visual-img--notifica" data-link="/case-notificacoes/">
+        <h3>NOTIFICAÇÕES INTELIGENTES</h3>
+        <ul><li>Review Noise</li><li>Repeated Comments</li><li>Rule Gaps</li><li>Consistency Enforcement</li></ul>
+        <p class="dossier-data__desc">At Notificações Inteligentes, reviews started to get too noisy. The same comments showed up in PR after PR. Formatting. Team standards. Basic rules. Each reviewer had a different approach and many things ended up being fixed more than once. The turning point was creating custom rules inside Kody, aligned with the team&#x27;s workflow, and combining them with the ready to use Kody Rules library. This stopped the same issues from repeating across PRs and made the review process much more consistent day to day.</p>
+        <p class="dossier-data__impact">Less rework, less back and forth in PRs, and more predictable feedback. The team kept moving fast without sacrificing quality.</p>
+        <a href="/case-notificacoes/">Read the full Notificações Inteligentes case study</a>
+      </article>
+    </div>
+
+    <!-- ========== NUMBERS ========== -->
     <section class="cust-stats">
       <div class="container">
-        <h2 class="section-title">Kody in numbers</h2>
+        <h2 class="section-title">Kodus in numbers</h2>
 
-        <div class="cust-stats__grid">
-          <div class="cust-stats__card">
-            <span class="cust-stats__value">+10M</span>
-            <span class="cust-stats__label">Lines of code reviewed</span>
-          </div>
-          <div class="cust-stats__card">
-            <span class="cust-stats__value">+1,000</span>
-            <span class="cust-stats__label">Teams using Kody</span>
-          </div>
-          <div class="cust-stats__card">
-            <span class="cust-stats__value">+12</span>
-            <span class="cust-stats__label">Countries</span>
-          </div>
-        </div>
+        <p class="cust-nums">
+          <strong>5,000+ teams</strong> in <strong>66 countries</strong> review code with Kodus. Their developers have implemented <strong>80,000+</strong> of Kody's suggestions.
+        </p>
       </div>
     </section>
 
@@ -304,33 +340,6 @@
           <div class="vhs__shelf-track" id="vhsTrack">
             <div class="vhs__shelf" id="vhsShelf">
 
-              <!-- VHS 1: David Barnett -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-primary);">
-                  <span class="vhs__spine-title">QUINTO_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-primary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/david-quinto-andar.png'); ?>" alt="David Barnett" class="vhs__avatar-img">
-                    </div>
-                    <h4 class="vhs__name">David Barnett</h4>
-                    <p class="vhs__role">@QuintoAndar</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. <span style="color: #339966;"><b>Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review.</b></span> I appreciate the flexibility to configure custom rules and integrations.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
               <!-- VHS 2: Oleksandr Kuchma -->
               <div class="vhs">
                 <div class="vhs__spine" style="--vhs-accent: var(--color-info);">
@@ -338,44 +347,16 @@
                 </div>
                 <div class="vhs__cover">
                   <div class="vhs__cover-top" style="--vhs-accent: var(--color-info);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   </div>
                   <div class="vhs__cover-body">
                     <div class="vhs__avatar">
                       <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/img/Oleksandr Kuchma.jpeg'); ?>" alt="Oleksandr Kuchma" class="vhs__avatar-img">
                     </div>
                     <h4 class="vhs__name">Oleksandr Kuchma</h4>
-                    <p class="vhs__role">@SaaSJet</p>
+                    <p class="vhs__role">CTO, SaaSJet</p>
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">We love what Kodus does. It has dramatically reduced our PR review time, and <span style="color: #339966;"><b>our developers no longer want to review a PR without Kodus running first.</b></span> The accuracy is very good: it catches many of the small issues that are easy to miss, allowing our developers to focus on the architectural decisions that truly require human judgment.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 2: André Diogo -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-secondary);">
-                  <span class="vhs__spine-title">BRENDI_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-secondary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/04/andre.jpg" alt="André Diogo" class="vhs__avatar-img">
-                    </div>
-                    <h4 class="vhs__name">André Diogo</h4>
-                    <p class="vhs__role">@Brendi</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus fit like a glove for me. Before, I was buried in slow code reviews. Now, <span style="color: #339966;"><b>feedback happens way faster</b></span>, and I can actually focus on other things.</p>
                   </div>
                   <div class="vhs__cover-bottom">
                     <span class="vhs__tape-label">&#9654; PLAY</span>
@@ -392,14 +373,13 @@
                 </div>
                 <div class="vhs__cover">
                   <div class="vhs__cover-top" style="--vhs-accent: var(--color-tertiary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   </div>
                   <div class="vhs__cover-body">
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/04/joao-doji.jpg" alt="João H. Kersul" class="vhs__avatar-img">
                     </div>
                     <h4 class="vhs__name">João H. Kersul</h4>
-                    <p class="vhs__role">@Doji</p>
+                    <p class="vhs__role">Principal Engineer, Doji</p>
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">These days, Kodus is part of our daily review routine. <span style="color: #339966;"><b>It helps a lot with error handling and brings up suggestions that would often go unnoticed</b></span>. This active listening and fast turnaround have made a real difference for our engineering team.</p>
@@ -419,44 +399,16 @@
                 </div>
                 <div class="vhs__cover">
                   <div class="vhs__cover-top" style="--vhs-accent: var(--color-success);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   </div>
                   <div class="vhs__cover-body">
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/10/ricardo-ikatec-150x150-1.jpg" alt="Ricardo" class="vhs__avatar-img">
                     </div>
                     <h4 class="vhs__name">Ricardo</h4>
-                    <p class="vhs__role">@Ikatec</p>
+                    <p class="vhs__role">Director, Ikatec</p>
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">Since we started using Kody, the dev experience has improved a lot. <span style="color: #339966;"><b>Time spent on code reviews dropped by around 30%</b></span>, and the AI brings valuable insights on performance, security, and code optimization. One of the best parts is that we can tailor how it works for each project.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 5: Luiz Barrile -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-info);">
-                  <span class="vhs__spine-title">LERIAN_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-info);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/10/LF-Lerian-300x300-1.jpeg" alt="Luiz Barrile" class="vhs__avatar-img">
-                    </div>
-                    <h4 class="vhs__name">Luiz Barrile</h4>
-                    <p class="vhs__role">@Lerian</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus has become an essential part of our process at Lerian. By standardizing steps and automating checks, we’ve gained <span style="color: #339966;"><b>more speed and consistency</b></span>, while reducing rework and improving delivery quality.</p>
                   </div>
                   <div class="vhs__cover-bottom">
                     <span class="vhs__tape-label">&#9654; PLAY</span>
@@ -473,14 +425,13 @@
                 </div>
                 <div class="vhs__cover">
                   <div class="vhs__cover-top" style="--vhs-accent: var(--color-warning);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   </div>
                   <div class="vhs__cover-body">
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/10/raphael-pilar-300x300-1.jpeg" alt="Raphael Sampaio" class="vhs__avatar-img">
                     </div>
                     <h4 class="vhs__name">Raphael Sampaio</h4>
-                    <p class="vhs__role">@Pilar</p>
+                    <p class="vhs__role">CTO, Pilar</p>
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">Kodus has been helping us save a lot of time on code reviews, while also providing key engineering productivity metrics. Since we started using the tool, <span style="color: #339966;"><b>our average review time has dropped from hours to minutes.</b></span></p>
@@ -500,14 +451,13 @@
                 </div>
                 <div class="vhs__cover">
                   <div class="vhs__cover-top" style="--vhs-accent: var(--color-danger);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   </div>
                   <div class="vhs__cover-body">
                     <div class="vhs__avatar">
                       <img src="https://kodus.io/wp-content/uploads/2025/10/pedro-maia.jpeg" alt="Pedro Maia" class="vhs__avatar-img">
                     </div>
                     <h4 class="vhs__name">Pedro Maia</h4>
-                    <p class="vhs__role">@Notificações Inteligentes</p>
+                    <p class="vhs__role">Founder, Notificações Inteligentes</p>
                   </div>
                   <div class="vhs__synopsis">
                     <p class="vhs__quote">We trained the team to use AI in day-to-day coding, and <span style="color: #339966;"><b>Kodus stepped in as our senior reviewer that never forgets anything</b></span>. It doesn’t replace human review, but it’s now a required step: it ensures consistency and prevents repeat incidents.</p>
@@ -520,59 +470,6 @@
                 </div>
               </div>
 
-              <!-- VHS 8: Jonathan Georgeu -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-primary);">
-                  <span class="vhs__spine-title">ORIGEN_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-primary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="https://kodus.io/wp-content/uploads/2025/04/Jonathan-Georgeu-1-1.jpeg" alt="Jonathan Georgeu" class="vhs__avatar-img">
-                    </div>
-                    <h4 class="vhs__name">Jonathan Georgeu</h4>
-                    <p class="vhs__role">@Origen</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus has had a huge impact on our workflow by <span style="color: #339966;"><b>saving us valuable time during PR reviews.</b></span> It consistently catches the small details that are easy to miss, and the ability to set up custom rules means we can align automated reviews with our own standards.</p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VHS 9: Igor Duca -->
-              <div class="vhs">
-                <div class="vhs__spine" style="--vhs-accent: var(--color-secondary);">
-                  <span class="vhs__spine-title">DUCA_01</span>
-                </div>
-                <div class="vhs__cover">
-                  <div class="vhs__cover-top" style="--vhs-accent: var(--color-secondary);">
-                    <span class="vhs__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  </div>
-                  <div class="vhs__cover-body">
-                    <div class="vhs__avatar">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/igor-duca.png" alt="Igor Duca" class="vhs__avatar-img">
-                    </div>
-                    <h4 class="vhs__name">Igor Duca</h4>
-                    <p class="vhs__role">@ducaswtf</p>
-                  </div>
-                  <div class="vhs__synopsis">
-                    <p class="vhs__quote">Kodus helped me move as fast as I ever could during my development days. <span style="color: #339966;"><b>It has never been so easy to ship reliable code and build real solutions.</b></span></p>
-                  </div>
-                  <div class="vhs__cover-bottom">
-                    <span class="vhs__tape-label">&#9654; PLAY</span>
-                    <span class="vhs__runtime">REC 2026</span>
-                    <span class="vhs__format">VHS Hi-Fi</span>
-                  </div>
-                </div>
-              </div>
 
             </div>
           </div>
@@ -588,7 +485,7 @@
           <span class="vhs__counter-label">TAPE</span>
           <span class="vhs__counter-current" id="vhsCounterCurrent">001</span>
           <span class="vhs__counter-sep">/</span>
-          <span class="vhs__counter-total" id="vhsCounterTotal">009</span>
+          <span class="vhs__counter-total" id="vhsCounterTotal">005</span>
         </div>
 
       </div>

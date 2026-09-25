@@ -94,6 +94,10 @@
                 <span class="pricing__price-period">/mo per dev</span>
               </div>
               <p class="pricing__price-note">+ Tokens per dev</p>
+              <ul class="pricing__billing">
+                <li class="pricing__billing-opt pricing__billing-opt--active" data-period="monthly">Monthly: $10 per developer per month + tokens, billed monthly.</li>
+                <li class="pricing__billing-opt" data-period="annual">Annual: $8 per developer per month + tokens, billed annually.</li>
+              </ul>
               <p class="pricing__price-detail">Tokens included during the free trial. No API key required.</p>
 
               <a href="https://app.kodus.io/sign-up" class="btn btn--primary pricing__cta" id="pricingTeamsStartFreeTrialBtn">Start Free Trial</a>
