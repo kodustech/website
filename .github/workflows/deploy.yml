@@ -13,6 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # A fresh checkout stamps every file with "now", which would make every page
+      # look freshly modified in its schema dateModified. Reset each file's mtime to
+      # the last commit that actually changed it; rsync -a then carries that to the server.
+      - name: Restore file mtimes from git history
+        run: |
+          git ls-files -z kodus-child | while IFS= read -r -d '' f; do
+            ts=$(git log -1 --format=%ct -- "$f")
+            [ -n "$ts" ] && touch -d "@$ts" "$f"
+          done
 
       - name: Prepare target directory
         uses: appleboy/ssh-action@v1

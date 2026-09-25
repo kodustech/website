@@ -1,0 +1,78 @@
+/* ========================================
+   Kodus Pixel: the site's display face (replaces Press Start 2P).
+   Drawn for kodus.io; source + build script in tools/kodus-pixel/.
+   ======================================== */
+
+/* Press Start 2P is very wide per em; Kodus Pixel at the same font-size
+   reads much smaller. size-adjust scales every usage at once so the
+   existing font-size values keep working. */
+@font-face {
+  font-family: 'Kodus Pixel';
+  src: url('../fonts/KodusPixel-Regular.woff2') format('woff2');
+  /* one drawing serves every weight, so bold titles don't fall back or get faux-bolded */
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 138%;
+}
+
+/* html:root beats the plain :root in kodus-retro.css and the inlined
+   critical CSS, regardless of load order. */
+html:root {
+  --font-pixel: 'Kodus Pixel', Georgia, serif;
+}
+
+/* Line height.
+   size-adjust grows the glyphs 1.38x but a unitless line-height still
+   multiplies the *declared* font-size, so every line-height tuned for
+   Press Start 2P would collapse. `normal` uses the font's own metrics,
+   which size-adjust does scale (about 1.65 of the declared size).
+   List = every selector that sets font-family: var(--font-pixel).
+   Regenerate it when a new pixel-font rule is added. */
+html :is(
+  .builders-cta__title,
+  .chat__metric-value,
+  .cust-hero__title,
+  .cust-logos__title,
+  .dossier-header__title,
+  .hero__title,
+  .lp-byo__calc-cell-amount,
+  .lp-byo__flow-arrow strong,
+  .lp-byo__flow-payoff-amount,
+  .lp-byo__receipt-total strong,
+  .lp-byo__risk-num,
+  .lp-byo__savings-amount,
+  .lp-hk__h,
+  .lp-hk__req-head,
+  .lp-hk__title,
+  .lp-hw__h,
+  .lp-hw__title,
+  .lp-pol__cat-h,
+  .lp-pol__how-h,
+  .lp-pol__risk-num,
+  .lp-pol__use-h,
+  .lp-shp__bnd-num,
+  .lp-shp__def-text,
+  .lp-shp__final-title,
+  .lp-shp__hero-title,
+  .lp-shp__title,
+  .pixel-btn,
+  .pixel-cta__title,
+  .roi-cta__title,
+  .roi-hero__title,
+  .section-title,
+  .soc__climb-end b,
+  .soc__divider-h,
+  .soc__final-title,
+  .soc__hero-title,
+  .soc__open-h,
+  .soc__open-num,
+  .soc__open-stat b,
+  .soc__rail a i,
+  .soc__stat-n,
+  .soc__toc-num,
+  .soc__toc-title,
+  .token-info__title
+) {
+  line-height: normal;
+}

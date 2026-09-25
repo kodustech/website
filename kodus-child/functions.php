@@ -96,7 +96,7 @@ function kodus_home_meta_title() {
 }
 
 function kodus_home_meta_description() {
-    return 'Kody is an open source code review tool that learns your team\'s workflow and delivers precise reviews on quality, security, and performance.';
+    return 'Kodus is the open source alternative to CodeRabbit: AI code review you can self-host or run in the cloud, with your own model keys and zero markup.';
 }
 
 function kodus_get_product_meta_titles() {
@@ -116,7 +116,7 @@ function kodus_get_product_meta_titles() {
         'page-kodus-vs-github.php' => 'Kodus vs GitHub Copilot | AI Code Review Tools Compared',
         'page-kodus-vs-claude.php' => 'Kodus vs Claude | AI Code Review Tools Compared',
         'page-self-hosted-ai-code-review.php' => 'Self-Hosted AI Code Review | Kodus (Open Source, AGPLv3)',
-        'page-byo-llm-code-review.php' => 'BYO LLM Code Review | Kodus (Bring Any Model, Zero Markup)',
+        'page-byo-llm-code-review.php' => 'BYO LLM Code Review: Bring Your Own Key, Zero Markup | Kodus',
         'page-policy-as-code-review.php' => 'Policy as Code Review | Kodus (Plain-English Rules, Per-Folder)',
         'page-data.php' => 'State of AI Code Review 2026 | Kodus Research',
         'page-manifesto.php' => 'Kodus Investor Memo | AI Code Acceptance Layer',
@@ -152,8 +152,8 @@ function kodus_get_product_meta_descriptions() {
         'page-kodus-vs-bugbot.php' => 'See how Kodus stacks up against Cursor Bugbot in features, customization, context awareness, and team fit.',
         'page-kodus-vs-github.php' => 'Here’s how Kodus stacks up against GitHub Copilot in features, customization, context understanding, and how well it fits your team.',
         'page-kodus-vs-claude.php' => 'See how Kodus compares to Claude in features, customization, contextual understanding, and overall fit for your team.',
-        'page-self-hosted-ai-code-review.php' => 'Open source AI code review without vendor lock-in. Runs on your infrastructure, deploys with Docker Compose, brings any OpenAI-compatible LLM. AGPLv3.',
-        'page-byo-llm-code-review.php' => 'Bring your own LLM to AI code review. Pay the model provider directly with zero markup on inference. Open source, supports any OpenAI-compatible model.',
+        'page-self-hosted-ai-code-review.php' => 'Open source (AGPLv3) AI code review you self-host on-prem or in your cloud, with GitHub Enterprise Server, GitLab Self-Managed and any OpenAI-compatible LLM.',
+        'page-byo-llm-code-review.php' => 'Open source AI code review on your own LLM key, on every plan. 12 providers plus any OpenAI-compatible or local model, per repo, with zero markup.',
         'page-policy-as-code-review.php' => 'Write your team review rules in plain English. Kodus enforces them in every PR with inline comments. Per repo, per folder, versioned audit trail. Open source, AGPLv3.',
         'page-data.php' => '180,739 AI code-review suggestions across 530 organizations: what happens after an AI leaves a review comment. 33.2% become code. Kodus production data, Sep 2025 to Jun 2026.',
         'page-manifesto.php' => 'An open memo on why Kodus is building the merge layer for AI-generated code: open source AI code review without vendor lock-in.',
@@ -258,6 +258,8 @@ add_filter('wpseo_twitter_description', function ($desc) {
 function kodus_get_product_meta_images() {
     return [
         'page-data.php' => get_stylesheet_directory_uri() . '/assets/img/og-data.png',
+        'page-home.php' => get_stylesheet_directory_uri() . '/assets/img/og-home.jpg',
+        'page-self-hosted-ai-code-review.php' => get_stylesheet_directory_uri() . '/assets/img/og-self-hosted.jpg',
     ];
 }
 
@@ -382,6 +384,11 @@ function kodus_get_trusted_logo_items() {
         ['file' => 'logos_new/frame_14.webp', 'name' => 'Precisão Sistemas'],
         ['file' => 'logos_new/frame_17.webp', 'name' => 'Up Estate'],
         ['file' => 'logos_new/quintoandar.png', 'name' => 'QuintoAndar', 'class' => 'logo-carousel__img--quintoandar'],
+        ['file' => 'logos_new/capim.svg', 'name' => 'Capim', 'class' => 'logo-carousel__img--capim'],
+        ['file' => 'logos_new/scorpion.svg', 'name' => 'Scorpion', 'class' => 'logo-carousel__img--scorpion'],
+        ['file' => 'logos_new/covergenius.svg', 'name' => 'Cover Genius', 'class' => 'logo-carousel__img--covergenius'],
+        ['file' => 'logos_new/insighttimer.svg', 'name' => 'Insight Timer', 'class' => 'logo-carousel__img--insighttimer'],
+        ['file' => 'logos_new/dsr.webp', 'name' => 'DSR', 'class' => 'logo-carousel__img--dsr'],
     ];
 }
 
@@ -396,6 +403,10 @@ function kodus_render_trusted_logo_carousel() {
         echo '<div class="logo-carousel__group"' . ($copy === 1 ? ' aria-hidden="true"' : '') . '>';
 
         foreach ($logos as $logo) {
+            // Skip logos whose file hasn't been added yet, so the carousel never shows a broken image.
+            if (!file_exists(get_stylesheet_directory() . '/assets/img/' . $logo['file'])) {
+                continue;
+            }
             $classes = 'logo-carousel__img';
             if (!empty($logo['class'])) {
                 $classes .= ' ' . $logo['class'];
@@ -536,10 +547,23 @@ function kodus_enqueue_retro_assets() {
     // Google Fonts
     wp_enqueue_style(
         'kodus-fonts',
-        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap',
+        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&display=swap',
         [],
         null
     );
+
+    // Kodus Pixel, the display face (drawn in-house, tools/kodus-pixel/).
+    wp_enqueue_style(
+        'kodus-font-pixel',
+        get_stylesheet_directory_uri() . '/assets/css/kodus-font-pixel.css',
+        ['kodus-fonts'],
+        filemtime(get_stylesheet_directory() . '/assets/css/kodus-font-pixel.css')
+    );
+    // The H1 on every retro page is set in Kodus Pixel: fetch it early so the headline doesn't swap late.
+    add_action('wp_head', function () {
+        printf('<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+            esc_url(get_stylesheet_directory_uri() . '/assets/fonts/KodusPixel-Regular.woff2'));
+    }, 2);
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -553,8 +577,8 @@ function kodus_preconnect_fonts() {
         // High-priority preload of the Google Fonts stylesheet so the
         // @font-face declarations arrive before render-blocking parsing
         // of the body. Lighthouse 11/mai showed LCP waiting on hero
-        // font (Press Start 2P / Inter) on homepage and pricing.
-        echo '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" crossorigin>' . "\n";
+        // font (Inter / JetBrains Mono) on homepage and pricing.
+        echo '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" crossorigin>' . "\n";
     }
 }
 

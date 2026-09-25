@@ -143,79 +143,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --- VCR carousel --- */
-  const vcrSlides = [
-    {
-      icon: '&#9997;',
-      type: 'Aesthetic',
-      text: 'You want a poem in every pull request.',
-      status: 'Unnecessary',
-      file: 'FILE_01.DAT',
-      iconColor: '#C9BBF2',
-      image: '/wp-content/themes/kodus-child/assets/img/kody-poeta.webp',
-    },
-    {
-      icon: '&#128274;',
-      type: 'Vendor',
-      text: 'You want one vendor picking your models and marking up every token.',
-      status: 'Limiting',
-      file: 'FILE_02.DAT',
-      iconColor: '#FA5867',
-      image: '/wp-content/themes/kodus-child/assets/img/kody-money.webp',
-    },
-    {
-      icon: '&#128203;',
-      type: 'Governance',
-      text: 'You think every team should review by its own rules.',
-      status: 'Inconsistent',
-      file: 'FILE_03.DAT',
-      iconColor: '#42BE65',
-      image: '/wp-content/themes/kodus-child/assets/img/kody-good-vibes.webp',
-    },
-    {
-      icon: '&#128227;',
-      type: 'Noise',
-      text: 'You enjoy 50 auto-generated comments on every pull request.',
-      status: 'Counterproductive',
-      file: 'FILE_04.DAT',
-      iconColor: '#FF8B40',
-      image: '/wp-content/themes/kodus-child/assets/img/kody-noise.webp',
-    },
-  ];
+  // Slides are server-rendered as .vcr__panel elements; JS only switches the active one.
+  const vcrPanels = document.querySelectorAll('.vcr__panel');
 
   let currentSlide = 0;
-  const vcrText = document.getElementById('vcrText');
   const vcrType = document.getElementById('vcrType');
   const vcrIcon = document.getElementById('vcrIcon');
   const vcrStatus = document.getElementById('vcrStatus');
   const vcrFile = document.getElementById('vcrFile');
   const vcrContent = document.getElementById('vcrContent');
-  const vcrImage = document.getElementById('vcrImage');
   const vcrCats = document.querySelectorAll('.vcr__cat');
   const vcrBtns = document.querySelectorAll('.vcr__btn[data-slide]');
   let vcrAutoRotateId = null;
 
   function updateVcr(index) {
-    if (!vcrText) return;
+    if (!vcrPanels.length) return;
     currentSlide = index;
-    const slide = vcrSlides[index];
+    const panel = vcrPanels[index];
 
     // Glitch transition
     vcrContent.style.opacity = '0';
     vcrContent.style.transform = 'translateX(4px)';
 
     setTimeout(() => {
-      // Icon removed
-      vcrText.textContent = slide.text;
-      vcrFile.textContent = slide.file;
-
-      if (slide.image) {
-        vcrImage.src = slide.image;
-        vcrImage.style.display = 'block';
-      } else {
-        vcrImage.style.display = 'none';
-        vcrImage.src = '';
-      }
-
+      vcrPanels.forEach((p, i) => p.classList.toggle('vcr__panel--active', i === index));
+      if (vcrFile) vcrFile.textContent = panel.dataset.file;
       vcrContent.style.opacity = '1';
       vcrContent.style.transform = 'translateX(0)';
     }, 150);
@@ -245,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Auto-rotate every 5 seconds
   vcrAutoRotateId = setInterval(() => {
-    updateVcr((currentSlide + 1) % vcrSlides.length);
+    updateVcr((currentSlide + 1) % vcrPanels.length);
   }, 5000);
 
   /* --- Bug parallax on scroll --- */
@@ -642,28 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* --- Cartridge modals --- */
-  const modalData = {
-    'modal-free-tier': {
-      title: 'Open source core',
-      led: 'green',
-      desc: 'The Kodus core is open source under the AGPL license.\n\nYou can read the review logic, audit what touches your code, and run it on your own infrastructure with Docker Compose or Helm.\n\n\u2022 Public repository on GitHub\n\u2022 Community plan self-hosts for free\n\u2022 Commercial license available for enterprise needs\n\nNo black box between your code and production.<div style="display: flex; gap: 12px; margin-top: 24px; justify-content: center;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"></div>',
-    },
-    'modal-agnostic': {
-      title: 'Reviews with your context',
-      led: 'blue',
-      desc: 'Kody adapts to how your team works.\n\nYou define the rules, severity levels, and where they apply: globally, per repository, or per directory.\n\nKody also syncs the rule files you already keep for Cursor, Copilot and Claude, and checks PRs against requirements from Jira, Linear and Notion.\n\nCritical projects, legacy services and new initiatives can follow different policies, all within the same organization.<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; justify-items: center;"><img src="/wp-content/themes/kodus-child/assets/img/tool1.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool2.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool3.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool4.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool5.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool6.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool7.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/tool8.webp" style="width: 50px; height: 50px; object-fit: contain; image-rendering: pixelated;"></div>',
-    },
-    'modal-zero-markup': {
-      title: 'Zero markup on tokens',
-      led: 'red',
-      desc: 'Bring your own API keys on every plan, cloud included. You pay for tokens directly to your provider, at list price.\n\n\u2022 No hidden fees\n\u2022 No token limits\n\u2022 No billing surprises\n\nOn the Teams plan, the $10 per user is strictly for platform infrastructure. Your model spend stays on your own bill, with the provider you choose.<div style="display: flex; justify-content: center; margin-top: -8px;"><img src="/wp-content/themes/kodus-child/assets/img/plaquinha.webp" style="width: 140px; height: auto; image-rendering: pixelated;"></div>',
-    },
-    'modal-configs': {
-      title: 'Self-host, no sales call',
-      led: 'blue',
-      desc: 'Run Kodus on your own infrastructure without an enterprise contract.\n\nClone the repository and deploy with Docker Compose on a VM, or with Helm on Kubernetes. Point it at your Git provider and your model keys, and reviews stay inside your network.\n\nSelf-hosting is available on the free Community plan. Enterprise adds SSO, RBAC, audit logs and dedicated support when you need them.',
-    },
-  };
+  // Modal copy lives in the page as .cartridge-detail articles (server-rendered).
 
   const overlay = document.getElementById('modalOverlay');
   const modalContent = document.getElementById('modalContent');
@@ -689,16 +620,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openModal(key) {
-    const data = modalData[key];
-    if (!data || !overlay) return;
+    const detail = document.getElementById(key + '-content');
+    if (!detail || !overlay) return;
     lastModalTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     if (modalHideTimer) {
       clearTimeout(modalHideTimer);
       modalHideTimer = null;
     }
-    modalTitle.textContent = data.title;
-    // Use innerHTML to allow HTML tags like <br> and <ul>
-    modalDesc.innerHTML = data.desc.replace(/\n/g, '<br>');
+    modalTitle.textContent = detail.querySelector('h3').textContent;
+    modalDesc.innerHTML = detail.querySelector('.cartridge-detail__body').innerHTML;
     overlay.hidden = false;
     overlay.removeAttribute('inert');
     overlay.setAttribute('aria-hidden', 'false');
@@ -754,6 +684,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const isAnnual = label.dataset.period === 'annual';
       const isMonthly = label.dataset.period === 'monthly';
       label.classList.toggle('pricing__toggle-label--active', annual ? isAnnual : isMonthly);
+    });
+
+    // Both billing lines are server-rendered; only highlight the selected one.
+    document.querySelectorAll('.pricing__billing-opt').forEach(opt => {
+      opt.classList.toggle('pricing__billing-opt--active', opt.dataset.period === (annual ? 'annual' : 'monthly'));
     });
 
     dynamicPrices.forEach(el => {
@@ -975,38 +910,20 @@ document.addEventListener('DOMContentLoaded', () => {
       dossierTitle.classList.toggle('dossier__client-name--accented', /[\u00C0-\u017F]/.test(dossierTitle.textContent || ''));
     }
 
-    const dossierData = {
-      brendi: {
-        title: 'BRENDI',
-        refId: 'BRN-01',
-        diagnosis: ['Review Backlog', 'Manual Checks', 'Slow Feedback', 'Auto PR Prechecks'],
-        desc: 'At Brendi, reviews became a bottleneck. PRs stayed open. The queue grew early in the day. Senior engineers started their mornings clearing pending reviews instead of writing code. A big part of the time went into obvious fixes that showed up in almost every PR. Kody stepped into the flow to catch those issues early, running the team\'s rules automatically.',
-        impact: 'About 70 percent less time spent on reviews per week. From 125 hours down to around 40. Less waiting. Less context switching. More time to focus on what actually moves the product.',
-        image: '/wp-content/themes/kodus-child/assets/img/logos_new/brendi1.webp',
-        imageClass: '',
-        link: '/case-brendi/'
-      },
-      lerian: {
-        title: 'LERIAN',
-        refId: 'LER-02',
-        diagnosis: ['Review Queue', 'Repeated Comments', 'Manual Checks', 'Auto PR Feedback'],
-        desc: 'At Lerian, the problem was simple. Reviews were taking too much time because too much of the work was repetitive. The same adjustments showed up in PR after PR. Formatting. Team conventions. Basic rules. Kody stepped into the PR flow to catch those things early, applying the team\'s own rules and giving feedback right away.',
-        impact: 'About 60 percent less time spent on reviews per week. From around 100 hours down to about 40. Less queue. Less rework. More time for work that actually matters.',
-        image: '/wp-content/themes/kodus-child/assets/img/logos_new/lerian1.webp',
-        imageClass: '',
-        link: '/case-lerian/'
-      },
-      notificacoes: {
-        title: 'NOTIFICAÇÕES INTELIGENTES',
-        refId: 'NTF-03',
-        diagnosis: ['Review Noise', 'Repeated Comments', 'Rule Gaps', 'Consistency Enforcement'],
-        desc: 'At Notificações Inteligentes, reviews started to get too noisy. The same comments showed up in PR after PR. Formatting. Team standards. Basic rules. Each reviewer had a different approach and many things ended up being fixed more than once. The turning point was creating custom rules inside Kody, aligned with the team\'s workflow, and combining them with the ready to use Kody Rules library. This stopped the same issues from repeating across PRs and made the review process much more consistent day to day.',
-        impact: 'Less rework, less back and forth in PRs, and more predictable feedback. The team kept moving fast without sacrificing quality.',
-        image: '/wp-content/themes/kodus-child/assets/img/logos_new/notifica1.webp',
-        imageClass: 'dossier__visual-img--notifica',
-        link: '/case-notificacoes/'
-      }
-    };
+    // Case data is server-rendered as .dossier-data__item articles; build the lookup from the DOM.
+    const dossierData = {};
+    document.querySelectorAll('.dossier-data__item').forEach(item => {
+      dossierData[item.id.replace('dossier-', '')] = {
+        title: item.querySelector('h3').textContent,
+        refId: item.dataset.ref,
+        diagnosis: [...item.querySelectorAll('li')].map(li => li.textContent),
+        desc: item.querySelector('.dossier-data__desc').textContent,
+        impact: item.querySelector('.dossier-data__impact').textContent,
+        image: item.dataset.image,
+        imageClass: item.dataset.imageClass,
+        link: item.dataset.link
+      };
+    });
 
     dossierTabs.forEach(tab => {
       tab.addEventListener('click', () => {

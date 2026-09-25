@@ -130,6 +130,13 @@
 
     <!-- ========== HERO ========== -->
     <section class="hero">
+      <!-- Hero background: quiet corner traces (decorative only) -->
+      <svg class="hero-circuit" viewBox="0 0 1440 780" preserveAspectRatio="xMidYMin meet" aria-hidden="true" focusable="false">
+        <path class="hc-trace" d="M84 79 L84 127 L250 138"/><path class="hc-trace" d="M1227 122 L1240 138 L1343 149 L1346 181"/><path class="hc-trace" d="M1382 406 L1382 474 L1309 476"/><path class="hc-trace" d="M60 604 L60 641 L138 653"/><path class="hc-trace" d="M1211 691 L1266 672 L1309 633"/>
+        <rect class="hc-sq" x="78" y="66" width="12" height="12" rx="1"/><rect class="hc-sq" x="238" y="155" width="12" height="12" rx="1"/><rect class="hc-sq" x="1376" y="393" width="12" height="12" rx="1"/><rect class="hc-sq" x="54" y="592" width="12" height="12" rx="1"/><rect class="hc-sq" x="1198" y="685" width="12" height="12" rx="1"/>
+        <rect class="hc-dot hc-dot--0" x="182" y="135" width="6" height="6"/><rect class="hc-dot hc-dot--1" x="1282" y="146" width="6" height="6"/><rect class="hc-dot hc-dot--2" x="108" y="650" width="6" height="6"/><rect class="hc-dot hc-dot--3" x="1241" y="667" width="6" height="6"/>
+        <g class="hc-bubble" transform="translate(1207 97)"><rect width="38" height="24" rx="3"/><path d="M8 24 l4 5 l4 -5"/><rect class="hc-bubble-dot" x="9" y="10" width="4" height="4"/><rect class="hc-bubble-dot" x="17" y="10" width="4" height="4"/><rect class="hc-bubble-dot" x="25" y="10" width="4" height="4"/></g>
+      </svg>
       <!-- Scattered bugs removed from here and moved to global container -->
 
 
@@ -162,6 +169,9 @@
                 <span class="hero__provider" aria-label="Azure DevOps">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M0 8.877L2.247 5.91l8.405-3.416V.022l7.37 5.393L2.966 8.338v8.225L0 15.707zm24-4.45v14.651l-5.753 4.9-9.303-3.057v3.056l-5.978-7.416 15.057 1.98V2.244z"/></svg>
                 </span>
+                <span class="hero__provider" aria-label="Forgejo / Gitea" title="Forgejo / Gitea">
+                  <svg width="28" height="28" viewBox="0 0 212 212" fill="none" stroke="currentColor"><g transform="translate(6,6)"><path d="M58 168 v-98 a50 50 0 0 1 50-50 h20" stroke-width="25"/><path d="M58 168 v-30 a50 50 0 0 1 50-50 h20" stroke-width="25"/><circle cx="142" cy="20" r="18" stroke-width="15"/><circle cx="142" cy="88" r="18" stroke-width="15"/><circle cx="58" cy="180" r="18" stroke-width="15"/></g></svg>
+                </span>
             </div>
           </div>
         </div>
@@ -182,6 +192,7 @@
               <?php kodus_render_trusted_logo_carousel(); ?>
             </div>
           </div>
+          <p class="hero__trusted">Trusted by <strong>5,000+ teams</strong> in 66 countries</p>
         </div>
       </div>
     </section>
@@ -260,79 +271,91 @@
                   <span class="cartridge__led cartridge__led--red"></span>
                 </div>
                 <div class="cartridge__screen-body cartridge__screen-body--tax">
+                  <div class="model-track-wrapper cartridge__models" aria-hidden="true">
+                    <div class="model-track move-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anthropic.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/open-ai.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/gemini.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/deepsek.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/zai.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/meta.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/grok.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude-ai.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anthropic.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/open-ai.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/gemini.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/deepsek.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/zai.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/meta.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/grok.webp" class="track-icon" alt=""><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude-ai.webp" class="track-icon" alt=""></div>
+                  </div>
                   <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-taxa.webp" alt="Kody Zero Markup" class="kody-taxa">
-                  <div class="pixel-sign sign-1"></div>
-                  <div class="pixel-sign sign-2"></div>
-                  <div class="pixel-sign sign-3"></div>
-                  <div class="pixel-sign sign-4"></div>
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <p class="cartridge__title">Zero markup<br>on tokens</p>
+                <p class="cartridge__title">Any model,<br>zero markup</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
                 <span class="cartridge__insert-text">Insert</span>
               </div>
             </div>
-            <span class="cartridge__desc">Your keys on every plan. You pay the provider at list price.</span>
+            <span class="cartridge__desc">Bring any model with your own key, on every plan. You pay the provider at list price.</span>
             <span class="cartridge__cta">Learn more</span>
           </button>
 
-          <!-- Cartridge 2: Model Agnostic -->
-          <button class="cartridge" data-modal="modal-agnostic">
+          <!-- Cartridge 4: No PR rate limits -->
+          <button class="cartridge" data-modal="modal-no-limits">
             <div class="cartridge__shell">
               <div class="cartridge__notch"></div>
               <div class="cartridge__screen">
                 <div class="cartridge__screen-bar">
                   <span class="cartridge__screen-label">DEV_MODULE_V2</span>
-                  <span class="cartridge__led cartridge__led--blue"></span>
+                  <span class="cartridge__led cartridge__led--green"></span>
                 </div>
-                <div class="cartridge__screen-body cartridge__screen-body--orbit" style="flex-direction: column; justify-content: flex-end;">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-space.webp" alt="Kody Space" class="orbit-center" style="z-index: 20; position: relative; bottom: -5px; width: 80px;">
-
-                  <div class="model-track-wrapper" style="position: absolute; top: 10px; left: 0; width: 100%; height: 40px; overflow: hidden;">
-                    <div class="model-track move-right">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anthropic.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude-ai.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/deepsek.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/gemini.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anthropic.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude-ai.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/deepsek.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/gemini.webp" class="track-icon" alt="">
-                    </div>
-                  </div>
-
-                  <div class="model-track-wrapper" style="position: absolute; top: 55px; left: 0; width: 100%; height: 40px; overflow: hidden;">
-                    <div class="model-track move-left">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/glm.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/meta.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/open-ai.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/grok.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/glm.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/meta.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/open-ai.webp" class="track-icon" alt="">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/grok.webp" class="track-icon" alt="">
-                    </div>
-                  </div>
+                <div class="cartridge__screen-body cartridge__screen-body--nolimit" aria-hidden="true">
+                  <div class="nolimit__log"><div class="nolimit__track"><span class="nolimit__line"><i>push</i><em>a1f3c9</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>push</i><em>7be04d</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>rebase</i><em>c92e11</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>force-push</i><em>3fd8a0</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>push</i><em>e41b7c</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>push</i><em>09ac5e</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>push</i><em>a1f3c9</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>push</i><em>7be04d</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>rebase</i><em>c92e11</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>force-push</i><em>3fd8a0</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>push</i><em>e41b7c</em><b>&#10003; reviewed</b></span><span class="nolimit__line"><i>push</i><em>09ac5e</em><b>&#10003; reviewed</b></span></div></div>
+                  <div class="nolimit__rate"><b>&infin;</b><span>reviews/h</span></div>
                 </div>
               </div>
               <div class="cartridge__title-area">
-                <p class="cartridge__title">Reviews with<br>your context</p>
+                <p class="cartridge__title">No PR<br>rate limits</p>
               </div>
               <div class="cartridge__insert">
                 <span class="cartridge__arrow">&#9650;</span>
                 <span class="cartridge__insert-text">Insert</span>
               </div>
             </div>
-            <span class="cartridge__desc">Your rules, plus requirements from Jira, Linear and Notion.</span>
+            <span class="cartridge__desc">Every push gets reviewed. Unlimited PRs on every plan with your own key.</span>
             <span class="cartridge__cta">Learn more</span>
           </button>
 
         </div>
       </div>
     </section>
+
+    <!-- Cartridge details: server-rendered so crawlers and LLMs read them; the modal below displays them -->
+    <div class="cartridge-details" hidden>
+          <article class="cartridge-detail" id="modal-free-tier-content">
+            <h3>Open source core</h3>
+            <div class="cartridge-detail__body">
+            <p>The Kodus core is open source under the AGPL license.</p>
+            <p>You can read the review logic, audit what touches your code, and run it on your own infrastructure with Docker Compose or Helm.</p>
+            <ul><li>Public repository on GitHub</li><li>Community plan self-hosts for free</li><li>Commercial license available for enterprise needs</li></ul>
+            <p>No black box between your code and production.</p><div style="display: flex; gap: 12px; margin-top: 24px; justify-content: center;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"><img src="/wp-content/themes/kodus-child/assets/img/coracao.webp" style="width: 24px; height: 24px; image-rendering: pixelated;"></div>
+            </div>
+          </article>
+          <article class="cartridge-detail" id="modal-no-limits-content">
+            <h3>No PR rate limits</h3>
+            <div class="cartridge-detail__body">
+            <p>Kodus doesn’t cap how many reviews you get per hour.</p>
+            <p>With your own API key, every plan reviews unlimited PRs. Push, rebase or force-push as often as you need, and each change gets reviewed.</p>
+            <ul><li>No reviews-per-hour quota</li><li>No waiting for a limit to reset</li><li>The only ceiling is your LLM provider’s rate limit on your key</li></ul>
+            </div>
+          </article>
+          <article class="cartridge-detail" id="modal-zero-markup-content">
+            <h3>Any model, zero markup</h3>
+            <div class="cartridge-detail__body">
+            <p>Bring your own API keys on every plan, cloud included. Use any provider with an OpenAI-compatible API, pick a different model per repository, and set a fallback model. You pay for tokens directly to your provider, at list price.</p>
+            <ul><li>No hidden fees</li><li>No token limits</li><li>No billing surprises</li></ul>
+            <p>On the Teams plan, the $10 per user is strictly for platform infrastructure. Your model spend stays on your own bill, with the provider you choose.</p><div style="display: flex; justify-content: center; margin-top: -8px;"><img src="/wp-content/themes/kodus-child/assets/img/plaquinha.webp" style="width: 140px; height: auto; image-rendering: pixelated;"></div>
+            </div>
+          </article>
+          <article class="cartridge-detail" id="modal-configs-content">
+            <h3>Self-host, no sales call</h3>
+            <div class="cartridge-detail__body">
+            <p>Run Kodus on your own infrastructure without an enterprise contract.</p>
+            <p>Clone the repository and deploy with Docker Compose on a VM, or with Helm on Kubernetes. Point it at your Git provider and your model keys, and reviews stay inside your network.</p>
+            <p>Self-hosting is available on the free Community plan. Enterprise adds SSO, RBAC, audit logs and dedicated support when you need them.</p>
+            <p><a href="/self-hosted-ai-code-review/" style="color: var(--color-primary);">How self-hosted AI code review works with Kodus →</a></p>
+            </div>
+          </article>
+    </div>
 
     <!-- ========== CARTRIDGE MODALS ========== -->
     <div class="modal-overlay" id="modalOverlay" aria-hidden="true" hidden inert>
@@ -381,9 +404,25 @@
                 <div class="vcr__slide-top">
                   <!-- Icon removed -->
                 </div>
-                <div class="vcr__body">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-poeta.webp" alt="" class="vcr__image" id="vcrImage" style="display: block;">
-                  <p class="vcr__text" id="vcrText">You want a poem in every pull request.</p>
+                <div class="vcr__body vcr__panel vcr__panel--active" data-file="FILE_01.DAT">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-poeta.webp" alt="" class="vcr__image" loading="lazy" decoding="async">
+                  <p class="vcr__text">You want a poem in every pull request.</p>
+                </div>
+                <div class="vcr__body vcr__panel" data-file="FILE_02.DAT">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-money.webp" alt="" class="vcr__image" loading="lazy" decoding="async">
+                  <p class="vcr__text">You want one vendor picking your models and marking up every token.</p>
+                </div>
+                <div class="vcr__body vcr__panel" data-file="FILE_03.DAT">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-good-vibes.webp" alt="" class="vcr__image" loading="lazy" decoding="async">
+                  <p class="vcr__text">You think every team should review by its own rules.</p>
+                </div>
+                <div class="vcr__body vcr__panel" data-file="FILE_04.DAT">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-noise.webp" alt="" class="vcr__image" loading="lazy" decoding="async">
+                  <p class="vcr__text">You enjoy 50 auto-generated comments on every pull request.</p>
+                </div>
+                <div class="vcr__body vcr__panel" data-file="FILE_05.DAT">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-waiting.webp" alt="" class="vcr__image" loading="lazy" decoding="async">
+                  <p class="vcr__text">You like waiting for your review quota to reset before you can push again.</p>
                 </div>
                 <div class="vcr__slide-bottom">
                   <!-- Status removed -->
@@ -397,6 +436,7 @@
               <button class="vcr__cat" data-slide="1">[2] Lock-in</button>
               <button class="vcr__cat" data-slide="2">[3] Standards</button>
               <button class="vcr__cat" data-slide="3">[4] Noise</button>
+              <button class="vcr__cat" data-slide="4">[5] Limits</button>
             </div>
           </div>
 
@@ -408,6 +448,7 @@
               <button class="vcr__btn" data-slide="1"><span class="vcr__btn-num">2</span><span class="vcr__btn-label">Lock-in</span></button>
               <button class="vcr__btn" data-slide="2"><span class="vcr__btn-num">3</span><span class="vcr__btn-label">Standards</span></button>
               <button class="vcr__btn" data-slide="3"><span class="vcr__btn-num">4</span><span class="vcr__btn-label">Noise</span></button>
+              <button class="vcr__btn" data-slide="4"><span class="vcr__btn-num">5</span><span class="vcr__btn-label">Limits</span></button>
               <button class="vcr__btn vcr__btn--power"><span class="vcr__btn-num">I/O</span></button>
             </div>
             <div class="vcr__leds">
@@ -430,201 +471,112 @@
         <div class="feat-grid__grid">
             <div class="feat-cell">
               <div class="feat-cell__art">
-                <svg class="sgraph" viewBox="0 0 240 200" fill="none" aria-hidden="true">
-              <circle class="sg-halo" cx="120" cy="100" r="46"/>
-              <circle class="sg-ring" cx="120" cy="100" r="16"/>
-              <g class="sgraph__edges">
-                <path class="sg-e sg-e1" d="M120 100 L44 46" pathLength="1"/>
-                <path class="sg-e sg-e2" d="M120 100 L196 50" pathLength="1"/>
-                <path class="sg-e sg-e3" d="M120 100 L206 146" pathLength="1"/>
-                <path class="sg-e sg-e4" d="M120 100 L52 152" pathLength="1"/>
-                <path class="sg-e sg-e5" d="M120 100 L120 176" pathLength="1"/>
-                <path class="sg-e sg-e6" d="M44 46 L196 50" pathLength="1"/>
-                <path class="sg-e sg-e7" d="M52 152 L120 176" pathLength="1"/>
-              </g>
-              <g class="sgraph__packets">
-                <circle class="sg-pkt" r="2.2"><animateMotion dur="2.2s" repeatCount="indefinite" path="M44 46 L120 100"/></circle>
-                <circle class="sg-pkt" r="2.2"><animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite" path="M206 146 L120 100"/></circle>
-                <circle class="sg-pkt" r="2.2"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M120 176 L120 100"/></circle>
-                <circle class="sg-pkt" r="2.2"><animateMotion dur="2.4s" begin="0.3s" repeatCount="indefinite" path="M196 50 L120 100"/></circle>
-              </g>
-              <g class="sgraph__nodes">
-                <circle class="sg-n sg-n1" cx="44" cy="46" r="4.5"/>
-                <text class="sg-flabel sg-l1" x="44" y="32" text-anchor="middle">api.ts</text>
-                <circle class="sg-n sg-n2 sg-n--p" cx="196" cy="50" r="4"/>
-                <text class="sg-flabel sg-l2" x="196" y="36" text-anchor="middle">auth.ts</text>
-                <circle class="sg-n sg-n3" cx="206" cy="146" r="4"/>
-                <text class="sg-flabel sg-l3" x="208" y="163" text-anchor="end">db.ts</text>
-                <circle class="sg-n sg-n4 sg-n--p" cx="52" cy="152" r="4"/>
-                <text class="sg-flabel sg-l4" x="52" y="168" text-anchor="middle">ui.tsx</text>
-                <circle class="sg-n sg-n5" cx="120" cy="176" r="4.5"/>
-                <text class="sg-flabel sg-l5" x="120" y="193" text-anchor="middle">utils.ts</text>
-                <circle class="sgraph__core-glow" cx="120" cy="100" r="20"/>
-                <image class="sg-kody" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody_profile.webp" x="92" y="72" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
-              </g>
-            </svg>
-              </div>
-              <h3 class="feat-cell__title">Learns from your context</h3>
-              <p class="feat-cell__desc">Deep understanding of your entire project structure and logic.</p>
-            </div>
-            <div class="feat-cell">
-              <div class="feat-cell__art">
-                <div class="srules">
-              <div class="srules__file">
-                <div class="srules__filebar">
-                  <span class="srules__filedot"></span>review_rules.md
-                </div>
-                <div class="srules__rows">
-                  <div class="srules__row">
-                    <span class="srules__check srules__check--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                    <span class="srules__bar" style="width:78%"></span>
-                  </div>
-                  <div class="srules__row">
-                    <span class="srules__check srules__check--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                    <span class="srules__bar" style="width:62%"></span>
-                  </div>
-                  <div class="srules__row">
-                    <span class="srules__check srules__check--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                    <span class="srules__bar" style="width:88%"></span>
-                  </div>
-                  <div class="srules__row">
-                    <span class="srules__check srules__check--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                    <span class="srules__bar" style="width:70%"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-              </div>
-              <h3 class="feat-cell__title">You set the rules</h3>
-              <p class="feat-cell__desc">Teams define their own review standards in plain language.</p>
-            </div>
-            <div class="feat-cell">
-              <div class="feat-cell__art">
-                <div class="rsync">
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="rsync__circuit">
-                  <g class="circuit-lines">
-                    <path d="M28 20 H 38 V 45 H 44" class="flow-path"/>
-                    <path d="M28 50 H 44" class="flow-path"/>
-                    <path d="M28 80 H 38 V 55 H 44" class="flow-path"/>
-                    <path d="M72 20 H 62 V 45 H 56" class="flow-path"/>
-                    <path d="M72 50 H 56" class="flow-path"/>
-                    <path d="M72 80 H 62 V 55 H 56" class="flow-path"/>
-                  </g>
-                  <g class="data-packets">
-                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" repeatCount="indefinite" path="M28 20 H 38 V 45 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
-                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M28 50 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
-                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M28 80 H 38 V 55 H 44" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
-                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="0.2s" repeatCount="indefinite" path="M72 20 H 62 V 45 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
-                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="0.7s" repeatCount="indefinite" path="M72 50 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
-                    <rect width="3" height="3" class="data-packet"><animateMotion dur="2s" begin="1.2s" repeatCount="indefinite" path="M72 80 H 62 V 55 H 56" calcMode="discrete" keyPoints="0;0.2;0.4;0.6;0.8;1" keyTimes="0;0.2;0.4;0.6;0.8;1"/></rect>
-                  </g>
+                <svg class="sgraph" viewBox="0 0 284 206" fill="none" aria-hidden="true">
+                  <text class="sg-col" x="46" y="40">callers</text>
+                  <text class="sg-col" x="238" y="40">callees</text>
+                  <path class="sg-e sg-e1" d="M92 60 C104 60 104 92 106 92" pathLength="1"/>
+                  <path class="sg-e sg-e2" d="M92 124 C104 124 104 92 106 92" pathLength="1"/>
+                  <path class="sg-e sg-e3" d="M178 92 C180 92 180 60 192 60" pathLength="1"/>
+                  <path class="sg-e sg-e4" d="M178 92 C180 92 180 124 192 124" pathLength="1"/>
+                  <path class="sg-e sg-e5 sg-e--test" d="M142 104 V148" pathLength="1"/>
+                  <g class="sgc sgc--n sgc-1"><rect x="2" y="50" width="90" height="20" rx="4"/><text x="47.0" y="63.5">login()</text></g>
+                  <g class="sgc sgc--n sgc--x sgc-2"><rect x="2" y="114" width="90" height="20" rx="4"/><text x="47.0" y="127.5">chargeCard()</text><text class="sgc__repo" x="4" y="145">billing-api · linked repo</text></g>
+                  <g class="sgc sgc--core"><rect x="106" y="80" width="72" height="24" rx="5"/><text x="142" y="96">verifyToken()</text></g>
+                  <g class="sgc sgc--n sgc-3"><rect x="192" y="50" width="90" height="20" rx="4"/><text x="237.0" y="63.5">db.findUser()</text></g>
+                  <g class="sgc sgc--n sgc-4"><rect x="192" y="114" width="90" height="20" rx="4"/><text x="237.0" y="127.5">crypto.hash()</text></g>
+                  <g class="sgc sgc--t sgc-5"><rect x="100" y="148" width="84" height="20" rx="4"/><text x="142.0" y="161.5">auth.test.ts</text></g>
+                  <text class="sg-risk" x="2" y="200"><tspan class="sg-risk__k">Risk</tspan> MEDIUM (0.45)</text>
+                  <text class="sg-risk sg-risk--r" x="282" y="200"><tspan class="sg-risk__k">Blast radius</tspan> 12 fns · 5 files</text>
                 </svg>
-                <div class="rsync__core"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-box.webp" alt="Kody Box" class="kody-box"></div>
-                <div class="rsync__tools rsync__tools--l">
-                  <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kilo.webp" alt="Kiln"></div>
-                  <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/copilot.webp" alt="Copilot"></div>
-                  <div class="tool-icon tool-left"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cursor.webp" alt="Cursor"></div>
-                </div>
-                <div class="rsync__tools rsync__tools--r">
-                  <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/claude.webp" alt="Claude"></div>
-                  <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/openai.webp" alt="OpenAI"></div>
-                  <div class="tool-icon tool-right"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/cline.webp" alt="Cline"></div>
-                </div>
               </div>
-              </div>
-              <h3 class="feat-cell__title">Sync your existing rules</h3>
-              <p class="feat-cell__desc">Keep the standards you already use. Kody detects rule files from Cursor, Copilot, Claude and more.</p>
+              <h3 class="feat-cell__title">Catches bugs across files and repos</h3>
+              <p class="feat-cell__desc">Kody maps the callers, callees and tests around every change, including code in the other repos you link.</p>
             </div>
             <div class="feat-cell">
               <div class="feat-cell__art">
-                <div class="bval">
-              <div class="bval__bar">
-                <span class="bval__bardot"></span>validate &middot; rules from your tools
-              </div>
-              <div class="bval__rows">
-                <div class="bval__row bval__row--1">
-                  <span class="bval__tag bval__tag--jira">JIRA</span>
-                  <span class="bval__rule">refund needs a reason</span>
-                  <span class="bval__verdict bval__pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                </div>
-                <div class="bval__row bval__row--2">
-                  <span class="bval__tag bval__tag--linear">LINEAR</span>
-                  <span class="bval__rule">amount within limit</span>
-                  <span class="bval__verdict bval__pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>
-                </div>
-                <div class="bval__row bval__row--3">
-                  <span class="bval__tag bval__tag--notion">NOTION</span>
-                  <span class="bval__rule">audit log required</span>
-                  <span class="bval__verdict bval__fail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+                <div class="srules" aria-hidden="true">
+                  <div class="srules__card">
+                    <div class="srules__head">
+                      <span class="srules__title"><span class="srules__type srules__t1">Never expose secrets</span><span class="srules__type srules__t2">to the client</span></span>
+                      <span class="srules__sev">HIGH</span>
+                    </div>
+                    <div class="srules__meta">
+                      <span><em>Path</em>**/*.tsx</span>
+                      <span><em>Scope</em>File</span>
+                    </div>
+                    <div class="srules__ins">
+                      <em>Instructions</em>
+                      <span class="srules__type srules__l1">Flag client components that read</span>
+                      <span class="srules__type srules__l2">API keys or tokens.</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="bval__status"><span class="bval__status-dot"></span>1 rule violated &middot; from your specs</div>
+              <h3 class="feat-cell__title">Enforces your team's rules</h3>
+              <p class="feat-cell__desc">Write review rules in plain language, or import the ones you already keep in .cursorrules, CLAUDE.md or AGENTS.md.</p>
             </div>
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <div class="bval" aria-hidden="true">
+                  <div class="bval__card">
+                    <div class="bval__h">## Business Rules Validation</div>
+                    <div class="bval__meta"><span><em>Task</em>LIN-482 · Refund flow</span><span class="bval__src">Linear</span></div>
+                    <ul class="bval__acs">
+                      <li class="bval__ac bval__ac--1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></i><span>AC #1 amount within limit</span><b>refund.ts:42</b></li>
+                      <li class="bval__ac bval__ac--2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></i><span>AC #2 audit log written</span><b>audit.ts:18</b></li>
+                    </ul>
+                    <div class="bval__fix"><span class="bval__lvl">MUST_FIX</span><span>Refund needs a reason</span></div>
+                    <div class="bval__status">Status: <b>Issues Found</b></div>
+                  </div>
+                </div>
               </div>
               <h3 class="feat-cell__title">Validates your business rules</h3>
               <p class="feat-cell__desc">Kody pulls requirements from Jira, Linear and Notion, then checks every PR against them, and flags what breaks.</p>
             </div>
             <div class="feat-cell">
               <div class="feat-cell__art">
-                <div class="tdebt">
-              <div class="tdebt__bar"><span class="tdebt__bardot"></span>technical_debt &middot; last 6 weeks</div>
-              <div class="tdebt__chart">
-                <svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="tdgrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#F8B76D" stop-opacity="0.35"/>
-                      <stop offset="100%" stop-color="#F8B76D" stop-opacity="0"/>
-                    </linearGradient>
-                  </defs>
-                  <line class="td-grid" x1="14" y1="40" x2="226" y2="40"/>
-                  <line class="td-grid" x1="14" y1="74" x2="226" y2="74"/>
-                  <line class="td-grid" x1="14" y1="108" x2="226" y2="108"/>
-                  <path class="td-area" d="M24 38 L76 58 L128 72 L176 102 L216 118 L216 140 L24 140 Z"/>
-                  <path class="td-line" d="M24 38 L76 58 L128 72 L176 102 L216 118" pathLength="1"/>
-                  <circle class="td-dot td-dot--1" cx="24" cy="38" r="3.5"/>
-                  <circle class="td-dot td-dot--2" cx="76" cy="58" r="3.5"/>
-                  <circle class="td-dot td-dot--3" cx="128" cy="72" r="3.5"/>
-                  <circle class="td-dot td-dot--4" cx="176" cy="102" r="3.5"/>
-                  <circle class="td-dot td-dot--5" cx="216" cy="118" r="4"/>
-                </svg>
+                <div class="kchat" aria-hidden="true">
+                  <div class="kchat__card">
+                    <div class="kchat__msg kchat__msg--1"><span class="kchat__who">you</span><p><b>@kody</b> why is this flagged?</p></div>
+                    <div class="kchat__msg kchat__msg--2 kchat__msg--kody"><span class="kchat__who">kody</span><p>After logout <code>session.user</code> is null, so <code>findUser()</code> throws.</p></div>
+                    <div class="kchat__msg kchat__msg--3"><span class="kchat__who">you</span><p>We already guard that in the auth middleware.</p></div>
+                    <div class="kchat__msg kchat__msg--4 kchat__msg--kody"><span class="kchat__who">kody</span><p>Got it. Save this as a memory for future reviews?</p><span class="kchat__save">Save memory</span></div>
+                  </div>
+                </div>
               </div>
-              <div class="tdebt__foot">
-                <span class="tdebt__foot-label">open debt</span>
-                <span class="tdebt__delta">&#9660; 38%</span>
-                <span class="tdebt__foot-note">auto-tracked as issues</span>
-              </div>
+              <h3 class="feat-cell__title">Talk to Kody in the PR</h3>
+              <p class="feat-cell__desc">Ask why something was flagged, or push back. When you correct Kody, it offers to save that as a memory for the next reviews.</p>
             </div>
+            <div class="feat-cell">
+              <div class="feat-cell__art">
+                <div class="tdebt" aria-hidden="true">
+                  <div class="tdebt__card">
+                    <div class="tdebt__head"><span class="tdebt__title">Issues</span><span class="tdebt__auto">Auto-create issues <i class="tdebt__switch"></i></span></div>
+                    <div class="tdebt__event">PR #322 closed · 3 suggestions not implemented</div>
+                    <ul class="tdebt__list">
+                    <li class="tdebt__row tdebt__row--1"><span class="tdebt__st">OPEN</span><span class="tdebt__sev tdebt__sev--high">HIGH</span><span class="tdebt__t">Inject service via DI token<small>kody rules · session.ts</small></span></li>
+                    <li class="tdebt__row tdebt__row--2"><span class="tdebt__st">OPEN</span><span class="tdebt__sev tdebt__sev--crit">CRITICAL</span><span class="tdebt__t">Token logged in error handler<small>security · auth.ts</small></span></li>
+                    <li class="tdebt__row tdebt__row--3"><span class="tdebt__st">OPEN</span><span class="tdebt__sev tdebt__sev--med">MEDIUM</span><span class="tdebt__t">Handle missing user in refund<small>bug · refund.ts</small></span></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
               <h3 class="feat-cell__title">Track technical debt</h3>
               <p class="feat-cell__desc">Unimplemented suggestions become issues automatically, so debt stays visible and shrinks over time.</p>
             </div>
             <div class="feat-cell">
               <div class="feat-cell__art">
-                <div class="cock">
-              <div class="cock__bar"><span class="cock__bardot"></span>engineering_cockpit &middot; live</div>
-              <div class="cock__grid">
-                <div class="cock__tile cock__tile--1">
-                  <span class="cock__label">Deploy freq</span>
-                  <div class="cock__valrow"><span class="cock__val">20</span><span class="cock__unit">/wk</span><span class="cock__delta">&#9650; 12%</span></div>
-                  <div class="cock__spark"><i style="--h:30%"></i><i style="--h:42%"></i><i style="--h:38%"></i><i style="--h:55%"></i><i style="--h:60%"></i><i style="--h:74%"></i></div>
+                <div class="cock" aria-hidden="true">
+                  <div class="cock__card">
+                    <div class="cock__head"><span>Productivity</span><span class="cock__range">Last 15 days</span></div>
+                    <div class="cock__grid">
+                    <div class="cock__tile cock__tile--1"><span class="cock__k">Deploy Frequency</span><span class="cock__v">4.2<small>/week</small></span><span class="cock__band cock__band--high">High</span></div>
+                    <div class="cock__tile cock__tile--2"><span class="cock__k">PR Cycle Time (p75)</span><span class="cock__v">26<small>h</small></span><span class="cock__band cock__band--elite">Elite</span></div>
+                    <div class="cock__tile cock__tile--3"><span class="cock__k">Bug Ratio</span><span class="cock__v">12<small>%</small></span><span class="cock__band cock__band--fair">Fair</span></div>
+                    <div class="cock__tile cock__tile--4"><span class="cock__k">PR Size (p75)</span><span class="cock__v">214<small>lines</small></span><span class="cock__band cock__band--elite">Elite</span></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="cock__tile cock__tile--2">
-                  <span class="cock__label">Cycle time</span>
-                  <div class="cock__valrow"><span class="cock__val">17h</span><span class="cock__unit">44m</span><span class="cock__delta">&#9660; 14%</span></div>
-                  <div class="cock__spark"><i style="--h:72%"></i><i style="--h:64%"></i><i style="--h:58%"></i><i style="--h:48%"></i><i style="--h:42%"></i><i style="--h:34%"></i></div>
-                </div>
-                <div class="cock__tile cock__tile--3">
-                  <span class="cock__label">Bug ratio</span>
-                  <div class="cock__valrow"><span class="cock__val">2.0</span><span class="cock__unit">%</span><span class="cock__delta">&#9660; 9%</span></div>
-                  <div class="cock__spark"><i style="--h:60%"></i><i style="--h:54%"></i><i style="--h:56%"></i><i style="--h:44%"></i><i style="--h:38%"></i><i style="--h:30%"></i></div>
-                </div>
-                <div class="cock__tile cock__tile--4">
-                  <span class="cock__label">PR size</span>
-                  <div class="cock__valrow"><span class="cock__val">220</span><span class="cock__unit">loc</span><span class="cock__delta">&#9660; 7%</span></div>
-                  <div class="cock__spark"><i style="--h:64%"></i><i style="--h:58%"></i><i style="--h:52%"></i><i style="--h:50%"></i><i style="--h:44%"></i><i style="--h:40%"></i></div>
-                </div>
-              </div>
-            </div>
               </div>
               <h3 class="feat-cell__title">Accelerate your delivery</h3>
               <p class="feat-cell__desc">Deploy frequency, cycle time, bug ratio and PR size in one dashboard, all trending the right way.</p>
@@ -638,129 +590,181 @@
       .anim-test__art{height:300px;display:flex;align-items:center;justify-content:center;margin-bottom:36px}
       .anim-test__title{font-family:var(--font-mono);font-size:1.5rem;color:var(--color-text);margin-bottom:10px;line-height:1.2}
       .anim-test__desc{font-size:0.95rem;color:var(--color-text-muted);line-height:1.65;max-width:360px}
-      .srules{width:260px;font-family:var(--font-mono)}
-      .srules__file{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:var(--border-radius-xs);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
-      .srules__filebar{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid var(--color-card-lv3);font-size:0.72rem;color:var(--color-secondary)}
-      .srules__filedot{width:7px;height:7px;border-radius:50%;background:var(--color-secondary);box-shadow:0 0 6px var(--color-secondary)}
-      .srules__rows{padding:18px 16px;display:flex;flex-direction:column;gap:16px}
-      .srules__row{display:flex;align-items:center;gap:12px}
-      .srules__check{flex-shrink:0;width:18px;height:18px;border:1.5px solid var(--color-secondary-dark);border-radius:3px;display:flex;align-items:center;justify-content:center}
-      .srules__check svg{width:12px;height:12px;color:var(--color-secondary);opacity:0;transform:scale(0.4);transform-origin:center}
-      .srules__check--1 svg{animation:srules-c1 5s infinite}
-      .srules__check--2 svg{animation:srules-c2 5s infinite}
-      .srules__check--3 svg{animation:srules-c3 5s infinite}
-      .srules__check--4 svg{animation:srules-c4 5s infinite}
-      .srules__bar{height:8px;border-radius:2px;background:var(--color-card-lv3)}
-      @keyframes srules-c1{0%,12%{opacity:0;transform:scale(0.4)}18%{opacity:1;transform:scale(1.25)}24%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
-      @keyframes srules-c2{0%,24%{opacity:0;transform:scale(0.4)}30%{opacity:1;transform:scale(1.25)}36%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
-      @keyframes srules-c3{0%,36%{opacity:0;transform:scale(0.4)}42%{opacity:1;transform:scale(1.25)}48%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
-      @keyframes srules-c4{0%,48%{opacity:0;transform:scale(0.4)}54%{opacity:1;transform:scale(1.25)}60%,88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
-      @media(prefers-reduced-motion:reduce){.srules__check svg{opacity:1;transform:none;animation:none}}
-.sgraph{width:260px;height:auto;overflow:visible}
-      .sg-halo{fill:var(--color-primary);opacity:0.07;filter:blur(8px);transform-box:fill-box;transform-origin:center;animation:sg-halo 4s ease-in-out infinite}
-      .sg-ring{fill:none;stroke:var(--color-primary);stroke-width:1.2;transform-box:fill-box;transform-origin:center;opacity:0;animation:sg-ring 3.6s ease-out infinite}
-      .sg-e{stroke:var(--color-primary);stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:sg-draw 0.8s ease forwards}
-      .sg-e1{animation-delay:0.1s}.sg-e2{animation-delay:0.25s}.sg-e3{animation-delay:0.4s}.sg-e4{animation-delay:0.55s}.sg-e5{animation-delay:0.7s}.sg-e6{animation-delay:0.85s}.sg-e7{animation-delay:1s}
-      .sg-pkt{fill:var(--color-primary);filter:drop-shadow(0 0 4px var(--color-primary))}
-      .sg-n{--node:var(--color-primary);fill:var(--color-card-lv3);animation:sg-light 0.6s ease forwards}
-      .sg-n--p{--node:var(--color-secondary)}
-      .sg-n1{animation-delay:0.5s}.sg-n2{animation-delay:0.65s}.sg-n3{animation-delay:0.8s}.sg-n4{animation-delay:0.95s}.sg-n5{animation-delay:1.1s}
-      .sgraph__core-glow{fill:var(--color-primary);opacity:0.25;filter:blur(4px);transform-box:fill-box;transform-origin:center;animation:sg-coreglow 3s ease-in-out infinite}
-      .sgraph__core{fill:var(--color-primary);filter:drop-shadow(0 0 6px var(--color-primary));transform-box:fill-box;transform-origin:center;animation:sg-core 3s ease-in-out infinite}
-      .sgraph__core-hi{fill:#fff;opacity:0.6}
-      .sg-kody{filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5)) drop-shadow(0 0 6px rgba(248,183,109,0.35))}
-      .sg-flabel{font-family:var(--font-mono);font-size:7px;fill:var(--color-text-muted);opacity:0;animation:sg-fade 0.6s ease forwards}
-      .sg-l1{animation-delay:0.5s}.sg-l2{animation-delay:0.65s}.sg-l3{animation-delay:0.8s}.sg-l4{animation-delay:0.95s}.sg-l5{animation-delay:1.1s}
-      .sg-corelabel{font-family:var(--font-mono);font-size:6.5px;font-weight:700;fill:var(--color-bg)}
-      @keyframes sg-fade{to{opacity:0.85}}
-      @keyframes sg-draw{from{stroke-dashoffset:1;opacity:0}to{stroke-dashoffset:0;opacity:0.5}}
-      @keyframes sg-light{to{fill:var(--node);filter:drop-shadow(0 0 5px var(--node))}}
-      @keyframes sg-core{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-      @keyframes sg-coreglow{0%,100%{opacity:0.2;transform:scale(1)}50%{opacity:0.4;transform:scale(1.25)}}
-      @keyframes sg-halo{0%,100%{opacity:0.05}50%{opacity:0.12}}
-      @keyframes sg-ring{0%{opacity:0.5;transform:scale(0.3)}70%{opacity:0}100%{opacity:0;transform:scale(2.6)}}
-      @media(prefers-reduced-motion:reduce){.sg-e{animation:none;stroke-dashoffset:0;opacity:0.5}.sg-n{animation:none;fill:var(--node)}.sg-flabel{animation:none;opacity:0.85}.sg-ring,.sg-halo,.sgraph__core,.sgraph__core-glow,.sg-pkt{animation:none}}
-.bval{width:300px;font-family:var(--font-mono)}
-      .bval__bar{display:flex;align-items:center;gap:8px;padding:10px 13px;background:var(--color-card-lv2);border:1px solid var(--color-card-lv3);border-bottom:none;border-radius:var(--border-radius-xs) var(--border-radius-xs) 0 0;font-size:0.72rem;color:var(--color-secondary)}
-      .bval__bardot{width:7px;height:7px;border-radius:50%;background:var(--color-secondary);box-shadow:0 0 6px var(--color-secondary)}
-      .bval__rows{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:0 0 var(--border-radius-xs) var(--border-radius-xs);padding:6px 0;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
-      .bval__row{display:flex;align-items:center;gap:12px;padding:9px 14px;border-left:2px solid transparent}
-      .bval__rule{flex:1;font-size:0.76rem;color:var(--color-text-muted);min-width:0}
-      .bval__tag{flex-shrink:0;font-size:0.6rem;font-weight:700;letter-spacing:0.4px;padding:2px 6px;border-radius:3px;background:var(--color-card-lv3);color:var(--color-text-muted)}
-      .bval__tag--jira{color:var(--color-info)}
-      .bval__tag--linear{color:var(--color-secondary)}
-      .bval__tag--notion{color:var(--color-tertiary)}
-      .bval__verdict{flex-shrink:0;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.4);transform-origin:center}
-      .bval__verdict svg{width:11px;height:11px;color:#0d0d14}
-      .bval__pass{background:var(--color-success)}
-      .bval__fail{background:var(--color-danger)}
-      .bval__row--1 .bval__verdict{animation:bval-v1 5s infinite}
-      .bval__row--2 .bval__verdict{animation:bval-v2 5s infinite}
-      .bval__row--3 .bval__verdict{animation:bval-v3 5s infinite}
-      .bval__row--3{animation:bval-fail 5s infinite}
-      .bval__status{display:flex;align-items:center;gap:7px;padding:12px 14px 4px;font-size:0.72rem;color:var(--color-danger);opacity:0;animation:bval-status 5s infinite}
-      .bval__status-dot{width:6px;height:6px;border-radius:50%;background:var(--color-danger);box-shadow:0 0 6px var(--color-danger)}
-      @keyframes bval-v1{0%,12%{opacity:0;transform:scale(0.4)}18%{opacity:1;transform:scale(1.25)}24%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
-      @keyframes bval-v2{0%,24%{opacity:0;transform:scale(0.4)}30%{opacity:1;transform:scale(1.25)}36%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
-      @keyframes bval-v3{0%,36%{opacity:0;transform:scale(0.4)}42%{opacity:1;transform:scale(1.25)}48%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.4)}}
-      @keyframes bval-fail{0%,38%{background:transparent;border-left-color:transparent}44%,90%{background:rgba(250,88,103,0.10);border-left-color:var(--color-danger)}100%{background:transparent;border-left-color:transparent}}
-      @keyframes bval-status{0%,48%{opacity:0}56%,88%{opacity:1}100%{opacity:0}}
-      @media(prefers-reduced-motion:reduce){.bval__verdict{animation:none;opacity:1;transform:none}.bval__row--3{animation:none;background:rgba(250,88,103,0.10);border-left-color:var(--color-danger)}.bval__status{animation:none;opacity:1}}
-.tdebt{width:244px;font-family:var(--font-mono)}
-      .tdebt__bar{display:flex;align-items:center;gap:8px;padding:10px 13px;background:var(--color-card-lv2);border:1px solid var(--color-card-lv3);border-bottom:none;border-radius:var(--border-radius-xs) var(--border-radius-xs) 0 0;font-size:0.72rem;color:var(--color-primary)}
-      .tdebt__bardot{width:7px;height:7px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 6px var(--color-primary)}
-      .tdebt__chart{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-bottom:none;padding:10px 12px 2px;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
-      .tdebt__chart svg{width:100%;height:auto;display:block;overflow:visible}
-      .td-grid{stroke:var(--color-card-lv3);stroke-width:0.6;opacity:0.5}
-      .td-area{fill:url(#tdgrad);opacity:0;animation:td-area 0.8s ease forwards;animation-delay:0.7s}
-      .td-line{stroke:var(--color-primary);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(248,183,109,0.5));animation:td-draw 1.4s ease forwards}
-      .td-dot{fill:var(--color-primary);opacity:0;animation:td-pop 0.4s ease forwards}
-      .td-dot--1{animation-delay:0.3s}.td-dot--2{animation-delay:0.55s}.td-dot--3{animation-delay:0.8s}.td-dot--4{animation-delay:1.05s}.td-dot--5{animation-delay:1.3s}
-      .td-dot--5{filter:drop-shadow(0 0 5px var(--color-primary));animation:td-pop 0.4s ease forwards, td-pulse 2.4s ease-in-out 1.7s infinite;transform-box:fill-box;transform-origin:center}
-      .tdebt__foot{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:0 0 var(--border-radius-xs) var(--border-radius-xs);font-size:0.7rem;color:var(--color-text-dim)}
-      .tdebt__foot-label{color:var(--color-text-muted)}
-      .tdebt__delta{display:inline-flex;align-items:center;gap:3px;font-weight:700;color:var(--color-success)}
-      .tdebt__foot-note{margin-left:auto;color:var(--color-text-dim)}
-      @keyframes td-draw{to{stroke-dashoffset:0}}
-      @keyframes td-area{to{opacity:1}}
-      @keyframes td-pop{from{opacity:0;transform:scale(0.3)}to{opacity:1;transform:scale(1)}}
-      @keyframes td-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
-      @media(prefers-reduced-motion:reduce){.td-line{animation:none;stroke-dashoffset:0}.td-area{animation:none;opacity:1}.td-dot{animation:none;opacity:1}}
-.cock{width:320px;font-family:var(--font-mono)}
-      .cock__bar{display:flex;align-items:center;gap:8px;padding:10px 13px;background:var(--color-card-lv2);border:1px solid var(--color-card-lv3);border-bottom:none;border-radius:var(--border-radius-xs) var(--border-radius-xs) 0 0;font-size:0.72rem;color:var(--color-info)}
-      .cock__bardot{width:7px;height:7px;border-radius:50%;background:var(--color-info);box-shadow:0 0 6px var(--color-info);animation:cock-live 2s ease-in-out infinite}
-      .cock__grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-card-lv3);border:1px solid var(--color-card-lv3);border-radius:0 0 var(--border-radius-xs) var(--border-radius-xs);overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
-      .cock__tile{background:var(--color-card-lv1);padding:14px 15px;display:flex;flex-direction:column;gap:7px;opacity:0;animation:cock-in 0.5s ease forwards}
-      .cock__tile--1{animation-delay:0.15s}.cock__tile--2{animation-delay:0.3s}.cock__tile--3{animation-delay:0.45s}.cock__tile--4{animation-delay:0.6s}
-      .cock__label{font-size:0.64rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.4px}
-      .cock__valrow{display:flex;align-items:baseline;gap:5px}
-      .cock__val{font-size:1.4rem;font-weight:700;color:var(--color-text);line-height:1}
-      .cock__unit{font-size:0.7rem;color:var(--color-text-dim)}
-      .cock__delta{margin-left:auto;font-size:0.62rem;font-weight:700;color:var(--color-success)}
-      .cock__spark{display:flex;align-items:flex-end;gap:3px;height:20px}
-      .cock__spark i{width:4px;height:var(--h);background:var(--color-info);border-radius:1px;transform:scaleY(0);transform-origin:bottom;animation:cock-bar 0.5s ease forwards}
-      .cock__spark i:nth-child(1){animation-delay:0.7s}.cock__spark i:nth-child(2){animation-delay:0.78s}.cock__spark i:nth-child(3){animation-delay:0.86s}.cock__spark i:nth-child(4){animation-delay:0.94s}.cock__spark i:nth-child(5){animation-delay:1.02s}.cock__spark i:nth-child(6){animation-delay:1.1s}
-      @keyframes cock-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-      @keyframes cock-bar{to{transform:scaleY(1)}}
-      @keyframes cock-live{0%,100%{opacity:1}50%{opacity:0.4}}
-      @media(prefers-reduced-motion:reduce){.cock__tile{animation:none;opacity:1}.cock__spark i{animation:none;transform:scaleY(1)}.cock__bardot{animation:none}}
+      .sgraph{width:100%;max-width:284px;height:auto;overflow:visible;font-family:var(--font-mono)}
+      /* context: the call graph kodus-graph builds around a changed function */
+      .sg-col{font-size:7px;letter-spacing:.08em;text-transform:uppercase;fill:var(--color-text-muted);text-anchor:middle;opacity:.8}
+      .sgc text{font-size:7px;text-anchor:middle;fill:var(--color-text-muted)}
+      .sgc--n rect,.sgc--t rect{fill:var(--color-card-lv1);stroke:var(--color-card-lv3)}
+      .sgc--n,.sgc--t{opacity:.35;animation:sg-node 6s infinite}
+      .sgc--core rect{fill:var(--color-primary-dark);stroke:var(--color-primary)}
+      .sgc--core text{fill:var(--color-primary);font-size:8px;font-weight:700}
+      .sgc--core{animation:sg-core 6s infinite;transform-box:fill-box;transform-origin:center}
+      .sgc--t rect{stroke-dasharray:3 3}
+      .sg-e{stroke:var(--color-primary);stroke-width:1.3;stroke-dasharray:1;stroke-dashoffset:1;animation:sg-draw 6s infinite}
+      .sg-e--test{stroke:var(--color-secondary);stroke-dasharray:1}
+      .sg-e1{animation-name:sg-draw1}.sg-e2{animation-name:sg-draw2}.sg-e3{animation-name:sg-draw3}.sg-e4{animation-name:sg-draw4}.sg-e5{animation-name:sg-draw5}
+      .sgc-1,.sgc-2{animation-name:sg-node12}.sgc-3,.sgc-4{animation-name:sg-node34}.sgc-5{animation-name:sg-node5}
+      .sg-risk{font-size:7.5px;fill:var(--color-primary);opacity:0;animation:sg-risk 6s infinite}
+      .sg-risk--r{text-anchor:end;fill:var(--color-text)}
+      .sg-risk__k{fill:var(--color-text-muted)}
+      @keyframes sg-core{0%{opacity:0;transform:scale(.8)}6%{opacity:1;transform:scale(1.08)}10%,92%{opacity:1;transform:scale(1)}98%,100%{opacity:0}}
+      @keyframes sg-draw1{0%,10%{stroke-dashoffset:1;opacity:1}20%,92%{stroke-dashoffset:0;opacity:.7}98%,100%{stroke-dashoffset:0;opacity:0}}
+      @keyframes sg-draw2{0%,14%{stroke-dashoffset:1;opacity:1}24%,92%{stroke-dashoffset:0;opacity:.7}98%,100%{stroke-dashoffset:0;opacity:0}}
+      @keyframes sg-draw3{0%,26%{stroke-dashoffset:1;opacity:1}36%,92%{stroke-dashoffset:0;opacity:.7}98%,100%{stroke-dashoffset:0;opacity:0}}
+      @keyframes sg-draw4{0%,30%{stroke-dashoffset:1;opacity:1}40%,92%{stroke-dashoffset:0;opacity:.7}98%,100%{stroke-dashoffset:0;opacity:0}}
+      @keyframes sg-draw5{0%,44%{stroke-dashoffset:1;opacity:1}54%,92%{stroke-dashoffset:0;opacity:.8}98%,100%{stroke-dashoffset:0;opacity:0}}
+      @keyframes sg-node12{0%,18%{opacity:.35}24%,92%{opacity:1}98%,100%{opacity:.35}}
+      @keyframes sg-node34{0%,34%{opacity:.35}40%,92%{opacity:1}98%,100%{opacity:.35}}
+      @keyframes sg-node5{0%,52%{opacity:.35}58%,92%{opacity:1}98%,100%{opacity:.35}}
+      @keyframes sg-risk{0%,62%{opacity:0}70%,92%{opacity:1}98%,100%{opacity:0}}
+      @media(prefers-reduced-motion:reduce){.sg-e{animation:none;stroke-dashoffset:0;opacity:.7}.sgc--n,.sgc--t,.sgc--core,.sg-risk{animation:none;opacity:1}}
+      /* shared shell for the text-card motifs */
+      .bval,.tdebt,.cock,.kchat{width:100%;max-width:286px;font-family:var(--font-mono)}
+      .bval__card,.tdebt__card,.cock__card,.kchat__card{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:var(--border-radius-xs);box-shadow:0 12px 40px rgba(0,0,0,0.4);padding:14px 15px}
+      /* business rules: the "Business Rules Validation" comment Kody posts on the PR */
+      .bval__h{font-size:0.7rem;font-weight:700;color:var(--color-text)}
+      .bval__meta{display:flex;align-items:flex-end;justify-content:space-between;margin-top:9px;font-size:0.64rem;color:var(--color-text)}
+      .bval__meta em{display:block;font-style:normal;font-size:0.56rem;color:var(--color-text-muted);margin-bottom:2px}
+      .bval__src{font-size:0.54rem;color:var(--color-secondary);border:1px solid var(--color-secondary-dark);border-radius:3px;padding:1px 5px}
+      .bval__acs{list-style:none;margin:11px 0 0;padding:10px 0 0;border-top:1px solid var(--color-card-lv3);display:grid;gap:7px}
+      .bval__ac{display:flex;align-items:center;gap:7px;font-size:0.6rem;color:var(--color-text-muted)}
+      .bval__ac span{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .bval__ac b{font-weight:400;color:var(--color-text-muted);opacity:.7}
+      .bval__ac i{flex-shrink:0;width:13px;height:13px;border-radius:3px;border:1px solid var(--color-card-lv3);display:grid;place-items:center;color:var(--color-success)}
+      .bval__ac i svg{width:9px;height:9px;opacity:0;animation:6s infinite}
+      .bval__ac--1 i svg{animation-name:bval-c1}.bval__ac--2 i svg{animation-name:bval-c2}
+      .bval__fix{display:flex;align-items:center;gap:8px;margin-top:9px;padding:6px 8px;border-radius:3px;background:rgba(250,88,103,0.08);box-shadow:inset 0 0 0 1px rgba(250,88,103,0.35);font-size:0.62rem;color:var(--color-text);opacity:0;animation:bval-fix 6s infinite}
+      .bval__lvl{font-size:0.54rem;font-weight:700;color:var(--color-danger)}
+      .bval__status{margin-top:10px;font-size:0.6rem;color:var(--color-text-muted);opacity:0;animation:bval-st 6s infinite}
+      .bval__status b{color:var(--color-danger)}
+      @keyframes bval-c1{0%,16%{opacity:0;transform:scale(.4)}22%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes bval-c2{0%,30%{opacity:0;transform:scale(.4)}36%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes bval-fix{0%,46%{opacity:0;transform:translateY(4px)}54%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes bval-st{0%,62%{opacity:0}70%,92%{opacity:1}98%,100%{opacity:0}}
+      /* tech_debt: suggestions left unimplemented become rows on the Issues page when the PR closes */
+      .tdebt__head{display:flex;align-items:center;justify-content:space-between;font-size:0.7rem;font-weight:700;color:var(--color-text)}
+      .tdebt__auto{display:flex;align-items:center;gap:6px;font-size:0.56rem;font-weight:400;color:var(--color-text-muted)}
+      .tdebt__switch{position:relative;width:22px;height:12px;border-radius:6px;background:var(--color-primary)}
+      .tdebt__switch::after{content:'';position:absolute;top:2px;left:12px;width:8px;height:8px;border-radius:50%;background:#fff}
+      .tdebt__event{margin-top:10px;padding:6px 8px;border-radius:3px;background:var(--color-card-lv2);font-size:0.56rem;color:var(--color-text-muted);opacity:0;animation:tdebt-ev 6s infinite}
+      .tdebt__list{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+      .tdebt__row{min-width:0;display:flex;align-items:flex-start;gap:6px;opacity:0;animation:6s infinite}
+      .tdebt__row--1{animation-name:tdebt-r1}.tdebt__row--2{animation-name:tdebt-r2}.tdebt__row--3{animation-name:tdebt-r3}
+      .tdebt__st,.tdebt__sev{flex-shrink:0;font-size:0.5rem;font-weight:700;border-radius:3px;padding:2px 4px;margin-top:1px}
+      .tdebt__st{color:var(--color-text);background:var(--color-card-lv3)}
+      .tdebt__sev--crit{color:var(--color-danger);box-shadow:inset 0 0 0 1px var(--color-danger)}
+      .tdebt__sev--high{color:var(--color-warning);box-shadow:inset 0 0 0 1px var(--color-warning)}
+      .tdebt__sev--med{color:var(--color-alert);box-shadow:inset 0 0 0 1px var(--color-alert)}
+      .tdebt__t{min-width:0;font-size:0.6rem;color:var(--color-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .tdebt__t small{display:block;font-size:0.52rem;color:var(--color-text-muted);margin-top:1px}
+      @keyframes tdebt-ev{0%,4%{opacity:0}10%,92%{opacity:1}98%,100%{opacity:0}}
+      @keyframes tdebt-r1{0%,18%{opacity:0;transform:translateX(-6px)}25%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes tdebt-r2{0%,30%{opacity:0;transform:translateX(-6px)}37%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes tdebt-r3{0%,42%{opacity:0;transform:translateX(-6px)}49%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      /* cockpit: the Productivity tab, with the app's own bands (Elite / High / Fair / Need focus) */
+      .cock__head{display:flex;justify-content:space-between;font-size:0.68rem;font-weight:700;color:var(--color-text);padding-bottom:10px}
+      .cock__range{font-weight:400;font-size:0.56rem;color:var(--color-text-muted)}
+      .cock__grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+      .cock__tile{background:var(--color-card-lv2);border-radius:3px;padding:8px 9px;display:flex;flex-direction:column;gap:4px;opacity:0;animation:6s infinite}
+      .cock__tile--1{animation-name:cock-t1}.cock__tile--2{animation-name:cock-t2}.cock__tile--3{animation-name:cock-t3}.cock__tile--4{animation-name:cock-t4}
+      .cock__k{font-size:0.5rem;color:var(--color-text-muted);white-space:nowrap}
+      .cock__v{font-size:0.95rem;font-weight:700;color:var(--color-text)}
+      .cock__v small{font-size:0.52rem;font-weight:400;color:var(--color-text-muted);margin-left:2px}
+      .cock__band{align-self:flex-start;font-size:0.5rem;font-weight:700;border-radius:3px;padding:1px 5px}
+      .cock__band--elite{color:var(--color-success);box-shadow:inset 0 0 0 1px var(--color-success)}
+      .cock__band--high{color:var(--color-info);box-shadow:inset 0 0 0 1px var(--color-info)}
+      .cock__band--fair{color:var(--color-alert);box-shadow:inset 0 0 0 1px var(--color-alert)}
+      @keyframes cock-t1{0%,6%{opacity:0;transform:translateY(5px)}14%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes cock-t2{0%,16%{opacity:0;transform:translateY(5px)}24%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes cock-t3{0%,26%{opacity:0;transform:translateY(5px)}34%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes cock-t4{0%,36%{opacity:0;transform:translateY(5px)}44%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @media(prefers-reduced-motion:reduce){.kchat__msg,.kchat__save,.bval__fix,.bval__status,.bval__ac i svg,.tdebt__event,.tdebt__row,.cock__tile{animation:none;opacity:1;transform:none}}
+      /* @kody in the PR: a short thread that ends with Kody offering to save a memory */
+      .kchat__card{display:grid;gap:9px}
+      .kchat__msg{display:grid;grid-template-columns:34px 1fr;gap:6px;align-items:start;font-size:0.62rem;color:var(--color-text);opacity:0;animation:6s infinite}
+      .kchat__msg p{margin:0;line-height:1.5;background:var(--color-card-lv2);border-radius:3px;padding:5px 8px}
+      .kchat__msg--kody p{background:rgba(201,187,242,0.08);box-shadow:inset 0 0 0 1px var(--color-secondary-dark)}
+      .kchat__msg b{color:var(--color-secondary);font-weight:700}
+      .kchat__msg code{font-family:inherit;color:var(--color-primary)}
+      .kchat__who{font-size:0.52rem;color:var(--color-text-muted);padding-top:5px}
+      .kchat__msg--kody .kchat__who{color:var(--color-secondary)}
+      .kchat__save{grid-column:2;justify-self:start;margin-top:5px;font-size:0.54rem;font-weight:700;color:var(--color-bg);background:var(--color-secondary);border-radius:3px;padding:3px 7px;opacity:0;animation:kchat-save 6s infinite}
+      .kchat__msg--1{animation-name:kchat-m1}.kchat__msg--2{animation-name:kchat-m2}.kchat__msg--3{animation-name:kchat-m3}.kchat__msg--4{animation-name:kchat-m4}
+      @keyframes kchat-m1{0%,4%{opacity:0;transform:translateY(5px)}10%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes kchat-m2{0%,18%{opacity:0;transform:translateY(5px)}24%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes kchat-m3{0%,36%{opacity:0;transform:translateY(5px)}42%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes kchat-m4{0%,52%{opacity:0;transform:translateY(5px)}58%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      @keyframes kchat-save{0%,66%{opacity:0;transform:scale(.8)}72%{opacity:1;transform:scale(1.08)}76%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+      /* context: a caller that lives in another, linked repository */
+      .sgc--x rect{stroke:var(--color-info);stroke-dasharray:3 2}
+      .sgc--x text{fill:var(--color-info)}
+      .sgc .sgc__repo{font-size:6px;text-anchor:start;fill:var(--color-info);opacity:.85}
+      /* cartridge 4: pushes keep getting reviewed, no hourly cap */
+      .cartridge__screen-body--nolimit{position:relative;overflow:hidden;background:#101019;height:110px;display:flex;align-items:stretch;gap:8px;padding:0 10px;font-family:var(--font-mono)}
+      .nolimit__log{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
+      .nolimit__track{display:flex;flex-direction:column;gap:6px;padding-top:6px;animation:nolimit-scroll 7s linear infinite}
+      .nolimit__line{display:flex;gap:6px;font-size:8.5px;white-space:nowrap;color:var(--color-text-muted)}
+      .nolimit__line i{font-style:normal;color:var(--color-text);min-width:52px}
+      .nolimit__line em{font-style:normal;opacity:.6}
+      .nolimit__line b{font-weight:400;color:var(--color-success);margin-left:auto}
+      .nolimit__rate{flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-left:8px;border-left:1px solid var(--color-card-lv3)}
+      .nolimit__rate b{font-size:1.6rem;line-height:1;color:var(--color-primary)}
+      .nolimit__rate span{font-size:7px;color:var(--color-text-muted);margin-top:4px}
+      @keyframes nolimit-scroll{to{transform:translateY(-50%)}}
+      @media(prefers-reduced-motion:reduce){.nolimit__track{animation:none}}
+      /* cartridge 3: model logos drifting above the accountant Kody */
+      .cartridge__models{position:absolute;top:8px;left:0;width:100%;height:36px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+      .cartridge__models .track-icon{width:26px !important;height:26px !important;opacity:.7}
+      .cartridge__models .model-track{gap:22px}
+      .cartridge__screen-body--tax .kody-taxa{width:92px !important}
+      /* Hero background: quiet corner traces */
+      .hero{position:relative}
+      .hero-circuit{position:absolute;left:50%;top:64px;transform:translateX(-50%);width:min(100%,1600px);height:auto;pointer-events:none;z-index:0;display:none}
+      @media(min-width:1200px){.hero-circuit{display:block}}
+      .hc-trace{fill:none;stroke:var(--color-card-lv3);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 9}
+      .hc-sq{fill:none;stroke:var(--color-card-lv3);stroke-width:2}
+      .hc-dot{fill:var(--color-primary);opacity:.85;animation:hc-blink 4s ease-in-out infinite}
+      .hc-dot--1{animation-delay:-1s}.hc-dot--2{animation-delay:-2s}.hc-dot--3{animation-delay:-3s}
+      @keyframes hc-blink{0%,100%{opacity:.35}50%{opacity:.9}}
+      .hc-bubble rect:first-child{fill:none;stroke:var(--color-card-lv3);stroke-width:2}
+      .hc-bubble path{fill:none;stroke:var(--color-card-lv3);stroke-width:2;stroke-linejoin:round}
+      .hc-bubble-dot{fill:var(--color-primary);opacity:.7;animation:hc-typing 1.6s steps(1) infinite}
+      .hc-bubble-dot:nth-of-type(3){animation-delay:.2s}.hc-bubble-dot:nth-of-type(4){animation-delay:.4s}
+      @keyframes hc-typing{0%,60%{opacity:.25}30%{opacity:.8}}
+      @media(prefers-reduced-motion:reduce){.hc-dot,.hc-bubble-dot{animation:none}}
+      /* set_rules: a Kody Rule card (same fields as the app) being written */
+      .srules{width:100%;max-width:286px;font-family:var(--font-mono)}
+      .srules__card{background:var(--color-card-lv1);border:1px solid var(--color-card-lv3);border-radius:var(--border-radius-xs);box-shadow:0 12px 40px rgba(0,0,0,0.4);padding:14px 15px 15px}
+      .srules__head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;min-height:32px}
+      .srules__title{font-size:0.74rem;font-weight:700;color:var(--color-text);line-height:1.35}
+      .srules__sev{flex-shrink:0;font-size:0.56rem;font-weight:700;letter-spacing:0.08em;color:var(--color-warning);border:1px solid var(--color-warning);border-radius:3px;padding:2px 5px;opacity:0;transform:scale(0.6);animation:srules-pop 6s infinite}
+      .srules__meta{display:flex;gap:22px;margin-top:12px;font-size:0.66rem;color:var(--color-text);opacity:0;animation:srules-meta 6s infinite}
+      .srules__meta em,.srules__ins em{display:block;font-style:normal;font-size:0.58rem;color:var(--color-text-muted);margin-bottom:3px}
+      .srules__ins{margin-top:12px;padding-top:11px;border-top:1px solid var(--color-card-lv3);font-size:0.66rem;color:var(--color-text-muted);line-height:1.6}
+      .srules__type{display:block;overflow:hidden;white-space:nowrap;width:0}
+      .srules__t1{animation:srules-t1 6s infinite}
+      .srules__t2{animation:srules-t2 6s infinite}
+      .srules__l1{animation:srules-l1 6s infinite}
+      .srules__l2{animation:srules-l2 6s infinite}
+      .srules__l2::after{content:'';display:inline-block;width:6px;height:0.9em;margin-left:2px;vertical-align:-1px;background:var(--color-secondary);animation:srules-caret 0.8s step-end infinite}
+      @keyframes srules-t1{0%{width:0;animation-timing-function:steps(20,end)}15%{width:20ch}92%{width:20ch;opacity:1}98%,100%{width:20ch;opacity:0}}
+      @keyframes srules-t2{0%,15%{width:0;animation-timing-function:steps(13,end)}25%{width:13ch}92%{width:13ch;opacity:1}98%,100%{width:13ch;opacity:0}}
+      @keyframes srules-pop{0%,28%{opacity:0;transform:scale(0.6)}32%{opacity:1;transform:scale(1.15)}35%,92%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(1)}}
+      @keyframes srules-meta{0%,36%{opacity:0}42%,92%{opacity:1}98%,100%{opacity:0}}
+      @keyframes srules-l1{0%,44%{width:0;animation-timing-function:steps(33,end)}62%{width:33ch}92%{width:33ch;opacity:1}98%,100%{width:33ch;opacity:0}}
+      @keyframes srules-l2{0%,63%{width:0;animation-timing-function:steps(19,end)}74%{width:20ch}92%{width:20ch;opacity:1}98%,100%{width:20ch;opacity:0}}
+      @keyframes srules-caret{50%{opacity:0}}
+      @media(prefers-reduced-motion:reduce){.srules__type{width:auto!important;animation:none!important}.srules__sev,.srules__meta{opacity:1;transform:none;animation:none}.srules__l2::after{display:none}}
 
       .feat-grid{padding:var(--section-padding) 0;position:relative;z-index:1}
-      .feat-grid__grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:1180px;margin:0 auto;border-top:1px solid var(--color-card-lv2);border-left:1px solid var(--color-card-lv2)}
+      .feat-grid__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:1180px;margin:0 auto;border-top:1px solid var(--color-card-lv2);border-left:1px solid var(--color-card-lv2)}
       .feat-cell{border-right:1px solid var(--color-card-lv2);border-bottom:1px solid var(--color-card-lv2);padding:38px 34px 34px;display:flex;flex-direction:column}
       .feat-cell__art{height:240px;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
       .feat-cell__art > *{max-width:100%}
       .feat-cell__title{font-family:var(--font-mono);font-size:1.3rem;color:var(--color-text);margin-bottom:14px;line-height:1.3}
       .feat-cell__desc{font-size:0.85rem;color:var(--color-text-muted);line-height:1.7}
-      .rsync{position:relative;width:230px;height:200px;display:flex;justify-content:center;align-items:center;overflow:hidden}
-      .rsync__circuit{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
-      .rsync__core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10}
-      .rsync__core .kody-box{width:84px;height:auto}
-      .rsync__tools{position:absolute;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-between;padding:26px 0;z-index:5;width:32px;align-items:center}
-      .rsync__tools--l{left:12%}
-      .rsync__tools--r{right:12%}
-      @media(max-width:980px){.feat-grid__grid{grid-template-columns:1fr 1fr}}
-      @media(max-width:640px){.feat-grid__grid{grid-template-columns:1fr}}
+      @media(max-width:980px){.feat-grid__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      @media(max-width:640px){.feat-grid__grid{grid-template-columns:minmax(0,1fr)}.feat-cell{padding:32px 20px 30px}}
       </style>
     </section>
 
@@ -1069,70 +1073,6 @@
       </div>
     </section>
 
-    <!-- ========== ROI Calculator ========== -->
-    <section class="roi" id="roi">
-      <div class="container">
-        <h2 class="section-title">Calculate your ROI</h2>
-
-        <div class="roi-calc">
-          <!-- LCD Display -->
-          <div class="roi-calc__display">
-            <div class="roi-calc__display-inner">
-              <span class="roi-calc__display-label">Estimated ROI</span>
-              <div class="roi-calc__display-value"><span id="roiROI">20x</span></div>
-              <div class="roi-calc__display-stats">
-                <div class="roi-calc__stat">
-                  <span class="roi-calc__stat-val" id="roiPRs">500</span>
-                  <span class="roi-calc__stat-label">PRs/month</span>
-                </div>
-                <div class="roi-calc__stat">
-                  <span class="roi-calc__stat-val" id="roiHours">250</span>
-                  <span class="roi-calc__stat-label">Hours saved</span>
-                </div>
-                <div class="roi-calc__stat">
-                  <span class="roi-calc__stat-val" id="roiCost">$12,500</span>
-                  <span class="roi-calc__stat-label">Monthly cost</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Input keys -->
-          <div class="roi-calc__inputs">
-            <div class="roi-calc__field">
-              <div class="roi-calc__field-top">
-                <label for="roiDevs" class="roi-calc__label">Developers on your team</label>
-                <span class="roi-calc__readout"><span id="roiDevsValue">50</span></span>
-              </div>
-              <span class="roi-calc__hint">We estimate ~10 PRs per developer each month</span>
-              <input type="range" class="roi-calc__slider" id="roiDevs" min="1" max="500" value="50">
-            </div>
-
-            <div class="roi-calc__field">
-              <div class="roi-calc__field-top">
-                <label for="roiRate" class="roi-calc__label">Average hourly rate</label>
-                <span class="roi-calc__readout">$<span id="roiRateValue">50</span></span>
-              </div>
-              <span class="roi-calc__hint">Cost per hour of developer time, including benefits</span>
-              <input type="range" class="roi-calc__slider" id="roiRate" min="20" max="200" value="50">
-            </div>
-
-            <div class="roi-calc__field">
-              <div class="roi-calc__field-top">
-                <label for="roiTime" class="roi-calc__label">Time spent per review</label>
-                <span class="roi-calc__readout"><span id="roiTimeValue">30</span> min</span>
-              </div>
-              <span class="roi-calc__hint">Average minutes a reviewer spends on each PR</span>
-              <input type="range" class="roi-calc__slider" id="roiTime" min="5" max="180" value="30">
-            </div>
-          </div>
-
-          <a href="https://app.kodus.io/sign-up" class="btn btn--primary roi-calc__cta" id="homeRoiStartFreeTrialBtn">Start Free Trial</a>
-        </div>
-
-      </div>
-    </section>
-
     <!-- ========== FAQ (Terminal / Man Page) ========== -->
     <section class="faq" id="faq">
       <div class="container">
@@ -1174,7 +1114,7 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "Which AI models are supported?"</span>
+                  <span class="faq__question-text">Which AI models are supported?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
@@ -1185,7 +1125,7 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "Can I restrict the permissions Kodus uses?"</span>
+                  <span class="faq__question-text">Can I restrict the permissions Kodus uses?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
@@ -1196,7 +1136,7 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "Will I be charged for all developers in my organization?"</span>
+                  <span class="faq__question-text">Will I be charged for all developers in my organization?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
@@ -1207,7 +1147,7 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "Do you train your AI model with my code or data?"</span>
+                  <span class="faq__question-text">Do you train your AI model with my code or data?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
@@ -1218,7 +1158,7 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "How does Kodus compare to CodeRabbit?"</span>
+                  <span class="faq__question-text">How does Kodus compare to CodeRabbit?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
@@ -1229,18 +1169,29 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "What Git providers are supported?"</span>
+                  <span class="faq__question-text">What Git providers are supported?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>GitHub, GitLab, Bitbucket, and Azure DevOps. Kodus integrates at the pull request level: it reads diffs, posts inline comments, and respects your existing review workflows. Setup takes under 5 minutes.</p>
+                  <p>GitHub, GitLab, Bitbucket, Azure DevOps and Forgejo/Gitea, including the self-managed versions: GitHub Enterprise Server (beta), GitLab Self-Managed and Bitbucket Data Center. Kodus integrates at the pull request level: it reads diffs, posts inline comments, and respects your existing review workflows. Setup takes under 5 minutes.</p>
                 </div>
               </div>
 
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "What does zero markup mean?"</span>
+                  <span class="faq__question-text">Does Kodus limit how many PRs it reviews per hour?</span>
+                  <span class="faq__toggle">+</span>
+                </button>
+                <div class="faq__answer">
+                  <p>No. With your own API key, every plan reviews unlimited PRs, and each push, rebase or force-push gets reviewed. The only limit is the rate limit your LLM provider sets on your key.</p>
+                </div>
+              </div>
+
+              <div class="faq__item">
+                <button class="faq__question">
+                  <span class="faq__prompt">$</span>
+                  <span class="faq__question-text">What does zero markup mean?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
@@ -1251,7 +1202,7 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "Do you store my source code?"</span>
+                  <span class="faq__question-text">Do you store my source code?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
@@ -1262,7 +1213,7 @@
               <div class="faq__item">
                 <button class="faq__question">
                   <span class="faq__prompt">$</span>
-                  <span class="faq__question-text">kodus --help "How does Kodus access my repositories?"</span>
+                  <span class="faq__question-text">How does Kodus access my repositories?</span>
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">

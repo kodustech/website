@@ -48,8 +48,27 @@ function kodus_get_schema_page_dates() {
 
     return [
         'published' => get_post_time(DATE_W3C, true, $post_id),
-        'modified' => get_post_modified_time(DATE_W3C, true, $post_id),
+        'modified' => kodus_get_effective_modified_time($post_id),
     ];
+}
+
+/**
+ * Most of these pages live in PHP templates, so editing the copy never touches
+ * the WP post and post_modified stays frozen at the last admin save. Use
+ * whichever is newer: the post save or the template file on disk (deploys
+ * rewrite the file, so its mtime is the real "last content change").
+ */
+function kodus_get_effective_modified_time($post_id) {
+    $post_ts = (int) get_post_modified_time('U', true, $post_id);
+    $template_ts = 0;
+    $slug = get_page_template_slug($post_id);
+    if ($slug) {
+        $path = get_stylesheet_directory() . '/' . $slug;
+        if (file_exists($path)) {
+            $template_ts = (int) filemtime($path);
+        }
+    }
+    return gmdate(DATE_W3C, max($post_ts, $template_ts));
 }
 
 function kodus_get_schema_page_title() {
@@ -107,6 +126,7 @@ function kodus_get_visible_software_application_reviews() {
             'author' => [
                 '@type' => 'Person',
                 'name' => 'David Barnett',
+                'jobTitle' => 'Principal Engineer, QuintoAndar',
             ],
             'reviewBody' => 'Kodus helps us reflect our standards in PRs to share knowledge and raise our code quality. Kody catches some subtle issues and calls attention to them so reviews and authors can have a more effective review. I appreciate the flexibility to configure custom rules and integrations.',
             'reviewRating' => [
@@ -135,6 +155,7 @@ function kodus_get_visible_software_application_reviews() {
             'author' => [
                 '@type' => 'Person',
                 'name' => 'João H. Kersul',
+                'jobTitle' => 'Principal Engineer, Doji',
             ],
             'reviewBody' => 'These days, Kodus is part of our daily review routine. It helps a lot with error handling and brings up suggestions that would often go unnoticed. This active listening and fast turnaround have made a real difference for our engineering team.',
             'reviewRating' => [
@@ -149,6 +170,7 @@ function kodus_get_visible_software_application_reviews() {
             'author' => [
                 '@type' => 'Person',
                 'name' => 'Ricardo',
+                'jobTitle' => 'Director, Ikatec',
             ],
             'reviewBody' => 'Since we started using Kody, the dev experience has improved a lot. Time spent on code reviews dropped by around 30%, and the AI brings valuable insights on performance, security, and code optimization. One of the best parts is that we can tailor how it works for each project.',
             'reviewRating' => [
@@ -177,6 +199,7 @@ function kodus_get_visible_software_application_reviews() {
             'author' => [
                 '@type' => 'Person',
                 'name' => 'Raphael Sampaio',
+                'jobTitle' => 'CTO, Pilar',
             ],
             'reviewBody' => 'Kodus has been helping us save a lot of time on code reviews, while also providing key engineering productivity metrics. Since we started using the tool, our average review time has dropped from hours to minutes.',
             'reviewRating' => [
@@ -191,6 +214,7 @@ function kodus_get_visible_software_application_reviews() {
             'author' => [
                 '@type' => 'Person',
                 'name' => 'Pedro Maia',
+                'jobTitle' => 'Founder, Notificações Inteligentes',
             ],
             'reviewBody' => 'We trained the team to use AI in day-to-day coding, and Kodus stepped in as our senior reviewer that never forgets anything. It doesn\'t replace human review, but it\'s now a required step: it ensures consistency and prevents repeat incidents.',
             'reviewRating' => [
@@ -356,7 +380,7 @@ function kodus_get_home_faq_schema() {
                 'name' => 'How does Kodus compare to CodeRabbit?',
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => 'Kodus is open source, model agnostic, and charges zero markup on LLM costs. With Kodus you control the model, the cost, and the rules.',
+                    'text' => 'Both review pull requests with AI. Kodus is open source with an AGPL core, you can self-host it without an enterprise seat minimum, and bring-your-own-keys with zero token markup is the default on every plan.',
                 ],
             ],
             [
@@ -364,7 +388,15 @@ function kodus_get_home_faq_schema() {
                 'name' => 'What Git providers are supported?',
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => 'Kodus supports GitHub, GitLab, Bitbucket, and Azure DevOps, integrating at the pull request level with existing review workflows.',
+                    'text' => 'GitHub, GitLab, Bitbucket, Azure DevOps and Forgejo/Gitea, including the self-managed versions: GitHub Enterprise Server (beta), GitLab Self-Managed and Bitbucket Data Center. Kodus integrates at the pull request level: it reads diffs, posts inline comments, and respects your existing review workflows. Setup takes under 5 minutes.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Does Kodus limit how many PRs it reviews per hour?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'No. With your own API key, every plan reviews unlimited PRs, and each push, rebase or force-push gets reviewed. The only limit is the rate limit your LLM provider sets on your key.',
                 ],
             ],
             [
@@ -541,3 +573,13 @@ function kodus_output_structured_data() {
     }
 }
 add_action('wp_head', 'kodus_output_structured_data', 30);
+
+
+// The SEO plugin emits its own WebPage node with the post's modified date; align it.
+add_filter('wpseo_schema_webpage', function ($data) {
+    $post_id = function_exists('kodus_get_schema_page_post_id') ? kodus_get_schema_page_post_id() : 0;
+    if ($post_id && get_page_template_slug($post_id)) {
+        $data['dateModified'] = kodus_get_effective_modified_time($post_id);
+    }
+    return $data;
+}, 20);
