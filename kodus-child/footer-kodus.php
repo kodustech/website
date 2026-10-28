@@ -27,7 +27,8 @@
           <ul class="footer__col-list">
             <li><a href="https://kodus.io/pricing/">Pricing</a></li>
             <li><a href="https://kodus.io/customers/">Customers</a></li>
-            <li><a href="https://kodus.io/code-review-rules/">Kody Rules</a></li>
+            <li><a href="https://kodus.io/byo-llm-code-review/">BYOK LLM code review</a></li>
+            <li><a href="https://kodus.io/self-hosted-ai-code-review/">Self-hosted AI code review</a></li>
             <li><a href="https://docs.kodus.io/how_to_use/en/security/data_usage">Security</a></li>
             <li><a href="https://trust.kodus.io/">Trust Center</a></li>
             <li><a href="https://status.kodus.io/">Status Kodus</a></li>
@@ -47,6 +48,7 @@
           <ul class="footer__col-list">
             <li><a href="https://kodus.io/benchmark-ai-code-review/">AI Code Review Tools Benchmarks</a></li>
             <li><a href="https://codereviewbench.com/">LLMs Performance Benchmark</a></li>
+            <li><a href="https://kodus.io/data/">State of AI Code Review 2026</a></li>
             <li><a href="https://ai-skills.io/">Agent Skills Library</a></li>
             <li><a href="https://kodus.io/how-software-engineering-teams-are-using-ai-to-be-more-effective/">White Paper</a></li>
             <li><a href="https://kodus.io/kodus-vs-coderabbit/">Kodus vs Coderabbit</a></li>

@@ -112,6 +112,7 @@
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> Use unlimited Kody Rules</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> Use unlimited active plugins</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> Priority queue for Kody Agents</li>
+                <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> Custom Agents</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> Engineering Metrics / Cockpit</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Discord Community and Email Support</li>
               </ul>
@@ -158,6 +159,7 @@
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Use unlimited Kody Rules</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Use unlimited active plugins</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Priority queue for Kody Agents</li>
+                <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Custom Agents</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> Engineering Metrics / Cockpit</li>
                 <li class="pricing__feature pricing__feature--highlight"><span class="pricing__check">&#10003;</span> RBAC + Audit logs and analytics</li>
                 <li class="pricing__feature"><span class="pricing__check">&#10003;</span> SOC 2</li>
