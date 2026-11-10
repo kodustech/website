@@ -3,173 +3,87 @@
  * Template Name: Kodus AI Review Cost
  * Template Post Type: page
  */
+get_header('kodus');
 ?>
-<?php get_header('kodus'); ?>
-
 <style>
-/* Page-local additions. Reuses theme vars and the ROI calculator components. */
-.cost-calc__bars {
-  display: grid;
-  gap: 14px;
-}
-.cost-calc__row {
-  display: grid;
-  grid-template-columns: 130px minmax(0, 1fr) 120px;
-  gap: 12px;
-  align-items: center;
-}
-.cost-calc__name {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--color-text-muted);
-}
-.cost-calc__row--kodus .cost-calc__name { color: var(--color-primary); font-weight: 700; }
-.cost-calc__track {
-  height: 22px;
-  background: var(--color-card-lv2);
-  border-radius: var(--border-radius-xs);
-  overflow: hidden;
-}
-.cost-calc__fill {
-  height: 100%;
-  min-width: 2px;
-  background: var(--color-card-lv3);
-  border-radius: 0 var(--border-radius-xs) var(--border-radius-xs) 0;
-  transition: width .25s ease;
-}
-.cost-calc__row--kodus .cost-calc__fill { background: var(--color-primary); }
-.cost-calc__val {
-  text-align: right;
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  color: var(--color-text);
-  font-size: 15px;
-}
-.cost-calc__val small {
-  display: block;
-  color: var(--color-text-dim);
-  font-size: 11px;
-}
-.cost-calc__note {
-  margin-top: 18px;
-  font-size: 12px;
-  color: var(--color-text-dim);
-  font-family: var(--font-mono);
-}
-.cost-calc__assumptions {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 72px 0 24px;
-}
-.cost-calc__assumptions h2 {
-  font-size: 22px;
-  margin: 0 0 16px;
-}
-.cost-calc__assumptions ul {
-  margin: 0;
-  padding-left: 18px;
-  display: grid;
-  gap: 10px;
-  color: var(--color-text-muted);
-  line-height: 1.6;
-}
-.cost-calc__assumptions a { color: var(--color-secondary); }
-.cost-calc__checked {
-  margin-top: 18px;
-  font-size: 13px;
-  color: var(--color-text-dim);
-}
-@media (max-width: 640px) {
-  .cost-calc__row { grid-template-columns: minmax(0, 1fr) 96px; }
-  .cost-calc__track { grid-column: 1 / -1; grid-row: 2; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cost-calc__fill { transition: none; }
-}
+.cost-page { --cc-bg:#101019; --cc-panel:#181825; --cc-line:#34344c; --cc-muted:#aaaabb; --cc-orange:#ffbc78; font-family:Inter,Arial,sans-serif; color:#f7f7fb; }
+.cost-page * { box-sizing:border-box; }
+.cost-page .cost-wrap { max-width:1160px; margin:auto; padding:0 24px; }
+.cost-page .cost-intro { padding:135px 0 38px; }
+.cost-page .cost-eyebrow { color:var(--cc-orange); font:600 12px/1.5 var(--font-mono); letter-spacing:.12em; text-transform:uppercase; margin:0 0 18px; }
+.cost-page h1 { max-width:800px; margin:0; font:700 clamp(30px,4vw,51px)/1.16 Inter, sans-serif; letter-spacing:-.035em; text-wrap:balance; }
+.cost-page .cost-lead { color:#bcbcca; font-size:17px; line-height:1.6; margin:15px 0 0; max-width:660px; }
+.cost-page .cost-tool { border:1px solid #3a3a53; border-radius:12px; background:var(--cc-panel); overflow:hidden; box-shadow:0 18px 55px #0004; }
+.cost-page .cost-top { display:flex; justify-content:space-between; gap:16px; align-items:center; padding:16px 28px; border-bottom:1px solid var(--cc-line); font:600 12px/1.5 var(--font-mono); letter-spacing:.06em; color:#d7d7e2; }
+.cost-page .cost-top span:last-child { color:#aaaabb; font-weight:400; letter-spacing:0; }
+.cost-page .cost-layout { display:grid; grid-template-columns:minmax(270px, .85fr) minmax(0,1.6fr); }
+.cost-page .cost-inputs { padding:30px 28px; border-right:1px solid var(--cc-line); }
+.cost-page .cost-section-label { font:600 11px/1.4 var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:#b8b8ca; margin:0 0 10px; }
+.cost-page h2 { font-size:21px; line-height:1.25; margin:0; color:#f7f7fb; }
+.cost-page .cost-help { color:var(--cc-muted); font-size:14px; line-height:1.55; margin:8px 0 25px; }
+.cost-page .cost-field { display:block; margin:0 0 22px; }
+.cost-page .cost-field label { display:block; color:#e4e4ed; font-size:14px; font-weight:600; margin-bottom:8px; }
+.cost-page .cost-number-wrap { display:flex; align-items:center; background:#101019; border:1px solid #55556b; border-radius:6px; padding:0 13px; }
+.cost-page .cost-number-wrap:focus-within { outline:2px solid var(--cc-orange); outline-offset:2px; }
+.cost-page .cost-number-wrap input { width:100%; min-width:0; height:48px; border:0; outline:0; background:transparent; color:white; font:600 19px/1 var(--font-mono); }
+.cost-page .cost-number-wrap input::-webkit-inner-spin-button, .cost-page .cost-number-wrap input::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+.cost-page .cost-number-wrap input[type=number] { appearance:textfield; -moz-appearance:textfield; }
+.cost-page .cost-number-wrap span { white-space:nowrap; font-size:12px; color:var(--cc-muted); }
+.cost-page .cost-hint { color:#a5a5b7; font-size:12px; line-height:1.5; margin:7px 0 0; }
+.cost-page .cost-volume { background:#222233; border:1px solid #38384e; border-radius:6px; padding:14px; color:#c7c7d5; font-size:13px; line-height:1.5; }
+.cost-page .cost-volume strong { color:#fff; }
+.cost-page .cost-results { padding:30px 32px; min-width:0; }
+.cost-page .cost-results-head { display:flex; align-items:end; justify-content:space-between; gap:15px; margin-bottom:16px; }
+.cost-page .cost-results-head p { margin:0; font-size:12px; color:#b7b7c8; white-space:nowrap; }
+.cost-page .cost-row { border-top:1px solid #36364b; padding:15px 0 14px; }
+.cost-page .cost-row__head,.cost-page .cost-row__bottom { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.cost-page .cost-row__head { margin-bottom:10px; }
+.cost-page .cost-row__name { font-weight:600; font-size:15px; }
+.cost-page .cost-row--kodus .cost-row__name { color:var(--cc-orange); }
+.cost-page .cost-row__badge { color:#ffd6a9; font:600 10px/1 var(--font-mono); border:1px solid #805f49; padding:3px 5px; border-radius:3px; vertical-align:2px; margin-left:5px; }
+.cost-page .cost-row__amount { font:700 20px/1.2 var(--font-mono); white-space:nowrap; }
+.cost-page .cost-row__amount small { font:400 11px/1 var(--font-mono); color:#b5b5c5; }
+.cost-page .cost-row__track { height:7px; flex:1; background:#303043; border-radius:8px; overflow:hidden; }
+.cost-page .cost-row__fill { background:#85859b; height:100%; border-radius:8px; transition:width .2s ease; min-width:2px; }
+.cost-page .cost-row--kodus .cost-row__fill { background:var(--cc-orange); }
+.cost-page .cost-row__per { width:87px; text-align:right; white-space:nowrap; color:#b8b8c9; font:12px/1.2 var(--font-mono); }
+.cost-page .cost-disclaimer { margin:13px 0 0; color:#bcbcca; font-size:13px; line-height:1.55; }
+.cost-page .cost-disclaimer a,.cost-page .cost-assumptions a { color:#ffca96; text-decoration:underline; text-underline-offset:3px; }
+.cost-page .cost-bottom { display:flex; justify-content:space-between; align-items:center; gap:20px; background:#12121d; border-top:1px solid var(--cc-line); padding:18px 28px; }
+.cost-page .cost-bottom p { margin:0; color:#bdbdca; font-size:13px; line-height:1.5; }
+.cost-page .cost-bottom .btn { flex-shrink:0; }
+.cost-page .cost-assumptions { max-width:960px; margin:0 auto; padding:52px 0 75px; }
+.cost-page .cost-assumptions h2 { margin:0 0 10px; }
+.cost-page .cost-assumptions > p { color:#b6b6c6; line-height:1.6; font-size:14px; }
+.cost-page .cost-assumptions ul { list-style:none; padding:0; margin:24px 0; border-top:1px solid var(--cc-line); }
+.cost-page .cost-assumptions li { border-bottom:1px solid var(--cc-line); padding:16px 0; color:#c8c8d4; font-size:14px; line-height:1.65; }
+.cost-page .cost-assumptions strong { color:white; }
+@media(max-width:760px) { .cost-page .cost-intro { padding:115px 0 28px; } .cost-page .cost-layout { grid-template-columns:1fr; } .cost-page .cost-inputs { border-right:0; border-bottom:1px solid var(--cc-line); } .cost-page .cost-inputs,.cost-page .cost-results { padding:24px 20px; } .cost-page .cost-top,.cost-page .cost-bottom { padding:16px 20px; } .cost-page .cost-bottom { align-items:stretch; flex-direction:column; } .cost-page .cost-bottom .btn { justify-content:center; } }
+@media(max-width:420px) { .cost-page .cost-wrap { padding:0 16px; } .cost-page .cost-top span:last-child { display:none; } .cost-page .cost-row__amount { font-size:17px; } .cost-page .cost-row__amount small { display:none; } .cost-page .cost-results-head { align-items:start; flex-direction:column; gap:5px; } }
+@media(prefers-reduced-motion:reduce) { .cost-page .cost-row__fill { transition:none; } }
 </style>
-
-<main>
-
-    <section class="roi-hero">
-      <div class="container">
-        <div class="roi-hero__header">
-          <h1 class="roi-hero__title">What AI code review costs your team</h1>
-          <p class="roi-hero__subtitle">Put in your team size and PR volume. The calculator does the rest with public list prices.</p>
-        </div>
+<main class="cost-page">
+  <section class="cost-intro"><div class="cost-wrap">
+    <p class="cost-eyebrow">Kodus / Cost calculator</p>
+    <h1>What does AI code review cost your team?</h1>
+    <p class="cost-lead">Compare estimated monthly costs across five tools using your team size and PR volume.</p>
+  </div></section>
+  <section><div class="cost-wrap"><div class="cost-tool">
+    <div class="cost-top"><span>▦ &nbsp; REVIEW COST CALCULATOR</span><span>Monthly estimates · USD</span></div>
+    <div class="cost-layout">
+      <div class="cost-inputs"><p class="cost-section-label">01 / Your team</p><h2>Start with your numbers</h2><p class="cost-help">Change either value to update the comparison.</p>
+        <div class="cost-field"><label for="costDevs">Developers opening PRs</label><div class="cost-number-wrap"><input id="costDevs" type="number" inputmode="numeric" min="1" max="500" value="50"><span>developers</span></div><p class="cost-hint">People whose PRs will be reviewed.</p></div>
+        <div class="cost-field"><label for="costPrs">PRs per developer</label><div class="cost-number-wrap"><input id="costPrs" type="number" inputmode="numeric" min="1" max="100" value="12"><span>PRs / month</span></div><p class="cost-hint">Average opened by each developer monthly.</p></div>
+        <div class="cost-volume">That's <strong><span id="costTotalPrs">600</span> PRs per month</strong> across your team.</div>
       </div>
-    </section>
-
-    <section class="roi">
-      <div class="container">
-        <div class="roi-industrial">
-          <div class="roi-screw roi-screw--tl"></div>
-          <div class="roi-screw roi-screw--tr"></div>
-          <div class="roi-screw roi-screw--bl"></div>
-          <div class="roi-screw roi-screw--br"></div>
-
-          <div class="roi-ind__header">
-            <div class="roi-ind__brand">
-              <span class="roi-ind__logo">KODUS</span>
-              <span class="roi-ind__subtitle">REVIEW COST</span>
-            </div>
-            <div class="roi-ind__status">
-              <span class="roi-ind__dot"></span>
-              MONTHLY ESTIMATE
-            </div>
-          </div>
-
-          <div class="roi-ind__label-bar">YOUR TEAM</div>
-
-          <div class="roi-ind__grid">
-            <div class="roi-ind__controls">
-
-              <div class="roi-ind__input-card">
-                <div class="roi-ind__input-header">
-                  <label for="costDevs" class="roi-ind__label">Developers opening PRs</label>
-                  <div class="roi-ind__value-display"><span id="costDevsValue">50</span> DEVS</div>
-                </div>
-                <div class="roi-ind__slider-row">
-                  <span class="roi-ind__range-limit">1-500</span>
-                  <input type="range" class="roi-ind__slider" id="costDevs" min="1" max="500" value="50">
-                </div>
-              </div>
-
-              <div class="roi-ind__input-card">
-                <div class="roi-ind__input-header">
-                  <label for="costPrs" class="roi-ind__label">PRs per developer per month</label>
-                  <div class="roi-ind__value-display"><span id="costPrsValue">12</span> PRS</div>
-                </div>
-                <div class="roi-ind__slider-row">
-                  <span class="roi-ind__range-limit">1-100</span>
-                  <input type="range" class="roi-ind__slider" id="costPrs" min="1" max="100" value="12">
-                </div>
-              </div>
-
-              <a href="https://app.kodus.io/sign-up" class="btn btn--primary roi-ind__cta-btn" id="costCalculatorStartFreeBtn">START FREE</a>
-            </div>
-
-            <div class="roi-ind__monitor-frame">
-              <div class="roi-ind__monitor-screen">
-                <span class="roi-ind__roi-label">COST PER MONTH, WHOLE TEAM</span>
-                <div class="cost-calc__bars" id="costBars" aria-live="polite"></div>
-                <p class="cost-calc__note">Per-dev cost under each total. Kodus includes the model tokens you pay your provider with your own key.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="roi-ind__footer">
-            <div class="roi-ind__dots"><span></span><span></span><span></span><span></span></div>
-            <div class="roi-ind__model-info">LIST PRICES, CHECKED NOV 10, 2026</div>
-            <div class="roi-ind__dots"><span></span><span></span><span></span><span></span></div>
-          </div>
-        </div>
+      <div class="cost-results"><div class="cost-results-head"><div><p class="cost-section-label">02 / Comparison</p><h2>Estimated monthly cost</h2></div><p>Whole team · USD</p></div>
+        <div id="costBars" aria-live="polite"></div>
+        <p class="cost-disclaimer">Estimates use public list prices and assumptions about usage. Kodus includes estimated model costs paid to your provider. <a href="#cost-assumptions">See how we calculated this ↓</a></p>
       </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="cost-calc__assumptions">
-          <h2>How the numbers are calculated</h2>
+    </div>
+    <div class="cost-bottom"><p>Compare the numbers, then try Kodus on your own code.</p><a class="btn btn--primary" href="https://app.kodus.io/sign-up">START FREE →</a></div>
+  </div></div></section>
+  <section id="cost-assumptions"><div class="cost-wrap"><div class="cost-assumptions"><p class="cost-section-label">The fine print</p><h2>How the numbers are calculated</h2><p>These are estimates, not quotes. The assumptions below affect the comparison.</p>
           <ul>
             <li>A PR gets about 2 reviews on average (2.16), because each new push is reviewed again. Tools that charge per review pay for each one. This is the average we measured on Kodus in October 2026.</li>
             <li><strong>Kodus:</strong> Teams plan at $10 per developer per month (monthly billing; $8 on annual), plus model tokens paid directly to your provider with your own key. Tokens are estimated at about $0.16 per PR on DeepSeek V4 Flash, which already covers every review on that PR. <a href="https://kodus.io/pricing/" target="_blank" rel="noopener">Pricing</a></li>
@@ -179,12 +93,8 @@
             <li><strong>Greptile:</strong> Pro at $1 per credit, and a Base review uses 1 credit. Plus (3 credits) and Apex (10 credits) reviews cost more. <a href="https://www.greptile.com/pricing" target="_blank" rel="noopener">Pricing</a></li>
           </ul>
           <p class="cost-calc__checked">Prices checked on November 10, 2026. Vendors change them; the links above have the current numbers. Your own costs depend on PR size, the model you pick and how often your team pushes.</p>
-        </div>
-      </div>
-    </section>
-
+</div></div></section>
 </main>
-
 <script>
 (function () {
   var REVIEWS_PER_PR = 2.16;
@@ -192,7 +102,6 @@
   var prsInput = document.getElementById('costPrs');
   var bars = document.getElementById('costBars');
   if (!devsInput || !prsInput || !bars) return;
-
   function perDev(prs) {
     var reviews = prs * REVIEWS_PER_PR;
     return [
@@ -211,8 +120,7 @@
   function render() {
     var devs = Math.max(1, parseInt(devsInput.value, 10) || 1);
     var prs = Math.max(1, parseInt(prsInput.value, 10) || 1);
-    document.getElementById('costDevsValue').textContent = devs;
-    document.getElementById('costPrsValue').textContent = prs;
+    document.getElementById('costTotalPrs').textContent = (devs * prs).toLocaleString('en-US');
 
     var rows = perDev(prs);
     var max = 1;
@@ -220,18 +128,30 @@
 
     bars.innerHTML = rows.map(function (r) {
       var total = r.value * devs;
-      return '<div class="cost-calc__row' + (r.kodus ? ' cost-calc__row--kodus' : '') + '">' +
-        '<span class="cost-calc__name">' + r.name + '</span>' +
-        '<div class="cost-calc__track"><div class="cost-calc__fill" style="width:' + (total / max * 100).toFixed(1) + '%"></div></div>' +
-        '<span class="cost-calc__val">' + money(total) + '<small>' + money(r.value) + ' per dev</small></span>' +
-      '</div>';
+      return '<div class="cost-row' + (r.kodus ? ' cost-row--kodus' : '') + '">' +
+        '<div class="cost-row__head"><span class="cost-row__name">' + r.name + (r.kodus ? ' <span class="cost-row__badge">BYOK</span>' : '') + '</span>' +
+        '<span class="cost-row__amount">' + money(total) + '<small> / month</small></span></div>' +
+        '<div class="cost-row__bottom"><div class="cost-row__track"><div class="cost-row__fill" style="width:' + (total / max * 100).toFixed(1) + '%"></div></div>' +
+        '<span class="cost-row__per">' + money(r.value) + ' / dev</span></div></div>';
     }).join('');
   }
 
-  devsInput.addEventListener('input', render);
-  prsInput.addEventListener('input', render);
+
+  function update() {
+    if (!devsInput.value || !prsInput.value) return;
+    render();
+  }
+  function clamp(input) {
+    var value = parseInt(input.value, 10);
+    if (!Number.isFinite(value)) value = Number(input.min);
+    input.value = Math.min(Number(input.max), Math.max(Number(input.min), value));
+    render();
+  }
+  [devsInput, prsInput].forEach(function(input) {
+    input.addEventListener('input', update);
+    input.addEventListener('change', function() { clamp(input); });
+  });
   render();
 })();
 </script>
-
 <?php get_footer('kodus'); ?>
