@@ -58,6 +58,7 @@ function kodus_get_english_product_templates() {
         'page-kodus-vs-claude.php',
         'page-self-hosted-ai-code-review.php',
         'page-byo-llm-code-review.php',
+        'page-ai-review-cost.php',
         'page-policy-as-code-review.php',
         'page-data.php',
         'page-manifesto.php',
@@ -116,6 +117,7 @@ function kodus_get_product_meta_titles() {
         'page-kodus-vs-github.php' => 'Kodus vs GitHub Copilot | AI Code Review Tools Compared',
         'page-kodus-vs-claude.php' => 'Kodus vs Claude | AI Code Review Tools Compared',
         'page-self-hosted-ai-code-review.php' => 'Self-Hosted AI Code Review | Kodus (Open Source, AGPLv3)',
+        'page-ai-review-cost.php' => 'AI Code Review Cost Calculator | Kodus vs Copilot, Bugbot, CodeRabbit',
         'page-byo-llm-code-review.php' => 'BYO LLM Code Review: Bring Your Own Key, Zero Markup | Kodus',
         'page-policy-as-code-review.php' => 'Policy as Code Review | Kodus (Plain-English Rules, Per-Folder)',
         'page-data.php' => 'State of AI Code Review 2026 | Kodus Research',
@@ -153,6 +155,7 @@ function kodus_get_product_meta_descriptions() {
         'page-kodus-vs-github.php' => 'Here’s how Kodus stacks up against GitHub Copilot in features, customization, context understanding, and how well it fits your team.',
         'page-kodus-vs-claude.php' => 'See how Kodus compares to Claude in features, customization, contextual understanding, and overall fit for your team.',
         'page-self-hosted-ai-code-review.php' => 'Open source (AGPLv3) AI code review you self-host on-prem or in your cloud, with GitHub Enterprise Server, GitLab Self-Managed and any OpenAI-compatible LLM.',
+        'page-ai-review-cost.php' => 'Estimate what AI code review costs your team per month on Kodus, GitHub Copilot code review, Cursor Bugbot, CodeRabbit and Greptile, using public list prices.',
         'page-byo-llm-code-review.php' => 'Open source AI code review on your own LLM key, on every plan. 12 providers plus any OpenAI-compatible or local model, per repo, with zero markup.',
         'page-policy-as-code-review.php' => 'Write your team review rules in plain English. Kodus enforces them in every PR with inline comments. Per repo, per folder, versioned audit trail. Open source, AGPLv3.',
         'page-data.php' => '180,739 AI code-review suggestions across 530 organizations: what happens after an AI leaves a review comment. 33.2% become code. Kodus production data, Sep 2025 to Jun 2026.',
@@ -335,6 +338,7 @@ function kodus_get_retro_templates() {
         'page-kodus-vs-claude.php',
         'page-self-hosted-ai-code-review.php',
         'page-byo-llm-code-review.php',
+        'page-ai-review-cost.php',
         'page-policy-as-code-review.php',
         'page-data.php',
         'page-manifesto.php',
@@ -658,6 +662,7 @@ function kodus_register_page_templates($templates) {
     $templates['page-kodus-vs-claude.php']     = 'Kodus vs Claude';
     $templates['page-self-hosted-ai-code-review.php'] = 'Kodus Self-Hosted AI Code Review';
     $templates['page-byo-llm-code-review.php']        = 'Kodus BYO LLM Code Review';
+    $templates['page-ai-review-cost.php']             = 'Kodus AI Review Cost';
     $templates['page-policy-as-code-review.php']      = 'Kodus Policy as Code Review';
     $templates['page-data.php']                       = 'Kodus Data Report';
     $templates['page-manifesto.php']                  = 'Kodus Manifesto';
