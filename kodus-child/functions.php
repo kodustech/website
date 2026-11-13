@@ -269,6 +269,7 @@ function kodus_get_product_meta_images() {
         'page-data.php' => get_stylesheet_directory_uri() . '/assets/img/og-data.png',
         'page-home.php' => get_stylesheet_directory_uri() . '/assets/img/og-home.jpg',
         'page-self-hosted-ai-code-review.php' => get_stylesheet_directory_uri() . '/assets/img/og-self-hosted.jpg',
+        'page-creators.php' => get_stylesheet_directory_uri() . '/assets/img/og-creators.jpg',
     ];
 }
 
