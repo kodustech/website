@@ -36,7 +36,7 @@
     .cr-stat__value { font-family: var(--font-pixel); font-size: 1.1rem; color: var(--color-primary); display: block; margin-bottom: 8px; }
     .cr-stat__label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); }
 
-    .cr-section { padding: 72px 0; }
+    .cr-section { padding: 88px 0; }
     .cr-section .section-title { margin-bottom: 20px; }
     .cr-section__lead { text-align: center; color: var(--color-text-muted); max-width: 640px; margin: 0 auto 48px; }
 
@@ -60,8 +60,6 @@
     .cr-list li::before { content: "\2713"; color: var(--color-success); font-weight: 700; flex: none; }
     .cr-list--x li::before { content: "\2715"; color: var(--color-danger); }
 
-    .cr-example { margin-top: 28px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-text-muted); text-align: center; }
-    .cr-example strong { color: var(--color-text); }
 
     .cr-types { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
     .cr-types th, .cr-types td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--color-card-lv3); vertical-align: top; }
@@ -101,6 +99,15 @@
     }
     .faq__answer p { line-height: 1.8; }
     .faq__answer p + p { margin-top: 14px; }
+    .cr-example { margin: 32px auto 8px; max-width: 760px; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.8; color: var(--color-text-muted); text-align: center; }
+    .cr-example strong { color: var(--color-text); }
+    .cr-example + .cr-rules { margin-top: 40px; }
+    .section-title { text-wrap: balance; }
+    #rules .cr-section__lead, #rewards .cr-section__lead { max-width: 860px; }
+    p, li, td { text-wrap: pretty; }
+    #faq-creators { padding: 88px 0 120px; }
+    #faq-creators .section-title { margin-bottom: 48px; }
+    @media (max-width: 640px) { .cr-section, #faq-creators { padding: 64px 0; } }
   </style>
 </head>
 <body class="benchmark-page">
@@ -180,7 +187,7 @@
             <div class="cr-window__body">
               <span class="cr-step__num">01</span>
               <h3 class="cr-step__title">Sign up</h3>
-              <p class="cr-step__text">Fill in the form below. You get your referral links to kodus.io by email right away, one to use in X posts and one for LinkedIn, plus an invite to the creators channel.</p>
+              <p class="cr-step__text">Fill out the form below. We'll email you your personalized Kodus link to use in your posts, along with an invite to our creators channel. The link helps us track the traffic you bring to Kodus.</p>
             </div>
           </div>
           <div class="cr-window">
@@ -188,7 +195,7 @@
             <div class="cr-window__body">
               <span class="cr-step__num">02</span>
               <h3 class="cr-step__title">Post</h3>
-              <p class="cr-step__text">Write about Kodus on X or LinkedIn, tag @kodus and add your link. Your words, no review from us.</p>
+              <p class="cr-step__text">Write about Kodus on X or LinkedIn, tag @kodustech and add your link. Your words, no review from us.</p>
             </div>
           </div>
           <div class="cr-window">
@@ -215,7 +222,7 @@
     <section class="cr-section" id="rewards">
       <div class="container">
         <h2 class="section-title">Three ways to earn</h2>
-        <p class="cr-section__lead">Impressions pay for reach and referrals pay for customers. On top of that, the three creators with the most signups get a bigger cap the next month.</p>
+        <p class="cr-section__lead">Earn based on the reach of your posts and the signups that turn into paying customers.</p>
 
         <div class="cr-rewards">
           <div class="cr-window">
@@ -225,10 +232,10 @@
               <div class="cr-reward__price">$100</div>
               <span class="cr-reward__unit">per 20,000 organic impressions</span>
               <ul class="cr-list">
-                <li>Impressions from all your posts in the month add up</li>
-                <li>Up to 3 blocks per month, which is $300 for 60k impressions</li>
-                <li>Posts only about Kodus count in full</li>
-                <li>Comparisons and roundups count at 50%</li>
+                <li>Impressions from all your posts during the month are added together.</li>
+                <li>Up to 3 blocks per month, which means $300 for 60,000 impressions.</li>
+                <li>Posts dedicated entirely to Kodus count at 100%.</li>
+                <li>Comparisons and tool lists count at 50%.</li>
               </ul>
             </div>
           </div>
@@ -238,12 +245,13 @@
             <div class="cr-window__body">
               <h3 class="cr-reward__name">Referrals</h3>
               <div class="cr-reward__price">20%</div>
-              <span class="cr-reward__unit">of what each customer pays, for 12 months</span>
+              <span class="cr-reward__unit">of what each customer pays during their first 12 months</span>
               <ul class="cr-list">
-                <li>Counts any team that subscribes within 90 days of clicking your link</li>
-                <li>Seats they add during those 12 months count too</li>
-                <li>No monthly cap</li>
-                <li>Paid after the customer pays</li>
+                <li>Counts any team that subscribes to a paid plan within 90 days of clicking your link.</li>
+                <li>You earn commissions for up to 12 months, as long as the customer keeps paying.</li>
+                <li>Any additional seats they purchase during those 12 months count too.</li>
+                <li>No monthly commission cap.</li>
+                <li>Commissions are paid only after we receive the customer's payment.</li>
               </ul>
             </div>
           </div>
@@ -252,18 +260,17 @@
             <div class="cr-window__bar"><span class="cr-window__dots"></span><span class="cr-window__title">leaderboard.exe</span><span class="cr-window__badge">TOP 3</span></div>
             <div class="cr-window__body">
               <h3 class="cr-reward__name">Leaderboard</h3>
-              <div class="cr-reward__price">+50%</div>
-              <span class="cr-reward__unit">on your impressions cap next month</span>
+              <div class="cr-reward__price">+20%</div>
+              <span class="cr-reward__unit">bonus on your total earnings for the month</span>
               <ul class="cr-list">
-                <li>Ranked by signups that came through your link</li>
-                <li>Resets every month</li>
-                <li>The board is public on this page</li>
+                <li>Ranked by the number of people who sign up for Kodus through your link.</li>
+                <li>Rankings reset every month.</li>
+                <li>The leaderboard is public and available on this page.</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <p class="cr-example">Example: three posts in a month reach <strong>60k impressions</strong>, which pays <strong>$300</strong>. One team of 10 devs subscribes through your link, and you keep earning 20% of their bill for a year.</p>
       </div>
     </section>
 
@@ -271,50 +278,49 @@
     <section class="cr-section" id="rules">
       <div class="container">
         <h2 class="section-title">What to post</h2>
-        <p class="cr-section__lead">Write what you actually think about Kodus. Post about it alone or put it next to other tools, and nobody from our team reviews it before it goes live. You know what your audience wants to read.</p>
+        <p class="cr-section__lead">You can post only about Kodus or include it in comparisons and tool lists. What you say and how you say it is up to you. After all, you know your audience better than we do.</p>
 
         <div class="cr-window">
           <div class="cr-window__bar"><span class="cr-window__dots"></span><span class="cr-window__title">post_types.md</span></div>
           <div class="cr-window__body">
             <table class="cr-types">
               <thead>
-                <tr><th>Type</th><th>Example</th><th>Impressions count</th></tr>
+                <tr><th>Type</th><th>Example</th><th>Impressions counted</th></tr>
               </thead>
               <tbody>
-                <tr><td>Kodus only</td><td>A real review on one of your PRs, a Kody Rule you wrote, your self-hosted setup</td><td>100%</td></tr>
-                <tr><td>Comparison</td><td>Kodus and another tool reviewing the same PR</td><td>50%</td></tr>
-                <tr><td>Roundup</td><td>Your list of AI code review tools</td><td>50%</td></tr>
+                <tr><td>Dedicated post</td><td>A post only about Kodus: your experience, a feature you tried or a real code review</td><td>100%</td></tr>
+                <tr><td>Comparison</td><td>Kodus compared with another code review tool</td><td>50%</td></tr>
+                <tr><td>Tool list</td><td>A list of AI code review tools that includes Kodus</td><td>50%</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-        <p class="cr-example">Example: in one month you publish three posts with <strong>10k impressions</strong> each. The Kodus-only post counts 10k, the comparison counts 5k and the roundup counts 5k. That adds up to <strong>20k impressions</strong>, which pays <strong>$100</strong>.</p>
-
+        <p class="cr-example"><strong>Example:</strong> in one month you publish three posts with 10k impressions each. The dedicated post counts 10k, the comparison counts 5k and the tool list counts 5k.<br>In total, that's <strong>20k counted impressions, worth $100.</strong></p>
         <div class="cr-rules">
           <div class="cr-window">
             <div class="cr-window__bar"><span class="cr-window__dots"></span><span class="cr-window__title">allowed.txt</span></div>
             <div class="cr-window__body">
-              <h3>The rules</h3>
+              <h3>The Rules</h3>
               <ul class="cr-list">
-                <li>Post to an audience of developers, engineering leads or people who build software</li>
-                <li>Tag @kodus clearly. On X, name Kodus in the first post of the thread</li>
-                <li>Post as often as you like, as long as there are at least 2 days between Kodus posts on the same network</li>
-                <li>Put your referral link in the post so your signups count</li>
+                <li>Your audience should primarily be developers, engineering leads, or people who work in software.</li>
+                <li>Tag @kodustech in your posts.</li>
+                <li>To avoid spam, leave at least 2 days between posts about Kodus on the same platform.</li>
+                <li>Include your personalized link so we can track signups.</li>
               </ul>
             </div>
           </div>
           <div class="cr-window">
             <div class="cr-window__bar"><span class="cr-window__dots"></span><span class="cr-window__title">not_paid.txt</span></div>
             <div class="cr-window__body">
-              <h3>What doesn't get paid</h3>
+              <h3>What Doesn't Get Paid</h3>
               <ul class="cr-list cr-list--x">
-                <li>Posts from accounts whose audience isn't developers. We check your profile when you claim a payout</li>
-                <li>Posts published before you signed up</li>
-                <li>Boosted or paid reach. Organic impressions only</li>
-                <li>A post that repeats one you already claimed</li>
-                <li>Several Kodus posts on the same network within 2 days. Only the first one counts, because a feed full of posts about the same tool reads as spam</li>
-                <li>False claims about other tools</li>
-                <li>Bought engagement or bot comments</li>
+                <li>Posts from accounts that don't primarily reach developers.</li>
+                <li>Posts published before you joined the program.</li>
+                <li>Paid or boosted impressions. Only organic reach counts.</li>
+                <li>Reposted content you've already submitted for payment.</li>
+                <li>False claims about other tools.</li>
+                <li>Bought engagement or bot-generated comments.</li>
+                <li>Fake or duplicate signups. These don't count toward the leaderboard and may disqualify you from the monthly bonus.</li>
               </ul>
             </div>
           </div>
@@ -347,7 +353,7 @@
               </form>
               <div class="cr-form__done" role="status">
                 <p class="ok">&#10003; You're in.</p>
-                <p>Check your inbox for your kodus.io referral links and the invite to the creators channel.</p>
+                <p>Check your inbox for your personalized Kodus link and the invite to the creators channel.</p>
               </div>
             </div>
           </div>
@@ -356,7 +362,7 @@
             <div class="cr-window__bar"><span class="cr-window__dots"></span><span class="cr-window__title">what_you_get.log</span></div>
             <div class="cr-window__body">
               <ul class="cr-join__steps">
-                <li><span>&gt;</span> Two referral links to kodus.io with your ID, one to put in X posts and one for LinkedIn</li>
+                <li><span>&gt;</span> Your personalized Kodus link, to use in every post on X and LinkedIn</li>
                 <li><span>&gt;</span> A link to join the private creators channel with the Kodus founders and marketing team, where you can ask questions, see product news and trade post ideas</li>
                 <li><span>&gt;</span> The claim form for your monthly payout</li>
               </ul>
@@ -410,7 +416,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>When a team signs up through your referral link and starts a paid plan, you get 20% of what they pay us for their first 12 months. If they add seats in that period, those count too.</p>
+                  <p>When a team signs up through your link and starts a paid plan, you get 20% of what they pay us for their first 12 months. If they add seats in that period, those count too.</p>
                   <p>We add up your commissions at the end of each month, counting only payments we actually received that month. A team on a monthly plan earns you 20% every month. A team on an annual plan earns you 20% of the annual payment in the month it comes in.</p>
                   <p>Example: a team of 10 devs pays $300 a month. You earn $60 a month, or $720 over the year.</p>
                   <p>If a customer gets a refund, the commission on that payment is not paid. Commissions go out together with your impressions payout at the end of the month.</p>
@@ -446,7 +452,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>Yes. Comparisons and roundups are welcome and count at 50% of impressions. Keep what you say about other tools accurate.</p>
+                  <p>Yes. Comparisons and tool lists are welcome and count at 50% of impressions. Keep what you say about other tools accurate.</p>
                 </div>
               </div>
 
@@ -457,7 +463,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>Your links carry an ID that is yours. When someone visits Kodus for the first time through your link and creates an account, it counts for you. If they had already visited Kodus before, it counts for wherever they came from first.</p>
+                  <p>Your link carries an ID that is yours. When someone visits Kodus for the first time through your link and creates an account, it counts for you. If they had already visited Kodus before, it counts for wherever they came from first.</p>
                   <p>That only works if your link is in the post. A post without it still earns impressions, but signups from it can't be traced to you.</p>
                 </div>
               </div>
