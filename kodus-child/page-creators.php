@@ -26,7 +26,7 @@
             <div><span class="cr-stat__value">0</span><span class="cr-stat__label">follower minimum</span></div>
           </div>
         </div>
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-money.webp" alt="Kody holding cash" class="cr-hero__kody">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kody-money-hd.webp" width="720" height="720" alt="Kody holding cash" class="cr-hero__kody">
       </div>
     </section>
 
