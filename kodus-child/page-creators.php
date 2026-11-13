@@ -58,7 +58,7 @@
             <div class="cr-window__body">
               <span class="cr-step__num">03</span>
               <h3 class="cr-step__title">Claim</h3>
-              <p class="cr-step__text">At the end of the month, send us the links to every post you published about Kodus and screenshots of their analytics.</p>
+              <p class="cr-step__text">At the end of the month, send the links to all the posts you published about Kodus, along with screenshots of each post’s analytics, to <a class="highlight" href="mailto:marketing@kodus.io">marketing@kodus.io</a>.</p>
             </div>
           </div>
           <div class="cr-window">
@@ -226,7 +226,7 @@
                   <span class="faq__toggle">+</span>
                 </button>
                 <div class="faq__answer">
-                  <p>At the end of each month, fill in the claim form with the link to every post you published about Kodus, plus screenshots of their X or LinkedIn analytics. Anything else that shows the numbers helps too. We pay within 5 days.</p>
+                  <p>At the end of each month, email <a class="highlight" href="mailto:marketing@kodus.io">marketing@kodus.io</a> with the link to every post you published about Kodus, plus screenshots of their X or LinkedIn analytics. Anything else that shows the numbers helps too. We pay within 5 days.</p>
                   <p>Every 20k impressions is $100, up to 3 blocks per month. That caps the month at $300, or 60k impressions. Impressions that don't complete a block don't carry over: if your month closes at 50k, you get $200.</p>
                   <p>Each post goes into one claim only, in the month you published it or the next one. That way a post from the last days of the month still gets its full reach.</p>
                 </div>
