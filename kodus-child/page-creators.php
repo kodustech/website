@@ -227,6 +227,7 @@
                 </button>
                 <div class="faq__answer">
                   <p>At the end of each month, email <a class="highlight" href="mailto:marketing@kodus.io">marketing@kodus.io</a> with the link to every post you published about Kodus, plus screenshots of their X or LinkedIn analytics. Anything else that shows the numbers helps too. We pay within 5 days.</p>
+                  <p>To get paid, include an invoice in PDF with your claim. It needs your full name, company name (if you have one), full address and email. We can’t process a payout without it.</p>
                   <p>Every 20k impressions is $100, up to 3 blocks per month. That caps the month at $300, or 60k impressions. Impressions that don't complete a block don't carry over: if your month closes at 50k, you get $200.</p>
                   <p>Each post goes into one claim only, in the month you published it or the next one. That way a post from the last days of the month still gets its full reach.</p>
                 </div>
