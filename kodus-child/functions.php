@@ -165,7 +165,7 @@ function kodus_get_product_meta_descriptions() {
         'page-policy-as-code-review.php' => 'Write your team review rules in plain English. Kodus enforces them in every PR with inline comments. Per repo, per folder, versioned audit trail. Open source, AGPLv3.',
         'page-data.php' => '180,739 AI code-review suggestions across 530 organizations: what happens after an AI leaves a review comment. 33.2% become code. Kodus production data, Sep 2025 to Jun 2026.',
         'page-manifesto.php' => 'An open memo on why Kodus is building the merge layer for AI-generated code: open source AI code review without vendor lock-in.',
-        'page-creators.php' => 'Post about Kodus on X or LinkedIn and get paid for organic impressions, plus 20% of every subscription you bring in for 12 months.',
+        'page-creators.php' => 'Join the Kodus Creator Program and earn money by sharing Kodus with your audience. Get paid for impressions, referrals, and bonuses.',
     ];
 }
 
