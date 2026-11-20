@@ -1271,6 +1271,64 @@ add_action('init', function() {
 });
 
 // ═══════════════════════════════════════════════════════════════
+// 12b. DPA PAGE — /en/dpa/ (EN, Kodus Wrapper, like terms-of-use)
+//      Text lives in template-parts/legal/dpa.php. The page is created
+//      once, on the first request after deploy. /dpa reaches it through
+//      Polylang's redirect, like /terms-of-use → /en/terms-of-use/.
+// ═══════════════════════════════════════════════════════════════
+add_action('init', 'kodus_create_dpa_page');
+function kodus_create_dpa_page() {
+    if (get_option('kodus_dpa_page_id') || !function_exists('pll_languages_list') || !in_array('en', pll_languages_list(), true)) {
+        return;
+    }
+    // add_option() fails when the option already exists, so concurrent first requests can't both create the page.
+    if (!add_option('kodus_dpa_page_id', 'pending')) {
+        return;
+    }
+
+    $existing = get_posts([
+        'post_type'   => 'page',
+        'name'        => 'dpa',
+        'post_status' => 'any',
+        'lang'        => '',
+        'numberposts' => 1,
+        'fields'      => 'ids',
+    ]);
+    $page_id = $existing ? (int) $existing[0] : wp_insert_post([
+        'post_type'   => 'page',
+        'post_title'  => 'Data Processing Agreement (DPA)',
+        'post_name'   => 'dpa',
+        'post_status' => 'publish',
+    ]);
+
+    if (!$page_id || is_wp_error($page_id)) {
+        delete_option('kodus_dpa_page_id');
+        return;
+    }
+
+    update_post_meta($page_id, '_wp_page_template', 'page-kodus-wrapper.php');
+    pll_set_post_language($page_id, 'en');
+    update_option('kodus_dpa_page_id', $page_id);
+}
+
+// Terms of Use §6.2 incorporates the DPA by name: link that name to the DPA page.
+add_filter('the_content', 'kodus_link_dpa_in_terms', 20);
+function kodus_link_dpa_in_terms($content) {
+    $dpa_id = (int) get_option('kodus_dpa_page_id');
+    if (!$dpa_id || !is_page('terms-of-use') || !in_the_loop()) {
+        return $content;
+    }
+
+    // Runs after wptexturize, which turns the straight quotes into &#8220;/&#8221;.
+    return preg_replace(
+        '/Kodus Data Processing Agreement \((?:"|&#8220;)DPA(?:"|&#8221;)\)/',
+        '<a href="' . esc_url(get_permalink($dpa_id)) . '">$0</a>',
+        $content,
+        1
+    );
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 13. BLOG PAGE — AJAX handler + JS
 // ═══════════════════════════════════════════════════════════════
 require_once get_stylesheet_directory() . '/inc/ajax-blog.php';

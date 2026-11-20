@@ -19,6 +19,7 @@
           <ul class="footer__col-list">
             <li><a href="https://kodus.io/privacy-policy/">Privacy Policy</a></li>
             <li><a href="https://kodus.io/terms-of-use/">Terms of Use</a></li>
+            <li><a href="https://kodus.io/en/dpa/">DPA</a></li>
             <li><a href="mailto:support@kodus.io">support@kodus.io</a></li>
           </ul>
         </div>
