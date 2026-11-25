@@ -56,6 +56,8 @@ function kodus_get_english_product_templates() {
         'page-kodus-vs-bugbot.php',
         'page-kodus-vs-github.php',
         'page-kodus-vs-claude.php',
+        'page-lp-self-hosted.php',
+        'page-lp-gitlab.php',
         'page-self-hosted-ai-code-review.php',
         'page-byo-llm-code-review.php',
         'page-ai-review-cost.php',
@@ -119,6 +121,8 @@ function kodus_get_product_meta_titles() {
         'page-kodus-vs-github.php' => 'Kodus vs GitHub Copilot | AI Code Review Tools Compared',
         'page-kodus-vs-claude.php' => 'Kodus vs Claude | AI Code Review Tools Compared',
         'page-self-hosted-ai-code-review.php' => 'Self-Hosted AI Code Review | Kodus (Open Source, AGPLv3)',
+        'page-lp-self-hosted.php' => 'Self-Hosted AI Code Review | Kodus',
+        'page-lp-gitlab.php' => 'AI Code Review for GitLab | Kodus',
         'page-ai-review-cost.php' => 'AI Code Review Cost Calculator | Kodus vs Copilot, Bugbot, CodeRabbit',
         'page-self-hosted-security.php' => 'Self-hosted security and data flow | Kodus',
         'page-byo-llm-code-review.php' => 'BYO LLM Code Review: Bring Your Own Key, Zero Markup | Kodus',
@@ -158,6 +162,8 @@ function kodus_get_product_meta_descriptions() {
         'page-kodus-vs-bugbot.php' => 'See how Kodus stacks up against Cursor Bugbot in features, customization, context awareness, and team fit.',
         'page-kodus-vs-github.php' => 'Here’s how Kodus stacks up against GitHub Copilot in features, customization, context understanding, and how well it fits your team.',
         'page-kodus-vs-claude.php' => 'See how Kodus compares to Claude in features, customization, contextual understanding, and overall fit for your team.',
+        'page-lp-self-hosted.php' => 'Open source AI code review without vendor lock-in. Runs on your infrastructure, with the LLM you choose.',
+        'page-lp-gitlab.php' => 'Open source AI code review with the model you choose. Reviews every merge request on GitLab Cloud and Self-Managed.',
         'page-self-hosted-ai-code-review.php' => 'Open source (AGPLv3) AI code review you self-host on-prem or in your cloud, with GitHub Enterprise Server, GitLab Self-Managed and any OpenAI-compatible LLM.',
         'page-ai-review-cost.php' => 'Estimate what AI code review costs your team per month on Kodus, GitHub Copilot code review, Cursor Bugbot, CodeRabbit and Greptile, using public list prices.',
         'page-self-hosted-security.php' => 'See how self-hosted Kodus handles review data, model connections, telemetry and stored results.',
@@ -343,6 +349,8 @@ function kodus_get_retro_templates() {
         'page-kodus-vs-bugbot.php',
         'page-kodus-vs-github.php',
         'page-kodus-vs-claude.php',
+        'page-lp-self-hosted.php',
+        'page-lp-gitlab.php',
         'page-self-hosted-ai-code-review.php',
         'page-byo-llm-code-review.php',
         'page-ai-review-cost.php',
@@ -679,6 +687,8 @@ function kodus_register_page_templates($templates) {
     $templates['page-kodus-vs-github.php']     = 'Kodus vs GitHub Copilot';
     $templates['page-kodus-vs-claude.php']     = 'Kodus vs Claude';
     $templates['page-self-hosted-ai-code-review.php'] = 'Kodus Self-Hosted AI Code Review';
+    $templates['page-lp-self-hosted.php']             = 'Kodus LP Self-Hosted (Ads)';
+    $templates['page-lp-gitlab.php']                  = 'Kodus LP GitLab (Ads)';
     $templates['page-byo-llm-code-review.php']        = 'Kodus BYO LLM Code Review';
     $templates['page-ai-review-cost.php']             = 'Kodus AI Review Cost';
     $templates['page-self-hosted-security.php'] = 'Kodus Self-Hosted Security';
@@ -1457,3 +1467,34 @@ function kodus_comparison_redirects() {
         exit;
     }
 }
+
+
+// ═══════════════════════════════════════════════════════════════
+// ADS LANDING PAGES: noindex and out of the Yoast sitemap
+// They exist for Google Ads traffic and must not compete with the
+// organic pages. Do not block them in robots.txt: AdsBot has to read them.
+// ═══════════════════════════════════════════════════════════════
+function kodus_get_ads_lp_templates() {
+    return ['page-lp-self-hosted.php', 'page-lp-gitlab.php'];
+}
+
+add_filter('wpseo_robots', function ($robots) {
+    if (is_page() && in_array(kodus_get_current_page_template(), kodus_get_ads_lp_templates(), true)) {
+        return 'noindex, nofollow';
+    }
+    return $robots;
+});
+
+add_filter('wpseo_exclude_from_sitemap_by_post_ids', function ($ids) {
+    $lp_ids = get_posts([
+        'post_type'      => 'page',
+        'post_status'    => 'any',
+        'fields'         => 'ids',
+        'posts_per_page' => -1,
+        'meta_key'       => '_wp_page_template',
+        'meta_value'     => kodus_get_ads_lp_templates(),
+        'meta_compare'   => 'IN',
+    ]);
+    return array_merge((array) $ids, $lp_ids);
+});
+
